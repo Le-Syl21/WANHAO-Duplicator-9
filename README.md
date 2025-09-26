@@ -2,7 +2,7 @@
 
 This repository is dedicated to the **WANHAO Duplicator 9** 3D printer and will gradually include:
 
-* 🔧 Official and custom **firmware** (Marlin, Klipper, etc.)
+* 🔧 Custom **firmware** (Marlin, Klipper, etc.)
 * 🖥️ **LCD resources** and documentation (DGUS / DWIN_SET)
 * ⚙️ **Configuration files** (Marlin, Klipper)
 * 🧪 **G-code test files** for calibration and troubleshooting
