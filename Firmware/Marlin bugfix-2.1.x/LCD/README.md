@@ -7,21 +7,38 @@
 **Required Items:**
 - MicroSD card (minimum 1GB, maximum 32GB recommended)
 - Computer with SD card reader
-- DWIN_SET.zip file (provided)
+- DWIN_SET.zip file (provided) - **DGUS Reloaded version**
 - Small screwdriver (for panel disassembly)
+
+**⚠️ Important Note About This Firmware:**
+This DGUS Reloaded firmware package is different from the original Wanhao firmware. It **forces a format of the LCD's internal memory** before flashing, which significantly reduces common flashing issues and improves reliability.
 
 ### Step 1: Format MicroSD Card
 
 **⚠️ CRITICAL: The allocation unit size MUST be 4096 bytes (4K). This is essential for proper LCD firmware loading!**
 
 #### Windows:
+
+**⚠️ Note:** Windows 11's native format tool may not support FAT32 formatting. Use GUI Format instead.
+
+**Method 1: GUI Format (Fat32Format) - RECOMMENDED**
+1. **Download** GUI Format from: [http://ridgecrop.co.uk/index.htm?guiformat.htm](http://ridgecrop.co.uk/index.htm?guiformat.htm)
+2. **Extract** and run `guiformat.exe` (no installation needed)
+3. **Insert** MicroSD card into computer
+4. **Select** your SD card drive from the dropdown
+5. **Configure settings:**
+   - **Allocation unit size:** **4096** ⚠️ **CRITICAL!**
+   - **Volume label:** Optional (e.g., "DWIN")
+   - ✅ **Quick Format** (recommended)
+6. **Click** "Start" and confirm formatting
+
+**Method 2: Native Windows Format Tool** (if FAT32 option available)
 1. **Insert** MicroSD card into computer
 2. **Right-click** on the SD card in File Explorer
 3. **Select** "Format..."
 4. **Configure settings:**
    - **File system:** FAT32
    - **Allocation unit size:** **4096 bytes** ⚠️ **CRITICAL!**
-   - **Partition scheme:** MBR (Master Boot Record)
 5. **Click** "Start" and confirm formatting
 
 #### Linux:
@@ -55,6 +72,9 @@ sudo newfs_msdos -F 32 -c 8 /dev/disk2
 ```
 
 ### Step 2: Prepare LCD Firmware
+
+**About This DGUS Reloaded Firmware:**
+This firmware package includes a pre-flash memory format routine that clears the LCD's internal storage before installing the new firmware. This significantly reduces corruption issues and failed updates that can occur with the standard firmware files.
 
 1. **Extract** the DWIN_SET.zip file
 2. **Copy** the entire `DWIN_SET` folder to the **root** of your MicroSD card
@@ -122,21 +142,38 @@ sudo newfs_msdos -F 32 -c 8 /dev/disk2
 **Éléments requis :**
 - Carte MicroSD (minimum 1GB, maximum 32GB recommandé)
 - Ordinateur avec lecteur de carte SD
-- Fichier DWIN_SET.zip (fourni)
+- Fichier DWIN_SET.zip (fourni) - **Version DGUS Reloaded**
 - Petit tournevis (pour démontage du panneau)
+
+**⚠️ Note importante concernant ce firmware :**
+Ce package firmware DGUS Reloaded est différent du firmware Wanhao d'origine. Il **force un formatage de la mémoire interne du LCD** avant le flash, ce qui réduit considérablement les problèmes courants de flashage et améliore la fiabilité.
 
 ### Étape 1 : Formatage de la Carte MicroSD
 
 **⚠️ CRITIQUE : La taille d'unité d'allocation DOIT être de 4096 octets (4K). C'est essentiel pour le chargement correct du firmware LCD !**
 
 #### Windows :
+
+**⚠️ Note :** L'outil de formatage natif de Windows 11 peut ne pas supporter le formatage FAT32. Utilisez GUI Format à la place.
+
+**Méthode 1 : GUI Format (Fat32Format) - RECOMMANDÉ**
+1. **Téléchargez** GUI Format depuis : [http://ridgecrop.co.uk/index.htm?guiformat.htm](http://ridgecrop.co.uk/index.htm?guiformat.htm)
+2. **Extrayez** et exécutez `guiformat.exe` (aucune installation nécessaire)
+3. **Insérez** la carte MicroSD dans l'ordinateur
+4. **Sélectionnez** votre lecteur de carte SD dans le menu déroulant
+5. **Configurez les paramètres :**
+   - **Taille d'unité d'allocation :** **4096** ⚠️ **CRITIQUE !**
+   - **Label du volume :** Optionnel (ex: "DWIN")
+   - ✅ **Formatage rapide** (recommandé)
+6. **Cliquez** "Start" et confirmez le formatage
+
+**Méthode 2 : Outil de formatage natif Windows** (si option FAT32 disponible)
 1. **Insérez** la carte MicroSD dans l'ordinateur
 2. **Clic-droit** sur la carte SD dans l'Explorateur de fichiers
 3. **Sélectionnez** "Formater..."
 4. **Configurez les paramètres :**
    - **Système de fichiers :** FAT32
    - **Taille d'unité d'allocation :** **4096 octets** ⚠️ **CRITIQUE !**
-   - **Schéma de partition :** MBR (Master Boot Record)
 5. **Cliquez** "Démarrer" et confirmez le formatage
 
 #### Linux :
@@ -170,6 +207,9 @@ sudo newfs_msdos -F 32 -c 8 /dev/disk2
 ```
 
 ### Étape 2 : Préparation du Firmware LCD
+
+**À propos de ce firmware DGUS Reloaded :**
+Ce package firmware inclut une routine de formatage de la mémoire avant le flash qui efface le stockage interne du LCD avant d'installer le nouveau firmware. Cela réduit considérablement les problèmes de corruption et les échecs de mise à jour qui peuvent survenir avec les fichiers firmware standard.
 
 1. **Extrayez** le fichier DWIN_SET.zip
 2. **Copiez** l'intégralité du dossier `DWIN_SET` à la **racine** de votre carte MicroSD
@@ -243,6 +283,7 @@ sudo newfs_msdos -F 32 -c 8 /dev/disk2
 
 ### Important Notes / Notes Importantes
 
+- **DGUS Reloaded firmware auto-formats LCD internal memory** / **Le firmware DGUS Reloaded formate automatiquement la mémoire interne du LCD** ✨
 - **4K cluster size is mandatory** / **Taille cluster 4K obligatoire** ⚠️
 - **MBR partition table required** / **Table partition MBR requise**
 - **Maximum 32GB SD card** / **Carte SD maximum 32GB**
