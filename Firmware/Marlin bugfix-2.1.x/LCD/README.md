@@ -1,4 +1,4 @@
-# Wanhao Duplicator 9 - DGUS LCD Flash Guide / Guide de Flash de l'Écran LCD DGUS
+# Wanhao Duplicator 9 - DGUS LCD Flash Guide (OS + Firm) / Guide de Flash de l'Écran LCD DGUS (OS + Firm)
 
 ## 🇬🇧 English Version
 
