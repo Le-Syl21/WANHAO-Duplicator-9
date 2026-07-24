@@ -11,6 +11,12 @@ This repository is dedicated to the **WANHAO Duplicator 9** 3D printer and inclu
 * 🖥️ **LCD resources** and documentation (DGUS / DWIN_SET)
 * ⚙️ **Configuration files** (Marlin) https://github.com/MarlinFirmware/Configurations/blob/import-2.1.x/config/examples/Wanhao/Duplicator%209
 
+### 💬 Community & support
+
+Questions, bug reports, beta testing, or just want to chat? Join the Discord:
+
+[![Discord](https://img.shields.io/badge/Discord-Le--Syl21%20Tools-5865F2?logo=discord&logoColor=white)](https://discord.gg/T37DYHmt2j)
+
 ### 📂 Repository structure
 ```
 WANHAO-Duplicator-9/
@@ -55,6 +61,12 @@ Ce dépôt est dédié à l'imprimante 3D **WANHAO Duplicator 9** et comprend :
 * 🔧 **Firmware** personnalisé (Marlin)
 * 🖥️ **Ressources LCD** et documentation (DGUS / DWIN_SET)
 * ⚙️ **Fichiers de configuration** (Marlin) https://github.com/MarlinFirmware/Configurations/blob/import-2.1.x/config/examples/Wanhao/Duplicator%209
+
+### 💬 Communauté & support
+
+Des questions, un bug à signaler, envie de tester en avant-première ou simplement de discuter ? Rejoignez le Discord :
+
+[![Discord](https://img.shields.io/badge/Discord-Le--Syl21%20Tools-5865F2?logo=discord&logoColor=white)](https://discord.gg/T37DYHmt2j)
 
 ### 📂 Structure du dépôt
 ```
