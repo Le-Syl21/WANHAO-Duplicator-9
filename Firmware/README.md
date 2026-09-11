@@ -13,9 +13,10 @@
 
 ### What's in these builds
 
-Built from Marlin `bugfix-2.1.x` (September 2026) with the Duplicator 9 configurations published in [Marlin Configurations](https://github.com/MarlinFirmware/Configurations/tree/bugfix-2.1.x/config/examples/Wanhao/Duplicator%209). The first two points are fixes not merged there yet.
+Built from Marlin `bugfix-2.1.x` (September 2026) with the Duplicator 9 configurations published in [Marlin Configurations](https://github.com/MarlinFirmware/Configurations/tree/bugfix-2.1.x/config/examples/Wanhao/Duplicator%209). The first three points are fixes not merged there yet.
 
 - **MK1:** the inductive probe is now read the right way round (it triggers LOW), with Klipper's probe offsets.
+- **MK3:** the Y axis is inverted, because the MK3 head upgrade moves the Y motor to the front of the frame. Few MK3s exist and this has not been tested on one yet: do the first homing with a hand on the power switch, and report back on Discord.
 - **Power-loss recovery** is on: after an outage during an SD print, the screen offers to resume. Turn it off with `M413 S0` then `M500`.
 - **Filament runout sensor** support is built in, off by default except on the MK3. Without a sensor nothing happens; once you fit one, enable it with `M412 S1` then `M500`.
 - **The screen needs DGUS Reloaded 1.0.3** (`LCD/DWIN_SET.zip`). With the older 1.0.2 files, temperatures show without their decimal point (23.6 °C appears as 236).
@@ -101,9 +102,10 @@ avrdude -v -p atmega2560 -c wiring -P /dev/ttyUSB0 -D -U flash:w:firmware.hex:i
 
 ### Contenu de ces firmwares
 
-Compilés depuis Marlin `bugfix-2.1.x` (septembre 2026) avec les configurations Duplicator 9 publiées dans [Marlin Configurations](https://github.com/MarlinFirmware/Configurations/tree/bugfix-2.1.x/config/examples/Wanhao/Duplicator%209). Les deux premiers points sont des corrections pas encore intégrées là-bas.
+Compilés depuis Marlin `bugfix-2.1.x` (septembre 2026) avec les configurations Duplicator 9 publiées dans [Marlin Configurations](https://github.com/MarlinFirmware/Configurations/tree/bugfix-2.1.x/config/examples/Wanhao/Duplicator%209). Les trois premiers points sont des corrections pas encore intégrées là-bas.
 
 - **MK1 :** la sonde inductive est maintenant lue dans le bon sens (elle se déclenche à l'état bas), avec les offsets de sonde de Klipper.
+- **MK3 :** l'axe Y est inversé, parce que la mise à jour de tête MK3 déplace le moteur Y à l'avant du châssis. Les MK3 sont rares et ce réglage n'a pas encore été testé sur l'une d'elles : faites le premier homing la main sur l'interrupteur, et dites-nous sur Discord ce qu'il en est.
 - **Reprise après coupure** active : après une coupure de courant pendant une impression depuis la carte SD, l'écran propose de reprendre. Pour la désactiver : `M413 S0` puis `M500`.
 - **Capteur de fin de filament** pris en charge, désactivé par défaut sauf sur la MK3. Sans capteur, rien ne se passe ; une fois un capteur installé, activez-le avec `M412 S1` puis `M500`.
 - **L'écran doit être en DGUS Reloaded 1.0.3** (`LCD/DWIN_SET.zip`). Avec les anciens fichiers 1.0.2, les températures s'affichent sans la virgule (23,6 °C devient 236).
