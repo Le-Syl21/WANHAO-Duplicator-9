@@ -7,11 +7,14 @@
 **Required Items:**
 - MicroSD card (minimum 1GB, maximum 32GB recommended)
 - Computer with SD card reader
-- DWIN_SET.zip file (provided) - **DGUS Reloaded version**
+- DWIN_SET.zip file (provided) - **DGUS Reloaded 1.0.3**
 - Small screwdriver (for panel disassembly)
 
 **⚠️ Important Note About This Firmware:**
 This DGUS Reloaded firmware package is different from the original Wanhao firmware. It **forces a format of the LCD's internal memory** before flashing, which significantly reduces common flashing issues and improves reliability.
+
+**Why version 1.0.3:**
+Since 2023 ([Marlin#25490](https://github.com/MarlinFirmware/Marlin/pull/25490)), Marlin sends the bed and nozzle temperatures with one decimal and the Z position with two, and some screen addresses changed. The screen files have to match: with the older 1.0.2, temperatures show without their decimal point (23.6 °C appears as 236). The original DGUS Reloaded project stopped at 1.0.2 and is archived; 1.0.3 is published by [Neo2003](https://github.com/Neo2003/DGUS-reloaded/releases/tag/1.0.3), the author of that Marlin change. This package is that 1.0.3, unchanged, plus the two T5 core files (`T5OS_V21_NOACK.BIN`, `T5UID1_V30.BIN`) the previous package already carried.
 
 ### Step 1: Format MicroSD Card
 
@@ -142,11 +145,14 @@ This firmware package includes a pre-flash memory format routine that clears the
 **Éléments requis :**
 - Carte MicroSD (minimum 1GB, maximum 32GB recommandé)
 - Ordinateur avec lecteur de carte SD
-- Fichier DWIN_SET.zip (fourni) - **Version DGUS Reloaded**
+- Fichier DWIN_SET.zip (fourni) - **DGUS Reloaded 1.0.3**
 - Petit tournevis (pour démontage du panneau)
 
 **⚠️ Note importante concernant ce firmware :**
 Ce package firmware DGUS Reloaded est différent du firmware Wanhao d'origine. Il **force un formatage de la mémoire interne du LCD** avant le flash, ce qui réduit considérablement les problèmes courants de flashage et améliore la fiabilité.
+
+**Pourquoi la version 1.0.3 :**
+Depuis 2023 ([Marlin#25490](https://github.com/MarlinFirmware/Marlin/pull/25490)), Marlin envoie les températures du plateau et de la buse avec une décimale et la position Z avec deux, et certaines adresses de l'écran ont changé. Les fichiers de l'écran doivent suivre : avec l'ancienne 1.0.2, les températures s'affichent sans la virgule (23,6 °C devient 236). Le projet DGUS Reloaded d'origine s'est arrêté à la 1.0.2 et il est archivé ; la 1.0.3 est publiée par [Neo2003](https://github.com/Neo2003/DGUS-reloaded/releases/tag/1.0.3), l'auteur de ce changement dans Marlin. Ce package est cette 1.0.3, sans modification, plus les deux fichiers système du T5 (`T5OS_V21_NOACK.BIN`, `T5UID1_V30.BIN`) que contenait déjà le package précédent.
 
 ### Étape 1 : Formatage de la Carte MicroSD
 
