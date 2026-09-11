@@ -11,15 +11,26 @@
   - **avrdude** (command line, all platforms) - [Download](https://github.com/avrdudes/avrdude)
 - Firmware file (.hex) for your specific model
 
+### What's in these builds
+
+Built from Marlin `bugfix-2.1.x` (September 2026) with the Duplicator 9 configurations published in [Marlin Configurations](https://github.com/MarlinFirmware/Configurations/tree/bugfix-2.1.x/config/examples/Wanhao/Duplicator%209). The first two points are fixes not merged there yet.
+
+- **MK1:** the inductive probe is now read the right way round (it triggers LOW), with Klipper's probe offsets.
+- **Power-loss recovery** is on: after an outage during an SD print, the screen offers to resume. Turn it off with `M413 S0` then `M500`.
+- **Filament runout sensor** support is built in, off by default except on the MK3. Without a sensor nothing happens; once you fit one, enable it with `M412 S1` then `M500`.
+- **The screen needs DGUS Reloaded 1.0.3** (`LCD/DWIN_SET.zip`). With the older 1.0.2 files, temperatures show without their decimal point (23.6 °C appears as 236).
+
 ### Step 1: Prepare for Flashing
 
 1. **Choose the correct firmware** for your model:
    - `D9_MK1_xxx.hex` - For MK1 with inductive probe
    - `D9_MK2_xxx.hex` - For MK2 factory (BLTouch)
-   - `D9_MK2u2_xxx.hex` - For MK1→MK2 upgrade kit
+   - `D9_MK1u2_xxx.hex` - For MK1→MK2 upgrade kit
    - `D9_MK3_xxx.hex` - For MK3 with BLTouch + filament sensor
 
 2. **⚠️ IMPORTANT:** Close ALL programs using the COM port (serial terminals, slicers, Cura, OctoPrint, Pronterface, etc.)
+
+3. **⚠️ Note your settings first:** the first boot of a new build resets the EEPROM. Send `M851` (probe Z offset), `M92` (steps/mm) and `M301` (hotend PID) and keep the answers, so you can set them back and save them with `M500`.
 
 ### Step 2: Flash Firmware
 
@@ -88,15 +99,26 @@ avrdude -v -p atmega2560 -c wiring -P /dev/ttyUSB0 -D -U flash:w:firmware.hex:i
   - **avrdude** (ligne de commande, toutes plateformes) - [Télécharger](https://github.com/avrdudes/avrdude)
 - Fichier firmware (.hex) pour votre modèle spécifique
 
+### Contenu de ces firmwares
+
+Compilés depuis Marlin `bugfix-2.1.x` (septembre 2026) avec les configurations Duplicator 9 publiées dans [Marlin Configurations](https://github.com/MarlinFirmware/Configurations/tree/bugfix-2.1.x/config/examples/Wanhao/Duplicator%209). Les deux premiers points sont des corrections pas encore intégrées là-bas.
+
+- **MK1 :** la sonde inductive est maintenant lue dans le bon sens (elle se déclenche à l'état bas), avec les offsets de sonde de Klipper.
+- **Reprise après coupure** active : après une coupure de courant pendant une impression depuis la carte SD, l'écran propose de reprendre. Pour la désactiver : `M413 S0` puis `M500`.
+- **Capteur de fin de filament** pris en charge, désactivé par défaut sauf sur la MK3. Sans capteur, rien ne se passe ; une fois un capteur installé, activez-le avec `M412 S1` puis `M500`.
+- **L'écran doit être en DGUS Reloaded 1.0.3** (`LCD/DWIN_SET.zip`). Avec les anciens fichiers 1.0.2, les températures s'affichent sans la virgule (23,6 °C devient 236).
+
 ### Étape 1 : Préparation du Flash
 
 1. **Choisissez le bon firmware** pour votre modèle :
    - `D9_MK1_xxx.hex` - Pour MK1 avec sonde inductive
    - `D9_MK2_xxx.hex` - Pour MK2 d'usine (BLTouch)
-   - `D9_MK2u2_xxx.hex` - Pour kit d'upgrade MK1→MK2
+   - `D9_MK1u2_xxx.hex` - Pour kit d'upgrade MK1→MK2
    - `D9_MK3_xxx.hex` - Pour MK3 avec BLTouch + capteur filament
 
 2. **⚠️ IMPORTANT :** Fermez TOUS les programmes utilisant le port COM (terminaux série, slicers, Cura, OctoPrint, Pronterface, etc.)
+
+3. **⚠️ Notez d'abord vos réglages :** le premier démarrage d'un nouveau firmware réinitialise l'EEPROM. Envoyez `M851` (offset Z de la sonde), `M92` (pas/mm) et `M301` (PID de la buse) et gardez les réponses, pour les remettre puis les sauvegarder avec `M500`.
 
 ### Étape 2 : Flash du Firmware
 
