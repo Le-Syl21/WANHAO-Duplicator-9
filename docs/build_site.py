@@ -26,7 +26,7 @@ UI = {
         "nav": {"index": "Home", "mk1": "MK1", "mk1u2": "MK1 + MK2 kit", "mk2": "MK2", "mk3": "MK3",
                 "flash": "Flash guide", "screen": "Screen"},
         "other": ("fr", "Version française", "FR"),
-        "size": "Size", "volume": "Build volume", "standard": "Standard", "inverted": "Y inverted",
+        "size": "Size", "volume": "Build volume", "file": "Firmware",
         "footer_src": "Source and issues on GitHub", "footer_chat": "Discord",
         "footer_note": "Firmware under GNU GPL v3. Wanhao's manuals and firmwares remain Wanhao's.",
     },
@@ -34,7 +34,7 @@ UI = {
         "nav": {"index": "Accueil", "mk1": "MK1", "mk1u2": "MK1 + kit MK2", "mk2": "MK2", "mk3": "MK3",
                 "flash": "Guide de flash", "screen": "Écran"},
         "other": ("en", "English version", "GB"),
-        "size": "Taille", "volume": "Volume d'impression", "standard": "Standard", "inverted": "Y inversé",
+        "size": "Taille", "volume": "Volume d'impression", "file": "Firmware",
         "footer_src": "Sources et tickets sur GitHub", "footer_chat": "Discord",
         "footer_note": "Firmware sous GNU GPL v3. Les manuels et firmwares Wanhao restent la propriété de Wanhao.",
     },
@@ -57,13 +57,11 @@ def downloads(model, lang):
     rows = []
     for size, volume in SIZES:
         std = f"D9_{model}_{size}.hex"
-        inv = f"D9_{model}_{size}_Y-inverted.hex"
         rows.append(
             f'<tr><td><strong>D9/{size}</strong></td><td>{volume}</td>'
-            f'<td><a class="btn" href="{DL}{std}">{std}</a></td>'
-            f'<td><a class="btn ghost" href="{DL}{inv}">{inv}</a></td></tr>')
+            f'<td><a class="btn" href="{DL}{std}">{std}</a></td></tr>')
     return (f'<div class="table"><table class="dl"><thead><tr><th>{u["size"]}</th><th>{u["volume"]}</th>'
-            f'<th>{u["standard"]}</th><th>{u["inverted"]}</th></tr></thead><tbody>'
+            f'<th>{u["file"]}</th></tr></thead><tbody>'
             + "".join(rows) + "</tbody></table></div>")
 
 
@@ -115,9 +113,10 @@ moves the bed: at the back, it is an <a href="{p('mk2')}">MK2</a>; at the front,
 <ul>
 <li><strong>Marlin 2.1</strong> built from the Duplicator 9 configurations published in
 <a href="https://github.com/MarlinFirmware/Configurations/tree/bugfix-2.1.x/config/examples/Wanhao/Duplicator%209">Marlin Configurations</a>,
-with the fixes proposed there: MK1 probe read the right way round, MK3 Y direction, power-loss recovery.</li>
-<li><strong>Axis directions checked against Wanhao's own firmwares</strong>, read out of Wanhao's binaries.
-Each file also exists with the Y axis inverted, for machines whose Y motor was moved.</li>
+with the changes proposed there: MK1 probe read the right way round, MK3 Y direction, power-loss recovery,
+endstop noise filter.</li>
+<li><strong>Wanhao's factory settings</strong>, read out of Wanhao's own firmware for each model: steps/mm, speeds,
+accelerations, hotend PID, probe offsets and axis directions.</li>
 <li><strong>Power-loss recovery</strong>: after an outage during an SD print, the screen offers to resume.</li>
 <li><strong>Filament runout sensor</strong> support, on by default on the MK3, one command away on the others.</li>
 <li><strong>A modern touchscreen interface</strong>, <a href="{p('screen')}">DGUS Reloaded 1.0.3</a>.</li>
@@ -169,9 +168,10 @@ plateau : à l'arrière, c'est une <a href="{p('mk2')}">MK2</a> ; à l'avant, du
 <ul>
 <li><strong>Marlin 2.1</strong> compilé depuis les configurations Duplicator 9 publiées dans
 <a href="https://github.com/MarlinFirmware/Configurations/tree/bugfix-2.1.x/config/examples/Wanhao/Duplicator%209">Marlin Configurations</a>,
-avec les corrections proposées là-bas : capteur MK1 lu dans le bon sens, sens Y de la MK3, reprise après coupure.</li>
-<li><strong>Sens des axes vérifiés contre les firmwares Wanhao</strong>, lus dans les binaires de Wanhao.
-Chaque fichier existe aussi avec l'axe Y inversé, pour les machines dont le moteur Y a été déplacé.</li>
+avec les changements proposés là-bas : capteur MK1 lu dans le bon sens, sens Y de la MK3, reprise après coupure,
+filtre anti-parasites des fins de course.</li>
+<li><strong>Les réglages d'usine de Wanhao</strong>, lus dans le firmware Wanhao de chaque modèle : pas/mm, vitesses,
+accélérations, PID de la buse, décalages du capteur et sens des axes.</li>
 <li><strong>Reprise après coupure de courant</strong> : après une coupure pendant une impression depuis la carte SD, l'écran propose de reprendre.</li>
 <li><strong>Capteur de fin de filament</strong> géré, actif par défaut sur la MK3, activable d'une commande sur les autres.</li>
 <li><strong>Une interface d'écran moderne</strong>, <a href="{p('screen')}">DGUS Reloaded 1.0.3</a>.</li>
@@ -205,15 +205,14 @@ Chaque fichier existe aussi avec l'axe Y inversé, pour les machines dont le mot
 <div class="split"><div>
 <p class="lead">The first Duplicator 9: a metal inductive probe next to the nozzle, a grey ribbon cable to the
 print head, and a frame without side ribs.</p>
-<p>These builds read the inductive probe the right way round (it triggers LOW) and use probe offsets measured on
-a real MK1 (X 27, Y 3). The Y motor sits at the back, as Wanhao built it.</p>
+<p>These builds read the inductive probe the right way round (it triggers LOW) and take the settings of Wanhao's
+last MK1 firmware, V0.164(B), probe offsets included (X 15, Y 0). The Y motor sits at the back, as Wanhao built it.</p>
 </div><figure><img src="{img}d9-mk1-inductive-probe.webp" width="600" height="364" alt="Inductive probe and ribbon cable on a Wanhao D9 MK1 print head">
 <figcaption>MK1: inductive probe, ribbon cable</figcaption></figure></div>
 
 <h2>Download</h2>
 {dl("MK1")}
-<p>Take the <strong>Standard</strong> file unless your Y motor was moved to the front: see
-<a href="{p('flash')}#y-direction">standard or Y inverted</a>. Then flash the screen with
+<p>Take the file for your size, then flash the screen with
 <a href="{p('screen')}">DGUS Reloaded</a>.</p>
 
 <h2>Wanhao's documents</h2>
@@ -237,15 +236,15 @@ of the same version.</p>
 <div class="split"><div>
 <p class="lead">La première Duplicator 9 : un capteur inductif en métal à côté de la buse, une nappe grise jusqu'à
 la tête d'impression et un cadre sans renforts latéraux.</p>
-<p>Ces builds lisent le capteur inductif dans le bon sens (il se déclenche à l'état bas) et utilisent des décalages
-de capteur mesurés sur une vraie MK1 (X 27, Y 3). Le moteur Y est à l'arrière, comme Wanhao l'a monté.</p>
+<p>Ces builds lisent le capteur inductif dans le bon sens (il se déclenche à l'état bas) et reprennent les réglages
+du dernier firmware MK1 de Wanhao, la V0.164(B), décalages du capteur compris (X 15, Y 0). Le moteur Y est à
+l'arrière, comme Wanhao l'a monté.</p>
 </div><figure><img src="{img}d9-mk1-inductive-probe.webp" width="600" height="364" alt="Capteur inductif et nappe sur la tête d'une Wanhao D9 MK1">
 <figcaption>MK1 : capteur inductif, nappe</figcaption></figure></div>
 
 <h2>Téléchargement</h2>
 {dl("MK1")}
-<p>Prenez le fichier <strong>Standard</strong>, sauf si votre moteur Y a été déplacé à l'avant : voir
-<a href="{p('flash')}#y-direction">standard ou Y inversé</a>. Flashez ensuite l'écran avec
+<p>Prenez le fichier de votre taille, puis flashez l'écran avec
 <a href="{p('screen')}">DGUS Reloaded</a>.</p>
 
 <h2>Documents Wanhao</h2>
@@ -287,11 +286,11 @@ back.</p>
 
 <h2>Download</h2>
 {dl("MK1u2")}
-<p>Take the <strong>Standard</strong> file unless your Y motor was moved: see
-<a href="{p('flash')}#y-direction">standard or Y inverted</a>. Then flash the screen with
+<p>Take the file for your size, then flash the screen with
 <a href="{p('screen')}">DGUS Reloaded</a>.</p>
-<div class="note">If the bed mesh looks shifted front to back, check the probe offset first: Wanhao's kit source
-says Y −10, these builds use Y −20. Set yours with <code>M851 Y-10</code> then <code>M500</code>.</div>
+<div class="note">These builds use the kit firmware's probe offset, Y −10. It is the only line where Wanhao's kit
+source differs from the factory MK2's (Y 0): the kit's BLTouch sits further back. If your bed mesh looks shifted front
+to back, measure your own offset with the <a href="{REPO}/blob/main/Offset.md">offset guide</a>.</div>
 
 <h2>Wanhao's original firmwares</h2>
 <p>Wanhao's V1.1.31 kit firmware (December 2018), used with the MK2 screen firmware.</p>
@@ -313,12 +312,12 @@ l'arrière.</p>
 
 <h2>Téléchargement</h2>
 {dl("MK1u2")}
-<p>Prenez le fichier <strong>Standard</strong>, sauf si votre moteur Y a été déplacé : voir
-<a href="{p('flash')}#y-direction">standard ou Y inversé</a>. Flashez ensuite l'écran avec
+<p>Prenez le fichier de votre taille, puis flashez l'écran avec
 <a href="{p('screen')}">DGUS Reloaded</a>.</p>
-<div class="note">Si le maillage du plateau semble décalé d'avant en arrière, vérifiez d'abord le décalage du
-capteur : la source du kit Wanhao indique Y −10, ces builds utilisent Y −20. Réglez le vôtre avec
-<code>M851 Y-10</code> puis <code>M500</code>.</div>
+<div class="note">Ces builds utilisent le décalage de capteur du firmware du kit, Y −10. C'est la seule ligne où
+la source du kit Wanhao diffère de celle de la MK2 d'usine (Y 0) : le BLTouch du kit est placé plus en arrière. Si le
+maillage du plateau semble décalé d'avant en arrière, mesurez votre propre décalage avec le
+<a href="{REPO}/blob/main/Offset.md">guide des offsets</a>.</div>
 
 <h2>Firmwares d'origine Wanhao</h2>
 <p>Le firmware V1.1.31 du kit Wanhao (décembre 2018), utilisé avec le firmware d'écran de la MK2.</p>
@@ -346,8 +345,7 @@ way Wanhao's V1.1.2 firmware does.</p>
 
 <h2>Download</h2>
 {dl("MK2")}
-<p>Take the <strong>Standard</strong> file unless your Y motor sits at the front: see
-<a href="{p('flash')}#y-direction">standard or Y inverted</a>. An MK2 whose head was also upgraded to the MK3 should
+<p>Take the file for your size. An MK2 whose head was also upgraded to the MK3 should
 use the <a href="{p('mk3')}">MK3 firmware</a>. Then flash the screen with <a href="{p('screen')}">DGUS Reloaded</a>.</p>
 
 <h2>Wanhao's documents</h2>
@@ -376,8 +374,7 @@ tourner Y comme le firmware V1.1.2 de Wanhao.</p>
 
 <h2>Téléchargement</h2>
 {dl("MK2")}
-<p>Prenez le fichier <strong>Standard</strong>, sauf si votre moteur Y est à l'avant : voir
-<a href="{p('flash')}#y-direction">standard ou Y inversé</a>. Une MK2 dont la tête a aussi été passée en MK3 doit
+<p>Prenez le fichier de votre taille. Une MK2 dont la tête a aussi été passée en MK3 doit
 prendre le <a href="{p('mk3')}">firmware MK3</a>. Flashez ensuite l'écran avec <a href="{p('screen')}">DGUS Reloaded</a>.</p>
 
 <h2>Documents Wanhao</h2>
@@ -408,8 +405,7 @@ MK2's.</p>
 
 <h2>Download</h2>
 {dl("MK3")}
-<p>Take the <strong>Standard</strong> file unless your Y motor sits at the back: see
-<a href="{p('flash')}#y-direction">standard or Y inverted</a>. Then flash the screen with
+<p>Take the file for your size, then flash the screen with
 <a href="{p('screen')}">DGUS Reloaded</a>.</p>
 <div class="note">If the filament sensor stops prints at random, turn it off with <code>M412 S0</code> then
 <code>M500</code>. Wanhao Europe had published a "ReverseMode" MK3 firmware for that problem; it has since been
@@ -432,8 +428,7 @@ reprennent donc ceux de la MK2.</p>
 
 <h2>Téléchargement</h2>
 {dl("MK3")}
-<p>Prenez le fichier <strong>Standard</strong>, sauf si votre moteur Y est à l'arrière : voir
-<a href="{p('flash')}#y-direction">standard ou Y inversé</a>. Flashez ensuite l'écran avec
+<p>Prenez le fichier de votre taille, puis flashez l'écran avec
 <a href="{p('screen')}">DGUS Reloaded</a>.</p>
 <div class="note">Si le capteur de filament interrompt les impressions au hasard, désactivez-le avec
 <code>M412 S0</code> puis <code>M500</code>. Wanhao Europe avait publié un firmware MK3 « ReverseMode » pour ce
@@ -448,8 +443,8 @@ problème ; il a été supprimé depuis et reste introuvable.</div>
     if page == "flash":
         if en:
             return ("How to flash a Wanhao Duplicator 9 (D9) motherboard firmware",
-                    "Step-by-step guide to flash Marlin on a Wanhao D9 over USB with AVRDUDESS or avrdude, choose between the "
-                    "standard and Y-inverted builds, and recover with Wanhao's firmware.",
+                    "Step-by-step guide to flash Marlin on a Wanhao D9 over USB with AVRDUDESS or avrdude, fix homing "
+                    "problems, and recover with Wanhao's firmware.",
                     f"""
 <h1>Flashing the Duplicator 9 motherboard</h1>
 <p class="lead">The D9's motherboard is an ATmega2560 with a USB bootloader: no programmer, no opening the base,
@@ -463,19 +458,6 @@ just a USB cable.</p>
 <li>The <strong>.hex</strong> for your model and size: <a href="{p('mk1')}">MK1</a>, <a href="{p('mk1u2')}">MK1 + kit</a>,
 <a href="{p('mk2')}">MK2</a>, <a href="{p('mk3')}">MK3</a>.</li>
 </ul>
-
-<h2 id="y-direction">Standard or Y inverted?</h2>
-<p>Every model comes in two builds. The <strong>standard</strong> file turns the Y axis the way Wanhao's own
-firmware for that model does. The <strong>Y-inverted</strong> file turns it the other way, for machines whose Y motor
-is not where Wanhao put it: moved motor, partial upgrade, replaced part.</p>
-<ol>
-<li><strong>Look at the Y motor</strong>, under the bed. Wanhao put it at the <strong>back</strong> on the MK1, the
-MK1 + kit and the MK2, and at the <strong>front</strong>, on the touchscreen side, on the MK3. Where Wanhao put it
-for your model: standard. At the other end: Y inverted.</li>
-<li><strong>If you can't tell</strong>, flash the standard file and home Y alone (<code>G28 Y</code>, or Home on the
-screen) with a hand on the power switch. The bed must move towards the Y endstop and stop on it. If it moves away,
-or homing ends with <em>Homing Failed</em>, switch off and flash the Y-inverted file.</li>
-</ol>
 
 <h2>Before flashing</h2>
 <div class="note">The first boot of a new build resets the settings stored in the printer. Send <code>M851</code>
@@ -517,7 +499,8 @@ avrdude -v -p atmega2560 -c wiring -P /dev/ttyUSB0 -D -U flash:w:D9_MK2_300.hex:
 <tr><td>Device not found</td><td>Install the CH340 USB driver, try another cable or USB port, check the printer is switched on.</td></tr>
 <tr><td>Unreadable characters after flashing</td><td>Use 250000 baud with these firmwares, 115200 with Wanhao's.</td></tr>
 <tr><td>Temperatures shown ×10 on the screen (236 for 23.6 °C)</td><td>The screen still has old files: flash <a href="{p('screen')}">DGUS Reloaded 1.0.3</a>.</td></tr>
-<tr><td>Homing Failed on Y</td><td>See <a href="#y-direction">standard or Y inverted</a>.</td></tr>
+<tr><td>Homing stops a few millimetres before the switch, then <em>Homing Failed</em></td><td>Electrical noise on the endstop line. These firmwares filter it since v2.0.1: update.</td></tr>
+<tr><td>The bed moves away from the Y switch</td><td>Check you took your model's firmware: the Y motor is at the back on the MK1, MK1 + kit and MK2, at the front on the MK3.</td></tr>
 </tbody></table></div>
 
 <h2>Going back to Wanhao's firmware</h2>
@@ -526,8 +509,8 @@ motherboard firmware needs Wanhao's screen firmware of the same generation.</p>
 <p>Questions: <a href="{DISCORD}">Discord</a> or <a href="{REPO}/issues">GitHub issues</a>.</p>
 """)
         return ("Comment flasher le firmware d'une Wanhao Duplicator 9 (D9)",
-                "Guide pas à pas pour flasher Marlin sur une Wanhao D9 en USB avec AVRDUDESS ou avrdude, choisir entre les "
-                "builds standard et Y inversé, et revenir au firmware Wanhao.",
+                "Guide pas à pas pour flasher Marlin sur une Wanhao D9 en USB avec AVRDUDESS ou avrdude, régler les "
+                "problèmes de homing, et revenir au firmware Wanhao.",
                 f"""
 <h1>Flasher la carte mère de la Duplicator 9</h1>
 <p class="lead">La carte mère de la D9 est un ATmega2560 avec bootloader USB : pas de programmateur, pas besoin
@@ -541,19 +524,6 @@ d'ouvrir le socle, juste un câble USB.</p>
 <li>Le <strong>.hex</strong> de votre modèle et de votre taille : <a href="{p('mk1')}">MK1</a>, <a href="{p('mk1u2')}">MK1 + kit</a>,
 <a href="{p('mk2')}">MK2</a>, <a href="{p('mk3')}">MK3</a>.</li>
 </ul>
-
-<h2 id="y-direction">Standard ou Y inversé ?</h2>
-<p>Chaque modèle existe en deux versions. Le fichier <strong>standard</strong> fait tourner l'axe Y comme le
-firmware de Wanhao pour ce modèle. Le fichier <strong>Y inversé</strong> le fait tourner dans l'autre sens, pour les
-machines dont le moteur Y n'est pas là où Wanhao l'a mis : moteur déplacé, upgrade partiel, pièce remplacée.</p>
-<ol>
-<li><strong>Regardez le moteur Y</strong>, sous le plateau. Wanhao l'a placé à l'<strong>arrière</strong> sur la MK1,
-la MK1 + kit et la MK2, et à l'<strong>avant</strong>, du côté de l'écran tactile, sur la MK3. À l'endroit prévu par
-Wanhao pour votre modèle : standard. À l'autre bout : Y inversé.</li>
-<li><strong>Si vous ne savez pas</strong>, flashez le fichier standard et faites le homing de Y seul
-(<code>G28 Y</code>, ou Home à l'écran), la main sur l'interrupteur. Le plateau doit aller vers le fin de course Y et
-s'arrêter dessus. S'il s'en éloigne, ou si le homing finit en <em>Homing Failed</em>, éteignez et flashez le fichier Y inversé.</li>
-</ol>
 
 <h2>Avant de flasher</h2>
 <div class="note">Le premier démarrage d'un nouveau build remet à zéro les réglages enregistrés dans l'imprimante.
@@ -595,7 +565,8 @@ avrdude -v -p atmega2560 -c wiring -P /dev/ttyUSB0 -D -U flash:w:D9_MK2_300.hex:
 <tr><td>Périphérique introuvable</td><td>Installez le pilote USB CH340, essayez un autre câble ou port USB, vérifiez que l'imprimante est allumée.</td></tr>
 <tr><td>Caractères illisibles après le flash</td><td>Utilisez 250000 bauds avec ces firmwares, 115200 avec ceux de Wanhao.</td></tr>
 <tr><td>Températures ×10 à l'écran (236 pour 23,6 °C)</td><td>L'écran a encore d'anciens fichiers : flashez <a href="{p('screen')}">DGUS Reloaded 1.0.3</a>.</td></tr>
-<tr><td>Homing Failed sur Y</td><td>Voir <a href="#y-direction">standard ou Y inversé</a>.</td></tr>
+<tr><td>Le homing s'arrête quelques millimètres avant le fin de course, puis <em>Homing Failed</em></td><td>Parasite sur la ligne du fin de course. Ces firmwares le filtrent depuis la v2.0.1 : mettez à jour.</td></tr>
+<tr><td>Le plateau s'éloigne du fin de course Y</td><td>Vérifiez que vous avez pris le firmware de votre modèle : le moteur Y est à l'arrière sur la MK1, la MK1 + kit et la MK2, à l'avant sur la MK3.</td></tr>
 </tbody></table></div>
 
 <h2>Revenir au firmware Wanhao</h2>

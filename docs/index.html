@@ -62,9 +62,10 @@ moves the bed: at the back, it is an <a href="mk2.html">MK2</a>; at the front, o
 <ul>
 <li><strong>Marlin 2.1</strong> built from the Duplicator 9 configurations published in
 <a href="https://github.com/MarlinFirmware/Configurations/tree/bugfix-2.1.x/config/examples/Wanhao/Duplicator%209">Marlin Configurations</a>,
-with the fixes proposed there: MK1 probe read the right way round, MK3 Y direction, power-loss recovery.</li>
-<li><strong>Axis directions checked against Wanhao's own firmwares</strong>, read out of Wanhao's binaries.
-Each file also exists with the Y axis inverted, for machines whose Y motor was moved.</li>
+with the changes proposed there: MK1 probe read the right way round, MK3 Y direction, power-loss recovery,
+endstop noise filter.</li>
+<li><strong>Wanhao's factory settings</strong>, read out of Wanhao's own firmware for each model: steps/mm, speeds,
+accelerations, hotend PID, probe offsets and axis directions.</li>
 <li><strong>Power-loss recovery</strong>: after an outage during an SD print, the screen offers to resume.</li>
 <li><strong>Filament runout sensor</strong> support, on by default on the MK3, one command away on the others.</li>
 <li><strong>A modern touchscreen interface</strong>, <a href="screen.html">DGUS Reloaded 1.0.3</a>.</li>

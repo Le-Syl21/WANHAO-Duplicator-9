@@ -38,11 +38,10 @@ Source: Wanhao's own download page for the D9 ([archived copy](https://web.archi
 
 ### Compared with this repository's builds (`../`)
 
-- **Directions match**: X inverted, Y, Z and the extruder not inverted, as in `D9_MK1_*.hex`.
-- **Steps/mm**: Wanhao used 81 / 81 / 400.5 / 94.3 (80.3 on X and Y in V0.161); these builds use 80 / 80 / 400 / 100. The extruder difference is about 6 %; recalibrate with `M92 E…` if needed.
-- **Maximum acceleration**: 500 mm/s² on X and Y from V0.161 on (1000 in V0.15), against 3000 here.
-- **PID**: every Wanhao firmware ships 33.41 / 1.47 / 189.27; these builds use a PID tuned on a real machine (20.982 / 0.725 / 151.861). Run `M303` to tune yours.
-- **Probe offset** (from Wanhao's source, not the binary): X 30, Y 0 in V0.15 and X 15, Y 0 in V0.164(B); these builds use Klipper's X 27, Y 3, measured on an MK1.
+- **These builds take V0.164(B)'s settings**, Wanhao's last MK1 firmware: steps/mm 81 / 81 / 400.5 / 94.3, maximum feedrate 300 / 300 / 5 / 25 mm/s, maximum acceleration 500 / 500 / 100 / 500 mm/s² (printing and travel acceleration 500, as in its source), hotend PID 33.41 / 1.47 / 189.27, and the same axis directions: X inverted, Y, Z and the extruder not.
+- **Probe offset** (from Wanhao's source, not the binary): X 30, Y 0 in V0.15 and X 15, Y 0 in V0.164(B). These builds use V0.164(B)'s X 15, Y 0.
+- **Z probe offset**: not stored in Wanhao's firmware (it is set on the screen). These builds start at −1.4; set yours with `M851 Z…` then `M500`.
+- **Endstops**: these builds filter endstop noise (`ENDSTOP_NOISE_THRESHOLD 2`). Without it, a glitch on the Y endstop line ended homing a few millimetres short with *Homing Failed* on an MK2 300.
 - **Screen files**: Wanhao's MK1 screen firmware, not DGUS Reloaded; it only works with Wanhao's motherboard firmware.
 
 ### Notes from Wanhao
@@ -82,11 +81,10 @@ Tableaux identiques à la version anglaise ci-dessus.
 
 ### Comparaison avec les firmwares de ce dépôt (`../`)
 
-- **Sens identiques** : X inversé, Y, Z et extrudeur non inversés, comme dans `D9_MK1_*.hex`.
-- **Pas/mm** : Wanhao utilisait 81 / 81 / 400,5 / 94,3 (80,3 en X et Y dans la V0.161) ; ces firmwares utilisent 80 / 80 / 400 / 100. L'écart sur l'extrudeur est d'environ 6 % ; recalibrez avec `M92 E…` si besoin.
-- **Accélération maximale** : 500 mm/s² en X et Y à partir de la V0.161 (1000 dans la V0.15), contre 3000 ici.
-- **PID** : tous les firmwares Wanhao ont 33,41 / 1,47 / 189,27 ; ces firmwares utilisent un PID réglé sur une vraie machine (20,982 / 0,725 / 151,861). Lancez `M303` pour régler le vôtre.
-- **Offset de sonde** (tiré des sources Wanhao, pas du binaire) : X 30, Y 0 dans la V0.15 et X 15, Y 0 dans la V0.164(B) ; ces firmwares utilisent les X 27, Y 3 de Klipper, mesurés sur une MK1.
+- **Ces firmwares reprennent les réglages de la V0.164(B)**, le dernier firmware MK1 de Wanhao : pas/mm 81 / 81 / 400,5 / 94,3, vitesse maximale 300 / 300 / 5 / 25 mm/s, accélération maximale 500 / 500 / 100 / 500 mm/s² (accélération d'impression et de déplacement 500, comme dans sa source), PID de la buse 33,41 / 1,47 / 189,27, et les mêmes sens d'axes : X inversé, Y, Z et extrudeur non inversés.
+- **Offset de sonde** (tiré des sources Wanhao, pas du binaire) : X 30, Y 0 dans la V0.15 et X 15, Y 0 dans la V0.164(B). Ces firmwares utilisent les X 15, Y 0 de la V0.164(B).
+- **Offset Z de la sonde** : absent du firmware Wanhao (il se règle à l'écran). Ces firmwares partent de −1,4 ; réglez le vôtre avec `M851 Z…` puis `M500`.
+- **Fins de course** : ces firmwares filtrent les parasites (`ENDSTOP_NOISE_THRESHOLD 2`). Sans ce filtre, un parasite sur la ligne du fin de course Y arrêtait le homing quelques millimètres trop tôt avec *Homing Failed* sur une MK2 300.
 - **Fichiers d'écran** : le firmware d'écran MK1 de Wanhao, pas DGUS Reloaded ; il ne fonctionne qu'avec le firmware carte de Wanhao.
 
 ### Notes de Wanhao

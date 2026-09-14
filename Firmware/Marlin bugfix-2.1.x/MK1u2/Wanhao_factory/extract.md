@@ -36,10 +36,10 @@ Source: Wanhao's own download page for the D9 ([archived copy](https://web.archi
 
 ### Compared with this repository's builds (`../`)
 
-- **Directions match**: X and the extruder inverted, Y and Z not, as in `D9_MK1u2_*.hex`.
-- **Steps/mm**: 80.2 / 80.2 / 400.3 / 94.3 at Wanhao, 80 / 80 / 400 / 100 here (extruder about 6 % apart).
-- **PID**: 33.41 / 1.47 / 189.27 at Wanhao, a machine-tuned PID here.
-- **Probe offset** (from Wanhao's source): X 25, Y −10. These builds use X 25, Y −20. Wanhao's value is the one to check first if the mesh looks shifted.
+- **These builds take the kit firmware's settings**: steps/mm, maximum feedrate and acceleration, hotend PID and axis directions (X and the extruder inverted, Y and Z not) are all the values in the table above.
+- **Probe offset** (from Wanhao's source): X 25, Y −10, used as is. The kit's source differs from the factory MK2's in that single line: Y −10 against 0, because the kit's BLTouch sits further back. A measurement on one upgraded machine gave Y −20; if your mesh looks shifted front to back, measure yours ([`Offset.md`](../../../../Offset.md)).
+- **Z probe offset**: not stored in Wanhao's firmware (it is set on the screen). These builds start at −1.3; set yours with `M851 Z…` then `M500`.
+- **Endstops**: these builds filter endstop noise (`ENDSTOP_NOISE_THRESHOLD 2`). Without it, a glitch on the Y endstop line ended homing a few millimetres short with *Homing Failed* on an MK2 300.
 
 ### Notes from Wanhao
 
@@ -74,10 +74,10 @@ Tableaux identiques à la version anglaise ci-dessus.
 
 ### Comparaison avec les firmwares de ce dépôt (`../`)
 
-- **Sens identiques** : X et extrudeur inversés, Y et Z non, comme dans `D9_MK1u2_*.hex`.
-- **Pas/mm** : 80,2 / 80,2 / 400,3 / 94,3 chez Wanhao, 80 / 80 / 400 / 100 ici (environ 6 % d'écart sur l'extrudeur).
-- **PID** : 33,41 / 1,47 / 189,27 chez Wanhao, un PID réglé sur machine ici.
-- **Offset de sonde** (tiré des sources Wanhao) : X 25, Y −10. Ces firmwares utilisent X 25, Y −20. C'est la valeur de Wanhao à vérifier en premier si le maillage paraît décalé.
+- **Ces firmwares reprennent les réglages du firmware du kit** : pas/mm, vitesse et accélération maximales, PID de la buse et sens des axes (X et extrudeur inversés, Y et Z non) sont les valeurs du tableau ci-dessus.
+- **Offset de sonde** (tiré des sources Wanhao) : X 25, Y −10, repris tel quel. La source du kit ne diffère de celle de la MK2 d'usine que par cette ligne : Y −10 contre 0, parce que le BLTouch du kit est placé plus en arrière. Une mesure sur une machine équipée du kit a donné Y −20 ; si votre maillage paraît décalé d'avant en arrière, mesurez le vôtre ([`Offset.md`](../../../../Offset.md)).
+- **Offset Z de la sonde** : absent du firmware Wanhao (il se règle à l'écran). Ces firmwares partent de −1,3 ; réglez le vôtre avec `M851 Z…` puis `M500`.
+- **Fins de course** : ces firmwares filtrent les parasites (`ENDSTOP_NOISE_THRESHOLD 2`). Sans ce filtre, un parasite sur la ligne du fin de course Y arrêtait le homing quelques millimètres trop tôt avec *Homing Failed* sur une MK2 300.
 
 ### Notes de Wanhao
 

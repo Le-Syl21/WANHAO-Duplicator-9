@@ -36,11 +36,11 @@ Source: Wanhao's own download page for the D9 ([archived copy](https://web.archi
 
 ### Compared with this repository's builds (`../`)
 
-- **Y direction**: **inverted**, the only direction that differs from the MK2. `D9_MK3_*.hex` in `../` is inverted too.
-- **Other directions match**: X and the extruder inverted, Z not.
-- **Steps/mm, maximum feedrate and acceleration, build volume and PID** are exactly the MK2's.
+- **These builds take Wanhao's MK3 settings**, which are exactly the MK2's (steps/mm, maximum feedrate and acceleration, build volume, PID) except for the Y direction: **inverted**, as in `D9_MK3_*.hex`.
 - **Filament sensor**: read with the same polarity as the MK2 (3 tests of pin 8, same instructions), which is the polarity these builds use.
-- **Probe offset**: no Wanhao source was published for the MK3, so it is unknown; these builds use the MK2 value.
+- **Probe offset**: no Wanhao source was published for the MK3, so these builds use the MK2's X 25, Y 0.
+- **Z probe offset**: not stored in Wanhao's firmware (it is set on the screen). These builds start at −1.3; set yours with `M851 Z…` then `M500`.
+- **Endstops**: these builds filter endstop noise (`ENDSTOP_NOISE_THRESHOLD 2`). Without it, a glitch on the Y endstop line ended homing a few millimetres short with *Homing Failed* on an MK2 300.
 
 ### Notes from Wanhao
 
@@ -76,11 +76,11 @@ Tableaux identiques à la version anglaise ci-dessus.
 
 ### Comparaison avec les firmwares de ce dépôt (`../`)
 
-- **Sens de Y** : **inversé**, le seul sens qui diffère de la MK2. `D9_MK3_*.hex` dans `../` est inversé aussi.
-- **Autres sens identiques** : X et extrudeur inversés, Z non.
-- **Pas/mm, vitesse et accélération maximales, volume et PID** sont exactement ceux de la MK2.
+- **Ces firmwares reprennent les réglages MK3 de Wanhao**, identiques à ceux de la MK2 (pas/mm, vitesse et accélération maximales, volume, PID) à une exception : le sens de Y, **inversé**, comme dans `D9_MK3_*.hex`.
 - **Capteur de filament** : lu avec la même polarité que sur la MK2 (3 tests de la broche 8, mêmes instructions), celle qu'utilisent ces firmwares.
-- **Offset de sonde** : Wanhao n'a publié aucune source pour la MK3, il est donc inconnu ; ces firmwares utilisent la valeur de la MK2.
+- **Offset de sonde** : Wanhao n'a publié aucune source pour la MK3, ces firmwares utilisent donc les X 25, Y 0 de la MK2.
+- **Offset Z de la sonde** : absent du firmware Wanhao (il se règle à l'écran). Ces firmwares partent de −1,3 ; réglez le vôtre avec `M851 Z…` puis `M500`.
+- **Fins de course** : ces firmwares filtrent les parasites (`ENDSTOP_NOISE_THRESHOLD 2`). Sans ce filtre, un parasite sur la ligne du fin de course Y arrêtait le homing quelques millimètres trop tôt avec *Homing Failed* sur une MK2 300.
 
 ### Notes de Wanhao
 

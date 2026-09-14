@@ -36,11 +36,10 @@ Source: Wanhao's own download page for the D9 ([archived copy](https://web.archi
 
 ### Compared with this repository's builds (`../`)
 
-- **Y direction**: every Wanhao MK2 firmware, including the 2019 rebuild of the 500, has Y **not inverted**. That is `D9_MK2_300.hex`, `D9_MK2_400.hex` and `D9_MK2_500.hex`. Some owners report an MK2 whose Y runs the other way, for instance a machine whose Y motor sits at the front, as on the MK3: `D9_MK2_*_Y-inverted.hex` covers them. See *Standard or `_Y-inverted` firmware?* in [`../../../README.md`](../../../README.md).
-- **Other directions match**: X and the extruder inverted, Z not.
-- **Steps/mm**: 80.2 / 80.2 / 400.3 / 94.3 at Wanhao, 80 / 80 / 400 / 100 here (extruder about 6 % apart).
-- **PID**: 33.41 / 1.47 / 189.27 at Wanhao, a machine-tuned PID here.
-- **Probe offset** (from Wanhao's source): X 25, Y 0. These builds use X 25, Y −5, validated on a real MK2 300.
+- **These builds take Wanhao's MK2 settings**: steps/mm, maximum feedrate and acceleration, hotend PID and axis directions are the values in the table above. Every Wanhao MK2 firmware, including the 2019 rebuild of the 500, has Y **not inverted**: X and the extruder inverted, Y and Z not.
+- **Probe offset** (from Wanhao's source): X 25, Y 0, used as is.
+- **Z probe offset**: not stored in Wanhao's firmware (it is set on the screen). These builds start at −1.3; set yours with `M851 Z…` then `M500`.
+- **Endstops**: these builds filter endstop noise (`ENDSTOP_NOISE_THRESHOLD 2`). Without it, a glitch on the Y endstop line ended homing a few millimetres short with *Homing Failed* on an MK2 300.
 - **Filament sensor**: Wanhao's MK2 firmware reads it (3 tests of pin 8), which is why these builds keep it compiled in, off by default.
 
 ## How the values were extracted
@@ -72,11 +71,10 @@ Tableaux identiques à la version anglaise ci-dessus.
 
 ### Comparaison avec les firmwares de ce dépôt (`../`)
 
-- **Sens de Y** : tous les firmwares MK2 de Wanhao, y compris la 500 recompilée en 2019, ont Y **non inversé**. Ce sont `D9_MK2_300.hex`, `D9_MK2_400.hex` et `D9_MK2_500.hex`. Des propriétaires signalent des MK2 dont Y tourne dans l'autre sens, par exemple une machine dont le moteur Y est à l'avant, comme sur la MK3 : `D9_MK2_*_Y-inverted.hex` les couvre. Voir *Firmware standard ou `_Y-inverted` ?* dans [`../../../README.md`](../../../README.md).
-- **Autres sens identiques** : X et extrudeur inversés, Z non.
-- **Pas/mm** : 80,2 / 80,2 / 400,3 / 94,3 chez Wanhao, 80 / 80 / 400 / 100 ici (environ 6 % d'écart sur l'extrudeur).
-- **PID** : 33,41 / 1,47 / 189,27 chez Wanhao, un PID réglé sur machine ici.
-- **Offset de sonde** (tiré des sources Wanhao) : X 25, Y 0. Ces firmwares utilisent X 25, Y −5, validés sur une vraie MK2 300.
+- **Ces firmwares reprennent les réglages MK2 de Wanhao** : pas/mm, vitesse et accélération maximales, PID de la buse et sens des axes sont les valeurs du tableau ci-dessus. Tous les firmwares MK2 de Wanhao, y compris la 500 recompilée en 2019, ont Y **non inversé** : X et extrudeur inversés, Y et Z non.
+- **Offset de sonde** (tiré des sources Wanhao) : X 25, Y 0, repris tel quel.
+- **Offset Z de la sonde** : absent du firmware Wanhao (il se règle à l'écran). Ces firmwares partent de −1,3 ; réglez le vôtre avec `M851 Z…` puis `M500`.
+- **Fins de course** : ces firmwares filtrent les parasites (`ENDSTOP_NOISE_THRESHOLD 2`). Sans ce filtre, un parasite sur la ligne du fin de course Y arrêtait le homing quelques millimètres trop tôt avec *Homing Failed* sur une MK2 300.
 - **Capteur de filament** : le firmware MK2 de Wanhao le lit (3 tests de la broche 8), c'est pourquoi ces firmwares le gardent compilé, désactivé par défaut.
 
 ## Comment ces valeurs ont été extraites

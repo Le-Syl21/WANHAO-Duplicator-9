@@ -38,13 +38,13 @@ l'arrière.</p>
 <figcaption>Capteur BLTouch</figcaption></figure></div>
 
 <h2>Téléchargement</h2>
-<div class="table"><table class="dl"><thead><tr><th>Taille</th><th>Volume d'impression</th><th>Standard</th><th>Y inversé</th></tr></thead><tbody><tr><td><strong>D9/300</strong></td><td>300 × 300 × 400 mm</td><td><a class="btn" href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest/download/D9_MK1u2_300.hex">D9_MK1u2_300.hex</a></td><td><a class="btn ghost" href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest/download/D9_MK1u2_300_Y-inverted.hex">D9_MK1u2_300_Y-inverted.hex</a></td></tr><tr><td><strong>D9/400</strong></td><td>400 × 400 × 400 mm</td><td><a class="btn" href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest/download/D9_MK1u2_400.hex">D9_MK1u2_400.hex</a></td><td><a class="btn ghost" href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest/download/D9_MK1u2_400_Y-inverted.hex">D9_MK1u2_400_Y-inverted.hex</a></td></tr><tr><td><strong>D9/500</strong></td><td>500 × 500 × 500 mm</td><td><a class="btn" href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest/download/D9_MK1u2_500.hex">D9_MK1u2_500.hex</a></td><td><a class="btn ghost" href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest/download/D9_MK1u2_500_Y-inverted.hex">D9_MK1u2_500_Y-inverted.hex</a></td></tr></tbody></table></div>
-<p>Prenez le fichier <strong>Standard</strong>, sauf si votre moteur Y a été déplacé : voir
-<a href="../fr/flash.html#y-direction">standard ou Y inversé</a>. Flashez ensuite l'écran avec
+<div class="table"><table class="dl"><thead><tr><th>Taille</th><th>Volume d'impression</th><th>Firmware</th></tr></thead><tbody><tr><td><strong>D9/300</strong></td><td>300 × 300 × 400 mm</td><td><a class="btn" href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest/download/D9_MK1u2_300.hex">D9_MK1u2_300.hex</a></td></tr><tr><td><strong>D9/400</strong></td><td>400 × 400 × 400 mm</td><td><a class="btn" href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest/download/D9_MK1u2_400.hex">D9_MK1u2_400.hex</a></td></tr><tr><td><strong>D9/500</strong></td><td>500 × 500 × 500 mm</td><td><a class="btn" href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest/download/D9_MK1u2_500.hex">D9_MK1u2_500.hex</a></td></tr></tbody></table></div>
+<p>Prenez le fichier de votre taille, puis flashez l'écran avec
 <a href="../fr/screen.html">DGUS Reloaded</a>.</p>
-<div class="note">Si le maillage du plateau semble décalé d'avant en arrière, vérifiez d'abord le décalage du
-capteur : la source du kit Wanhao indique Y −10, ces builds utilisent Y −20. Réglez le vôtre avec
-<code>M851 Y-10</code> puis <code>M500</code>.</div>
+<div class="note">Ces builds utilisent le décalage de capteur du firmware du kit, Y −10. C'est la seule ligne où
+la source du kit Wanhao diffère de celle de la MK2 d'usine (Y 0) : le BLTouch du kit est placé plus en arrière. Si le
+maillage du plateau semble décalé d'avant en arrière, mesurez votre propre décalage avec le
+<a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/blob/main/Offset.md">guide des offsets</a>.</div>
 
 <h2>Firmwares d'origine Wanhao</h2>
 <p>Le firmware V1.1.31 du kit Wanhao (décembre 2018), utilisé avec le firmware d'écran de la MK2.</p>

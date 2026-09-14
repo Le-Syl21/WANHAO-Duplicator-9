@@ -4,21 +4,21 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Comment flasher le firmware d&#x27;une Wanhao Duplicator 9 (D9)</title>
-<meta name="description" content="Guide pas à pas pour flasher Marlin sur une Wanhao D9 en USB avec AVRDUDESS ou avrdude, choisir entre les builds standard et Y inversé, et revenir au firmware Wanhao.">
+<meta name="description" content="Guide pas à pas pour flasher Marlin sur une Wanhao D9 en USB avec AVRDUDESS ou avrdude, régler les problèmes de homing, et revenir au firmware Wanhao.">
 <link rel="canonical" href="https://le-syl21.github.io/WANHAO-Duplicator-9/fr/flash.html">
 <link rel="alternate" hreflang="en" href="https://le-syl21.github.io/WANHAO-Duplicator-9/flash.html">
 <link rel="alternate" hreflang="fr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/fr/flash.html">
 <link rel="alternate" hreflang="x-default" href="https://le-syl21.github.io/WANHAO-Duplicator-9/flash.html">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Comment flasher le firmware d&#x27;une Wanhao Duplicator 9 (D9)">
-<meta property="og:description" content="Guide pas à pas pour flasher Marlin sur une Wanhao D9 en USB avec AVRDUDESS ou avrdude, choisir entre les builds standard et Y inversé, et revenir au firmware Wanhao.">
+<meta property="og:description" content="Guide pas à pas pour flasher Marlin sur une Wanhao D9 en USB avec AVRDUDESS ou avrdude, régler les problèmes de homing, et revenir au firmware Wanhao.">
 <meta property="og:url" content="https://le-syl21.github.io/WANHAO-Duplicator-9/fr/flash.html">
 <meta property="og:image" content="https://le-syl21.github.io/WANHAO-Duplicator-9/img/og.jpg">
 <meta property="og:locale" content="fr_FR">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖨️</text></svg>">
 <link rel="stylesheet" href="../style.css">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Comment flasher le firmware d'une Wanhao Duplicator 9 (D9)", "description": "Guide pas à pas pour flasher Marlin sur une Wanhao D9 en USB avec AVRDUDESS ou avrdude, choisir entre les builds standard et Y inversé, et revenir au firmware Wanhao.", "url": "https://le-syl21.github.io/WANHAO-Duplicator-9/fr/flash.html", "inLanguage": "fr", "about": {"@type": "Product", "name": "Wanhao Duplicator 9", "brand": "Wanhao"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Comment flasher le firmware d'une Wanhao Duplicator 9 (D9)", "description": "Guide pas à pas pour flasher Marlin sur une Wanhao D9 en USB avec AVRDUDESS ou avrdude, régler les problèmes de homing, et revenir au firmware Wanhao.", "url": "https://le-syl21.github.io/WANHAO-Duplicator-9/fr/flash.html", "inLanguage": "fr", "about": {"@type": "Product", "name": "Wanhao Duplicator 9", "brand": "Wanhao"}}</script>
 </head>
 <body>
 <header class="site"><div class="wrap">
@@ -39,19 +39,6 @@ d'ouvrir le socle, juste un câble USB.</p>
 <li>Le <strong>.hex</strong> de votre modèle et de votre taille : <a href="../fr/mk1.html">MK1</a>, <a href="../fr/mk1u2.html">MK1 + kit</a>,
 <a href="../fr/mk2.html">MK2</a>, <a href="../fr/mk3.html">MK3</a>.</li>
 </ul>
-
-<h2 id="y-direction">Standard ou Y inversé ?</h2>
-<p>Chaque modèle existe en deux versions. Le fichier <strong>standard</strong> fait tourner l'axe Y comme le
-firmware de Wanhao pour ce modèle. Le fichier <strong>Y inversé</strong> le fait tourner dans l'autre sens, pour les
-machines dont le moteur Y n'est pas là où Wanhao l'a mis : moteur déplacé, upgrade partiel, pièce remplacée.</p>
-<ol>
-<li><strong>Regardez le moteur Y</strong>, sous le plateau. Wanhao l'a placé à l'<strong>arrière</strong> sur la MK1,
-la MK1 + kit et la MK2, et à l'<strong>avant</strong>, du côté de l'écran tactile, sur la MK3. À l'endroit prévu par
-Wanhao pour votre modèle : standard. À l'autre bout : Y inversé.</li>
-<li><strong>Si vous ne savez pas</strong>, flashez le fichier standard et faites le homing de Y seul
-(<code>G28 Y</code>, ou Home à l'écran), la main sur l'interrupteur. Le plateau doit aller vers le fin de course Y et
-s'arrêter dessus. S'il s'en éloigne, ou si le homing finit en <em>Homing Failed</em>, éteignez et flashez le fichier Y inversé.</li>
-</ol>
 
 <h2>Avant de flasher</h2>
 <div class="note">Le premier démarrage d'un nouveau build remet à zéro les réglages enregistrés dans l'imprimante.
@@ -93,7 +80,8 @@ avrdude -v -p atmega2560 -c wiring -P /dev/ttyUSB0 -D -U flash:w:D9_MK2_300.hex:
 <tr><td>Périphérique introuvable</td><td>Installez le pilote USB CH340, essayez un autre câble ou port USB, vérifiez que l'imprimante est allumée.</td></tr>
 <tr><td>Caractères illisibles après le flash</td><td>Utilisez 250000 bauds avec ces firmwares, 115200 avec ceux de Wanhao.</td></tr>
 <tr><td>Températures ×10 à l'écran (236 pour 23,6 °C)</td><td>L'écran a encore d'anciens fichiers : flashez <a href="../fr/screen.html">DGUS Reloaded 1.0.3</a>.</td></tr>
-<tr><td>Homing Failed sur Y</td><td>Voir <a href="#y-direction">standard ou Y inversé</a>.</td></tr>
+<tr><td>Le homing s'arrête quelques millimètres avant le fin de course, puis <em>Homing Failed</em></td><td>Parasite sur la ligne du fin de course. Ces firmwares le filtrent depuis la v2.0.1 : mettez à jour.</td></tr>
+<tr><td>Le plateau s'éloigne du fin de course Y</td><td>Vérifiez que vous avez pris le firmware de votre modèle : le moteur Y est à l'arrière sur la MK1, la MK1 + kit et la MK2, à l'avant sur la MK3.</td></tr>
 </tbody></table></div>
 
 <h2>Revenir au firmware Wanhao</h2>
