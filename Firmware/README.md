@@ -18,7 +18,7 @@
 
 Built from Marlin `bugfix-2.1.x` (September 2026) with the Duplicator 9 configurations published in [Marlin Configurations](https://github.com/MarlinFirmware/Configurations/tree/bugfix-2.1.x/config/examples/Wanhao/Duplicator%209). The first five points are changes not merged there yet.
 
-- **Wanhao's factory settings**, read out of Wanhao's firmware for each model: steps/mm, maximum feedrate and acceleration, hotend PID, probe offsets and axis directions. Each model's `Wanhao_factory/extract.md` lists them.
+- **Wanhao's factory settings**, taken from Wanhao's firmware and source for each model: steps/mm, speeds and accelerations, hotend PID, probe offsets and probing margins, homing speeds, thermal limits and protection, jerk, park position, preheat values and axis directions. Each model's `Wanhao_factory/extract.md` lists them, with the three that Marlin 2 cannot follow.
 - **MK1:** the inductive probe is now read the right way round (it triggers LOW).
 - **MK3:** the Y axis is inverted, as in Wanhao's own MK3 firmware: the MK3 has its Y motor on the touchscreen side.
 - **Endstop noise filter** (`ENDSTOP_NOISE_THRESHOLD 2`): without it, a glitch on the endstop line could stop homing a few millimetres short with *Homing Failed*.
@@ -112,7 +112,7 @@ avrdude -v -p atmega2560 -c wiring -P /dev/ttyUSB0 -D -U flash:w:firmware.hex:i
 
 Compilés depuis Marlin `bugfix-2.1.x` (septembre 2026) avec les configurations Duplicator 9 publiées dans [Marlin Configurations](https://github.com/MarlinFirmware/Configurations/tree/bugfix-2.1.x/config/examples/Wanhao/Duplicator%209). Les cinq premiers points sont des changements pas encore intégrés là-bas.
 
-- **Les réglages d'usine de Wanhao**, lus dans le firmware Wanhao de chaque modèle : pas/mm, vitesse et accélération maximales, PID de la buse, offsets de sonde et sens des axes. Le `Wanhao_factory/extract.md` de chaque modèle les liste.
+- **Les réglages d'usine de Wanhao**, tirés du firmware et des sources Wanhao de chaque modèle : pas/mm, vitesses et accélérations, PID de la buse, offsets et marges de palpage, vitesses de homing, limites et protections thermiques, jerk, position de parking, préchauffes et sens des axes. Le `Wanhao_factory/extract.md` de chaque modèle les liste, avec les trois que Marlin 2 ne peut pas suivre.
 - **MK1 :** la sonde inductive est maintenant lue dans le bon sens (elle se déclenche à l'état bas).
 - **MK3 :** l'axe Y est inversé, comme dans le firmware MK3 de Wanhao : la MK3 a son moteur Y du côté de l'écran tactile.
 - **Filtre anti-parasites des fins de course** (`ENDSTOP_NOISE_THRESHOLD 2`) : sans lui, un parasite sur la ligne d'un fin de course pouvait arrêter le homing quelques millimètres trop tôt avec *Homing Failed*.
@@ -201,6 +201,7 @@ avrdude -v -p atmega2560 -c wiring -P /dev/ttyUSB0 -D -U flash:w:firmware.hex:i
 | Device not found / Périphérique introuvable | Install CH340/FTDI drivers / Installez pilotes CH340/FTDI |
 | Wrong baud rate after flash / Mauvaise vitesse après flash | Use 250000 baud for custom firmware, 115200 for stock / Utilisez 250000 pour firmware custom, 115200 pour d'usine |
 | Homing stops a few mm before the switch, *Homing Failed* / Le homing s'arrête quelques mm avant le fin de course, *Homing Failed* | Electrical noise on the endstop line: use v2.0.1 or later, which filters it / Parasite sur la ligne du fin de course : utilisez la v2.0.1 ou plus récente, qui le filtre |
+| Nozzle hits a bed clip during levelling / La buse touche une pince du plateau pendant le nivellement | Use v2.0.2 or later: the first probing column is 10 mm in from the edge, as on Wanhao's firmware / Utilisez la v2.0.2 ou plus récente : la première colonne de palpage est à 10 mm du bord, comme dans le firmware Wanhao |
 | Bed moves away from the Y switch / Le plateau s'éloigne du fin de course Y | Check the model: the Y motor is at the back on MK1, MK1u2 and MK2, at the front on MK3 / Vérifiez le modèle : le moteur Y est à l'arrière sur MK1, MK1u2 et MK2, à l'avant sur MK3 |
 
 ### Support

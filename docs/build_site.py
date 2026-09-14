@@ -115,8 +115,8 @@ moves the bed: at the back, it is an <a href="{p('mk2')}">MK2</a>; at the front,
 <a href="https://github.com/MarlinFirmware/Configurations/tree/bugfix-2.1.x/config/examples/Wanhao/Duplicator%209">Marlin Configurations</a>,
 with the changes proposed there: MK1 probe read the right way round, MK3 Y direction, power-loss recovery,
 endstop noise filter.</li>
-<li><strong>Wanhao's factory settings</strong>, read out of Wanhao's own firmware for each model: steps/mm, speeds,
-accelerations, hotend PID, probe offsets and axis directions.</li>
+<li><strong>Wanhao's factory settings</strong>, taken from Wanhao's own firmware and source for each model: steps/mm,
+speeds, accelerations, hotend PID, probe offsets and probing margins, homing, thermal limits, jerk and axis directions.</li>
 <li><strong>Power-loss recovery</strong>: after an outage during an SD print, the screen offers to resume.</li>
 <li><strong>Filament runout sensor</strong> support, on by default on the MK3, one command away on the others.</li>
 <li><strong>A modern touchscreen interface</strong>, <a href="{p('screen')}">DGUS Reloaded 1.0.3</a>.</li>
@@ -170,8 +170,8 @@ plateau : à l'arrière, c'est une <a href="{p('mk2')}">MK2</a> ; à l'avant, du
 <a href="https://github.com/MarlinFirmware/Configurations/tree/bugfix-2.1.x/config/examples/Wanhao/Duplicator%209">Marlin Configurations</a>,
 avec les changements proposés là-bas : capteur MK1 lu dans le bon sens, sens Y de la MK3, reprise après coupure,
 filtre anti-parasites des fins de course.</li>
-<li><strong>Les réglages d'usine de Wanhao</strong>, lus dans le firmware Wanhao de chaque modèle : pas/mm, vitesses,
-accélérations, PID de la buse, décalages du capteur et sens des axes.</li>
+<li><strong>Les réglages d'usine de Wanhao</strong>, tirés du firmware et des sources Wanhao de chaque modèle : pas/mm,
+vitesses, accélérations, PID de la buse, décalages et marges de palpage, homing, limites thermiques, jerk et sens des axes.</li>
 <li><strong>Reprise après coupure de courant</strong> : après une coupure pendant une impression depuis la carte SD, l'écran propose de reprendre.</li>
 <li><strong>Capteur de fin de filament</strong> géré, actif par défaut sur la MK3, activable d'une commande sur les autres.</li>
 <li><strong>Une interface d'écran moderne</strong>, <a href="{p('screen')}">DGUS Reloaded 1.0.3</a>.</li>
@@ -500,6 +500,7 @@ avrdude -v -p atmega2560 -c wiring -P /dev/ttyUSB0 -D -U flash:w:D9_MK2_300.hex:
 <tr><td>Unreadable characters after flashing</td><td>Use 250000 baud with these firmwares, 115200 with Wanhao's.</td></tr>
 <tr><td>Temperatures shown ×10 on the screen (236 for 23.6 °C)</td><td>The screen still has old files: flash <a href="{p('screen')}">DGUS Reloaded 1.0.3</a>.</td></tr>
 <tr><td>Homing stops a few millimetres before the switch, then <em>Homing Failed</em></td><td>Electrical noise on the endstop line. These firmwares filter it since v2.0.1: update.</td></tr>
+<tr><td>The nozzle hits a bed clip during levelling</td><td>Update to v2.0.2 or later: the first probing column is 10 mm in from the edge, as on Wanhao's firmware.</td></tr>
 <tr><td>The bed moves away from the Y switch</td><td>Check you took your model's firmware: the Y motor is at the back on the MK1, MK1 + kit and MK2, at the front on the MK3.</td></tr>
 </tbody></table></div>
 
@@ -566,6 +567,7 @@ avrdude -v -p atmega2560 -c wiring -P /dev/ttyUSB0 -D -U flash:w:D9_MK2_300.hex:
 <tr><td>Caractères illisibles après le flash</td><td>Utilisez 250000 bauds avec ces firmwares, 115200 avec ceux de Wanhao.</td></tr>
 <tr><td>Températures ×10 à l'écran (236 pour 23,6 °C)</td><td>L'écran a encore d'anciens fichiers : flashez <a href="{p('screen')}">DGUS Reloaded 1.0.3</a>.</td></tr>
 <tr><td>Le homing s'arrête quelques millimètres avant le fin de course, puis <em>Homing Failed</em></td><td>Parasite sur la ligne du fin de course. Ces firmwares le filtrent depuis la v2.0.1 : mettez à jour.</td></tr>
+<tr><td>La buse touche une pince du plateau pendant le nivellement</td><td>Mettez à jour vers la v2.0.2 ou plus récente : la première colonne de palpage est à 10 mm du bord, comme dans le firmware Wanhao.</td></tr>
 <tr><td>Le plateau s'éloigne du fin de course Y</td><td>Vérifiez que vous avez pris le firmware de votre modèle : le moteur Y est à l'arrière sur la MK1, la MK1 + kit et la MK2, à l'avant sur la MK3.</td></tr>
 </tbody></table></div>
 

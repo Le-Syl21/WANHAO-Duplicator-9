@@ -40,6 +40,7 @@ Source: Wanhao's own download page for the D9 ([archived copy](https://web.archi
 - **Probe offset** (from Wanhao's source): X 25, Y 0, used as is.
 - **Z probe offset**: not stored in Wanhao's firmware (it is set on the screen). These builds start at −1.3; set yours with `M851 Z…` then `M500`.
 - **Endstops**: these builds filter endstop noise (`ENDSTOP_NOISE_THRESHOLD 2`). Without it, a glitch on the Y endstop line ended homing a few millimetres short with *Homing Failed* on an MK2 300.
+- **The rest of Wanhao's settings** are taken too: probing margins (the first column 10 mm in from the edge, clear of the bed clips), probe clearances and speeds, homing speeds, thermal protection periods, classic jerk, park position and preheat values. Three cannot follow: the hotend maximum stops at 305 °C instead of 315 (thermistor 1's table ends at 320 °C and Marlin 2 keeps a 15 °C margin), the mesh stays 5 × 5 because the DGUS Reloaded screen requires it, and the minimum temperatures stay at 5 °C instead of −5 so that a disconnected thermistor still stops the heaters.
 - **Filament sensor**: Wanhao's MK2 firmware reads it (3 tests of pin 8), which is why these builds keep it compiled in, off by default.
 
 ## How the values were extracted
@@ -54,7 +55,9 @@ These firmwares come without source code, so the values above were read out of t
 6. **Filament sensor and power loss.** Pin 8 is PH5 and pin 63 is PK1. The script counts the tests of bit 5 of `PINH` (`0x0100`) and bit 1 of `PINK` (`0x0106`) and records the skip instruction used. In every firmware the pin-63 test sits in an interrupt routine that returns straight away when the pin is high and starts the power-loss handling when it is low.
 7. **Validation.** Before being trusted on the firmwares published without source, every one of these extractions was checked against the `Configuration.h` of the four source packages Wanhao did publish (MK1 V0.15, MK1 V0.164(B), MK2 V1.1.2 and the MK2 kit V1.1.31). All of them matched.
 
-Not extractable this way: the probe offsets and maximum temperatures, which Marlin 1.1.4 compiles into code rather than into data. Where a value below comes from Wanhao's source instead, it says so.
+8. **Everything else.** For the four packages published with source, every option active in Wanhao's `Configuration.h` and `Configuration_adv.h` was run through the compiler's preprocessor and compared with the effective value in these builds: probing margins, probe and homing speeds, thermal limits and protection periods, jerk, park position, preheat values. For the MK3, published without source, the floating-point constants loaded by its code were compared with those of the MK2 firmwares of the same size: the only setting that differs is the bed's maximum temperature.
+
+Not extractable from the binary tables above: the probe offsets, which Marlin 1.1.4 compiles into code rather than into data. Where a value below comes from Wanhao's source instead, it says so.
 
 ---
 
@@ -75,6 +78,7 @@ Tableaux identiques à la version anglaise ci-dessus.
 - **Offset de sonde** (tiré des sources Wanhao) : X 25, Y 0, repris tel quel.
 - **Offset Z de la sonde** : absent du firmware Wanhao (il se règle à l'écran). Ces firmwares partent de −1,3 ; réglez le vôtre avec `M851 Z…` puis `M500`.
 - **Fins de course** : ces firmwares filtrent les parasites (`ENDSTOP_NOISE_THRESHOLD 2`). Sans ce filtre, un parasite sur la ligne du fin de course Y arrêtait le homing quelques millimètres trop tôt avec *Homing Failed* sur une MK2 300.
+- **Le reste des réglages Wanhao** est repris aussi : marges de palpage (première colonne à 10 mm du bord, à l'écart des pinces du plateau), hauteurs et vitesses de palpage, vitesses de homing, délais de protection thermique, jerk classique, position de parking et préchauffes. Trois ne peuvent pas suivre : la température maximale de la buse s'arrête à 305 °C au lieu de 315 (le tableau de la thermistance 1 s'arrête à 320 °C et Marlin 2 garde 15 °C de marge), le maillage reste en 5 × 5 parce que l'écran DGUS Reloaded l'exige, et les températures minimales restent à 5 °C au lieu de −5 pour qu'une thermistance débranchée coupe toujours la chauffe.
 - **Capteur de filament** : le firmware MK2 de Wanhao le lit (3 tests de la broche 8), c'est pourquoi ces firmwares le gardent compilé, désactivé par défaut.
 
 ## Comment ces valeurs ont été extraites
@@ -89,4 +93,6 @@ Ces firmwares sont publiés sans code source : les valeurs ci-dessus ont été l
 6. **Capteur de filament et coupure.** La broche 8 est PH5 et la broche 63 est PK1. Le script compte les tests du bit 5 de `PINH` (`0x0100`) et du bit 1 de `PINK` (`0x0106`) et relève l'instruction de saut utilisée. Dans tous les firmwares, le test de la broche 63 se trouve dans une routine d'interruption qui ressort aussitôt quand la broche est à l'état haut, et lance la gestion de coupure quand elle est à l'état bas.
 7. **Validation.** Avant de s'y fier sur les firmwares publiés sans source, chacune de ces extractions a été vérifiée contre le `Configuration.h` des quatre paquets de sources que Wanhao a publiés (MK1 V0.15, MK1 V0.164(B), MK2 V1.1.2 et le kit MK2 V1.1.31). Toutes concordaient.
 
-Non extractible ainsi : les offsets de sonde et les températures maximales, que Marlin 1.1.4 compile dans le code et non dans les données. Quand une valeur ci-dessous vient plutôt des sources Wanhao, c'est précisé.
+8. **Tout le reste.** Pour les quatre paquets publiés avec leurs sources, chaque option active du `Configuration.h` et du `Configuration_adv.h` de Wanhao est passée au préprocesseur du compilateur et comparée à la valeur effective de ces firmwares : marges de palpage, vitesses de palpage et de homing, limites et délais de protection thermique, jerk, position de parking, préchauffes. Pour la MK3, publiée sans source, les constantes à virgule flottante chargées par son code sont comparées à celles des firmwares MK2 de même taille : le seul réglage qui diffère est la température maximale du plateau.
+
+Non extractibles des tables ci-dessus : les offsets de sonde, que Marlin 1.1.4 compile dans le code et non dans les données. Quand une valeur ci-dessous vient plutôt des sources Wanhao, c'est précisé.

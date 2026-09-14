@@ -81,6 +81,7 @@ avrdude -v -p atmega2560 -c wiring -P /dev/ttyUSB0 -D -U flash:w:D9_MK2_300.hex:
 <tr><td>Unreadable characters after flashing</td><td>Use 250000 baud with these firmwares, 115200 with Wanhao's.</td></tr>
 <tr><td>Temperatures shown ×10 on the screen (236 for 23.6 °C)</td><td>The screen still has old files: flash <a href="screen.html">DGUS Reloaded 1.0.3</a>.</td></tr>
 <tr><td>Homing stops a few millimetres before the switch, then <em>Homing Failed</em></td><td>Electrical noise on the endstop line. These firmwares filter it since v2.0.1: update.</td></tr>
+<tr><td>The nozzle hits a bed clip during levelling</td><td>Update to v2.0.2 or later: the first probing column is 10 mm in from the edge, as on Wanhao's firmware.</td></tr>
 <tr><td>The bed moves away from the Y switch</td><td>Check you took your model's firmware: the Y motor is at the back on the MK1, MK1 + kit and MK2, at the front on the MK3.</td></tr>
 </tbody></table></div>
 
