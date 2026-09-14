@@ -22,21 +22,21 @@ Built from Marlin `bugfix-2.1.x` (September 2026) with the Duplicator 9 configur
 - **Wanhao's factory firmwares** are kept in `Wanhao_factory/` inside each model folder, so a machine can be put back as it left the factory. Each has an `extract.md` listing the settings read out of Wanhao's binaries and how they were read.
 - **The screen needs DGUS Reloaded 1.0.3** (`LCD/DWIN_SET.zip`). With the older 1.0.2 files, temperatures show without their decimal point (23.6 °C appears as 236).
 
-### Which firmware for my MK2?
+### Standard or `_Y-inverted` firmware?
 
-Wanhao built every MK2 with its Y axis turning one way, and that is `D9_MK2_xxx.hex`. Some MK2s run the other way, for instance with the Y motor moved to the front; `D9_MK2_xxx_Y-inverted.hex` is for them. The MK1, the MK1u2 and the MK3 have a single firmware each, whose direction was checked against Wanhao's own.
+Every model comes in two builds. `D9_MKx_xxx.hex` turns the Y axis the way Wanhao's own firmware for that model does, read out of Wanhao's binaries. `D9_MKx_xxx_Y-inverted.hex` turns it the other way, for machines whose Y motor isn't where Wanhao put it: a moved motor, a partial upgrade, a replaced part.
 
-1. **Look at the Y motor**, the stepper under the bed that drives the bed's belt:
-   - at the **back** of the printer, away from the touchscreen: `D9_MK2_xxx.hex`;
-   - at the **front**, on the touchscreen side: `D9_MK2_xxx_Y-inverted.hex`. If the head was upgraded to the MK3 as well, use `D9_MK3_xxx.hex` instead.
-2. **If you can't tell**, flash `D9_MK2_xxx.hex` and home Y on its own (`G28 Y`, or *Home* on the screen) with a hand on the power switch. The bed must move towards the Y endstop switch and stop on it. If it moves away from the switch, or homing fails with *Homing Failed*, switch the printer off and flash `D9_MK2_xxx_Y-inverted.hex`.
+1. **Look at the Y motor**, the stepper under the bed that drives the bed's belt. Wanhao put it at the **back**, away from the touchscreen, on the MK1, MK1u2 and MK2, and at the **front**, on the touchscreen side, on the MK3.
+   - Where Wanhao put it for your model: the standard `D9_MKx_xxx.hex`.
+   - At the other end: `D9_MKx_xxx_Y-inverted.hex`. An MK2 whose head was also upgraded to the MK3 should use `D9_MK3_xxx.hex` instead.
+2. **If you can't tell**, flash the standard file and home Y on its own (`G28 Y`, or *Home* on the screen) with a hand on the power switch. The bed must move towards the Y endstop switch and stop on it. If it moves away from the switch, or homing fails with *Homing Failed*, switch the printer off and flash the `_Y-inverted` file.
 
 ### Step 1: Prepare for Flashing
 
 1. **Choose the correct firmware** for your model:
    - `D9_MK1_xxx.hex` - For MK1 with inductive probe
    - `D9_MK2_xxx.hex` - For MK2 factory (BLTouch)
-   - `D9_MK2_xxx_Y-inverted.hex` - For an MK2 whose Y axis runs the other way (see *Which firmware for my MK2?* above)
+   - `D9_MKx_xxx_Y-inverted.hex` - Same model, Y axis the other way (see *Standard or `_Y-inverted` firmware?* above)
    - `D9_MK1u2_xxx.hex` - For MK1→MK2 upgrade kit
    - `D9_MK3_xxx.hex` - For MK3 with BLTouch + filament sensor
 
@@ -122,21 +122,21 @@ Compilés depuis Marlin `bugfix-2.1.x` (septembre 2026) avec les configurations 
 - **Les firmwares d'usine de Wanhao** sont conservés dans `Wanhao_factory/`, dans le dossier de chaque modèle, pour pouvoir remettre une machine dans son état d'origine. Chacun a un `extract.md` qui liste les réglages lus dans les binaires de Wanhao et explique comment ils ont été lus.
 - **L'écran doit être en DGUS Reloaded 1.0.3** (`LCD/DWIN_SET.zip`). Avec les anciens fichiers 1.0.2, les températures s'affichent sans la virgule (23,6 °C devient 236).
 
-### Quel firmware pour ma MK2 ?
+### Firmware standard ou `_Y-inverted` ?
 
-Wanhao a construit toutes les MK2 avec l'axe Y tournant dans un sens, c'est `D9_MK2_xxx.hex`. Certaines MK2 tournent dans l'autre sens, par exemple quand le moteur Y a été déplacé à l'avant ; `D9_MK2_xxx_Y-inverted.hex` est pour elles. Les MK1, MK1u2 et MK3 n'ont qu'un firmware chacune, dont le sens a été vérifié contre celui de Wanhao.
+Chaque modèle existe en deux versions. `D9_MKx_xxx.hex` fait tourner l'axe Y dans le même sens que le firmware de Wanhao pour ce modèle, lu dans les binaires de Wanhao. `D9_MKx_xxx_Y-inverted.hex` le fait tourner dans l'autre sens, pour les machines dont le moteur Y n'est pas là où Wanhao l'a mis : moteur déplacé, upgrade partiel, pièce remplacée.
 
-1. **Regardez le moteur Y**, le moteur pas à pas sous le plateau qui entraîne sa courroie :
-   - à l'**arrière** de l'imprimante, à l'opposé de l'écran tactile : `D9_MK2_xxx.hex` ;
-   - à l'**avant**, du côté de l'écran tactile : `D9_MK2_xxx_Y-inverted.hex`. Si la tête a aussi été passée en MK3, prenez plutôt `D9_MK3_xxx.hex`.
-2. **Si vous ne savez pas**, flashez `D9_MK2_xxx.hex` et faites le homing de Y seul (`G28 Y`, ou *Home* à l'écran), la main sur l'interrupteur. Le plateau doit aller vers le fin de course Y et s'arrêter dessus. S'il s'en éloigne, ou si le homing échoue avec *Homing Failed*, éteignez l'imprimante et flashez `D9_MK2_xxx_Y-inverted.hex`.
+1. **Regardez le moteur Y**, le moteur pas à pas sous le plateau qui entraîne sa courroie. Wanhao l'a placé à l'**arrière**, à l'opposé de l'écran tactile, sur les MK1, MK1u2 et MK2, et à l'**avant**, du côté de l'écran tactile, sur la MK3.
+   - À l'endroit prévu par Wanhao pour votre modèle : le fichier standard `D9_MKx_xxx.hex`.
+   - À l'autre bout : `D9_MKx_xxx_Y-inverted.hex`. Une MK2 dont la tête a aussi été passée en MK3 doit prendre `D9_MK3_xxx.hex` à la place.
+2. **Si vous ne savez pas**, flashez le fichier standard et faites le homing de Y seul (`G28 Y`, ou *Home* à l'écran), la main sur l'interrupteur. Le plateau doit aller vers le fin de course Y et s'arrêter dessus. S'il s'en éloigne, ou si le homing échoue avec *Homing Failed*, éteignez l'imprimante et flashez le fichier `_Y-inverted`.
 
 ### Étape 1 : Préparation du Flash
 
 1. **Choisissez le bon firmware** pour votre modèle :
    - `D9_MK1_xxx.hex` - Pour MK1 avec sonde inductive
    - `D9_MK2_xxx.hex` - Pour MK2 d'usine (BLTouch)
-   - `D9_MK2_xxx_Y-inverted.hex` - Pour une MK2 dont l'axe Y tourne dans l'autre sens (voir *Quel firmware pour ma MK2 ?* ci-dessus)
+   - `D9_MKx_xxx_Y-inverted.hex` - Même modèle, axe Y dans l'autre sens (voir *Firmware standard ou `_Y-inverted` ?* ci-dessus)
    - `D9_MK1u2_xxx.hex` - Pour kit d'upgrade MK1→MK2
    - `D9_MK3_xxx.hex` - Pour MK3 avec BLTouch + capteur filament
 
