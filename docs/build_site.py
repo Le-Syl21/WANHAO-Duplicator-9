@@ -15,6 +15,8 @@ FW = REPO + "/tree/main/Firmware/Marlin%20bugfix-2.1.x/"
 RAW = REPO + "/raw/main/Firmware/Marlin%20bugfix-2.1.x/"
 DL = REPO + "/releases/latest/download/"
 DISCORD = "https://discord.gg/T37DYHmt2j"
+# Google Search Console ownership check for the URL-prefix property SITE.
+GOOGLE_VERIFICATION = "TqbXre6qrm9jaoj6tFwRRiI2vuQilAZLm6kUJA-etmo"
 
 PAGES = ["index", "mk1", "mk1u2", "mk2", "mk3", "flash", "screen"]
 SIZES = [("300", "300 × 300 × 400 mm"), ("400", "400 × 400 × 400 mm"), ("500", "500 × 500 × 500 mm")]
@@ -709,6 +711,8 @@ def render(page, lang):
     if page == "index":
         ld = {"@context": "https://schema.org", "@type": "WebSite", "name": "Wanhao Duplicator 9 firmware",
               "url": SITE, "inLanguage": lang, "description": description}
+    verification = (f'<meta name="google-site-verification" content="{GOOGLE_VERIFICATION}">\n'
+                    if page == "index" else "")
     return f"""<!doctype html>
 <html lang="{lang}">
 <head>
@@ -716,7 +720,7 @@ def render(page, lang):
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{html.escape(title)}</title>
 <meta name="description" content="{html.escape(description)}">
-<link rel="canonical" href="{url(page, lang)}">
+{verification}<link rel="canonical" href="{url(page, lang)}">
 <link rel="alternate" hreflang="en" href="{url(page, 'en')}">
 <link rel="alternate" hreflang="fr" href="{url(page, 'fr')}">
 <link rel="alternate" hreflang="x-default" href="{url(page, 'en')}">
