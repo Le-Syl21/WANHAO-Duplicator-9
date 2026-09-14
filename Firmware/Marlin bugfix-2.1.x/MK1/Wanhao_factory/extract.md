@@ -1,11 +1,11 @@
 # Wanhao factory firmware — Duplicator 9 MK1
 
-🇬🇧 [English](#english) | 🇫🇷 [Français](#français)
+<img src="../../../../.github/flags/gb.svg" height="14" alt="GB"> [English](#english) | <img src="../../../../.github/flags/fr.svg" height="14" alt="FR"> [Français](#français)
 
 ---
 
 <a name="english"></a>
-## 🇬🇧 English
+## <img src="../../../../.github/flags/gb.svg" height="14" alt="GB"> English
 
 Wanhao's own firmwares for the MK1 (inductive probe, grey ribbon cable), kept here so a machine can be put back exactly as it left the factory. Each version folder holds the motherboard firmware (`.hex`, flashed over USB) and, where Wanhao published it, the matching screen firmware (flashed from a microSD card inside the base).
 
@@ -70,7 +70,7 @@ Not extractable this way: the probe offsets and maximum temperatures, which Marl
 ---
 
 <a name="français"></a>
-## 🇫🇷 Français
+## <img src="../../../../.github/flags/fr.svg" height="14" alt="FR"> Français
 
 Les firmwares de Wanhao pour la MK1 (sonde inductive, nappe grise), conservés ici pour pouvoir remettre une machine exactement dans son état d'usine. Chaque dossier de version contient le firmware de la carte mère (`.hex`, flashé en USB) et, quand Wanhao l'a publié, le firmware d'écran correspondant (flashé depuis une microSD, dans le socle).
 

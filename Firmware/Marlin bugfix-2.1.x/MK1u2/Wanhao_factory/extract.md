@@ -1,11 +1,11 @@
 # Wanhao factory firmware — Duplicator 9 MK1 upgraded with the MK2 kit
 
-🇬🇧 [English](#english) | 🇫🇷 [Français](#français)
+<img src="../../../../.github/flags/gb.svg" height="14" alt="GB"> [English](#english) | <img src="../../../../.github/flags/fr.svg" height="14" alt="FR"> [Français](#français)
 
 ---
 
 <a name="english"></a>
-## 🇬🇧 English
+## <img src="../../../../.github/flags/gb.svg" height="14" alt="GB"> English
 
 Wanhao's firmware for an MK1 fitted with the MK2 upgrade kit (BLTouch). The matching screen firmware is the MK2 one, in [`../../MK2/Wanhao_factory/DWIN_SET_MK2.zip`](../../MK2/Wanhao_factory/DWIN_SET_MK2.zip).
 
@@ -62,7 +62,7 @@ Not extractable this way: the probe offsets and maximum temperatures, which Marl
 ---
 
 <a name="français"></a>
-## 🇫🇷 Français
+## <img src="../../../../.github/flags/fr.svg" height="14" alt="FR"> Français
 
 Le firmware de Wanhao pour une MK1 équipée du kit d'upgrade MK2 (BLTouch). Le firmware d'écran correspondant est celui de la MK2, dans [`../../MK2/Wanhao_factory/DWIN_SET_MK2.zip`](../../MK2/Wanhao_factory/DWIN_SET_MK2.zip).
 

@@ -1,10 +1,10 @@
 # WANHAO Duplicator 9 Repository
 
-🇬🇧 [English Version](#english) | 🇫🇷 [Version Française](#français)
+<img src=".github/flags/gb.svg" height="14" alt="GB"> [English Version](#english) | <img src=".github/flags/fr.svg" height="14" alt="FR"> [Version Française](#français)
 
 ---
 
-## <a name="english"></a>🇬🇧 English Version
+## <a name="english"></a><img src=".github/flags/gb.svg" height="14" alt="GB"> English Version
 
 This repository is dedicated to the **WANHAO Duplicator 9** 3D printer and includes:
 * 🔧 Custom **firmware** (Marlin)
@@ -78,7 +78,7 @@ You are free to use, modify, and redistribute this code under the terms of the l
 
 ---
 
-## <a name="français"></a>🇫🇷 Version Française
+## <a name="français"></a><img src=".github/flags/fr.svg" height="14" alt="FR"> Version Française
 
 Ce dépôt est dédié à l'imprimante 3D **WANHAO Duplicator 9** et comprend :
 * 🔧 **Firmware** personnalisé (Marlin)

@@ -1,9 +1,9 @@
 # Wanhao Duplicator 9 - Firmware Flash Guide / Guide de Flash du Firmware
 
-🇬🇧 [English Version](#english) | 🇫🇷 [Version Française](#français)
+<img src="../.github/flags/gb.svg" height="14" alt="GB"> [English Version](#english) | <img src="../.github/flags/fr.svg" height="14" alt="FR"> [Version Française](#français)
 
 <a name="english"></a>
-## 🇬🇧 English Version
+## <img src="../.github/flags/gb.svg" height="14" alt="GB"> English Version
 
 ### Prerequisites
 
@@ -104,7 +104,7 @@ avrdude -v -p atmega2560 -c wiring -P /dev/ttyUSB0 -D -U flash:w:firmware.hex:i
 ---
 
 <a name="français"></a>
-## 🇫🇷 Version Française
+## <img src="../.github/flags/fr.svg" height="14" alt="FR"> Version Française
 
 ### Prérequis
 

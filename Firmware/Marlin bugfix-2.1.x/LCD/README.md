@@ -1,9 +1,9 @@
 # Wanhao Duplicator 9 - DGUS LCD Flash Guide (OS + Firm) / Guide de Flash de l'Écran LCD DGUS (OS + Firm)
 
-🇬🇧 [English Version](#english) | 🇫🇷 [Version Française](#français)
+<img src="../../../.github/flags/gb.svg" height="14" alt="GB"> [English Version](#english) | <img src="../../../.github/flags/fr.svg" height="14" alt="FR"> [Version Française](#français)
 
 <a name="english"></a>
-## 🇬🇧 English Version
+## <img src="../../../.github/flags/gb.svg" height="14" alt="GB"> English Version
 
 ### Prerequisites
 
@@ -142,7 +142,7 @@ This firmware package includes a pre-flash memory format routine that clears the
 ---
 
 <a name="français"></a>
-## 🇫🇷 Version Française
+## <img src="../../../.github/flags/fr.svg" height="14" alt="FR"> Version Française
 
 ### Prérequis
 

@@ -1,11 +1,11 @@
 # Wanhao factory firmware — Duplicator 9 MK3
 
-🇬🇧 [English](#english) | 🇫🇷 [Français](#français)
+<img src="../../../../.github/flags/gb.svg" height="14" alt="GB"> [English](#english) | <img src="../../../../.github/flags/fr.svg" height="14" alt="FR"> [Français](#français)
 
 ---
 
 <a name="english"></a>
-## 🇬🇧 English
+## <img src="../../../../.github/flags/gb.svg" height="14" alt="GB"> English
 
 Wanhao's firmware for the MK3. Wanhao published no screen firmware for it: the MK3 section of the download page relies on the MK2 screen firmware, [`../../MK2/Wanhao_factory/DWIN_SET_MK2.zip`](../../MK2/Wanhao_factory/DWIN_SET_MK2.zip).
 
@@ -64,7 +64,7 @@ Not extractable this way: the probe offsets and maximum temperatures, which Marl
 ---
 
 <a name="français"></a>
-## 🇫🇷 Français
+## <img src="../../../../.github/flags/fr.svg" height="14" alt="FR"> Français
 
 Le firmware de Wanhao pour la MK3. Wanhao n'a publié aucun firmware d'écran pour elle : la section MK3 de la page de téléchargement s'appuie sur celui de la MK2, [`../../MK2/Wanhao_factory/DWIN_SET_MK2.zip`](../../MK2/Wanhao_factory/DWIN_SET_MK2.zip).
 

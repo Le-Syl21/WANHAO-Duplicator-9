@@ -1,11 +1,11 @@
 # Wanhao factory firmware — Duplicator 9 MK2
 
-🇬🇧 [English](#english) | 🇫🇷 [Français](#français)
+<img src="../../../../.github/flags/gb.svg" height="14" alt="GB"> [English](#english) | <img src="../../../../.github/flags/fr.svg" height="14" alt="FR"> [Français](#français)
 
 ---
 
 <a name="english"></a>
-## 🇬🇧 English
+## <img src="../../../../.github/flags/gb.svg" height="14" alt="GB"> English
 
 Wanhao's firmware for the factory MK2 (BLTouch), and the MK2 screen firmware ([`DWIN_SET_MK2.zip`](DWIN_SET_MK2.zip), Wanhao's own interface, not DGUS Reloaded). The 500 was rebuilt by Wanhao in July 2019 (V1.1.2.1).
 
@@ -60,7 +60,7 @@ Not extractable this way: the probe offsets and maximum temperatures, which Marl
 ---
 
 <a name="français"></a>
-## 🇫🇷 Français
+## <img src="../../../../.github/flags/fr.svg" height="14" alt="FR"> Français
 
 Le firmware de Wanhao pour la MK2 d'usine (BLTouch), et le firmware d'écran MK2 ([`DWIN_SET_MK2.zip`](DWIN_SET_MK2.zip), l'interface de Wanhao, pas DGUS Reloaded). Wanhao a recompilé la 500 en juillet 2019 (V1.1.2.1).
 

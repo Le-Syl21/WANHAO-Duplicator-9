@@ -8,13 +8,13 @@ Un guide complet pour ajuster les offsets X, Y et Z sur votre imprimante 3D via 
 
 ## 🌍 Language / Langue
 
-- 🇬🇧 [English](#english)
-- 🇫🇷 [Français](#français)
+- <img src=".github/flags/gb.svg" height="14" alt="GB"> [English](#english)
+- <img src=".github/flags/fr.svg" height="14" alt="FR"> [Français](#français)
 
 ---
 
 <a name="english"></a>
-## 🇬🇧 English
+## <img src=".github/flags/gb.svg" height="14" alt="GB"> English
 
 ### Overview
 
@@ -128,7 +128,7 @@ G92 X0 Y0 Z0
 ---
 
 <a name="français"></a>
-## 🇫🇷 Français
+## <img src=".github/flags/fr.svg" height="14" alt="FR"> Français
 
 ### Vue d'ensemble
 
