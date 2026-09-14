@@ -8,8 +8,8 @@ Un guide complet pour ajuster les offsets X, Y et Z sur votre imprimante 3D via 
 
 ## 🌍 Language / Langue
 
-- [English](#english)
-- [Français](#français)
+- 🇬🇧 [English](#english)
+- 🇫🇷 [Français](#français)
 
 ---
 
