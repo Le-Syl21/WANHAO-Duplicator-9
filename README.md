@@ -21,10 +21,7 @@ Questions, bug reports, beta testing, or just want to chat? Join the Discord:
 ### 📂 Repository structure
 ```
 WANHAO-Duplicator-9/
-├── Documentation
-│   └── MK1
-│       └── WANHAO_D9_MK1_User_Manual.pdf  # Wanhao's official MK1 instruction manual
-└── Firmware
+└── Firmware                 # First populated directory
     └── Marlin bugfix-2.1.x  # Marlin builds for D9
         ├── LCD
         │   ├── DWIN_SET.zip
@@ -34,7 +31,8 @@ WANHAO-Duplicator-9/
         │   ├── D9_MK1_400.hex
         │   ├── D9_MK1_500.hex
         │   ├── D9_MK1_extruder.png
-        │   └── D9_MK1.png
+        │   ├── D9_MK1.png
+        │   └── WANHAO_D9_MK1_User_Manual.pdf  # Wanhao's official MK1 instruction manual
         ├── MK1u2
         │   ├── D9_MK1u2_300.hex
         │   ├── D9_MK1u2_400.hex
@@ -49,10 +47,9 @@ WANHAO-Duplicator-9/
             ├── D9_MK3_400.hex
             └── D9_MK3_500.hex
 ```
-* **Documentation/** : Wanhao's own documents, per hardware revision. The MK1 manual covers assembly, wiring, the menus, levelling and troubleshooting; it remains Wanhao's document, not covered by this repository's licence.
 * **Firmware/** : Main directory for firmware and related files.
 * **LCD/** : LCD firmware (`DWIN_SET`) + flashing instructions.
-* **MK1 / MK1u2 / MK2 / MK3** : Marlin firmware builds (`.hex`) for each hardware revision and build size (300, 400, 500).
+* **MK1 / MK1u2 / MK2 / MK3** : Marlin firmware builds (`.hex`) for each hardware revision and build size (300, 400, 500). `MK1/` also holds Wanhao's MK1 instruction manual (assembly, wiring, menus, levelling, troubleshooting), which remains Wanhao's document, outside this repository's licence.
 
 ### 📜 License
 This project is licensed under the **GNU GPL v3**.
@@ -77,10 +74,7 @@ Des questions, un bug à signaler, envie de tester en avant-première ou simplem
 ### 📂 Structure du dépôt
 ```
 WANHAO-Duplicator-9/
-├── Documentation
-│   └── MK1
-│       └── WANHAO_D9_MK1_User_Manual.pdf  # Manuel officiel Wanhao de la MK1
-└── Firmware
+└── Firmware                 # Premier répertoire principal
     └── Marlin bugfix-2.1.x  # Builds Marlin pour D9
         ├── LCD
         │   ├── DWIN_SET.zip
@@ -90,7 +84,8 @@ WANHAO-Duplicator-9/
         │   ├── D9_MK1_400.hex
         │   ├── D9_MK1_500.hex
         │   ├── D9_MK1_extruder.png
-        │   └── D9_MK1.png
+        │   ├── D9_MK1.png
+        │   └── WANHAO_D9_MK1_User_Manual.pdf  # Manuel officiel Wanhao de la MK1
         ├── MK1u2
         │   ├── D9_MK1u2_300.hex
         │   ├── D9_MK1u2_400.hex
@@ -105,10 +100,9 @@ WANHAO-Duplicator-9/
             ├── D9_MK3_400.hex
             └── D9_MK3_500.hex
 ```
-* **Documentation/** : Documents de Wanhao, par révision matérielle. Le manuel MK1 couvre l'assemblage, le câblage, les menus, le nivellement et le dépannage ; il reste un document de Wanhao, non couvert par la licence de ce dépôt.
 * **Firmware/** : Répertoire principal pour le firmware et les fichiers associés.
 * **LCD/** : Firmware LCD (`DWIN_SET`) + instructions de flashage.
-* **MK1 / MK1u2 / MK2 / MK3** : Builds du firmware Marlin (`.hex`) pour chaque révision matérielle et taille de build (300, 400, 500).
+* **MK1 / MK1u2 / MK2 / MK3** : Builds du firmware Marlin (`.hex`) pour chaque révision matérielle et taille de build (300, 400, 500). `MK1/` contient aussi le manuel Wanhao de la MK1 (assemblage, câblage, menus, nivellement, dépannage), qui reste un document de Wanhao, hors de la licence de ce dépôt.
 
 ### 📜 Licence
 Ce projet est sous licence **GNU GPL v3**.
