@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://le-syl21.github.io/WANHAO-Duplicator-9/sitemap.xml

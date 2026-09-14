@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wanhao Duplicator 9 touchscreen firmware (DWIN DGUS) – DGUS Reloaded 1.0.3</title>
+<meta name="description" content="How to flash the Wanhao D9 DWIN touchscreen with DGUS Reloaded 1.0.3 from a microSD card, for Marlin 2.1, and how to go back to Wanhao&#x27;s screen firmware.">
+<link rel="canonical" href="https://le-syl21.github.io/WANHAO-Duplicator-9/screen.html">
+<link rel="alternate" hreflang="en" href="https://le-syl21.github.io/WANHAO-Duplicator-9/screen.html">
+<link rel="alternate" hreflang="fr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/fr/screen.html">
+<link rel="alternate" hreflang="x-default" href="https://le-syl21.github.io/WANHAO-Duplicator-9/screen.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Wanhao Duplicator 9 touchscreen firmware (DWIN DGUS) – DGUS Reloaded 1.0.3">
+<meta property="og:description" content="How to flash the Wanhao D9 DWIN touchscreen with DGUS Reloaded 1.0.3 from a microSD card, for Marlin 2.1, and how to go back to Wanhao&#x27;s screen firmware.">
+<meta property="og:url" content="https://le-syl21.github.io/WANHAO-Duplicator-9/screen.html">
+<meta property="og:image" content="https://le-syl21.github.io/WANHAO-Duplicator-9/img/og.jpg">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖨️</text></svg>">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Wanhao Duplicator 9 touchscreen firmware (DWIN DGUS) – DGUS Reloaded 1.0.3", "description": "How to flash the Wanhao D9 DWIN touchscreen with DGUS Reloaded 1.0.3 from a microSD card, for Marlin 2.1, and how to go back to Wanhao's screen firmware.", "url": "https://le-syl21.github.io/WANHAO-Duplicator-9/screen.html", "inLanguage": "en", "about": {"@type": "Product", "name": "Wanhao Duplicator 9", "brand": "Wanhao"}}</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="brand" href="./">Wanhao <span>D9</span> firmware</a>
+<nav class="main"><a href="./">Home</a><a href="mk1.html">MK1</a><a href="mk1u2.html">MK1 + MK2 kit</a><a href="mk2.html">MK2</a><a href="mk3.html">MK3</a><a href="flash.html">Flash guide</a><a href="screen.html" aria-current="page">Screen</a></nav>
+<a class="lang" href="fr/screen.html" hreflang="fr"><img src="img/fr.svg" alt="FR" width="21" height="14">Version française</a>
+</div></header>
+<main><div class="wrap">
+<h1>Flashing the Duplicator 9 touchscreen</h1>
+<p class="lead">Every D9, MK1 to MK3, has the same DWIN T5 touchscreen (480 × 272). With Marlin 2.1 it runs
+DGUS Reloaded, flashed from a microSD card.</p>
+<p><a class="btn" href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest/download/DWIN_SET.zip">Download DWIN_SET.zip (DGUS Reloaded 1.0.3)</a></p>
+
+<h2>Why version 1.0.3</h2>
+<p>Since 2023 (<a href="https://github.com/MarlinFirmware/Marlin/pull/25490">Marlin#25490</a>) Marlin sends
+temperatures with one decimal and the Z position with two. The screen files must match: with the older 1.0.2,
+23.6 °C shows as 236. The original DGUS Reloaded project stopped at 1.0.2; 1.0.3 is published by
+<a href="https://github.com/Neo2003/DGUS-reloaded/releases/tag/1.0.3">Neo2003</a>, the author of that Marlin change.
+This package is that 1.0.3, unchanged, plus the two T5 system files.</p>
+
+<h2>1. Format the microSD card</h2>
+<div class="note">FAT32 with an allocation unit of <strong>4096 bytes</strong>. With any other size the screen ignores the card.</div>
+<ul>
+<li><strong>Windows</strong>: Windows 11 often won't format FAT32; use <a href="http://ridgecrop.co.uk/index.htm?guiformat.htm">GUIFormat</a>
+and set the allocation unit size to 4096.</li>
+<li><strong>Linux</strong>: <code>sudo mkfs.fat -F 32 -s 8 /dev/sdX1</code> (check the device with <code>lsblk</code> first).</li>
+<li><strong>macOS</strong>: <code>sudo newfs_msdos -F 32 -c 8 /dev/diskN</code> (check with <code>diskutil list</code>).</li>
+</ul>
+
+<h2>2. Copy the files</h2>
+<p>Unzip <code>DWIN_SET.zip</code> and copy the whole <code>DWIN_SET</code> folder to the root of the card.</p>
+
+<h2>3. Flash</h2>
+<ol>
+<li>Switch the printer off and unplug it.</li>
+<li>Open the front of the base to reach the back of the screen, where its microSD slot is.</li>
+<li>Insert the card and switch on. The screen shows the update within 10 to 30 seconds; wait until it restarts
+normally, 1 to 3 minutes in all.</li>
+<li>Switch off, remove the card, close the base.</li>
+</ol>
+<p>Wanhao's <a href="https://www.youtube.com/watch?v=VGvtMmlBVj8">video of a D9 screen update</a> shows where the slot is.</p>
+
+<h2>Going back to Wanhao's screen</h2>
+<p>Wanhao's screen firmware only works with Wanhao's motherboard firmware. MK1: the screen file of the matching
+version on the <a href="mk1.html">MK1 page</a>. MK1 + kit, MK2 and MK3:
+<a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/raw/main/Firmware/Marlin%20bugfix-2.1.x/MK2/Wanhao_factory/DWIN_SET_MK2.zip">DWIN_SET_MK2.zip</a>. Same procedure.</p>
+</div></main>
+<footer class="site"><div class="wrap">
+<a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9">Source and issues on GitHub</a>
+<a href="https://discord.gg/T37DYHmt2j">Discord</a>
+<span>Firmware under GNU GPL v3. Wanhao's manuals and firmwares remain Wanhao's.</span>
+</div></footer>
+</body>
+</html>

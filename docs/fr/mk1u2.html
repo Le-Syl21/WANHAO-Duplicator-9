@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Firmware Wanhao Duplicator 9 MK1 avec kit MK2 (BLTouch) – Marlin 2.1</title>
+<meta name="description" content="Firmware Marlin 2.1 pour une Wanhao D9 MK1 équipée du kit BLTouch MK2 de Wanhao, et firmware d&#x27;origine Wanhao V1.1.31 du kit.">
+<link rel="canonical" href="https://le-syl21.github.io/WANHAO-Duplicator-9/fr/mk1u2.html">
+<link rel="alternate" hreflang="en" href="https://le-syl21.github.io/WANHAO-Duplicator-9/mk1u2.html">
+<link rel="alternate" hreflang="fr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/fr/mk1u2.html">
+<link rel="alternate" hreflang="x-default" href="https://le-syl21.github.io/WANHAO-Duplicator-9/mk1u2.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Firmware Wanhao Duplicator 9 MK1 avec kit MK2 (BLTouch) – Marlin 2.1">
+<meta property="og:description" content="Firmware Marlin 2.1 pour une Wanhao D9 MK1 équipée du kit BLTouch MK2 de Wanhao, et firmware d&#x27;origine Wanhao V1.1.31 du kit.">
+<meta property="og:url" content="https://le-syl21.github.io/WANHAO-Duplicator-9/fr/mk1u2.html">
+<meta property="og:image" content="https://le-syl21.github.io/WANHAO-Duplicator-9/img/og.jpg">
+<meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖨️</text></svg>">
+<link rel="stylesheet" href="../style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Firmware Wanhao Duplicator 9 MK1 avec kit MK2 (BLTouch) – Marlin 2.1", "description": "Firmware Marlin 2.1 pour une Wanhao D9 MK1 équipée du kit BLTouch MK2 de Wanhao, et firmware d'origine Wanhao V1.1.31 du kit.", "url": "https://le-syl21.github.io/WANHAO-Duplicator-9/fr/mk1u2.html", "inLanguage": "fr", "about": {"@type": "Product", "name": "Wanhao Duplicator 9", "brand": "Wanhao"}}</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="brand" href="../fr/">Wanhao <span>D9</span> firmware</a>
+<nav class="main"><a href="../fr/">Accueil</a><a href="../fr/mk1.html">MK1</a><a href="../fr/mk1u2.html" aria-current="page">MK1 + kit MK2</a><a href="../fr/mk2.html">MK2</a><a href="../fr/mk3.html">MK3</a><a href="../fr/flash.html">Guide de flash</a><a href="../fr/screen.html">Écran</a></nav>
+<a class="lang" href="../mk1u2.html" hreflang="en"><img src="../img/gb.svg" alt="GB" width="21" height="14">English version</a>
+</div></header>
+<main><div class="wrap">
+<h1>Wanhao D9 MK1 avec le kit MK2</h1>
+<div class="split"><div>
+<p class="lead">Une D9 de première génération équipée du kit MK2 de Wanhao : le cadre de la MK1, avec un capteur
+BLTouch à la place du capteur inductif en métal.</p>
+<p>Wanhao a publié un firmware à part pour cette combinaison, car le BLTouch du kit n'est pas placé comme celui
+d'une MK2 d'usine : le décalage Y du capteur diffère. Ces builds utilisent la géométrie du kit. Le moteur Y est à
+l'arrière.</p>
+</div><figure><img src="../img/d9-mk2-bltouch.webp" width="500" height="427" alt="Capteur BLTouch sur la tête d'une Wanhao D9">
+<figcaption>Capteur BLTouch</figcaption></figure></div>
+
+<h2>Téléchargement</h2>
+<div class="table"><table class="dl"><thead><tr><th>Taille</th><th>Volume d'impression</th><th>Standard</th><th>Y inversé</th></tr></thead><tbody><tr><td><strong>D9/300</strong></td><td>300 × 300 × 400 mm</td><td><a class="btn" href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest/download/D9_MK1u2_300.hex">D9_MK1u2_300.hex</a></td><td><a class="btn ghost" href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest/download/D9_MK1u2_300_Y-inverted.hex">D9_MK1u2_300_Y-inverted.hex</a></td></tr><tr><td><strong>D9/400</strong></td><td>400 × 400 × 400 mm</td><td><a class="btn" href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest/download/D9_MK1u2_400.hex">D9_MK1u2_400.hex</a></td><td><a class="btn ghost" href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest/download/D9_MK1u2_400_Y-inverted.hex">D9_MK1u2_400_Y-inverted.hex</a></td></tr><tr><td><strong>D9/500</strong></td><td>500 × 500 × 500 mm</td><td><a class="btn" href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest/download/D9_MK1u2_500.hex">D9_MK1u2_500.hex</a></td><td><a class="btn ghost" href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest/download/D9_MK1u2_500_Y-inverted.hex">D9_MK1u2_500_Y-inverted.hex</a></td></tr></tbody></table></div>
+<p>Prenez le fichier <strong>Standard</strong>, sauf si votre moteur Y a été déplacé : voir
+<a href="../fr/flash.html#y-direction">standard ou Y inversé</a>. Flashez ensuite l'écran avec
+<a href="../fr/screen.html">DGUS Reloaded</a>.</p>
+<div class="note">Si le maillage du plateau semble décalé d'avant en arrière, vérifiez d'abord le décalage du
+capteur : la source du kit Wanhao indique Y −10, ces builds utilisent Y −20. Réglez le vôtre avec
+<code>M851 Y-10</code> puis <code>M500</code>.</div>
+
+<h2>Firmwares d'origine Wanhao</h2>
+<p>Le firmware V1.1.31 du kit Wanhao (décembre 2018), utilisé avec le firmware d'écran de la MK2.</p>
+<div class="table"><table><thead><tr><th>Taille</th><th>Carte mère</th><th>Écran</th></tr></thead><tbody><tr><td>D9/300</td><td><a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/raw/main/Firmware/Marlin%20bugfix-2.1.x/MK1u2/Wanhao_factory/D9-300-BLTOUCH-FD_V1.1.31.hex">D9-300-BLTOUCH-FD_V1.1.31.hex</a></td><td><a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/raw/main/Firmware/Marlin%20bugfix-2.1.x/MK2/Wanhao_factory/DWIN_SET_MK2.zip">DWIN_SET_MK2.zip</a></td></tr><tr><td>D9/400</td><td><a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/raw/main/Firmware/Marlin%20bugfix-2.1.x/MK1u2/Wanhao_factory/D9-400-BLTOUCH-FD_V1.1.31.hex">D9-400-BLTOUCH-FD_V1.1.31.hex</a></td><td><a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/raw/main/Firmware/Marlin%20bugfix-2.1.x/MK2/Wanhao_factory/DWIN_SET_MK2.zip">DWIN_SET_MK2.zip</a></td></tr><tr><td>D9/500</td><td><a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/raw/main/Firmware/Marlin%20bugfix-2.1.x/MK1u2/Wanhao_factory/D9-500-BLTOUCH-FD_V1.1.31.hex">D9-500-BLTOUCH-FD_V1.1.31.hex</a></td><td><a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/raw/main/Firmware/Marlin%20bugfix-2.1.x/MK2/Wanhao_factory/DWIN_SET_MK2.zip">DWIN_SET_MK2.zip</a></td></tr></tbody></table></div>
+<p>Réglages lus dans les binaires de Wanhao : <a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/tree/main/Firmware/Marlin%20bugfix-2.1.x/MK1u2/Wanhao_factory/extract.md">extract.md</a>.</p>
+</div></main>
+<footer class="site"><div class="wrap">
+<a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9">Sources et tickets sur GitHub</a>
+<a href="https://discord.gg/T37DYHmt2j">Discord</a>
+<span>Firmware sous GNU GPL v3. Les manuels et firmwares Wanhao restent la propriété de Wanhao.</span>
+</div></footer>
+</body>
+</html>

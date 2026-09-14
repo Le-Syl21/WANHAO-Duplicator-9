@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to flash a Wanhao Duplicator 9 (D9) motherboard firmware</title>
+<meta name="description" content="Step-by-step guide to flash Marlin on a Wanhao D9 over USB with AVRDUDESS or avrdude, choose between the standard and Y-inverted builds, and recover with Wanhao&#x27;s firmware.">
+<link rel="canonical" href="https://le-syl21.github.io/WANHAO-Duplicator-9/flash.html">
+<link rel="alternate" hreflang="en" href="https://le-syl21.github.io/WANHAO-Duplicator-9/flash.html">
+<link rel="alternate" hreflang="fr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/fr/flash.html">
+<link rel="alternate" hreflang="x-default" href="https://le-syl21.github.io/WANHAO-Duplicator-9/flash.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="How to flash a Wanhao Duplicator 9 (D9) motherboard firmware">
+<meta property="og:description" content="Step-by-step guide to flash Marlin on a Wanhao D9 over USB with AVRDUDESS or avrdude, choose between the standard and Y-inverted builds, and recover with Wanhao&#x27;s firmware.">
+<meta property="og:url" content="https://le-syl21.github.io/WANHAO-Duplicator-9/flash.html">
+<meta property="og:image" content="https://le-syl21.github.io/WANHAO-Duplicator-9/img/og.jpg">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖨️</text></svg>">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "How to flash a Wanhao Duplicator 9 (D9) motherboard firmware", "description": "Step-by-step guide to flash Marlin on a Wanhao D9 over USB with AVRDUDESS or avrdude, choose between the standard and Y-inverted builds, and recover with Wanhao's firmware.", "url": "https://le-syl21.github.io/WANHAO-Duplicator-9/flash.html", "inLanguage": "en", "about": {"@type": "Product", "name": "Wanhao Duplicator 9", "brand": "Wanhao"}}</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="brand" href="./">Wanhao <span>D9</span> firmware</a>
+<nav class="main"><a href="./">Home</a><a href="mk1.html">MK1</a><a href="mk1u2.html">MK1 + MK2 kit</a><a href="mk2.html">MK2</a><a href="mk3.html">MK3</a><a href="flash.html" aria-current="page">Flash guide</a><a href="screen.html">Screen</a></nav>
+<a class="lang" href="fr/flash.html" hreflang="fr"><img src="img/fr.svg" alt="FR" width="21" height="14">Version française</a>
+</div></header>
+<main><div class="wrap">
+<h1>Flashing the Duplicator 9 motherboard</h1>
+<p class="lead">The D9's motherboard is an ATmega2560 with a USB bootloader: no programmer, no opening the base,
+just a USB cable.</p>
+
+<h2>What you need</h2>
+<ul>
+<li>A USB cable between the printer and the computer, and the printer <strong>switched on</strong>.</li>
+<li><a href="https://github.com/zkemble/AVRDUDESS">AVRDUDESS</a> (Windows, graphical, easiest) or
+<a href="https://github.com/avrdudes/avrdude">avrdude</a> (command line, every system).</li>
+<li>The <strong>.hex</strong> for your model and size: <a href="mk1.html">MK1</a>, <a href="mk1u2.html">MK1 + kit</a>,
+<a href="mk2.html">MK2</a>, <a href="mk3.html">MK3</a>.</li>
+</ul>
+
+<h2 id="y-direction">Standard or Y inverted?</h2>
+<p>Every model comes in two builds. The <strong>standard</strong> file turns the Y axis the way Wanhao's own
+firmware for that model does. The <strong>Y-inverted</strong> file turns it the other way, for machines whose Y motor
+is not where Wanhao put it: moved motor, partial upgrade, replaced part.</p>
+<ol>
+<li><strong>Look at the Y motor</strong>, under the bed. Wanhao put it at the <strong>back</strong> on the MK1, the
+MK1 + kit and the MK2, and at the <strong>front</strong>, on the touchscreen side, on the MK3. Where Wanhao put it
+for your model: standard. At the other end: Y inverted.</li>
+<li><strong>If you can't tell</strong>, flash the standard file and home Y alone (<code>G28 Y</code>, or Home on the
+screen) with a hand on the power switch. The bed must move towards the Y endstop and stop on it. If it moves away,
+or homing ends with <em>Homing Failed</em>, switch off and flash the Y-inverted file.</li>
+</ol>
+
+<h2>Before flashing</h2>
+<div class="note">The first boot of a new build resets the settings stored in the printer. Send <code>M851</code>
+(probe Z offset), <code>M92</code> (steps/mm) and <code>M301</code> (hotend PID) and keep the answers, to set them back
+afterwards and save them with <code>M500</code>.</div>
+<p>Close every program that may hold the printer's port: Cura, PrusaSlicer, OctoPrint, Pronterface, serial terminals.</p>
+
+<h2>Flash with AVRDUDESS</h2>
+<ol>
+<li>Programmer: <code>wiring</code>. MCU: <code>ATmega2560</code>.</li>
+<li>Port: your printer's COM port (for instance <code>COM3</code>). Leave the baud rate at its default.</li>
+<li>Flash: choose the .hex file, then click <strong>Program!</strong>. It takes 30 to 60 seconds.</li>
+</ol>
+
+<h2>Flash with avrdude</h2>
+<pre><code># Windows
+avrdude -v -p atmega2560 -c wiring -P COM3 -D -U flash:w:D9_MK2_300.hex:i
+
+# Linux / macOS
+avrdude -v -p atmega2560 -c wiring -P /dev/ttyUSB0 -D -U flash:w:D9_MK2_300.hex:i</code></pre>
+<p>Replace the port and the file name with yours. The <code>wiring</code> protocol picks the bootloader's speed by itself.</p>
+
+<h2>First boot</h2>
+<ol>
+<li>Unplug the USB cable, switch the printer off and on, plug the cable back.</li>
+<li>Connect at <strong>250000 baud</strong> (Wanhao's firmwares used 115200) and send <code>M115</code>: the answer shows the new firmware.</li>
+<li>Home all axes, then run a bed levelling from the screen or with <code>G29</code>, and save with <code>M500</code>.</li>
+</ol>
+
+<h2>Power loss and filament sensor</h2>
+<ul>
+<li>Power-loss recovery is on. Turn it off with <code>M413 S0</code> then <code>M500</code>.</li>
+<li>The filament runout sensor is on by default on the MK3 only. Once a sensor is fitted on another model: <code>M412 S1</code> then <code>M500</code>.</li>
+</ul>
+
+<h2>Troubleshooting</h2>
+<div class="table"><table><thead><tr><th>Problem</th><th>Solution</th></tr></thead><tbody>
+<tr><td>Port in use</td><td>Close every program using the printer's port.</td></tr>
+<tr><td>Device not found</td><td>Install the CH340 USB driver, try another cable or USB port, check the printer is switched on.</td></tr>
+<tr><td>Unreadable characters after flashing</td><td>Use 250000 baud with these firmwares, 115200 with Wanhao's.</td></tr>
+<tr><td>Temperatures shown ×10 on the screen (236 for 23.6 °C)</td><td>The screen still has old files: flash <a href="screen.html">DGUS Reloaded 1.0.3</a>.</td></tr>
+<tr><td>Homing Failed on Y</td><td>See <a href="#y-direction">standard or Y inverted</a>.</td></tr>
+</tbody></table></div>
+
+<h2>Going back to Wanhao's firmware</h2>
+<p>Each model page links Wanhao's original motherboard and screen firmwares. Flash them the same way; Wanhao's
+motherboard firmware needs Wanhao's screen firmware of the same generation.</p>
+<p>Questions: <a href="https://discord.gg/T37DYHmt2j">Discord</a> or <a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/issues">GitHub issues</a>.</p>
+</div></main>
+<footer class="site"><div class="wrap">
+<a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9">Source and issues on GitHub</a>
+<a href="https://discord.gg/T37DYHmt2j">Discord</a>
+<span>Firmware under GNU GPL v3. Wanhao's manuals and firmwares remain Wanhao's.</span>
+</div></footer>
+</body>
+</html>

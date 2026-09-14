@@ -36,7 +36,7 @@ Source: Wanhao's own download page for the D9 ([archived copy](https://web.archi
 
 ### Compared with this repository's builds (`../`)
 
-- **Y direction**: every Wanhao MK2 firmware, including the 2019 rebuild of the 500, has Y **not inverted**. That is `D9_MK2_300.hex`, `D9_MK2_400.hex` and `D9_MK2_500.hex`. Some owners report an MK2 whose Y runs the other way, for instance a machine whose Y motor sits at the front, as on the MK3: `D9_MK2_*_Y-inverted.hex` covers them. See *Which firmware* in [`../../../README.md`](../../../README.md).
+- **Y direction**: every Wanhao MK2 firmware, including the 2019 rebuild of the 500, has Y **not inverted**. That is `D9_MK2_300.hex`, `D9_MK2_400.hex` and `D9_MK2_500.hex`. Some owners report an MK2 whose Y runs the other way, for instance a machine whose Y motor sits at the front, as on the MK3: `D9_MK2_*_Y-inverted.hex` covers them. See *Standard or `_Y-inverted` firmware?* in [`../../../README.md`](../../../README.md).
 - **Other directions match**: X and the extruder inverted, Z not.
 - **Steps/mm**: 80.2 / 80.2 / 400.3 / 94.3 at Wanhao, 80 / 80 / 400 / 100 here (extruder about 6 % apart).
 - **PID**: 33.41 / 1.47 / 189.27 at Wanhao, a machine-tuned PID here.
@@ -72,7 +72,7 @@ Tableaux identiques à la version anglaise ci-dessus.
 
 ### Comparaison avec les firmwares de ce dépôt (`../`)
 
-- **Sens de Y** : tous les firmwares MK2 de Wanhao, y compris la 500 recompilée en 2019, ont Y **non inversé**. Ce sont `D9_MK2_300.hex`, `D9_MK2_400.hex` et `D9_MK2_500.hex`. Des propriétaires signalent des MK2 dont Y tourne dans l'autre sens, par exemple une machine dont le moteur Y est à l'avant, comme sur la MK3 : `D9_MK2_*_Y-inverted.hex` les couvre. Voir *Quel firmware* dans [`../../../README.md`](../../../README.md).
+- **Sens de Y** : tous les firmwares MK2 de Wanhao, y compris la 500 recompilée en 2019, ont Y **non inversé**. Ce sont `D9_MK2_300.hex`, `D9_MK2_400.hex` et `D9_MK2_500.hex`. Des propriétaires signalent des MK2 dont Y tourne dans l'autre sens, par exemple une machine dont le moteur Y est à l'avant, comme sur la MK3 : `D9_MK2_*_Y-inverted.hex` les couvre. Voir *Firmware standard ou `_Y-inverted` ?* dans [`../../../README.md`](../../../README.md).
 - **Autres sens identiques** : X et extrudeur inversés, Z non.
 - **Pas/mm** : 80,2 / 80,2 / 400,3 / 94,3 chez Wanhao, 80 / 80 / 400 / 100 ici (environ 6 % d'écart sur l'extrudeur).
 - **PID** : 33,41 / 1,47 / 189,27 chez Wanhao, un PID réglé sur machine ici.

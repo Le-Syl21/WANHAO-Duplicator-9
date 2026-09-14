@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Comment flasher le firmware d&#x27;une Wanhao Duplicator 9 (D9)</title>
+<meta name="description" content="Guide pas à pas pour flasher Marlin sur une Wanhao D9 en USB avec AVRDUDESS ou avrdude, choisir entre les builds standard et Y inversé, et revenir au firmware Wanhao.">
+<link rel="canonical" href="https://le-syl21.github.io/WANHAO-Duplicator-9/fr/flash.html">
+<link rel="alternate" hreflang="en" href="https://le-syl21.github.io/WANHAO-Duplicator-9/flash.html">
+<link rel="alternate" hreflang="fr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/fr/flash.html">
+<link rel="alternate" hreflang="x-default" href="https://le-syl21.github.io/WANHAO-Duplicator-9/flash.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Comment flasher le firmware d&#x27;une Wanhao Duplicator 9 (D9)">
+<meta property="og:description" content="Guide pas à pas pour flasher Marlin sur une Wanhao D9 en USB avec AVRDUDESS ou avrdude, choisir entre les builds standard et Y inversé, et revenir au firmware Wanhao.">
+<meta property="og:url" content="https://le-syl21.github.io/WANHAO-Duplicator-9/fr/flash.html">
+<meta property="og:image" content="https://le-syl21.github.io/WANHAO-Duplicator-9/img/og.jpg">
+<meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖨️</text></svg>">
+<link rel="stylesheet" href="../style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Comment flasher le firmware d'une Wanhao Duplicator 9 (D9)", "description": "Guide pas à pas pour flasher Marlin sur une Wanhao D9 en USB avec AVRDUDESS ou avrdude, choisir entre les builds standard et Y inversé, et revenir au firmware Wanhao.", "url": "https://le-syl21.github.io/WANHAO-Duplicator-9/fr/flash.html", "inLanguage": "fr", "about": {"@type": "Product", "name": "Wanhao Duplicator 9", "brand": "Wanhao"}}</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="brand" href="../fr/">Wanhao <span>D9</span> firmware</a>
+<nav class="main"><a href="../fr/">Accueil</a><a href="../fr/mk1.html">MK1</a><a href="../fr/mk1u2.html">MK1 + kit MK2</a><a href="../fr/mk2.html">MK2</a><a href="../fr/mk3.html">MK3</a><a href="../fr/flash.html" aria-current="page">Guide de flash</a><a href="../fr/screen.html">Écran</a></nav>
+<a class="lang" href="../flash.html" hreflang="en"><img src="../img/gb.svg" alt="GB" width="21" height="14">English version</a>
+</div></header>
+<main><div class="wrap">
+<h1>Flasher la carte mère de la Duplicator 9</h1>
+<p class="lead">La carte mère de la D9 est un ATmega2560 avec bootloader USB : pas de programmateur, pas besoin
+d'ouvrir le socle, juste un câble USB.</p>
+
+<h2>Ce qu'il faut</h2>
+<ul>
+<li>Un câble USB entre l'imprimante et l'ordinateur, et l'imprimante <strong>allumée</strong>.</li>
+<li><a href="https://github.com/zkemble/AVRDUDESS">AVRDUDESS</a> (Windows, graphique, le plus simple) ou
+<a href="https://github.com/avrdudes/avrdude">avrdude</a> (ligne de commande, tous systèmes).</li>
+<li>Le <strong>.hex</strong> de votre modèle et de votre taille : <a href="../fr/mk1.html">MK1</a>, <a href="../fr/mk1u2.html">MK1 + kit</a>,
+<a href="../fr/mk2.html">MK2</a>, <a href="../fr/mk3.html">MK3</a>.</li>
+</ul>
+
+<h2 id="y-direction">Standard ou Y inversé ?</h2>
+<p>Chaque modèle existe en deux versions. Le fichier <strong>standard</strong> fait tourner l'axe Y comme le
+firmware de Wanhao pour ce modèle. Le fichier <strong>Y inversé</strong> le fait tourner dans l'autre sens, pour les
+machines dont le moteur Y n'est pas là où Wanhao l'a mis : moteur déplacé, upgrade partiel, pièce remplacée.</p>
+<ol>
+<li><strong>Regardez le moteur Y</strong>, sous le plateau. Wanhao l'a placé à l'<strong>arrière</strong> sur la MK1,
+la MK1 + kit et la MK2, et à l'<strong>avant</strong>, du côté de l'écran tactile, sur la MK3. À l'endroit prévu par
+Wanhao pour votre modèle : standard. À l'autre bout : Y inversé.</li>
+<li><strong>Si vous ne savez pas</strong>, flashez le fichier standard et faites le homing de Y seul
+(<code>G28 Y</code>, ou Home à l'écran), la main sur l'interrupteur. Le plateau doit aller vers le fin de course Y et
+s'arrêter dessus. S'il s'en éloigne, ou si le homing finit en <em>Homing Failed</em>, éteignez et flashez le fichier Y inversé.</li>
+</ol>
+
+<h2>Avant de flasher</h2>
+<div class="note">Le premier démarrage d'un nouveau build remet à zéro les réglages enregistrés dans l'imprimante.
+Envoyez <code>M851</code> (décalage Z du capteur), <code>M92</code> (pas/mm) et <code>M301</code> (PID de la buse) et
+gardez les réponses, pour les remettre ensuite et les enregistrer avec <code>M500</code>.</div>
+<p>Fermez tous les programmes qui peuvent occuper le port de l'imprimante : Cura, PrusaSlicer, OctoPrint, Pronterface, terminaux série.</p>
+
+<h2>Flasher avec AVRDUDESS</h2>
+<ol>
+<li>Programmer : <code>wiring</code>. MCU : <code>ATmega2560</code>.</li>
+<li>Port : le port COM de l'imprimante (par exemple <code>COM3</code>). Laissez la vitesse par défaut.</li>
+<li>Flash : choisissez le fichier .hex, puis cliquez sur <strong>Program!</strong>. Comptez 30 à 60 secondes.</li>
+</ol>
+
+<h2>Flasher avec avrdude</h2>
+<pre><code># Windows
+avrdude -v -p atmega2560 -c wiring -P COM3 -D -U flash:w:D9_MK2_300.hex:i
+
+# Linux / macOS
+avrdude -v -p atmega2560 -c wiring -P /dev/ttyUSB0 -D -U flash:w:D9_MK2_300.hex:i</code></pre>
+<p>Remplacez le port et le nom du fichier par les vôtres. Le protocole <code>wiring</code> choisit tout seul la vitesse du bootloader.</p>
+
+<h2>Premier démarrage</h2>
+<ol>
+<li>Débranchez le câble USB, éteignez puis rallumez l'imprimante, rebranchez le câble.</li>
+<li>Connectez-vous à <strong>250000 bauds</strong> (les firmwares Wanhao utilisaient 115200) et envoyez <code>M115</code> : la réponse indique le nouveau firmware.</li>
+<li>Faites le homing de tous les axes, puis un nivellement depuis l'écran ou avec <code>G29</code>, et enregistrez avec <code>M500</code>.</li>
+</ol>
+
+<h2>Coupure de courant et capteur de filament</h2>
+<ul>
+<li>La reprise après coupure est active. Pour la désactiver : <code>M413 S0</code> puis <code>M500</code>.</li>
+<li>Le capteur de fin de filament n'est actif par défaut que sur la MK3. Une fois un capteur monté sur un autre modèle : <code>M412 S1</code> puis <code>M500</code>.</li>
+</ul>
+
+<h2>Dépannage</h2>
+<div class="table"><table><thead><tr><th>Problème</th><th>Solution</th></tr></thead><tbody>
+<tr><td>Port déjà utilisé</td><td>Fermez tous les programmes qui utilisent le port de l'imprimante.</td></tr>
+<tr><td>Périphérique introuvable</td><td>Installez le pilote USB CH340, essayez un autre câble ou port USB, vérifiez que l'imprimante est allumée.</td></tr>
+<tr><td>Caractères illisibles après le flash</td><td>Utilisez 250000 bauds avec ces firmwares, 115200 avec ceux de Wanhao.</td></tr>
+<tr><td>Températures ×10 à l'écran (236 pour 23,6 °C)</td><td>L'écran a encore d'anciens fichiers : flashez <a href="../fr/screen.html">DGUS Reloaded 1.0.3</a>.</td></tr>
+<tr><td>Homing Failed sur Y</td><td>Voir <a href="#y-direction">standard ou Y inversé</a>.</td></tr>
+</tbody></table></div>
+
+<h2>Revenir au firmware Wanhao</h2>
+<p>Chaque page modèle donne les firmwares d'origine Wanhao de la carte mère et de l'écran. Ils se flashent de la
+même façon ; le firmware de carte mère Wanhao a besoin du firmware d'écran Wanhao de la même génération.</p>
+<p>Questions : <a href="https://discord.gg/T37DYHmt2j">Discord</a> ou <a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/issues">tickets GitHub</a>.</p>
+</div></main>
+<footer class="site"><div class="wrap">
+<a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9">Sources et tickets sur GitHub</a>
+<a href="https://discord.gg/T37DYHmt2j">Discord</a>
+<span>Firmware sous GNU GPL v3. Les manuels et firmwares Wanhao restent la propriété de Wanhao.</span>
+</div></footer>
+</body>
+</html>

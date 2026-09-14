@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wanhao Duplicator 9 MK2 firmware (D9/300, D9/400, D9/500) – Marlin 2.1</title>
+<meta name="description" content="Marlin 2.1 firmware for the Wanhao D9 MK2 with BLTouch, Wanhao&#x27;s original V1.1.2 firmware and screen files, and Wanhao&#x27;s MK2 guides.">
+<link rel="canonical" href="https://le-syl21.github.io/WANHAO-Duplicator-9/mk2.html">
+<link rel="alternate" hreflang="en" href="https://le-syl21.github.io/WANHAO-Duplicator-9/mk2.html">
+<link rel="alternate" hreflang="fr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/fr/mk2.html">
+<link rel="alternate" hreflang="x-default" href="https://le-syl21.github.io/WANHAO-Duplicator-9/mk2.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Wanhao Duplicator 9 MK2 firmware (D9/300, D9/400, D9/500) – Marlin 2.1">
+<meta property="og:description" content="Marlin 2.1 firmware for the Wanhao D9 MK2 with BLTouch, Wanhao&#x27;s original V1.1.2 firmware and screen files, and Wanhao&#x27;s MK2 guides.">
+<meta property="og:url" content="https://le-syl21.github.io/WANHAO-Duplicator-9/mk2.html">
+<meta property="og:image" content="https://le-syl21.github.io/WANHAO-Duplicator-9/img/og.jpg">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖨️</text></svg>">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Wanhao Duplicator 9 MK2 firmware (D9/300, D9/400, D9/500) – Marlin 2.1", "description": "Marlin 2.1 firmware for the Wanhao D9 MK2 with BLTouch, Wanhao's original V1.1.2 firmware and screen files, and Wanhao's MK2 guides.", "url": "https://le-syl21.github.io/WANHAO-Duplicator-9/mk2.html", "inLanguage": "en", "about": {"@type": "Product", "name": "Wanhao Duplicator 9", "brand": "Wanhao"}}</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="brand" href="./">Wanhao <span>D9</span> firmware</a>
+<nav class="main"><a href="./">Home</a><a href="mk1.html">MK1</a><a href="mk1u2.html">MK1 + MK2 kit</a><a href="mk2.html" aria-current="page">MK2</a><a href="mk3.html">MK3</a><a href="flash.html">Flash guide</a><a href="screen.html">Screen</a></nav>
+<a class="lang" href="fr/mk2.html" hreflang="fr"><img src="img/fr.svg" alt="FR" width="21" height="14">Version française</a>
+</div></header>
+<main><div class="wrap">
+<h1>Wanhao Duplicator 9 MK2 firmware</h1>
+<div class="split"><div>
+<p class="lead">The second Duplicator 9: angled reinforcement ribs on both sides, a round black data cable to the
+print head, a BLTouch probe and a spool holder on top.</p>
+<p>Wanhao also changed the carriages to four rollers, fitted a double-rail Y axis and a thicker belt on the 400
+and 500, and a double-sided bed on the 300 and 400. The Y motor sits at the back; these builds turn the Y axis the
+way Wanhao's V1.1.2 firmware does.</p>
+</div><figure><img src="img/d9-mk2.webp" width="600" height="600" alt="Wanhao Duplicator 9 MK2">
+<figcaption>D9 MK2</figcaption></figure></div>
+
+<h2>Download</h2>
+<div class="table"><table class="dl"><thead><tr><th>Size</th><th>Build volume</th><th>Standard</th><th>Y inverted</th></tr></thead><tbody><tr><td><strong>D9/300</strong></td><td>300 × 300 × 400 mm</td><td><a class="btn" href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest/download/D9_MK2_300.hex">D9_MK2_300.hex</a></td><td><a class="btn ghost" href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest/download/D9_MK2_300_Y-inverted.hex">D9_MK2_300_Y-inverted.hex</a></td></tr><tr><td><strong>D9/400</strong></td><td>400 × 400 × 400 mm</td><td><a class="btn" href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest/download/D9_MK2_400.hex">D9_MK2_400.hex</a></td><td><a class="btn ghost" href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest/download/D9_MK2_400_Y-inverted.hex">D9_MK2_400_Y-inverted.hex</a></td></tr><tr><td><strong>D9/500</strong></td><td>500 × 500 × 500 mm</td><td><a class="btn" href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest/download/D9_MK2_500.hex">D9_MK2_500.hex</a></td><td><a class="btn ghost" href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest/download/D9_MK2_500_Y-inverted.hex">D9_MK2_500_Y-inverted.hex</a></td></tr></tbody></table></div>
+<p>Take the <strong>Standard</strong> file unless your Y motor sits at the front: see
+<a href="flash.html#y-direction">standard or Y inverted</a>. An MK2 whose head was also upgraded to the MK3 should
+use the <a href="mk3.html">MK3 firmware</a>. Then flash the screen with <a href="screen.html">DGUS Reloaded</a>.</p>
+
+<h2>Wanhao's documents</h2>
+<ul>
+<li><a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/raw/main/Firmware/Marlin%20bugfix-2.1.x/MK2/WANHAO_D9_MK2_Getting_Started_Guide.pdf">D9 MK2 getting started guide</a>.</li>
+<li><a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/raw/main/Firmware/Marlin%20bugfix-2.1.x/MK2/WANHAO_D9_MK2_Improvements.pdf">The 12 improvements from MK1 to MK2</a>, by Wanhao.</li>
+</ul>
+
+<h2>Wanhao's original firmwares</h2>
+<p>Wanhao's V1.1.2 (October 2018; the 500 was rebuilt as V1.1.2.1 in July 2019), with Wanhao's MK2 screen firmware.</p>
+<div class="table"><table><thead><tr><th>Size</th><th>Motherboard</th><th>Screen</th></tr></thead><tbody><tr><td>D9/300</td><td><a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/raw/main/Firmware/Marlin%20bugfix-2.1.x/MK2/Wanhao_factory/D9-300-BLTOUCH-FD_V1.1.2.hex">D9-300-BLTOUCH-FD_V1.1.2.hex</a></td><td><a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/raw/main/Firmware/Marlin%20bugfix-2.1.x/MK2/Wanhao_factory/DWIN_SET_MK2.zip">DWIN_SET_MK2.zip</a></td></tr><tr><td>D9/400</td><td><a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/raw/main/Firmware/Marlin%20bugfix-2.1.x/MK2/Wanhao_factory/D9-400-BLTOUCH-FD_V1.1.2.hex">D9-400-BLTOUCH-FD_V1.1.2.hex</a></td><td><a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/raw/main/Firmware/Marlin%20bugfix-2.1.x/MK2/Wanhao_factory/DWIN_SET_MK2.zip">DWIN_SET_MK2.zip</a></td></tr><tr><td>D9/500</td><td><a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/raw/main/Firmware/Marlin%20bugfix-2.1.x/MK2/Wanhao_factory/D9-500-BLTOUCH-FD_V1.1.2.1.hex">D9-500-BLTOUCH-FD_V1.1.2.1.hex</a></td><td><a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/raw/main/Firmware/Marlin%20bugfix-2.1.x/MK2/Wanhao_factory/DWIN_SET_MK2.zip">DWIN_SET_MK2.zip</a></td></tr></tbody></table></div>
+<p>Settings read out of Wanhao's binaries: <a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/tree/main/Firmware/Marlin%20bugfix-2.1.x/MK2/Wanhao_factory/extract.md">extract.md</a>.</p>
+</div></main>
+<footer class="site"><div class="wrap">
+<a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9">Source and issues on GitHub</a>
+<a href="https://discord.gg/T37DYHmt2j">Discord</a>
+<span>Firmware under GNU GPL v3. Wanhao's manuals and firmwares remain Wanhao's.</span>
+</div></footer>
+</body>
+</html>

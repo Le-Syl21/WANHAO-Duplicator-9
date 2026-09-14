@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Firmware Wanhao Duplicator 9 MK1 (D9/300, D9/400, D9/500) – Marlin 2.1</title>
+<meta name="description" content="Firmware Marlin 2.1 pour la Wanhao D9 MK1 à capteur inductif, firmwares d&#x27;origine Wanhao V0.15 à V0.164(B), fichiers écran et manuel MK1.">
+<link rel="canonical" href="https://le-syl21.github.io/WANHAO-Duplicator-9/fr/mk1.html">
+<link rel="alternate" hreflang="en" href="https://le-syl21.github.io/WANHAO-Duplicator-9/mk1.html">
+<link rel="alternate" hreflang="fr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/fr/mk1.html">
+<link rel="alternate" hreflang="x-default" href="https://le-syl21.github.io/WANHAO-Duplicator-9/mk1.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Firmware Wanhao Duplicator 9 MK1 (D9/300, D9/400, D9/500) – Marlin 2.1">
+<meta property="og:description" content="Firmware Marlin 2.1 pour la Wanhao D9 MK1 à capteur inductif, firmwares d&#x27;origine Wanhao V0.15 à V0.164(B), fichiers écran et manuel MK1.">
+<meta property="og:url" content="https://le-syl21.github.io/WANHAO-Duplicator-9/fr/mk1.html">
+<meta property="og:image" content="https://le-syl21.github.io/WANHAO-Duplicator-9/img/og.jpg">
+<meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖨️</text></svg>">
+<link rel="stylesheet" href="../style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Firmware Wanhao Duplicator 9 MK1 (D9/300, D9/400, D9/500) – Marlin 2.1", "description": "Firmware Marlin 2.1 pour la Wanhao D9 MK1 à capteur inductif, firmwares d'origine Wanhao V0.15 à V0.164(B), fichiers écran et manuel MK1.", "url": "https://le-syl21.github.io/WANHAO-Duplicator-9/fr/mk1.html", "inLanguage": "fr", "about": {"@type": "Product", "name": "Wanhao Duplicator 9", "brand": "Wanhao"}}</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="brand" href="../fr/">Wanhao <span>D9</span> firmware</a>
+<nav class="main"><a href="../fr/">Accueil</a><a href="../fr/mk1.html" aria-current="page">MK1</a><a href="../fr/mk1u2.html">MK1 + kit MK2</a><a href="../fr/mk2.html">MK2</a><a href="../fr/mk3.html">MK3</a><a href="../fr/flash.html">Guide de flash</a><a href="../fr/screen.html">Écran</a></nav>
+<a class="lang" href="../mk1.html" hreflang="en"><img src="../img/gb.svg" alt="GB" width="21" height="14">English version</a>
+</div></header>
+<main><div class="wrap">
+<h1>Firmware Wanhao Duplicator 9 MK1</h1>
+<div class="split"><div>
+<p class="lead">La première Duplicator 9 : un capteur inductif en métal à côté de la buse, une nappe grise jusqu'à
+la tête d'impression et un cadre sans renforts latéraux.</p>
+<p>Ces builds lisent le capteur inductif dans le bon sens (il se déclenche à l'état bas) et utilisent des décalages
+de capteur mesurés sur une vraie MK1 (X 27, Y 3). Le moteur Y est à l'arrière, comme Wanhao l'a monté.</p>
+</div><figure><img src="../img/d9-mk1-inductive-probe.webp" width="600" height="364" alt="Capteur inductif et nappe sur la tête d'une Wanhao D9 MK1">
+<figcaption>MK1 : capteur inductif, nappe</figcaption></figure></div>
+
+<h2>Téléchargement</h2>
+<div class="table"><table class="dl"><thead><tr><th>Taille</th><th>Volume d'impression</th><th>Standard</th><th>Y inversé</th></tr></thead><tbody><tr><td><strong>D9/300</strong></td><td>300 × 300 × 400 mm</td><td><a class="btn" href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest/download/D9_MK1_300.hex">D9_MK1_300.hex</a></td><td><a class="btn ghost" href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest/download/D9_MK1_300_Y-inverted.hex">D9_MK1_300_Y-inverted.hex</a></td></tr><tr><td><strong>D9/400</strong></td><td>400 × 400 × 400 mm</td><td><a class="btn" href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest/download/D9_MK1_400.hex">D9_MK1_400.hex</a></td><td><a class="btn ghost" href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest/download/D9_MK1_400_Y-inverted.hex">D9_MK1_400_Y-inverted.hex</a></td></tr><tr><td><strong>D9/500</strong></td><td>500 × 500 × 500 mm</td><td><a class="btn" href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest/download/D9_MK1_500.hex">D9_MK1_500.hex</a></td><td><a class="btn ghost" href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest/download/D9_MK1_500_Y-inverted.hex">D9_MK1_500_Y-inverted.hex</a></td></tr></tbody></table></div>
+<p>Prenez le fichier <strong>Standard</strong>, sauf si votre moteur Y a été déplacé à l'avant : voir
+<a href="../fr/flash.html#y-direction">standard ou Y inversé</a>. Flashez ensuite l'écran avec
+<a href="../fr/screen.html">DGUS Reloaded</a>.</p>
+
+<h2>Documents Wanhao</h2>
+<ul>
+<li><a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/raw/main/Firmware/Marlin%20bugfix-2.1.x/MK1/WANHAO_D9_MK1_User_Manual.pdf">Manuel utilisateur D9 MK1</a> (juin 2018, en anglais) : montage, câblage, menus, nivellement, dépannage.</li>
+<li><a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/raw/main/Firmware/Marlin%20bugfix-2.1.x/MK1/WANHAO_D9_MK1_Getting_Started_Guide.pdf">Guide de démarrage D9 MK1</a>.</li>
+</ul>
+
+<h2>Firmwares d'origine Wanhao</h2>
+<p>Pour remettre une machine dans son état d'usine. Chaque firmware de carte mère ne fonctionne qu'avec le firmware
+d'écran de la même version.</p>
+<div class="table"><table><thead><tr><th>Version</th><th>Taille</th><th>Carte mère</th><th>Écran</th></tr></thead><tbody><tr><td>V0.15</td><td>D9/300</td><td><a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/raw/main/Firmware/Marlin%20bugfix-2.1.x/MK1/Wanhao_factory/V0.15/D9-V0.15.hex">D9-V0.15.hex</a></td><td><a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/raw/main/Firmware/Marlin%20bugfix-2.1.x/MK1/Wanhao_factory/V0.15/D9-LCD-firmware-V0.15.rar">D9-LCD-firmware-V0.15.rar</a></td></tr><tr><td>V0.161</td><td>D9/300</td><td><a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/raw/main/Firmware/Marlin%20bugfix-2.1.x/MK1/Wanhao_factory/V0.161/D9-300-0.161.hex">D9-300-0.161.hex</a></td><td><a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/raw/main/Firmware/Marlin%20bugfix-2.1.x/MK1/Wanhao_factory/V0.161/DWIN_SET_V0.161.zip">DWIN_SET_V0.161.zip</a></td></tr><tr><td>V0.164(B)</td><td>D9/300</td><td><a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/raw/main/Firmware/Marlin%20bugfix-2.1.x/MK1/Wanhao_factory/V0.164B/D9_300_V0.164(B).hex">D9_300_V0.164(B).hex</a></td><td><a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/raw/main/Firmware/Marlin%20bugfix-2.1.x/MK1/Wanhao_factory/V0.164B/D9-LCD-firmware_v0.164(B).zip">D9-LCD-firmware_v0.164(B).zip</a></td></tr><tr><td>V0.164(B)</td><td>D9/400</td><td><a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/raw/main/Firmware/Marlin%20bugfix-2.1.x/MK1/Wanhao_factory/V0.164B/D9_400_V0.164(B).hex">D9_400_V0.164(B).hex</a></td><td><a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/raw/main/Firmware/Marlin%20bugfix-2.1.x/MK1/Wanhao_factory/V0.164B/D9-LCD-firmware_v0.164(B).zip">D9-LCD-firmware_v0.164(B).zip</a></td></tr><tr><td>V0.164(B)</td><td>D9/500</td><td><a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/raw/main/Firmware/Marlin%20bugfix-2.1.x/MK1/Wanhao_factory/V0.164B/D9_500_V0.164(B).hex">D9_500_V0.164(B).hex</a></td><td><a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/raw/main/Firmware/Marlin%20bugfix-2.1.x/MK1/Wanhao_factory/V0.164B/D9-LCD-firmware_v0.164(B).zip">D9-LCD-firmware_v0.164(B).zip</a></td></tr></tbody></table></div>
+<p>Les réglages de chaque version (pas/mm, vitesses, PID, sens des axes) sont listés dans
+<a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/tree/main/Firmware/Marlin%20bugfix-2.1.x/MK1/Wanhao_factory/extract.md">extract.md</a>, lus dans les binaires de Wanhao.</p>
+</div></main>
+<footer class="site"><div class="wrap">
+<a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9">Sources et tickets sur GitHub</a>
+<a href="https://discord.gg/T37DYHmt2j">Discord</a>
+<span>Firmware sous GNU GPL v3. Les manuels et firmwares Wanhao restent la propriété de Wanhao.</span>
+</div></footer>
+</body>
+</html>
