@@ -23,6 +23,7 @@ Questions, bug reports, beta testing, or just want to chat? Join the Discord:
 WANHAO-Duplicator-9/
 └── Firmware                 # First populated directory
     └── Marlin bugfix-2.1.x  # Marlin builds for D9
+        ├── extract_wanhao.py  # reads the settings out of Wanhao's firmwares
         ├── LCD
         │   ├── DWIN_SET.zip
         │   └── README.md    # Instructions for flashing the LCD (DGUS Reloaded)
@@ -32,28 +33,35 @@ WANHAO-Duplicator-9/
         │   ├── D9_MK1_500.hex
         │   ├── D9_MK1_extruder.png
         │   ├── D9_MK1.png
-        │   ├── WANHAO_D9_MK1_Getting_Started_Guide.pdf  # Wanhao's MK1 getting started guide
-        │   └── WANHAO_D9_MK1_User_Manual.pdf            # Wanhao's official MK1 instruction manual
+        │   ├── WANHAO_D9_MK1_Getting_Started_Guide.pdf
+        │   ├── WANHAO_D9_MK1_User_Manual.pdf
+        │   └── Wanhao_factory   # Wanhao's V0.15, V0.161, V0.164(B) + screen + extract.md
         ├── MK1u2
         │   ├── D9_MK1u2_300.hex
         │   ├── D9_MK1u2_400.hex
-        │   └── D9_MK1u2_500.hex
+        │   ├── D9_MK1u2_500.hex
+        │   └── Wanhao_factory   # Wanhao's kit V1.1.31 + extract.md
         ├── MK2
         │   ├── D9_MK2_300.hex
+        │   ├── D9_MK2_300_Y-inverted.hex
         │   ├── D9_MK2_400.hex
+        │   ├── D9_MK2_400_Y-inverted.hex
         │   ├── D9_MK2_500.hex
+        │   ├── D9_MK2_500_Y-inverted.hex
         │   ├── D9_MK2.png
         │   ├── D9_MK2_extruder.png
-        │   ├── WANHAO_D9_MK2_Getting_Started_Guide.pdf  # Wanhao's MK2 getting started guide
-        │   └── WANHAO_D9_MK2_Improvements.pdf           # Wanhao's list of the 12 MK1 → MK2 changes
+        │   ├── WANHAO_D9_MK2_Getting_Started_Guide.pdf
+        │   ├── WANHAO_D9_MK2_Improvements.pdf
+        │   └── Wanhao_factory   # Wanhao's V1.1.2 + screen + extract.md
         └── MK3
             ├── D9_MK3_300.hex
             ├── D9_MK3_400.hex
-            └── D9_MK3_500.hex
+            ├── D9_MK3_500.hex
+            └── Wanhao_factory   # Wanhao's V1.1.3 + extract.md
 ```
 * **Firmware/** : Main directory for firmware and related files.
 * **LCD/** : LCD firmware (`DWIN_SET`) + flashing instructions.
-* **MK1 / MK1u2 / MK2 / MK3** : Marlin firmware builds (`.hex`) for each hardware revision and build size (300, 400, 500). `MK1/` and `MK2/` also hold Wanhao's own documents for that revision: the MK1 instruction manual (assembly, wiring, menus, levelling, troubleshooting), a getting started guide for each, and Wanhao's list of what changed from MK1 to MK2. They remain Wanhao's documents, outside this repository's licence. Wanhao published nothing for the MK3.
+* **MK1 / MK1u2 / MK2 / MK3** : Marlin firmware builds (`.hex`) for each hardware revision and build size (300, 400, 500). The MK2 has a `_Y-inverted` build per size for machines whose Y axis runs the other way; the flash guide explains which one to take. `Wanhao_factory/` holds Wanhao's original firmwares, with an `extract.md` listing their settings, read out of the binaries. `MK1/` and `MK2/` also hold Wanhao's own documents for that revision: the MK1 instruction manual (assembly, wiring, menus, levelling, troubleshooting), a getting started guide for each, and Wanhao's list of what changed from MK1 to MK2. They remain Wanhao's documents, outside this repository's licence. Wanhao published nothing for the MK3.
 
 ### 📜 License
 This project is licensed under the **GNU GPL v3**.
@@ -80,6 +88,7 @@ Des questions, un bug à signaler, envie de tester en avant-première ou simplem
 WANHAO-Duplicator-9/
 └── Firmware                 # Premier répertoire principal
     └── Marlin bugfix-2.1.x  # Builds Marlin pour D9
+        ├── extract_wanhao.py  # lit les réglages dans les firmwares Wanhao
         ├── LCD
         │   ├── DWIN_SET.zip
         │   └── README.md    # Instructions pour flasher l'écran LCD (DGUS Reloaded)
@@ -89,28 +98,35 @@ WANHAO-Duplicator-9/
         │   ├── D9_MK1_500.hex
         │   ├── D9_MK1_extruder.png
         │   ├── D9_MK1.png
-        │   ├── WANHAO_D9_MK1_Getting_Started_Guide.pdf  # Guide de démarrage Wanhao de la MK1
-        │   └── WANHAO_D9_MK1_User_Manual.pdf            # Manuel officiel Wanhao de la MK1
+        │   ├── WANHAO_D9_MK1_Getting_Started_Guide.pdf
+        │   ├── WANHAO_D9_MK1_User_Manual.pdf
+        │   └── Wanhao_factory   # V0.15, V0.161, V0.164(B) de Wanhao + écran + extract.md
         ├── MK1u2
         │   ├── D9_MK1u2_300.hex
         │   ├── D9_MK1u2_400.hex
-        │   └── D9_MK1u2_500.hex
+        │   ├── D9_MK1u2_500.hex
+        │   └── Wanhao_factory   # kit V1.1.31 de Wanhao + extract.md
         ├── MK2
         │   ├── D9_MK2_300.hex
+        │   ├── D9_MK2_300_Y-inverted.hex
         │   ├── D9_MK2_400.hex
+        │   ├── D9_MK2_400_Y-inverted.hex
         │   ├── D9_MK2_500.hex
+        │   ├── D9_MK2_500_Y-inverted.hex
         │   ├── D9_MK2.png
         │   ├── D9_MK2_extruder.png
-        │   ├── WANHAO_D9_MK2_Getting_Started_Guide.pdf  # Guide de démarrage Wanhao de la MK2
-        │   └── WANHAO_D9_MK2_Improvements.pdf           # Les 12 changements MK1 → MK2 selon Wanhao
+        │   ├── WANHAO_D9_MK2_Getting_Started_Guide.pdf
+        │   ├── WANHAO_D9_MK2_Improvements.pdf
+        │   └── Wanhao_factory   # V1.1.2 de Wanhao + écran + extract.md
         └── MK3
             ├── D9_MK3_300.hex
             ├── D9_MK3_400.hex
-            └── D9_MK3_500.hex
+            ├── D9_MK3_500.hex
+            └── Wanhao_factory   # V1.1.3 de Wanhao + extract.md
 ```
 * **Firmware/** : Répertoire principal pour le firmware et les fichiers associés.
 * **LCD/** : Firmware LCD (`DWIN_SET`) + instructions de flashage.
-* **MK1 / MK1u2 / MK2 / MK3** : Builds du firmware Marlin (`.hex`) pour chaque révision matérielle et taille de build (300, 400, 500). `MK1/` et `MK2/` contiennent aussi les documents de Wanhao pour cette révision : le manuel de la MK1 (assemblage, câblage, menus, nivellement, dépannage), un guide de démarrage pour chacune, et la liste des changements de la MK1 à la MK2 selon Wanhao. Ils restent des documents de Wanhao, hors de la licence de ce dépôt. Wanhao n'a rien publié pour la MK3.
+* **MK1 / MK1u2 / MK2 / MK3** : Builds du firmware Marlin (`.hex`) pour chaque révision matérielle et taille de build (300, 400, 500). La MK2 a un build `_Y-inverted` par taille pour les machines dont l'axe Y tourne dans l'autre sens ; le guide de flash explique lequel prendre. `Wanhao_factory/` contient les firmwares d'origine de Wanhao, avec un `extract.md` qui liste leurs réglages, lus dans les binaires. `MK1/` et `MK2/` contiennent aussi les documents de Wanhao pour cette révision : le manuel de la MK1 (assemblage, câblage, menus, nivellement, dépannage), un guide de démarrage pour chacune, et la liste des changements de la MK1 à la MK2 selon Wanhao. Ils restent des documents de Wanhao, hors de la licence de ce dépôt. Wanhao n'a rien publié pour la MK3.
 
 ### 📜 Licence
 Ce projet est sous licence **GNU GPL v3**.

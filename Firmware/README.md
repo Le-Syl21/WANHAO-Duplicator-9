@@ -16,16 +16,27 @@
 Built from Marlin `bugfix-2.1.x` (September 2026) with the Duplicator 9 configurations published in [Marlin Configurations](https://github.com/MarlinFirmware/Configurations/tree/bugfix-2.1.x/config/examples/Wanhao/Duplicator%209). The first three points are fixes not merged there yet.
 
 - **MK1:** the inductive probe is now read the right way round (it triggers LOW), with Klipper's probe offsets.
-- **MK3:** the Y axis is inverted, because the MK3 head upgrade moves the Y motor to the front of the frame. Few MK3s exist and this has not been tested on one yet: do the first homing with a hand on the power switch, and report back on Discord.
+- **MK3:** the Y axis is inverted, as in Wanhao's own MK3 firmware: the MK3 has its Y motor on the touchscreen side.
 - **Power-loss recovery** is on: after an outage during an SD print, the screen offers to resume. Turn it off with `M413 S0` then `M500`.
 - **Filament runout sensor** support is built in, off by default except on the MK3. Without a sensor nothing happens; once you fit one, enable it with `M412 S1` then `M500`.
+- **Wanhao's factory firmwares** are kept in `Wanhao_factory/` inside each model folder, so a machine can be put back as it left the factory. Each has an `extract.md` listing the settings read out of Wanhao's binaries and how they were read.
 - **The screen needs DGUS Reloaded 1.0.3** (`LCD/DWIN_SET.zip`). With the older 1.0.2 files, temperatures show without their decimal point (23.6 °C appears as 236).
+
+### Which firmware for my MK2?
+
+Wanhao built every MK2 with its Y axis turning one way, and that is `D9_MK2_xxx.hex`. Some MK2s run the other way, for instance with the Y motor moved to the front; `D9_MK2_xxx_Y-inverted.hex` is for them. The MK1, the MK1u2 and the MK3 have a single firmware each, whose direction was checked against Wanhao's own.
+
+1. **Look at the Y motor**, the stepper under the bed that drives the bed's belt:
+   - at the **back** of the printer, away from the touchscreen: `D9_MK2_xxx.hex`;
+   - at the **front**, on the touchscreen side: `D9_MK2_xxx_Y-inverted.hex`. If the head was upgraded to the MK3 as well, use `D9_MK3_xxx.hex` instead.
+2. **If you can't tell**, flash `D9_MK2_xxx.hex` and home Y on its own (`G28 Y`, or *Home* on the screen) with a hand on the power switch. The bed must move towards the Y endstop switch and stop on it. If it moves away from the switch, or homing fails with *Homing Failed*, switch the printer off and flash `D9_MK2_xxx_Y-inverted.hex`.
 
 ### Step 1: Prepare for Flashing
 
 1. **Choose the correct firmware** for your model:
    - `D9_MK1_xxx.hex` - For MK1 with inductive probe
    - `D9_MK2_xxx.hex` - For MK2 factory (BLTouch)
+   - `D9_MK2_xxx_Y-inverted.hex` - For an MK2 whose Y axis runs the other way (see *Which firmware for my MK2?* above)
    - `D9_MK1u2_xxx.hex` - For MK1→MK2 upgrade kit
    - `D9_MK3_xxx.hex` - For MK3 with BLTouch + filament sensor
 
@@ -83,7 +94,7 @@ avrdude -v -p atmega2560 -c wiring -P /dev/ttyUSB0 -D -U flash:w:firmware.hex:i
 
 **If flashing fails or printer becomes unresponsive:**
 
-1. **Download original firmware** from: [Wanhao Official Downloads](http://www.wanhao3dprinter.com/Down/ShowArticle.asp?ArticleID=190)
+1. **Take Wanhao's original firmware** from the `Wanhao_factory/` folder of your model (Wanhao's download site no longer exists)
 2. **Follow same flashing procedure** with original firmware
 3. **Once recovered**, retry with custom firmware
 
@@ -105,16 +116,27 @@ avrdude -v -p atmega2560 -c wiring -P /dev/ttyUSB0 -D -U flash:w:firmware.hex:i
 Compilés depuis Marlin `bugfix-2.1.x` (septembre 2026) avec les configurations Duplicator 9 publiées dans [Marlin Configurations](https://github.com/MarlinFirmware/Configurations/tree/bugfix-2.1.x/config/examples/Wanhao/Duplicator%209). Les trois premiers points sont des corrections pas encore intégrées là-bas.
 
 - **MK1 :** la sonde inductive est maintenant lue dans le bon sens (elle se déclenche à l'état bas), avec les offsets de sonde de Klipper.
-- **MK3 :** l'axe Y est inversé, parce que la mise à jour de tête MK3 déplace le moteur Y à l'avant du châssis. Les MK3 sont rares et ce réglage n'a pas encore été testé sur l'une d'elles : faites le premier homing la main sur l'interrupteur, et dites-nous sur Discord ce qu'il en est.
+- **MK3 :** l'axe Y est inversé, comme dans le firmware MK3 de Wanhao : la MK3 a son moteur Y du côté de l'écran tactile.
 - **Reprise après coupure** active : après une coupure de courant pendant une impression depuis la carte SD, l'écran propose de reprendre. Pour la désactiver : `M413 S0` puis `M500`.
 - **Capteur de fin de filament** pris en charge, désactivé par défaut sauf sur la MK3. Sans capteur, rien ne se passe ; une fois un capteur installé, activez-le avec `M412 S1` puis `M500`.
+- **Les firmwares d'usine de Wanhao** sont conservés dans `Wanhao_factory/`, dans le dossier de chaque modèle, pour pouvoir remettre une machine dans son état d'origine. Chacun a un `extract.md` qui liste les réglages lus dans les binaires de Wanhao et explique comment ils ont été lus.
 - **L'écran doit être en DGUS Reloaded 1.0.3** (`LCD/DWIN_SET.zip`). Avec les anciens fichiers 1.0.2, les températures s'affichent sans la virgule (23,6 °C devient 236).
+
+### Quel firmware pour ma MK2 ?
+
+Wanhao a construit toutes les MK2 avec l'axe Y tournant dans un sens, c'est `D9_MK2_xxx.hex`. Certaines MK2 tournent dans l'autre sens, par exemple quand le moteur Y a été déplacé à l'avant ; `D9_MK2_xxx_Y-inverted.hex` est pour elles. Les MK1, MK1u2 et MK3 n'ont qu'un firmware chacune, dont le sens a été vérifié contre celui de Wanhao.
+
+1. **Regardez le moteur Y**, le moteur pas à pas sous le plateau qui entraîne sa courroie :
+   - à l'**arrière** de l'imprimante, à l'opposé de l'écran tactile : `D9_MK2_xxx.hex` ;
+   - à l'**avant**, du côté de l'écran tactile : `D9_MK2_xxx_Y-inverted.hex`. Si la tête a aussi été passée en MK3, prenez plutôt `D9_MK3_xxx.hex`.
+2. **Si vous ne savez pas**, flashez `D9_MK2_xxx.hex` et faites le homing de Y seul (`G28 Y`, ou *Home* à l'écran), la main sur l'interrupteur. Le plateau doit aller vers le fin de course Y et s'arrêter dessus. S'il s'en éloigne, ou si le homing échoue avec *Homing Failed*, éteignez l'imprimante et flashez `D9_MK2_xxx_Y-inverted.hex`.
 
 ### Étape 1 : Préparation du Flash
 
 1. **Choisissez le bon firmware** pour votre modèle :
    - `D9_MK1_xxx.hex` - Pour MK1 avec sonde inductive
    - `D9_MK2_xxx.hex` - Pour MK2 d'usine (BLTouch)
+   - `D9_MK2_xxx_Y-inverted.hex` - Pour une MK2 dont l'axe Y tourne dans l'autre sens (voir *Quel firmware pour ma MK2 ?* ci-dessus)
    - `D9_MK1u2_xxx.hex` - Pour kit d'upgrade MK1→MK2
    - `D9_MK3_xxx.hex` - Pour MK3 avec BLTouch + capteur filament
 
@@ -172,7 +194,7 @@ avrdude -v -p atmega2560 -c wiring -P /dev/ttyUSB0 -D -U flash:w:firmware.hex:i
 
 **Si le flash échoue ou l'imprimante ne répond plus :**
 
-1. **Téléchargez le firmware d'origine** : [Téléchargements Officiels Wanhao](http://www.wanhao3dprinter.com/Down/ShowArticle.asp?ArticleID=190)
+1. **Prenez le firmware d'origine de Wanhao** dans le dossier `Wanhao_factory/` de votre modèle (le site de téléchargement de Wanhao n'existe plus)
 2. **Suivez la même procédure** avec le firmware d'origine
 3. **Une fois récupérée**, réessayez avec le firmware custom
 
@@ -191,5 +213,5 @@ avrdude -v -p atmega2560 -c wiring -P /dev/ttyUSB0 -D -U flash:w:firmware.hex:i
 
 ### Support
 
-- **Original firmware / Firmware d'origine :** [Wanhao Downloads](http://www.wanhao3dprinter.com/Down/ShowArticle.asp?ArticleID=190)
+- **Original firmware / Firmware d'origine :** `Wanhao_factory/` in each model folder / dans le dossier de chaque modèle ([archived Wanhao page / page Wanhao archivée](https://web.archive.org/web/20260516085023/http://www.wanhao3dprinter.com/Down/ShowArticle.asp?ArticleID=190))
 - **Issues / Problèmes :** Open an issue on this GitHub repository / Ouvrez un ticket sur ce dépôt GitHub

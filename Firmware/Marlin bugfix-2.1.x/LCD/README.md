@@ -132,7 +132,7 @@ This firmware package includes a pre-flash memory format routine that clears the
 
 **If LCD becomes unresponsive or shows errors:**
 
-1. **Download original LCD firmware** from: [Wanhao Official Downloads](http://www.wanhao3dprinter.com/Down/ShowArticle.asp?ArticleID=190)
+1. **Take Wanhao's original LCD firmware** from `Wanhao_factory/`: [`MK1/Wanhao_factory/`](../MK1/Wanhao_factory/) for an MK1, [`MK2/Wanhao_factory/DWIN_SET_MK2.zip`](../MK2/Wanhao_factory/DWIN_SET_MK2.zip) for an MK1u2, MK2 or MK3 (Wanhao's download site no longer exists). It only works with Wanhao's original motherboard firmware, kept in the same folders.
 2. **Follow same procedure** with original firmware files
 3. **Once recovered**, retry with DGUS Reloaded firmware
 
@@ -270,7 +270,7 @@ Ce package firmware inclut une routine de formatage de la mémoire avant le flas
 
 **Si l'LCD devient non-réactif ou affiche des erreurs :**
 
-1. **Téléchargez le firmware LCD d'origine** : [Téléchargements Officiels Wanhao](http://www.wanhao3dprinter.com/Down/ShowArticle.asp?ArticleID=190)
+1. **Prenez le firmware LCD d'origine de Wanhao** dans `Wanhao_factory/` : [`MK1/Wanhao_factory/`](../MK1/Wanhao_factory/) pour une MK1, [`MK2/Wanhao_factory/DWIN_SET_MK2.zip`](../MK2/Wanhao_factory/DWIN_SET_MK2.zip) pour une MK1u2, MK2 ou MK3 (le site de téléchargement de Wanhao n'existe plus). Il ne fonctionne qu'avec le firmware carte d'origine de Wanhao, conservé dans les mêmes dossiers.
 2. **Suivez la même procédure** avec les fichiers firmware d'origine
 3. **Une fois récupéré**, réessayez avec le firmware DGUS Reloaded
 
@@ -297,6 +297,6 @@ Ce package firmware inclut une routine de formatage de la mémoire avant le flas
 
 ### Support
 
-- **Original LCD firmware / Firmware LCD d'origine :** [Wanhao Downloads](http://www.wanhao3dprinter.com/Down/ShowArticle.asp?ArticleID=190)
+- **Original LCD firmware / Firmware LCD d'origine :** [`MK1/Wanhao_factory/`](../MK1/Wanhao_factory/) · [`MK2/Wanhao_factory/DWIN_SET_MK2.zip`](../MK2/Wanhao_factory/DWIN_SET_MK2.zip)
 - **Video guide / Guide vidéo :** [YouTube Tutorial](https://www.youtube.com/watch?v=VGvtMmlBVj8&t=140s&pbjreload=10)
 - **Issues / Problèmes :** Open an issue on this GitHub repository / Ouvrez un ticket sur ce dépôt GitHub
