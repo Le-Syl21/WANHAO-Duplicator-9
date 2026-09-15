@@ -460,9 +460,10 @@ just a USB cable.</p>
 </ul>
 
 <h2>Before flashing</h2>
-<div class="note">The first boot of a new build resets the settings stored in the printer. Send <code>M851</code>
-(probe Z offset), <code>M92</code> (steps/mm) and <code>M301</code> (hotend PID) and keep the answers, to set them back
-afterwards and save them with <code>M500</code>.</div>
+<div class="note">Send <code>M503</code> and keep the answer. Since v2.0.3 an update keeps the settings stored in the
+printer, but updating <strong>to</strong> v2.0.3 starts once from this firmware's defaults (the way settings are stored
+changed), and so does coming from Wanhao's firmware. Set your probe Z offset again afterwards with <code>M851 Z…</code>
+and <code>M500</code>.</div>
 <p>Close every program that may hold the printer's port: Cura, PrusaSlicer, OctoPrint, Pronterface, serial terminals.</p>
 
 <h2>Flash with AVRDUDESS</h2>
@@ -486,6 +487,18 @@ avrdude -v -p atmega2560 -c wiring -P /dev/ttyUSB0 -D -U flash:w:D9_MK2_300.hex:
 <li>Connect at <strong>250000 baud</strong> (Wanhao's firmwares used 115200) and send <code>M115</code>: the answer shows the new firmware.</li>
 <li>Home all axes, then run a bed levelling from the screen or with <code>G29</code>, and save with <code>M500</code>.</li>
 </ol>
+
+<h2 id="reset">Back to this firmware's default settings</h2>
+<p>Since v2.0.3, a firmware update <strong>keeps</strong> the settings stored in the printer (probe Z offset, steps/mm,
+PID, mesh…). New default values in a release therefore do not replace the ones already stored. Reset once when you
+update from v2.0.2 or earlier while keeping values saved by hand, when the printer behaves oddly after trying other
+firmwares, or whenever you want to start clean:</p>
+<ul>
+<li><strong>On the screen:</strong> <em>Settings</em> → <em>More</em> (…) → <em>Reset EEPROM</em> → <em>Yes</em>.</li>
+<li><strong>Over USB:</strong> send <code>M502</code> (load this firmware's defaults) then <code>M500</code> (save them).</li>
+</ul>
+<p>Then set your probe Z offset again (<code>M851 Z…</code> then <code>M500</code>) and run a bed levelling. Check the
+result with <code>M503</code>.</p>
 
 <h2>Power loss and filament sensor</h2>
 <ul>
@@ -527,9 +540,10 @@ d'ouvrir le socle, juste un câble USB.</p>
 </ul>
 
 <h2>Avant de flasher</h2>
-<div class="note">Le premier démarrage d'un nouveau build remet à zéro les réglages enregistrés dans l'imprimante.
-Envoyez <code>M851</code> (décalage Z du capteur), <code>M92</code> (pas/mm) et <code>M301</code> (PID de la buse) et
-gardez les réponses, pour les remettre ensuite et les enregistrer avec <code>M500</code>.</div>
+<div class="note">Envoyez <code>M503</code> et gardez la réponse. Depuis la v2.0.3, une mise à jour conserve les
+réglages enregistrés dans l'imprimante, mais le passage <strong>à</strong> la v2.0.3 repart une fois des valeurs par
+défaut de ce firmware (la façon de stocker les réglages a changé), tout comme le passage depuis le firmware Wanhao.
+Réglez ensuite de nouveau l'offset Z du capteur avec <code>M851 Z…</code> puis <code>M500</code>.</div>
 <p>Fermez tous les programmes qui peuvent occuper le port de l'imprimante : Cura, PrusaSlicer, OctoPrint, Pronterface, terminaux série.</p>
 
 <h2>Flasher avec AVRDUDESS</h2>
@@ -553,6 +567,19 @@ avrdude -v -p atmega2560 -c wiring -P /dev/ttyUSB0 -D -U flash:w:D9_MK2_300.hex:
 <li>Connectez-vous à <strong>250000 bauds</strong> (les firmwares Wanhao utilisaient 115200) et envoyez <code>M115</code> : la réponse indique le nouveau firmware.</li>
 <li>Faites le homing de tous les axes, puis un nivellement depuis l'écran ou avec <code>G29</code>, et enregistrez avec <code>M500</code>.</li>
 </ol>
+
+<h2 id="reset">Revenir aux réglages par défaut de ce firmware</h2>
+<p>Depuis la v2.0.3, une mise à jour <strong>conserve</strong> les réglages enregistrés dans l'imprimante (offset Z du
+capteur, pas/mm, PID, maillage…). Les nouvelles valeurs par défaut d'une version ne remplacent donc pas celles déjà
+enregistrées. Faites une remise à zéro si vous mettez à jour depuis la v2.0.2 ou plus ancienne en gardant des valeurs
+sauvegardées à la main, si l'imprimante se comporte bizarrement après avoir essayé d'autres firmwares, ou chaque fois
+que vous voulez repartir de zéro :</p>
+<ul>
+<li><strong>À l'écran :</strong> <em>Settings</em> → <em>More</em> (…) → <em>Reset EEPROM</em> → <em>Yes</em>.</li>
+<li><strong>En USB :</strong> envoyez <code>M502</code> (charge les valeurs par défaut de ce firmware) puis <code>M500</code> (les enregistre).</li>
+</ul>
+<p>Réglez ensuite de nouveau l'offset Z du capteur (<code>M851 Z…</code> puis <code>M500</code>) et lancez un
+nivellement. Vérifiez le résultat avec <code>M503</code>.</p>
 
 <h2>Coupure de courant et capteur de filament</h2>
 <ul>
@@ -667,43 +694,32 @@ la version correspondante sur la <a href="{p('mk1')}">page MK1</a>. MK1 + kit, M
 """)
     if page == "quiet":
         if en:
-            return ("Make a Wanhao Duplicator 9 quieter: fans, thermostat, NTC and power supply",
-                    "Which of the Wanhao D9's four fans can be slowed down safely, and how: board fan on a bimetal thermostat "
-                    "or NTC thermistors, hotend fan left alone, power supply fan with care.",
+            return ("Make a Wanhao Duplicator 9 quieter: which fans, and the board fan on NTC thermistors",
+                    "Which of the Wanhao D9's fans can be quietened: the hotend fan must stay, the power supply fan already "
+                    "regulates itself, and the board fan can be unplugged or run on NTC thermistors.",
                     f"""
 <h1>Making the Duplicator 9 quieter</h1>
-<p class="lead">Most of the D9's noise at rest comes from its fans, and three of the four run at full speed from
-power-on, whatever the temperature. Here is which ones can be slowed down safely, and how.</p>
-<div class="note">Work with the printer <strong>unplugged</strong>, and wait a few minutes before opening the power
-supply: its capacitors stay charged. Keep every wire away from the 230 V side.</div>
+<p class="lead">At rest, the D9's noise comes from its fans. Here is which one can be quietened, and how.</p>
+<div class="note">Work with the printer <strong>unplugged</strong>. Keep every wire away from the 230 V side.</div>
 
 <h2>The fans</h2>
 <div class="table"><table class="stack"><thead><tr><th>Fan</th><th>Controlled by</th><th>Can it be quietened?</th></tr></thead><tbody>
+<tr><td><strong>Hotend heatsink fan</strong> (print head)</td><td>nothing: 24 V always on</td><td><strong>no</strong>: usually the loudest, but slowing it lets heat climb up the hotend and jams the filament (heat creep)</td></tr>
 <tr><td><strong>Part cooling fan</strong> (print head)</td><td>firmware, pin D5 (PWM)</td><td>already variable: set by the slicer and <code>M106</code></td></tr>
-<tr><td><strong>Hotend heatsink fan</strong> (print head)</td><td>nothing: 24 V always on</td><td><strong>no</strong>: slowing it lets heat climb up the hotend and jams the filament (heat creep)</td></tr>
-<tr><td><strong>Board fan</strong> (control box)</td><td>nothing: 24 V always on</td><td>yes, see below</td></tr>
-<tr><td><strong>Power supply fan</strong></td><td>the power supply itself</td><td>yes, with care, see below</td></tr>
+<tr><td><strong>Power supply fan</strong></td><td>the power supply itself</td><td>nothing to do: on the unit checked here (Chuanglian A-350FAK-24) it already follows the supply's temperature</td></tr>
+<tr><td><strong>Board fan</strong> (control box)</td><td>nothing: 24 V always on</td><td><strong>yes</strong>, see below</td></tr>
 </tbody></table></div>
 <p>Wanhao's firmware drives no board fan and no hotend fan (<code>CONTROLLER_FAN_PIN</code> and
 <code>E0_AUTO_FAN_PIN</code> are both <code>-1</code>), and the board has no spare switched output. That is why these
 two run from the always-on "24V OUT" connectors, and why no firmware can slow them down.</p>
 
 <h2>Board fan</h2>
-<p>On the unit measured here: <strong>HZ-D 4010MS, 40 × 10 mm, 24 V, 0.10 A max, sleeve bearing</strong>. The board
-runs cool at rest, but its stepper drivers heat up during long prints. An overheating driver cuts out briefly, which
-shows up as <strong>shifted layers</strong>, not as an error. Removing the fan entirely is a risk; making it run only
-when the drivers are warm is not.</p>
-
-<h3>1. Bimetal thermostat (simplest)</h3>
-<p>A KSD9700 <strong>normally open (NO)</strong> thermal switch, 45 °C or 50 °C, in series with the fan's + wire,
-glued or screwed onto a driver heatsink. Below its temperature the fan is off; above, it runs at full speed. It resets
-by itself about 10–15 °C lower, and is rated 250 V / 5 A.</p>
-<pre><code>+24V ── KSD9700 NO 50 °C ── fan (+)
-                            fan (−) ── 0V</code></pre>
-<p>To keep the fan turning slowly when cold instead of stopping, add a 150–220 Ω, 2 W resistor across the thermostat.</p>
-
-<h3>2. NTC thermistors in series (progressive)</h3>
-<p>Two power NTC discs in series make the fan start around 45–50 °C and speed up as the drivers heat:
+<p>On the unit measured here: <strong>HZ-D 4010MS, 40 × 10 mm, 24 V, 0.10 A max, sleeve bearing</strong>.</p>
+<p><strong>Many owners simply unplug it.</strong> The board runs cool: it sits at the bottom of the control box, below
+the heated bed, and the bed's heat rises away from it. If you do, keep an eye on your first long prints: an overheating
+stepper driver cuts out briefly, which shows up as <strong>shifted layers</strong>, not as an error message.</p>
+<h3>Keeping it, but only when the drivers are warm</h3>
+<p>Two power NTC thermistors in series make the fan start around 45–50 °C and speed up as the drivers heat:
 <strong>MF72-400D9</strong> (400 Ω) + <strong>MF72-200D9</strong> (200 Ω), glued to a driver heatsink with thermal
 adhesive, leads insulated.</p>
 <pre><code>+24V ── MF72-400D9 ── MF72-200D9 ── fan (+)
@@ -715,61 +731,38 @@ thermometer); add a second 200 Ω if it starts too early, drop the 200 Ω if too
 <li>The NTCs must be glued to a heatsink: in free air, the fan current (up to about 0.6 W in the NTCs) heats them by
 tens of degrees.</li>
 <li>The fan never reaches full speed this way (about 75 % at 80 °C), and an NTC that fails goes open: the fan then stops
-for good. Check from time to time that it spins up when the drivers are warm.</li>
+for good.</li>
 </ul>
-
-<h2>Power supply fan</h2>
-<p>The D9 used for this page has a <strong>Chuanglian (CZCL) A-350FAK-24</strong>: 350 W, 24 V, 14.6 A, 30 mm slim
-case. Its terminal block carries only mains and the 24 V outputs: there is <strong>no external fan control</strong>, so
-any change happens inside, on the fan's own connector. Its
-<a href="https://agelectronica.lat/pdfs/textos/A/A-350FAK-24.PDF">datasheet</a> mentions a built-in DC fan and an
-over-temperature protection in hiccup mode, but nothing about how the fan is driven; on this unit it runs at a fixed
-speed.</p>
-<div class="note">The heated bed draws a large share of those 14.6 A, and a slim 350 W supply heats up quickly under
-load. If it overheats, <strong>it cuts out and restarts, which stops the print</strong>. Let its fan start early
-(around 40 °C), never limit its maximum speed, and after any change run the bed at full power for 30 minutes to check
-the supply never cuts out.</div>
-<p>The fan model inside has not been identified yet; this section will be completed once it is.</p>
+<p>Sources: <a href="https://www.cantherm.com/wp-content/uploads/2018/08/MF72_AUG_2018.pdf">MF72 datasheet</a>.</p>
 """)
-        return ("Rendre une Wanhao Duplicator 9 plus silencieuse : ventilateurs, thermostat, CTN et alimentation",
-                "Quels ventilateurs de la Wanhao D9 ralentir sans risque, et comment : ventilateur de carte sur thermostat "
-                "bimétallique ou thermistances CTN, ventilateur de buse à laisser tel quel, ventilateur d'alimentation avec précaution.",
+        return ("Rendre une Wanhao Duplicator 9 plus silencieuse : quels ventilateurs, et le ventilateur de carte sur CTN",
+                "Quels ventilateurs de la Wanhao D9 rendre silencieux : celui de la buse doit rester, celui de l'alimentation "
+                "se régule déjà, et celui de la carte peut être débranché ou piloté par des thermistances CTN.",
                 f"""
 <h1>Rendre la Duplicator 9 plus silencieuse</h1>
-<p class="lead">L'essentiel du bruit de la D9 au repos vient de ses ventilateurs, et trois des quatre tournent à fond
-dès la mise sous tension, quelle que soit la température. Voici lesquels ralentir sans risque, et comment.</p>
-<div class="note">Intervenez imprimante <strong>débranchée</strong>, et attendez quelques minutes avant d'ouvrir
-l'alimentation : ses condensateurs restent chargés. Tenez tous les fils à l'écart de la partie 230 V.</div>
+<p class="lead">Au repos, le bruit de la D9 vient de ses ventilateurs. Voici lequel peut être rendu silencieux, et comment.</p>
+<div class="note">Intervenez imprimante <strong>débranchée</strong>. Tenez tous les fils à l'écart de la partie 230 V.</div>
 
 <h2>Les ventilateurs</h2>
 <div class="table"><table class="stack"><thead><tr><th>Ventilateur</th><th>Commandé par</th><th>Peut-on le rendre silencieux ?</th></tr></thead><tbody>
+<tr><td><strong>Ventilateur du radiateur de buse</strong> (tête)</td><td>rien : 24 V permanent</td><td><strong>non</strong> : c'est en général le plus bruyant, mais le ralentir laisse la chaleur remonter dans la tête et bloque le filament (heat creep)</td></tr>
 <tr><td><strong>Ventilateur de pièce</strong> (tête)</td><td>firmware, broche D5 (PWM)</td><td>déjà variable : réglé par le slicer et <code>M106</code></td></tr>
-<tr><td><strong>Ventilateur du radiateur de buse</strong> (tête)</td><td>rien : 24 V permanent</td><td><strong>non</strong> : le ralentir laisse la chaleur remonter dans la tête et bloque le filament (heat creep)</td></tr>
-<tr><td><strong>Ventilateur de carte</strong> (boîtier)</td><td>rien : 24 V permanent</td><td>oui, voir plus bas</td></tr>
-<tr><td><strong>Ventilateur d'alimentation</strong></td><td>l'alimentation elle-même</td><td>oui, avec précaution, voir plus bas</td></tr>
+<tr><td><strong>Ventilateur d'alimentation</strong></td><td>l'alimentation elle-même</td><td>rien à faire : sur l'exemplaire vérifié ici (Chuanglian A-350FAK-24), il suit déjà la température de l'alimentation</td></tr>
+<tr><td><strong>Ventilateur de carte</strong> (boîtier)</td><td>rien : 24 V permanent</td><td><strong>oui</strong>, voir plus bas</td></tr>
 </tbody></table></div>
 <p>Le firmware de Wanhao ne pilote ni ventilateur de carte ni ventilateur de buse (<code>CONTROLLER_FAN_PIN</code> et
 <code>E0_AUTO_FAN_PIN</code> valent <code>-1</code>), et la carte n'a aucune sortie commutée libre. C'est pour ça que
 ces deux-là sont sur les connecteurs « 24V OUT » permanents, et qu'aucun firmware ne peut les ralentir.</p>
 
 <h2>Ventilateur de carte</h2>
-<p>Sur l'exemplaire mesuré ici : <strong>HZ-D 4010MS, 40 × 10 mm, 24 V, 0,10 A max, palier lisse</strong>. La carte
-chauffe peu au repos, mais ses drivers moteurs chauffent pendant les longues impressions. Un driver en surchauffe coupe
-brièvement, ce qui se voit par des <strong>décalages de couches</strong>, pas par un message d'erreur. Retirer
-complètement le ventilateur est un risque ; le faire tourner seulement quand les drivers sont chauds ne l'est pas.</p>
-
-<h3>1. Thermostat bimétallique (le plus simple)</h3>
-<p>Un interrupteur thermique KSD9700 <strong>normalement ouvert (NO)</strong>, 45 °C ou 50 °C, en série sur le fil +
-du ventilateur, collé ou vissé sur un radiateur de driver. Sous sa température le ventilateur est arrêté ; au-dessus il
-tourne à fond. Il se réarme tout seul environ 10 à 15 °C plus bas et tient 250 V / 5 A.</p>
-<pre><code>+24V ── KSD9700 NO 50 °C ── ventilateur (+)
-                            ventilateur (−) ── 0V</code></pre>
-<p>Pour que le ventilateur tourne lentement à froid au lieu de s'arrêter, ajoutez une résistance de 150 à 220 Ω, 2 W,
-en parallèle sur le thermostat.</p>
-
-<h3>2. Thermistances CTN en série (progressif)</h3>
-<p>Deux disques CTN de puissance en série font démarrer le ventilateur vers 45-50 °C, puis accélérer à mesure que les
-drivers chauffent : <strong>MF72-400D9</strong> (400 Ω) + <strong>MF72-200D9</strong> (200 Ω), collés sur un
+<p>Sur l'exemplaire mesuré ici : <strong>HZ-D 4010MS, 40 × 10 mm, 24 V, 0,10 A max, palier lisse</strong>.</p>
+<p><strong>Beaucoup de propriétaires le débranchent tout simplement.</strong> La carte chauffe peu : elle est en bas du
+boîtier, sous le plateau chauffant, et la chaleur du plateau monte au lieu de descendre vers elle. Si vous le faites,
+surveillez vos premières longues impressions : un driver moteur en surchauffe coupe brièvement, ce qui se voit par des
+<strong>décalages de couches</strong>, pas par un message d'erreur.</p>
+<h3>Le garder, mais seulement quand les drivers chauffent</h3>
+<p>Deux thermistances CTN de puissance en série font démarrer le ventilateur vers 45-50 °C, puis accélérer à mesure
+que les drivers chauffent : <strong>MF72-400D9</strong> (400 Ω) + <strong>MF72-200D9</strong> (200 Ω), collées sur un
 radiateur de driver avec de la colle thermique, pattes isolées.</p>
 <pre><code>+24V ── MF72-400D9 ── MF72-200D9 ── ventilateur (+)
                                     ventilateur (−) ── 0V</code></pre>
@@ -781,22 +774,9 @@ retirez la 200 Ω s'il démarre trop tard.</li>
 <li>Les CTN doivent être collées sur un radiateur : à l'air libre, le courant du ventilateur (jusqu'à environ 0,6 W
 dans les CTN) les chauffe de plusieurs dizaines de degrés.</li>
 <li>Le ventilateur n'atteint jamais sa pleine vitesse de cette façon (environ 75 % à 80 °C), et une CTN qui claque
-s'ouvre : le ventilateur s'arrête alors définitivement. Vérifiez de temps en temps qu'il se lance quand les drivers sont
-chauds.</li>
+s'ouvre : le ventilateur s'arrête alors définitivement.</li>
 </ul>
-
-<h2>Ventilateur d'alimentation</h2>
-<p>La D9 utilisée pour cette page a une <strong>Chuanglian (CZCL) A-350FAK-24</strong> : 350 W, 24 V, 14,6 A, boîtier
-slim de 30 mm. Son bornier ne porte que le secteur et les sorties 24 V : il n'y a <strong>aucune commande externe du
-ventilateur</strong>, toute modification se fait donc à l'intérieur, sur le connecteur du ventilateur. Sa
-<a href="https://agelectronica.lat/pdfs/textos/A/A-350FAK-24.PDF">fiche technique</a> mentionne un ventilateur DC
-intégré et une protection contre la surchauffe en mode hoquet, mais rien sur la façon dont le ventilateur est
-commandé ; sur cet exemplaire il tourne à vitesse fixe.</p>
-<div class="note">Le plateau chauffant tire une grosse partie de ces 14,6 A, et une alimentation slim de 350 W chauffe
-vite en charge. En surchauffe, <strong>elle coupe puis redémarre, ce qui arrête l'impression</strong>. Faites démarrer
-son ventilateur tôt (vers 40 °C), ne limitez jamais sa vitesse maximale, et après toute modification faites chauffer le
-plateau à fond 30 minutes pour vérifier qu'elle ne coupe jamais.</div>
-<p>Le modèle du ventilateur interne n'est pas encore identifié ; cette section sera complétée quand il le sera.</p>
+<p>Sources : <a href="https://www.cantherm.com/wp-content/uploads/2018/08/MF72_AUG_2018.pdf">fiche MF72</a>.</p>
 """)
     raise KeyError(page)
 

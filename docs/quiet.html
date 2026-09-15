@@ -3,22 +3,22 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Make a Wanhao Duplicator 9 quieter: fans, thermostat, NTC and power supply</title>
-<meta name="description" content="Which of the Wanhao D9&#x27;s four fans can be slowed down safely, and how: board fan on a bimetal thermostat or NTC thermistors, hotend fan left alone, power supply fan with care.">
+<title>Make a Wanhao Duplicator 9 quieter: which fans, and the board fan on NTC thermistors</title>
+<meta name="description" content="Which of the Wanhao D9&#x27;s fans can be quietened: the hotend fan must stay, the power supply fan already regulates itself, and the board fan can be unplugged or run on NTC thermistors.">
 <link rel="canonical" href="https://le-syl21.github.io/WANHAO-Duplicator-9/quiet.html">
 <link rel="alternate" hreflang="en" href="https://le-syl21.github.io/WANHAO-Duplicator-9/quiet.html">
 <link rel="alternate" hreflang="fr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/fr/quiet.html">
 <link rel="alternate" hreflang="x-default" href="https://le-syl21.github.io/WANHAO-Duplicator-9/quiet.html">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Make a Wanhao Duplicator 9 quieter: fans, thermostat, NTC and power supply">
-<meta property="og:description" content="Which of the Wanhao D9&#x27;s four fans can be slowed down safely, and how: board fan on a bimetal thermostat or NTC thermistors, hotend fan left alone, power supply fan with care.">
+<meta property="og:title" content="Make a Wanhao Duplicator 9 quieter: which fans, and the board fan on NTC thermistors">
+<meta property="og:description" content="Which of the Wanhao D9&#x27;s fans can be quietened: the hotend fan must stay, the power supply fan already regulates itself, and the board fan can be unplugged or run on NTC thermistors.">
 <meta property="og:url" content="https://le-syl21.github.io/WANHAO-Duplicator-9/quiet.html">
 <meta property="og:image" content="https://le-syl21.github.io/WANHAO-Duplicator-9/img/og.jpg">
 <meta property="og:locale" content="en_GB">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖨️</text></svg>">
 <link rel="stylesheet" href="style.css">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Make a Wanhao Duplicator 9 quieter: fans, thermostat, NTC and power supply", "description": "Which of the Wanhao D9's four fans can be slowed down safely, and how: board fan on a bimetal thermostat or NTC thermistors, hotend fan left alone, power supply fan with care.", "url": "https://le-syl21.github.io/WANHAO-Duplicator-9/quiet.html", "inLanguage": "en", "about": {"@type": "Product", "name": "Wanhao Duplicator 9", "brand": "Wanhao"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Make a Wanhao Duplicator 9 quieter: which fans, and the board fan on NTC thermistors", "description": "Which of the Wanhao D9's fans can be quietened: the hotend fan must stay, the power supply fan already regulates itself, and the board fan can be unplugged or run on NTC thermistors.", "url": "https://le-syl21.github.io/WANHAO-Duplicator-9/quiet.html", "inLanguage": "en", "about": {"@type": "Product", "name": "Wanhao Duplicator 9", "brand": "Wanhao"}}</script>
 </head>
 <body>
 <header class="site"><div class="wrap">
@@ -28,38 +28,27 @@
 </div></header>
 <main><div class="wrap">
 <h1>Making the Duplicator 9 quieter</h1>
-<p class="lead">Most of the D9's noise at rest comes from its fans, and three of the four run at full speed from
-power-on, whatever the temperature. Here is which ones can be slowed down safely, and how.</p>
-<div class="note">Work with the printer <strong>unplugged</strong>, and wait a few minutes before opening the power
-supply: its capacitors stay charged. Keep every wire away from the 230 V side.</div>
+<p class="lead">At rest, the D9's noise comes from its fans. Here is which one can be quietened, and how.</p>
+<div class="note">Work with the printer <strong>unplugged</strong>. Keep every wire away from the 230 V side.</div>
 
 <h2>The fans</h2>
 <div class="table"><table class="stack"><thead><tr><th>Fan</th><th>Controlled by</th><th>Can it be quietened?</th></tr></thead><tbody>
+<tr><td><strong>Hotend heatsink fan</strong> (print head)</td><td>nothing: 24 V always on</td><td><strong>no</strong>: usually the loudest, but slowing it lets heat climb up the hotend and jams the filament (heat creep)</td></tr>
 <tr><td><strong>Part cooling fan</strong> (print head)</td><td>firmware, pin D5 (PWM)</td><td>already variable: set by the slicer and <code>M106</code></td></tr>
-<tr><td><strong>Hotend heatsink fan</strong> (print head)</td><td>nothing: 24 V always on</td><td><strong>no</strong>: slowing it lets heat climb up the hotend and jams the filament (heat creep)</td></tr>
-<tr><td><strong>Board fan</strong> (control box)</td><td>nothing: 24 V always on</td><td>yes, see below</td></tr>
-<tr><td><strong>Power supply fan</strong></td><td>the power supply itself</td><td>yes, with care, see below</td></tr>
+<tr><td><strong>Power supply fan</strong></td><td>the power supply itself</td><td>nothing to do: on the unit checked here (Chuanglian A-350FAK-24) it already follows the supply's temperature</td></tr>
+<tr><td><strong>Board fan</strong> (control box)</td><td>nothing: 24 V always on</td><td><strong>yes</strong>, see below</td></tr>
 </tbody></table></div>
 <p>Wanhao's firmware drives no board fan and no hotend fan (<code>CONTROLLER_FAN_PIN</code> and
 <code>E0_AUTO_FAN_PIN</code> are both <code>-1</code>), and the board has no spare switched output. That is why these
 two run from the always-on "24V OUT" connectors, and why no firmware can slow them down.</p>
 
 <h2>Board fan</h2>
-<p>On the unit measured here: <strong>HZ-D 4010MS, 40 × 10 mm, 24 V, 0.10 A max, sleeve bearing</strong>. The board
-runs cool at rest, but its stepper drivers heat up during long prints. An overheating driver cuts out briefly, which
-shows up as <strong>shifted layers</strong>, not as an error. Removing the fan entirely is a risk; making it run only
-when the drivers are warm is not.</p>
-
-<h3>1. Bimetal thermostat (simplest)</h3>
-<p>A KSD9700 <strong>normally open (NO)</strong> thermal switch, 45 °C or 50 °C, in series with the fan's + wire,
-glued or screwed onto a driver heatsink. Below its temperature the fan is off; above, it runs at full speed. It resets
-by itself about 10–15 °C lower, and is rated 250 V / 5 A.</p>
-<pre><code>+24V ── KSD9700 NO 50 °C ── fan (+)
-                            fan (−) ── 0V</code></pre>
-<p>To keep the fan turning slowly when cold instead of stopping, add a 150–220 Ω, 2 W resistor across the thermostat.</p>
-
-<h3>2. NTC thermistors in series (progressive)</h3>
-<p>Two power NTC discs in series make the fan start around 45–50 °C and speed up as the drivers heat:
+<p>On the unit measured here: <strong>HZ-D 4010MS, 40 × 10 mm, 24 V, 0.10 A max, sleeve bearing</strong>.</p>
+<p><strong>Many owners simply unplug it.</strong> The board runs cool: it sits at the bottom of the control box, below
+the heated bed, and the bed's heat rises away from it. If you do, keep an eye on your first long prints: an overheating
+stepper driver cuts out briefly, which shows up as <strong>shifted layers</strong>, not as an error message.</p>
+<h3>Keeping it, but only when the drivers are warm</h3>
+<p>Two power NTC thermistors in series make the fan start around 45–50 °C and speed up as the drivers heat:
 <strong>MF72-400D9</strong> (400 Ω) + <strong>MF72-200D9</strong> (200 Ω), glued to a driver heatsink with thermal
 adhesive, leads insulated.</p>
 <pre><code>+24V ── MF72-400D9 ── MF72-200D9 ── fan (+)
@@ -71,21 +60,9 @@ thermometer); add a second 200 Ω if it starts too early, drop the 200 Ω if too
 <li>The NTCs must be glued to a heatsink: in free air, the fan current (up to about 0.6 W in the NTCs) heats them by
 tens of degrees.</li>
 <li>The fan never reaches full speed this way (about 75 % at 80 °C), and an NTC that fails goes open: the fan then stops
-for good. Check from time to time that it spins up when the drivers are warm.</li>
+for good.</li>
 </ul>
-
-<h2>Power supply fan</h2>
-<p>The D9 used for this page has a <strong>Chuanglian (CZCL) A-350FAK-24</strong>: 350 W, 24 V, 14.6 A, 30 mm slim
-case. Its terminal block carries only mains and the 24 V outputs: there is <strong>no external fan control</strong>, so
-any change happens inside, on the fan's own connector. Its
-<a href="https://agelectronica.lat/pdfs/textos/A/A-350FAK-24.PDF">datasheet</a> mentions a built-in DC fan and an
-over-temperature protection in hiccup mode, but nothing about how the fan is driven; on this unit it runs at a fixed
-speed.</p>
-<div class="note">The heated bed draws a large share of those 14.6 A, and a slim 350 W supply heats up quickly under
-load. If it overheats, <strong>it cuts out and restarts, which stops the print</strong>. Let its fan start early
-(around 40 °C), never limit its maximum speed, and after any change run the bed at full power for 30 minutes to check
-the supply never cuts out.</div>
-<p>The fan model inside has not been identified yet; this section will be completed once it is.</p>
+<p>Sources: <a href="https://www.cantherm.com/wp-content/uploads/2018/08/MF72_AUG_2018.pdf">MF72 datasheet</a>.</p>
 </div></main>
 <footer class="site"><div class="wrap">
 <a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9">Source and issues on GitHub</a>

@@ -26,6 +26,8 @@ Built from Marlin `bugfix-2.1.x` (September 2026) with the Duplicator 9 configur
 - **Filament runout sensor** support is built in, off by default except on the MK3. Without a sensor nothing happens; once you fit one, enable it with `M412 S1` then `M500`.
 - **Wanhao's factory firmwares** are kept in `Wanhao_factory/` inside each model folder, so a machine can be put back as it left the factory. Each has an `extract.md` listing the settings read out of Wanhao's binaries and how they were read.
 - **`M503`** is available to print every setting.
+- **The screen's *Information* page shows your model, size and release**, for example *Wanhao D9 MK2 300* and *2.1.x-D9 v2.0.3*. `M115` reports the same.
+- **Updates keep your settings** (since v2.0.3). See *Back to this firmware's default settings* below to start from the defaults.
 - **The screen needs DGUS Reloaded 1.0.3** (`LCD/DWIN_SET.zip`). With the older 1.0.2 files, temperatures show without their decimal point (23.6 °C appears as 236).
 
 ### Step 1: Prepare for Flashing
@@ -38,7 +40,7 @@ Built from Marlin `bugfix-2.1.x` (September 2026) with the Duplicator 9 configur
 
 2. **⚠️ IMPORTANT:** Close ALL programs using the COM port (serial terminals, slicers, Cura, OctoPrint, Pronterface, etc.)
 
-3. **⚠️ Note your settings first:** the first boot of a new build resets the EEPROM. Send `M851` (probe Z offset), `M92` (steps/mm) and `M301` (hotend PID) and keep the answers, so you can set them back and save them with `M500`.
+3. **⚠️ Note your settings first:** send `M503` and keep the answer. Since v2.0.3 an update keeps the stored settings, but updating **to** v2.0.3 starts once from this firmware's defaults (the way settings are stored changed), and so does coming from Wanhao's firmware. You then set your probe Z offset again with `M851 Z…` and `M500`.
 
 ### Step 2: Flash Firmware
 
@@ -82,6 +84,21 @@ avrdude -v -p atmega2560 -c wiring -P /dev/ttyUSB0 -D -U flash:w:firmware.hex:i
      - **These custom firmwares:** 250000 baud
 5. **Send `M115`** to verify new firmware version
 
+### Back to this firmware's default settings
+
+Since v2.0.3, a firmware update **keeps** the settings stored in the printer (probe Z offset, steps/mm, PID, mesh…). That is what you want most of the time, but it also means new default values in a release do not replace the ones already stored. Reset once:
+
+- **when you update from v2.0.2 or earlier while keeping values saved by hand**, and the release notes change a default you want (v2.0.2 brought Wanhao's settings);
+- **when the printer behaves oddly** after trying other firmwares;
+- **whenever you want to start clean.**
+
+How, either way:
+
+- **On the screen:** *Settings* → *More* (…) → *Reset EEPROM* → *Yes*.
+- **Over USB:** send `M502` (load this firmware's defaults) then `M500` (save them).
+
+Then set your probe Z offset again (`M851 Z…` then `M500`) and run a bed levelling. Check the result with `M503`.
+
 ### Video Guide
 
 📺 **Visual tutorial:** [Wanhao D9 LCD Firmware Update](https://www.youtube.com/watch?v=VGvtMmlBVj8)
@@ -120,6 +137,8 @@ Compilés depuis Marlin `bugfix-2.1.x` (septembre 2026) avec les configurations 
 - **Capteur de fin de filament** pris en charge, désactivé par défaut sauf sur la MK3. Sans capteur, rien ne se passe ; une fois un capteur installé, activez-le avec `M412 S1` puis `M500`.
 - **Les firmwares d'usine de Wanhao** sont conservés dans `Wanhao_factory/`, dans le dossier de chaque modèle, pour pouvoir remettre une machine dans son état d'origine. Chacun a un `extract.md` qui liste les réglages lus dans les binaires de Wanhao et explique comment ils ont été lus.
 - **`M503`** est disponible pour afficher tous les réglages.
+- **La page *Information* de l'écran affiche votre modèle, votre taille et la version**, par exemple *Wanhao D9 MK2 300* et *2.1.x-D9 v2.0.3*. `M115` indique la même chose.
+- **Les mises à jour conservent vos réglages** (depuis la v2.0.3). Voir *Revenir aux réglages par défaut de ce firmware* plus bas pour repartir des valeurs par défaut.
 - **L'écran doit être en DGUS Reloaded 1.0.3** (`LCD/DWIN_SET.zip`). Avec les anciens fichiers 1.0.2, les températures s'affichent sans la virgule (23,6 °C devient 236).
 
 ### Étape 1 : Préparation du Flash
@@ -132,7 +151,7 @@ Compilés depuis Marlin `bugfix-2.1.x` (septembre 2026) avec les configurations 
 
 2. **⚠️ IMPORTANT :** Fermez TOUS les programmes utilisant le port COM (terminaux série, slicers, Cura, OctoPrint, Pronterface, etc.)
 
-3. **⚠️ Notez d'abord vos réglages :** le premier démarrage d'un nouveau firmware réinitialise l'EEPROM. Envoyez `M851` (offset Z de la sonde), `M92` (pas/mm) et `M301` (PID de la buse) et gardez les réponses, pour les remettre puis les sauvegarder avec `M500`.
+3. **⚠️ Notez d'abord vos réglages :** envoyez `M503` et gardez la réponse. Depuis la v2.0.3, une mise à jour conserve les réglages enregistrés, mais le passage **à** la v2.0.3 repart une fois des valeurs par défaut de ce firmware (la façon de stocker les réglages a changé), tout comme le passage depuis le firmware Wanhao. Réglez alors de nouveau l'offset Z de la sonde avec `M851 Z…` puis `M500`.
 
 ### Étape 2 : Flash du Firmware
 
@@ -175,6 +194,21 @@ avrdude -v -p atmega2560 -c wiring -P /dev/ttyUSB0 -D -U flash:w:firmware.hex:i
      - **Firmware d'usine :** 115200 baud
      - **Ces firmwares custom :** 250000 baud
 5. **Envoyez `M115`** pour vérifier la nouvelle version
+
+### Revenir aux réglages par défaut de ce firmware
+
+Depuis la v2.0.3, une mise à jour **conserve** les réglages enregistrés dans l'imprimante (offset Z de la sonde, pas/mm, PID, maillage…). C'est ce qu'on veut la plupart du temps, mais les nouvelles valeurs par défaut d'une version ne remplacent donc pas celles déjà enregistrées. Faites une remise à zéro :
+
+- **si vous mettez à jour depuis la v2.0.2 ou une version plus ancienne en gardant des valeurs sauvegardées à la main**, et que les notes de version changent un réglage par défaut qui vous intéresse (la v2.0.2 a apporté les réglages Wanhao) ;
+- **si l'imprimante se comporte bizarrement** après avoir essayé d'autres firmwares ;
+- **chaque fois que vous voulez repartir de zéro.**
+
+Au choix :
+
+- **À l'écran :** *Settings* → *More* (…) → *Reset EEPROM* → *Yes*.
+- **En USB :** envoyez `M502` (charge les valeurs par défaut de ce firmware) puis `M500` (les enregistre).
+
+Réglez ensuite de nouveau l'offset Z de la sonde (`M851 Z…` puis `M500`) et lancez un nivellement. Vérifiez le résultat avec `M503`.
 
 ### Guide Vidéo
 

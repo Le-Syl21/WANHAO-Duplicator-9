@@ -41,9 +41,10 @@ d'ouvrir le socle, juste un câble USB.</p>
 </ul>
 
 <h2>Avant de flasher</h2>
-<div class="note">Le premier démarrage d'un nouveau build remet à zéro les réglages enregistrés dans l'imprimante.
-Envoyez <code>M851</code> (décalage Z du capteur), <code>M92</code> (pas/mm) et <code>M301</code> (PID de la buse) et
-gardez les réponses, pour les remettre ensuite et les enregistrer avec <code>M500</code>.</div>
+<div class="note">Envoyez <code>M503</code> et gardez la réponse. Depuis la v2.0.3, une mise à jour conserve les
+réglages enregistrés dans l'imprimante, mais le passage <strong>à</strong> la v2.0.3 repart une fois des valeurs par
+défaut de ce firmware (la façon de stocker les réglages a changé), tout comme le passage depuis le firmware Wanhao.
+Réglez ensuite de nouveau l'offset Z du capteur avec <code>M851 Z…</code> puis <code>M500</code>.</div>
 <p>Fermez tous les programmes qui peuvent occuper le port de l'imprimante : Cura, PrusaSlicer, OctoPrint, Pronterface, terminaux série.</p>
 
 <h2>Flasher avec AVRDUDESS</h2>
@@ -67,6 +68,19 @@ avrdude -v -p atmega2560 -c wiring -P /dev/ttyUSB0 -D -U flash:w:D9_MK2_300.hex:
 <li>Connectez-vous à <strong>250000 bauds</strong> (les firmwares Wanhao utilisaient 115200) et envoyez <code>M115</code> : la réponse indique le nouveau firmware.</li>
 <li>Faites le homing de tous les axes, puis un nivellement depuis l'écran ou avec <code>G29</code>, et enregistrez avec <code>M500</code>.</li>
 </ol>
+
+<h2 id="reset">Revenir aux réglages par défaut de ce firmware</h2>
+<p>Depuis la v2.0.3, une mise à jour <strong>conserve</strong> les réglages enregistrés dans l'imprimante (offset Z du
+capteur, pas/mm, PID, maillage…). Les nouvelles valeurs par défaut d'une version ne remplacent donc pas celles déjà
+enregistrées. Faites une remise à zéro si vous mettez à jour depuis la v2.0.2 ou plus ancienne en gardant des valeurs
+sauvegardées à la main, si l'imprimante se comporte bizarrement après avoir essayé d'autres firmwares, ou chaque fois
+que vous voulez repartir de zéro :</p>
+<ul>
+<li><strong>À l'écran :</strong> <em>Settings</em> → <em>More</em> (…) → <em>Reset EEPROM</em> → <em>Yes</em>.</li>
+<li><strong>En USB :</strong> envoyez <code>M502</code> (charge les valeurs par défaut de ce firmware) puis <code>M500</code> (les enregistre).</li>
+</ul>
+<p>Réglez ensuite de nouveau l'offset Z du capteur (<code>M851 Z…</code> puis <code>M500</code>) et lancez un
+nivellement. Vérifiez le résultat avec <code>M503</code>.</p>
 
 <h2>Coupure de courant et capteur de filament</h2>
 <ul>

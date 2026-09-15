@@ -41,9 +41,10 @@ just a USB cable.</p>
 </ul>
 
 <h2>Before flashing</h2>
-<div class="note">The first boot of a new build resets the settings stored in the printer. Send <code>M851</code>
-(probe Z offset), <code>M92</code> (steps/mm) and <code>M301</code> (hotend PID) and keep the answers, to set them back
-afterwards and save them with <code>M500</code>.</div>
+<div class="note">Send <code>M503</code> and keep the answer. Since v2.0.3 an update keeps the settings stored in the
+printer, but updating <strong>to</strong> v2.0.3 starts once from this firmware's defaults (the way settings are stored
+changed), and so does coming from Wanhao's firmware. Set your probe Z offset again afterwards with <code>M851 Z…</code>
+and <code>M500</code>.</div>
 <p>Close every program that may hold the printer's port: Cura, PrusaSlicer, OctoPrint, Pronterface, serial terminals.</p>
 
 <h2>Flash with AVRDUDESS</h2>
@@ -67,6 +68,18 @@ avrdude -v -p atmega2560 -c wiring -P /dev/ttyUSB0 -D -U flash:w:D9_MK2_300.hex:
 <li>Connect at <strong>250000 baud</strong> (Wanhao's firmwares used 115200) and send <code>M115</code>: the answer shows the new firmware.</li>
 <li>Home all axes, then run a bed levelling from the screen or with <code>G29</code>, and save with <code>M500</code>.</li>
 </ol>
+
+<h2 id="reset">Back to this firmware's default settings</h2>
+<p>Since v2.0.3, a firmware update <strong>keeps</strong> the settings stored in the printer (probe Z offset, steps/mm,
+PID, mesh…). New default values in a release therefore do not replace the ones already stored. Reset once when you
+update from v2.0.2 or earlier while keeping values saved by hand, when the printer behaves oddly after trying other
+firmwares, or whenever you want to start clean:</p>
+<ul>
+<li><strong>On the screen:</strong> <em>Settings</em> → <em>More</em> (…) → <em>Reset EEPROM</em> → <em>Yes</em>.</li>
+<li><strong>Over USB:</strong> send <code>M502</code> (load this firmware's defaults) then <code>M500</code> (save them).</li>
+</ul>
+<p>Then set your probe Z offset again (<code>M851 Z…</code> then <code>M500</code>) and run a bed levelling. Check the
+result with <code>M503</code>.</p>
 
 <h2>Power loss and filament sensor</h2>
 <ul>
