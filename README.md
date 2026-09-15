@@ -13,6 +13,7 @@ This repository is dedicated to the **WANHAO Duplicator 9** 3D printer and inclu
 * 🖥️ **LCD resources** and documentation (DGUS / DWIN_SET)
 * 📖 **Wanhao documentation** (user manuals)
 * ⚙️ **Configuration files** (Marlin) https://github.com/MarlinFirmware/Configurations/blob/import-2.1.x/config/examples/Wanhao/Duplicator%209
+* 🤫 **[Making the printer quieter](Quiet.md)**: which fans can be slowed down safely, and how
 
 ### 💬 Community & support
 
@@ -78,6 +79,7 @@ Ce dépôt est dédié à l'imprimante 3D **WANHAO Duplicator 9** et comprend :
 * 🖥️ **Ressources LCD** et documentation (DGUS / DWIN_SET)
 * 📖 **Documentation Wanhao** (manuels utilisateur)
 * ⚙️ **Fichiers de configuration** (Marlin) https://github.com/MarlinFirmware/Configurations/blob/import-2.1.x/config/examples/Wanhao/Duplicator%209
+* 🤫 **[Rendre l'imprimante plus silencieuse](Quiet.md#français)** : quels ventilateurs ralentir sans risque, et comment
 
 ### 💬 Communauté & support
 
