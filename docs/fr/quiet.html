@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rendre une Wanhao Duplicator 9 plus silencieuse : ventilateurs, thermostat, CTN et alimentation</title>
+<meta name="description" content="Quels ventilateurs de la Wanhao D9 ralentir sans risque, et comment : ventilateur de carte sur thermostat bimétallique ou thermistances CTN, ventilateur de buse à laisser tel quel, ventilateur d&#x27;alimentation avec précaution.">
+<link rel="canonical" href="https://le-syl21.github.io/WANHAO-Duplicator-9/fr/quiet.html">
+<link rel="alternate" hreflang="en" href="https://le-syl21.github.io/WANHAO-Duplicator-9/quiet.html">
+<link rel="alternate" hreflang="fr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/fr/quiet.html">
+<link rel="alternate" hreflang="x-default" href="https://le-syl21.github.io/WANHAO-Duplicator-9/quiet.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Rendre une Wanhao Duplicator 9 plus silencieuse : ventilateurs, thermostat, CTN et alimentation">
+<meta property="og:description" content="Quels ventilateurs de la Wanhao D9 ralentir sans risque, et comment : ventilateur de carte sur thermostat bimétallique ou thermistances CTN, ventilateur de buse à laisser tel quel, ventilateur d&#x27;alimentation avec précaution.">
+<meta property="og:url" content="https://le-syl21.github.io/WANHAO-Duplicator-9/fr/quiet.html">
+<meta property="og:image" content="https://le-syl21.github.io/WANHAO-Duplicator-9/img/og.jpg">
+<meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖨️</text></svg>">
+<link rel="stylesheet" href="../style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Rendre une Wanhao Duplicator 9 plus silencieuse : ventilateurs, thermostat, CTN et alimentation", "description": "Quels ventilateurs de la Wanhao D9 ralentir sans risque, et comment : ventilateur de carte sur thermostat bimétallique ou thermistances CTN, ventilateur de buse à laisser tel quel, ventilateur d'alimentation avec précaution.", "url": "https://le-syl21.github.io/WANHAO-Duplicator-9/fr/quiet.html", "inLanguage": "fr", "about": {"@type": "Product", "name": "Wanhao Duplicator 9", "brand": "Wanhao"}}</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="brand" href="../fr/">Wanhao <span>D9</span> firmware</a>
+<nav class="main"><a href="../fr/">Accueil</a><a href="../fr/mk1.html">MK1</a><a href="../fr/mk1u2.html">MK1 + kit MK2</a><a href="../fr/mk2.html">MK2</a><a href="../fr/mk3.html">MK3</a><a href="../fr/flash.html">Guide de flash</a><a href="../fr/screen.html">Écran</a><a href="../fr/quiet.html" aria-current="page">Silence</a></nav>
+<a class="lang" href="../quiet.html" hreflang="en"><img src="../img/gb.svg" alt="GB" width="21" height="14">English version</a>
+</div></header>
+<main><div class="wrap">
+<h1>Rendre la Duplicator 9 plus silencieuse</h1>
+<p class="lead">L'essentiel du bruit de la D9 au repos vient de ses ventilateurs, et trois des quatre tournent à fond
+dès la mise sous tension, quelle que soit la température. Voici lesquels ralentir sans risque, et comment.</p>
+<div class="note">Intervenez imprimante <strong>débranchée</strong>, et attendez quelques minutes avant d'ouvrir
+l'alimentation : ses condensateurs restent chargés. Tenez tous les fils à l'écart de la partie 230 V.</div>
+
+<h2>Les ventilateurs</h2>
+<div class="table"><table class="stack"><thead><tr><th>Ventilateur</th><th>Commandé par</th><th>Peut-on le rendre silencieux ?</th></tr></thead><tbody>
+<tr><td><strong>Ventilateur de pièce</strong> (tête)</td><td>firmware, broche D5 (PWM)</td><td>déjà variable : réglé par le slicer et <code>M106</code></td></tr>
+<tr><td><strong>Ventilateur du radiateur de buse</strong> (tête)</td><td>rien : 24 V permanent</td><td><strong>non</strong> : le ralentir laisse la chaleur remonter dans la tête et bloque le filament (heat creep)</td></tr>
+<tr><td><strong>Ventilateur de carte</strong> (boîtier)</td><td>rien : 24 V permanent</td><td>oui, voir plus bas</td></tr>
+<tr><td><strong>Ventilateur d'alimentation</strong></td><td>l'alimentation elle-même</td><td>oui, avec précaution, voir plus bas</td></tr>
+</tbody></table></div>
+<p>Le firmware de Wanhao ne pilote ni ventilateur de carte ni ventilateur de buse (<code>CONTROLLER_FAN_PIN</code> et
+<code>E0_AUTO_FAN_PIN</code> valent <code>-1</code>), et la carte n'a aucune sortie commutée libre. C'est pour ça que
+ces deux-là sont sur les connecteurs « 24V OUT » permanents, et qu'aucun firmware ne peut les ralentir.</p>
+
+<h2>Ventilateur de carte</h2>
+<p>Sur l'exemplaire mesuré ici : <strong>HZ-D 4010MS, 40 × 10 mm, 24 V, 0,10 A max, palier lisse</strong>. La carte
+chauffe peu au repos, mais ses drivers moteurs chauffent pendant les longues impressions. Un driver en surchauffe coupe
+brièvement, ce qui se voit par des <strong>décalages de couches</strong>, pas par un message d'erreur. Retirer
+complètement le ventilateur est un risque ; le faire tourner seulement quand les drivers sont chauds ne l'est pas.</p>
+
+<h3>1. Thermostat bimétallique (le plus simple)</h3>
+<p>Un interrupteur thermique KSD9700 <strong>normalement ouvert (NO)</strong>, 45 °C ou 50 °C, en série sur le fil +
+du ventilateur, collé ou vissé sur un radiateur de driver. Sous sa température le ventilateur est arrêté ; au-dessus il
+tourne à fond. Il se réarme tout seul environ 10 à 15 °C plus bas et tient 250 V / 5 A.</p>
+<pre><code>+24V ── KSD9700 NO 50 °C ── ventilateur (+)
+                            ventilateur (−) ── 0V</code></pre>
+<p>Pour que le ventilateur tourne lentement à froid au lieu de s'arrêter, ajoutez une résistance de 150 à 220 Ω, 2 W,
+en parallèle sur le thermostat.</p>
+
+<h3>2. Thermistances CTN en série (progressif)</h3>
+<p>Deux disques CTN de puissance en série font démarrer le ventilateur vers 45-50 °C, puis accélérer à mesure que les
+drivers chauffent : <strong>MF72-400D9</strong> (400 Ω) + <strong>MF72-200D9</strong> (200 Ω), collés sur un
+radiateur de driver avec de la colle thermique, pattes isolées.</p>
+<pre><code>+24V ── MF72-400D9 ── MF72-200D9 ── ventilateur (+)
+                                    ventilateur (−) ── 0V</code></pre>
+<ul>
+<li>C'est un calcul, <strong>pas encore testé sur une imprimante</strong> : les MF72 sont à ±20 %, et un petit
+ventilateur peut démarrer plus bas que prévu. Vérifiez la température de démarrage au banc (CTN dans un petit sachet
+plongé dans de l'eau chaude, avec un thermomètre de cuisine) ; ajoutez une deuxième 200 Ω s'il démarre trop tôt,
+retirez la 200 Ω s'il démarre trop tard.</li>
+<li>Les CTN doivent être collées sur un radiateur : à l'air libre, le courant du ventilateur (jusqu'à environ 0,6 W
+dans les CTN) les chauffe de plusieurs dizaines de degrés.</li>
+<li>Le ventilateur n'atteint jamais sa pleine vitesse de cette façon (environ 75 % à 80 °C), et une CTN qui claque
+s'ouvre : le ventilateur s'arrête alors définitivement. Vérifiez de temps en temps qu'il se lance quand les drivers sont
+chauds.</li>
+</ul>
+
+<h2>Ventilateur d'alimentation</h2>
+<p>La D9 utilisée pour cette page a une <strong>Chuanglian (CZCL) A-350FAK-24</strong> : 350 W, 24 V, 14,6 A, boîtier
+slim de 30 mm. Son bornier ne porte que le secteur et les sorties 24 V : il n'y a <strong>aucune commande externe du
+ventilateur</strong>, toute modification se fait donc à l'intérieur, sur le connecteur du ventilateur. Sa
+<a href="https://agelectronica.lat/pdfs/textos/A/A-350FAK-24.PDF">fiche technique</a> mentionne un ventilateur DC
+intégré et une protection contre la surchauffe en mode hoquet, mais rien sur la façon dont le ventilateur est
+commandé ; sur cet exemplaire il tourne à vitesse fixe.</p>
+<div class="note">Le plateau chauffant tire une grosse partie de ces 14,6 A, et une alimentation slim de 350 W chauffe
+vite en charge. En surchauffe, <strong>elle coupe puis redémarre, ce qui arrête l'impression</strong>. Faites démarrer
+son ventilateur tôt (vers 40 °C), ne limitez jamais sa vitesse maximale, et après toute modification faites chauffer le
+plateau à fond 30 minutes pour vérifier qu'elle ne coupe jamais.</div>
+<p>Le modèle du ventilateur interne n'est pas encore identifié ; cette section sera complétée quand il le sera.</p>
+</div></main>
+<footer class="site"><div class="wrap">
+<a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9">Sources et tickets sur GitHub</a>
+<a href="https://discord.gg/T37DYHmt2j">Discord</a>
+<span>Firmware sous GNU GPL v3. Les manuels et firmwares Wanhao restent la propriété de Wanhao.</span>
+</div></footer>
+</body>
+</html>

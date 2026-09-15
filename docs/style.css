@@ -100,4 +100,8 @@ footer.site .wrap { padding-block: 1.4rem; display: flex; flex-wrap: wrap; gap: 
   table.dl th:nth-child(2), table.dl td:nth-child(2) { display: none; }
   table.dl .btn { white-space: normal; overflow-wrap: anywhere; }
   td a { overflow-wrap: anywhere; }
+  table.stack thead { display: none; }
+  table.stack td { display: block; border-bottom: 0; padding-block: 0.2rem; }
+  table.stack td:first-child { padding-top: 0.6rem; }
+  table.stack td:last-child { padding-bottom: 0.6rem; border-bottom: 1px solid var(--line); }
 }
