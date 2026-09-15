@@ -17,8 +17,6 @@ DL = REPO + "/releases/latest/download/"
 DISCORD = "https://discord.gg/T37DYHmt2j"
 # Google Search Console ownership check for the URL-prefix property SITE.
 GOOGLE_VERIFICATION = "TqbXre6qrm9jaoj6tFwRRiI2vuQilAZLm6kUJA-etmo"
-# Bing Webmaster Tools ownership check (the token belongs to the owner's Microsoft account).
-BING_VERIFICATION = "74E158B181D9DA00960594ABC50DBA94"
 
 PAGES = ["index", "mk1", "mk1u2", "mk2", "mk3", "flash", "screen", "quiet"]
 SIZES = [("300", "300 × 300 × 400 mm"), ("400", "400 × 400 × 400 mm"), ("500", "500 × 500 × 500 mm")]
@@ -802,7 +800,6 @@ def render(page, lang):
         ld = {"@context": "https://schema.org", "@type": "WebSite", "name": "Wanhao Duplicator 9 firmware",
               "url": SITE, "inLanguage": lang, "description": description}
     verification = (f'<meta name="google-site-verification" content="{GOOGLE_VERIFICATION}">\n'
-                    f'<meta name="msvalidate.01" content="{BING_VERIFICATION}">\n'
                     if page == "index" else "")
     return f"""<!doctype html>
 <html lang="{lang}">
