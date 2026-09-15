@@ -22,11 +22,11 @@ Built from Marlin `bugfix-2.1.x` (September 2026) with the Duplicator 9 configur
 - **MK1:** the inductive probe is now read the right way round (it triggers LOW).
 - **MK3:** the Y axis is inverted, as in Wanhao's own MK3 firmware: the MK3 has its Y motor on the touchscreen side.
 - **Endstop noise filter** (`ENDSTOP_NOISE_THRESHOLD 2`): without it, a glitch on the endstop line could stop homing a few millimetres short with *Homing Failed*.
-- **Power-loss recovery** is on: after an outage during an SD print, the screen offers to resume. Turn it off with `M413 S0` then `M500`.
+- **Power-loss recovery** is on: during an SD print the job is saved on each layer change, and after an outage the screen offers to resume from the last saved layer. Turn it off with `M413 S0` then `M500`. (v2.0.0 to v2.0.3 also watched the board's power-fail input, which stopped every print at once with a false *power outage*; v2.0.4 no longer does.)
 - **Filament runout sensor** support is built in, off by default except on the MK3. Without a sensor nothing happens; once you fit one, enable it with `M412 S1` then `M500`.
 - **Wanhao's factory firmwares** are kept in `Wanhao_factory/` inside each model folder, so a machine can be put back as it left the factory. Each has an `extract.md` listing the settings read out of Wanhao's binaries and how they were read.
 - **`M503`** is available to print every setting.
-- **The screen's *Information* page shows your model, size and release**, for example *Wanhao D9 MK2 300* and *2.1.x-D9 v2.0.3*. `M115` reports the same.
+- **The screen's *Information* page shows your model, size and release**, for example *Wanhao D9 MK2 300* and *2.1.x (v2.0.4)*. `M115` reports the same.
 - **Updates keep your settings** (since v2.0.3). See *Back to this firmware's default settings* below to start from the defaults.
 - **The screen needs DGUS Reloaded 1.0.3** (`LCD/DWIN_SET.zip`). With the older 1.0.2 files, temperatures show without their decimal point (23.6 °C appears as 236).
 
@@ -133,11 +133,11 @@ Compilés depuis Marlin `bugfix-2.1.x` (septembre 2026) avec les configurations 
 - **MK1 :** la sonde inductive est maintenant lue dans le bon sens (elle se déclenche à l'état bas).
 - **MK3 :** l'axe Y est inversé, comme dans le firmware MK3 de Wanhao : la MK3 a son moteur Y du côté de l'écran tactile.
 - **Filtre anti-parasites des fins de course** (`ENDSTOP_NOISE_THRESHOLD 2`) : sans lui, un parasite sur la ligne d'un fin de course pouvait arrêter le homing quelques millimètres trop tôt avec *Homing Failed*.
-- **Reprise après coupure** active : après une coupure de courant pendant une impression depuis la carte SD, l'écran propose de reprendre. Pour la désactiver : `M413 S0` puis `M500`.
+- **Reprise après coupure** active : pendant une impression depuis la carte SD, l'avancement est enregistré à chaque changement de couche, et après une coupure l'écran propose de reprendre depuis la dernière couche enregistrée. Pour la désactiver : `M413 S0` puis `M500`. (Les v2.0.0 à v2.0.3 surveillaient aussi l'entrée de détection de coupure de la carte, qui arrêtait toute impression dès le départ avec une fausse *power outage* ; la v2.0.4 ne le fait plus.)
 - **Capteur de fin de filament** pris en charge, désactivé par défaut sauf sur la MK3. Sans capteur, rien ne se passe ; une fois un capteur installé, activez-le avec `M412 S1` puis `M500`.
 - **Les firmwares d'usine de Wanhao** sont conservés dans `Wanhao_factory/`, dans le dossier de chaque modèle, pour pouvoir remettre une machine dans son état d'origine. Chacun a un `extract.md` qui liste les réglages lus dans les binaires de Wanhao et explique comment ils ont été lus.
 - **`M503`** est disponible pour afficher tous les réglages.
-- **La page *Information* de l'écran affiche votre modèle, votre taille et la version**, par exemple *Wanhao D9 MK2 300* et *2.1.x-D9 v2.0.3*. `M115` indique la même chose.
+- **La page *Information* de l'écran affiche votre modèle, votre taille et la version**, par exemple *Wanhao D9 MK2 300* et *2.1.x (v2.0.4)*. `M115` indique la même chose.
 - **Les mises à jour conservent vos réglages** (depuis la v2.0.3). Voir *Revenir aux réglages par défaut de ce firmware* plus bas pour repartir des valeurs par défaut.
 - **L'écran doit être en DGUS Reloaded 1.0.3** (`LCD/DWIN_SET.zip`). Avec les anciens fichiers 1.0.2, les températures s'affichent sans la virgule (23,6 °C devient 236).
 

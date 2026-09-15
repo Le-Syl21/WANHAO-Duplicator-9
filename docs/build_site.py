@@ -117,7 +117,7 @@ with the changes proposed there: MK1 probe read the right way round, MK3 Y direc
 endstop noise filter.</li>
 <li><strong>Wanhao's factory settings</strong>, taken from Wanhao's own firmware and source for each model: steps/mm,
 speeds, accelerations, hotend PID, probe offsets and probing margins, homing, thermal limits, jerk and axis directions.</li>
-<li><strong>Power-loss recovery</strong>: after an outage during an SD print, the screen offers to resume.</li>
+<li><strong>Power-loss recovery</strong>: during an SD print the job is saved on each layer change, and after an outage the screen offers to resume from there.</li>
 <li><strong>Filament runout sensor</strong> support, on by default on the MK3, one command away on the others.</li>
 <li><strong>A modern touchscreen interface</strong>, <a href="{p('screen')}">DGUS Reloaded 1.0.3</a>.</li>
 </ul>
@@ -172,7 +172,7 @@ avec les changements proposés là-bas : capteur MK1 lu dans le bon sens, sens Y
 filtre anti-parasites des fins de course.</li>
 <li><strong>Les réglages d'usine de Wanhao</strong>, tirés du firmware et des sources Wanhao de chaque modèle : pas/mm,
 vitesses, accélérations, PID de la buse, décalages et marges de palpage, homing, limites thermiques, jerk et sens des axes.</li>
-<li><strong>Reprise après coupure de courant</strong> : après une coupure pendant une impression depuis la carte SD, l'écran propose de reprendre.</li>
+<li><strong>Reprise après coupure de courant</strong> : pendant une impression depuis la carte SD, l'avancement est enregistré à chaque couche, et après une coupure l'écran propose de reprendre à partir de là.</li>
 <li><strong>Capteur de fin de filament</strong> géré, actif par défaut sur la MK3, activable d'une commande sur les autres.</li>
 <li><strong>Une interface d'écran moderne</strong>, <a href="{p('screen')}">DGUS Reloaded 1.0.3</a>.</li>
 </ul>
@@ -502,7 +502,8 @@ result with <code>M503</code>.</p>
 
 <h2>Power loss and filament sensor</h2>
 <ul>
-<li>Power-loss recovery is on. Turn it off with <code>M413 S0</code> then <code>M500</code>.</li>
+<li>Power-loss recovery is on: the job is saved on each layer change. Turn it off with <code>M413 S0</code> then <code>M500</code>.</li>
+<li>A print that stops at once with <em>power outage</em> as soon as it heats: update to v2.0.4 or later. Earlier builds watched the board's power-fail input, which reads low as soon as the heaters start.</li>
 <li>The filament runout sensor is on by default on the MK3 only. Once a sensor is fitted on another model: <code>M412 S1</code> then <code>M500</code>.</li>
 </ul>
 
@@ -583,7 +584,8 @@ nivellement. Vérifiez le résultat avec <code>M503</code>.</p>
 
 <h2>Coupure de courant et capteur de filament</h2>
 <ul>
-<li>La reprise après coupure est active. Pour la désactiver : <code>M413 S0</code> puis <code>M500</code>.</li>
+<li>La reprise après coupure est active : l'avancement est enregistré à chaque couche. Pour la désactiver : <code>M413 S0</code> puis <code>M500</code>.</li>
+<li>Une impression qui s'arrête dès la chauffe avec <em>power outage</em> : mettez à jour vers la v2.0.4 ou plus récente. Les versions précédentes surveillaient l'entrée de détection de coupure de la carte, qui passe à l'état bas dès que les chauffes démarrent.</li>
 <li>Le capteur de fin de filament n'est actif par défaut que sur la MK3. Une fois un capteur monté sur un autre modèle : <code>M412 S1</code> puis <code>M500</code>.</li>
 </ul>
 
