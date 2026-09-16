@@ -68,7 +68,7 @@ and the <strong>motion</strong> signal to <strong>D9</strong>. The names printed
 <pre><code>M412 S1 L10
 M500</code></pre>
 <p><code>L10</code> is the jam length: the print pauses when 10 mm of filament go through the extruder without the
-wheel moving. Raise it (<code>M412 L15</code> then <code>M500</code>) if prints pause without a reason.</p>
+wheel moving. Raise it (<code>M412 S1 L15</code> then <code>M500</code>; <code>L</code> alone is ignored) if prints pause without a reason.</p>
 <h3>Checking it</h3>
 <ul>
 <li><code>M412</code> prints the state: <em>Filament runout ON ; Distance 5.00mm ; Motion distance 10.00mm</em>.</li>
@@ -78,11 +78,17 @@ through by hand instead of when you insert or remove it, the two signal wires ar
 <div class="note">Support for this sensor is new in v2.0.5 and not tested with the sensor yet. If the switch reads the
 wrong way round (<em>open</em> with filament loaded), tell us on <a href="https://discord.gg/T37DYHmt2j">Discord</a>.</div>
 
-<h2>Why the jam length is 100 m by default</h2>
-<p>With no BTT sensor on D9, that pin never changes, which the firmware would read as "the filament is not moving".
-A runout switch alone, or no sensor at all, would then pause every print a few millimetres in. The default jam length
-is therefore 100 m, which in practice never triggers, and <code>M412 L10</code> sets the real one once a BTT sensor is
-wired. Settings saved by v2.0.4 or earlier hold neither length: these builds load the defaults (5 mm and 100 m) instead.</p>
+<h2>Why the jam length is 10 km by default</h2>
+<p><code>M412 S1</code> turns the runout switch and the motion check on together: Marlin has one setting for both.
+With no BTT sensor on D9, that pin never changes, which the firmware reads as "the filament is not moving". A runout
+switch alone would then pause prints for nothing, and the MK3, whose switch is on by default, on every print. The
+count only starts again when the printer is switched on or after a filament change started by the firmware
+(<code>M600</code>), not at each print, and not when you load a spool from the screen.</p>
+<p>The default jam length is therefore 10 km, about 30 kg of PLA without switching the printer off, which in practice
+never triggers. <code>M412 S1 L10</code> sets the real one once a BTT sensor is wired.</p>
+<p>v2.0.5 used 100 m, about a third of a 1 kg spool: on the MK3, or with any runout switch turned on, a printer left on
+could pause for nothing after that. Update to v2.0.6: settings saved with a jam length of 100 m or more, and the zero
+lengths saved by v2.0.4 or earlier, are replaced by the defaults (5 mm and 10 km) when the printer starts.</p>
 </div></main>
 <footer class="site"><div class="wrap">
 <a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9">Source and issues on GitHub</a>
