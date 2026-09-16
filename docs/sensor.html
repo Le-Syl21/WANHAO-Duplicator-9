@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Filament sensors on the Wanhao Duplicator 9: runout switch and BTT Smart Filament Sensor wiring</title>
+<meta name="description" content="Where to plug a filament sensor on the Wanhao D9 main board (D8, D9, GND, 5V), how to wire a BTT Smart Filament Sensor V2.0 and turn runout and jam detection on with M412.">
+<link rel="canonical" href="https://le-syl21.github.io/WANHAO-Duplicator-9/sensor.html">
+<link rel="alternate" hreflang="en" href="https://le-syl21.github.io/WANHAO-Duplicator-9/sensor.html">
+<link rel="alternate" hreflang="fr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/fr/sensor.html">
+<link rel="alternate" hreflang="x-default" href="https://le-syl21.github.io/WANHAO-Duplicator-9/sensor.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Filament sensors on the Wanhao Duplicator 9: runout switch and BTT Smart Filament Sensor wiring">
+<meta property="og:description" content="Where to plug a filament sensor on the Wanhao D9 main board (D8, D9, GND, 5V), how to wire a BTT Smart Filament Sensor V2.0 and turn runout and jam detection on with M412.">
+<meta property="og:url" content="https://le-syl21.github.io/WANHAO-Duplicator-9/sensor.html">
+<meta property="og:image" content="https://le-syl21.github.io/WANHAO-Duplicator-9/img/og.jpg">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖨️</text></svg>">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Filament sensors on the Wanhao Duplicator 9: runout switch and BTT Smart Filament Sensor wiring", "description": "Where to plug a filament sensor on the Wanhao D9 main board (D8, D9, GND, 5V), how to wire a BTT Smart Filament Sensor V2.0 and turn runout and jam detection on with M412.", "url": "https://le-syl21.github.io/WANHAO-Duplicator-9/sensor.html", "inLanguage": "en", "about": {"@type": "Product", "name": "Wanhao Duplicator 9", "brand": "Wanhao"}}</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="brand" href="./">Wanhao <span>D9</span> firmware</a>
+<nav class="main"><a href="./">Home</a><a href="mk1.html">MK1</a><a href="mk1u2.html">MK1 + MK2 kit</a><a href="mk2.html">MK2</a><a href="mk3.html">MK3</a><a href="flash.html">Flash guide</a><a href="screen.html">Screen</a><a href="sensor.html" aria-current="page">Filament sensor</a><a href="quiet.html">Quieter</a></nav>
+<a class="lang" href="fr/sensor.html" hreflang="fr"><img src="img/fr.svg" alt="FR" width="21" height="14">Version française</a>
+</div></header>
+<main><div class="wrap">
+<h1>Filament sensors</h1>
+<p class="lead">From v2.0.5 these firmwares read two kinds of sensor: Wanhao's runout switch, and the
+BTT Smart Filament Sensor V2.0, which also notices when the filament stops moving (tangled spool, jam, stripped
+filament). Detection is off until you turn it on, except for the runout switch on the MK3.</p>
+
+<h2>The sensor plug</h2>
+<figure><img src="img/d9-sensor-plug-en.svg" width="760" height="440" alt="Wanhao D9 main board: the 4-pin sensor plug left of POWER-DET, pins D9, D8, GND and 5V, wired to a BTT Smart Filament Sensor V2.0"></figure>
+<p>The 4-pin plug to the left of <strong>POWER-DET</strong>, below the endstop plugs, carries <strong>D9, D8, GND and 5V</strong>,
+in that order. The pin names come from a wiring diagram by Wanhao that dustovich found and shared on the
+<a href="https://discord.gg/T37DYHmt2j">Discord</a>; the back of the board prints the same four pins as CTRL, BTN, GND and VCC.</p>
+<ul>
+<li><strong>D8</strong> is the runout input Wanhao's own firmware reads.</li>
+<li><strong>D9</strong> is not used by Wanhao's firmware: these builds read the BTT sensor's motion signal on it.</li>
+</ul>
+<div class="note">Printer <strong>switched off</strong> while you plug or unplug anything on the board.</div>
+
+<h2>Wanhao's runout switch</h2>
+<p>It tells the firmware whether filament is there. When it goes missing, the print pauses after 5 more mm of
+filament and the screen starts a filament change.</p>
+<ul>
+<li>Turn it on: <code>M412 S1</code> then <code>M500</code>. Off: <code>M412 S0</code> then <code>M500</code>.</li>
+<li>Check it: send <code>M119</code>. The <em>filament</em> line reads <code>TRIGGERED</code> with filament loaded and
+<code>open</code> without.</li>
+</ul>
+
+<h2>BTT Smart Filament Sensor V2.0</h2>
+<p>This sensor has two outputs, and the firmware reads them differently:</p>
+<ul>
+<li><strong>The runout switch</strong> (to D8) is a level: 5 V while filament is there, 0 V once it has gone.</li>
+<li><strong>The motion output</strong> (to D9) comes from a small wheel the filament turns as it passes. Each few
+millimetres of filament, the output flips between 0 V and 5 V. The firmware only watches for those changes: if the
+extruder pushes a set length of filament without a single one, the filament is not following, and the print pauses.
+The runout switch cannot see that: during a jam the filament is still there.</li>
+</ul>
+<h3>Wiring</h3>
+<p><strong>5V</strong> to 5V, <strong>GND</strong> to GND, the <strong>runout switch</strong> signal to <strong>D8</strong>
+and the <strong>motion</strong> signal to <strong>D9</strong>. The names printed on the sensor's cable may differ.</p>
+<h3>Turning it on</h3>
+<pre><code>M412 S1 L10
+M500</code></pre>
+<p><code>L10</code> is the jam length: the print pauses when 10 mm of filament go through the extruder without the
+wheel moving. Raise it (<code>M412 L15</code> then <code>M500</code>) if prints pause without a reason.</p>
+<h3>Checking it</h3>
+<ul>
+<li><code>M412</code> prints the state: <em>Filament runout ON ; Distance 5.00mm ; Motion distance 10.00mm</em>.</li>
+<li><code>M119</code> with filament loaded: <em>filament: TRIGGERED</em>. If that line changes while you push filament
+through by hand instead of when you insert or remove it, the two signal wires are swapped: swap D8 and D9.</li>
+</ul>
+<div class="note">Support for this sensor is new in v2.0.5 and not tested with the sensor yet. If the switch reads the
+wrong way round (<em>open</em> with filament loaded), tell us on <a href="https://discord.gg/T37DYHmt2j">Discord</a>.</div>
+
+<h2>Why the jam length is 100 m by default</h2>
+<p>With no BTT sensor on D9, that pin never changes, which the firmware would read as "the filament is not moving".
+A runout switch alone, or no sensor at all, would then pause every print a few millimetres in. The default jam length
+is therefore 100 m, which in practice never triggers, and <code>M412 L10</code> sets the real one once a BTT sensor is
+wired. Settings saved by v2.0.4 or earlier hold neither length: these builds load the defaults (5 mm and 100 m) instead.</p>
+</div></main>
+<footer class="site"><div class="wrap">
+<a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9">Source and issues on GitHub</a>
+<a href="https://discord.gg/T37DYHmt2j">Discord</a>
+<span>Firmware under GNU GPL v3. Wanhao's manuals and firmwares remain Wanhao's.</span>
+</div></footer>
+</body>
+</html>

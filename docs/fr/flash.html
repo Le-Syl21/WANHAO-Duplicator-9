@@ -23,7 +23,7 @@
 <body>
 <header class="site"><div class="wrap">
 <a class="brand" href="../fr/">Wanhao <span>D9</span> firmware</a>
-<nav class="main"><a href="../fr/">Accueil</a><a href="../fr/mk1.html">MK1</a><a href="../fr/mk1u2.html">MK1 + kit MK2</a><a href="../fr/mk2.html">MK2</a><a href="../fr/mk3.html">MK3</a><a href="../fr/flash.html" aria-current="page">Guide de flash</a><a href="../fr/screen.html">Écran</a><a href="../fr/quiet.html">Silence</a></nav>
+<nav class="main"><a href="../fr/">Accueil</a><a href="../fr/mk1.html">MK1</a><a href="../fr/mk1u2.html">MK1 + kit MK2</a><a href="../fr/mk2.html">MK2</a><a href="../fr/mk3.html">MK3</a><a href="../fr/flash.html" aria-current="page">Guide de flash</a><a href="../fr/screen.html">Écran</a><a href="../fr/sensor.html">Capteur filament</a><a href="../fr/quiet.html">Silence</a></nav>
 <a class="lang" href="../flash.html" hreflang="en"><img src="../img/gb.svg" alt="GB" width="21" height="14">English version</a>
 </div></header>
 <main><div class="wrap">
@@ -86,7 +86,7 @@ nivellement. Vérifiez le résultat avec <code>M503</code>.</p>
 <ul>
 <li>La reprise après coupure est active : l'avancement est enregistré à chaque couche. Pour la désactiver : <code>M413 S0</code> puis <code>M500</code>.</li>
 <li>Une impression qui s'arrête dès la chauffe avec <em>power outage</em> : mettez à jour vers la v2.0.4 ou plus récente. Les versions précédentes surveillaient l'entrée de détection de coupure de la carte, qui passe à l'état bas dès que les chauffes démarrent.</li>
-<li>Le capteur de fin de filament n'est actif par défaut que sur la MK3. Une fois un capteur monté sur un autre modèle : <code>M412 S1</code> puis <code>M500</code>.</li>
+<li>Le capteur de fin de filament n'est actif par défaut que sur la MK3. Une fois un capteur monté sur un autre modèle : <code>M412 S1</code> puis <code>M500</code>. Branchement et BTT Smart Filament Sensor : <a href="../fr/sensor.html">Capteur filament</a>.</li>
 </ul>
 
 <h2>Dépannage</h2>

@@ -23,7 +23,7 @@
 <body>
 <header class="site"><div class="wrap">
 <a class="brand" href="./">Wanhao <span>D9</span> firmware</a>
-<nav class="main"><a href="./">Home</a><a href="mk1.html">MK1</a><a href="mk1u2.html">MK1 + MK2 kit</a><a href="mk2.html">MK2</a><a href="mk3.html">MK3</a><a href="flash.html" aria-current="page">Flash guide</a><a href="screen.html">Screen</a><a href="quiet.html">Quieter</a></nav>
+<nav class="main"><a href="./">Home</a><a href="mk1.html">MK1</a><a href="mk1u2.html">MK1 + MK2 kit</a><a href="mk2.html">MK2</a><a href="mk3.html">MK3</a><a href="flash.html" aria-current="page">Flash guide</a><a href="screen.html">Screen</a><a href="sensor.html">Filament sensor</a><a href="quiet.html">Quieter</a></nav>
 <a class="lang" href="fr/flash.html" hreflang="fr"><img src="img/fr.svg" alt="FR" width="21" height="14">Version française</a>
 </div></header>
 <main><div class="wrap">
@@ -85,7 +85,7 @@ result with <code>M503</code>.</p>
 <ul>
 <li>Power-loss recovery is on: the job is saved on each layer change. Turn it off with <code>M413 S0</code> then <code>M500</code>.</li>
 <li>A print that stops at once with <em>power outage</em> as soon as it heats: update to v2.0.4 or later. Earlier builds watched the board's power-fail input, which reads low as soon as the heaters start.</li>
-<li>The filament runout sensor is on by default on the MK3 only. Once a sensor is fitted on another model: <code>M412 S1</code> then <code>M500</code>.</li>
+<li>The filament runout sensor is on by default on the MK3 only. Once a sensor is fitted on another model: <code>M412 S1</code> then <code>M500</code>. Wiring and the BTT Smart Filament Sensor: <a href="sensor.html">Filament sensor</a>.</li>
 </ul>
 
 <h2>Troubleshooting</h2>

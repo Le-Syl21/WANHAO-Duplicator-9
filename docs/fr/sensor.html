@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Capteurs de filament de la Wanhao Duplicator 9 : fin de filament et branchement du BTT Smart Filament Sensor</title>
+<meta name="description" content="Où brancher un capteur de filament sur la carte mère Wanhao D9 (D8, D9, GND, 5V), comment câbler un BTT Smart Filament Sensor V2.0 et activer la détection de fin de filament et de bourrage avec M412.">
+<link rel="canonical" href="https://le-syl21.github.io/WANHAO-Duplicator-9/fr/sensor.html">
+<link rel="alternate" hreflang="en" href="https://le-syl21.github.io/WANHAO-Duplicator-9/sensor.html">
+<link rel="alternate" hreflang="fr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/fr/sensor.html">
+<link rel="alternate" hreflang="x-default" href="https://le-syl21.github.io/WANHAO-Duplicator-9/sensor.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Capteurs de filament de la Wanhao Duplicator 9 : fin de filament et branchement du BTT Smart Filament Sensor">
+<meta property="og:description" content="Où brancher un capteur de filament sur la carte mère Wanhao D9 (D8, D9, GND, 5V), comment câbler un BTT Smart Filament Sensor V2.0 et activer la détection de fin de filament et de bourrage avec M412.">
+<meta property="og:url" content="https://le-syl21.github.io/WANHAO-Duplicator-9/fr/sensor.html">
+<meta property="og:image" content="https://le-syl21.github.io/WANHAO-Duplicator-9/img/og.jpg">
+<meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖨️</text></svg>">
+<link rel="stylesheet" href="../style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Capteurs de filament de la Wanhao Duplicator 9 : fin de filament et branchement du BTT Smart Filament Sensor", "description": "Où brancher un capteur de filament sur la carte mère Wanhao D9 (D8, D9, GND, 5V), comment câbler un BTT Smart Filament Sensor V2.0 et activer la détection de fin de filament et de bourrage avec M412.", "url": "https://le-syl21.github.io/WANHAO-Duplicator-9/fr/sensor.html", "inLanguage": "fr", "about": {"@type": "Product", "name": "Wanhao Duplicator 9", "brand": "Wanhao"}}</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="brand" href="../fr/">Wanhao <span>D9</span> firmware</a>
+<nav class="main"><a href="../fr/">Accueil</a><a href="../fr/mk1.html">MK1</a><a href="../fr/mk1u2.html">MK1 + kit MK2</a><a href="../fr/mk2.html">MK2</a><a href="../fr/mk3.html">MK3</a><a href="../fr/flash.html">Guide de flash</a><a href="../fr/screen.html">Écran</a><a href="../fr/sensor.html" aria-current="page">Capteur filament</a><a href="../fr/quiet.html">Silence</a></nav>
+<a class="lang" href="../sensor.html" hreflang="en"><img src="../img/gb.svg" alt="GB" width="21" height="14">English version</a>
+</div></header>
+<main><div class="wrap">
+<h1>Capteurs de filament</h1>
+<p class="lead">Depuis la v2.0.5, ces firmwares lisent deux types de capteur : le détecteur de fin de filament Wanhao,
+et le BTT Smart Filament Sensor V2.0, qui remarque aussi quand le filament n'avance plus (bobine emmêlée, bourrage,
+filament rongé). La détection reste désactivée tant que vous ne l'activez pas, sauf le détecteur de fin de filament
+de la MK3.</p>
+
+<h2>La prise capteur</h2>
+<figure><img src="../img/d9-sensor-plug-fr.svg" width="760" height="440" alt="Carte mère Wanhao D9 : la prise capteur 4 broches à gauche de POWER-DET, broches D9, D8, GND et 5V, câblée vers un BTT Smart Filament Sensor V2.0"></figure>
+<p>La prise 4 broches à gauche de <strong>POWER-DET</strong>, sous les prises des fins de course, porte
+<strong>D9, D8, GND et 5V</strong>, dans cet ordre. Les noms des broches viennent d'un schéma de câblage Wanhao que
+dustovich a retrouvé et partagé sur le <a href="https://discord.gg/T37DYHmt2j">Discord</a> ; le dos de la carte marque les quatre mêmes
+broches CTRL, BTN, GND et VCC.</p>
+<ul>
+<li><strong>D8</strong> est l'entrée de fin de filament que lit le firmware Wanhao.</li>
+<li><strong>D9</strong> n'est pas utilisée par le firmware Wanhao : ces firmwares y lisent le signal de mouvement du capteur BTT.</li>
+</ul>
+<div class="note">Imprimante <strong>éteinte</strong> pour brancher ou débrancher quoi que ce soit sur la carte.</div>
+
+<h2>Le détecteur de fin de filament Wanhao</h2>
+<p>Il indique au firmware si le filament est là. Quand il manque, l'impression se met en pause 5 mm de filament plus
+loin et l'écran lance un changement de filament.</p>
+<ul>
+<li>L'activer : <code>M412 S1</code> puis <code>M500</code>. Le désactiver : <code>M412 S0</code> puis <code>M500</code>.</li>
+<li>Le vérifier : envoyez <code>M119</code>. La ligne <em>filament</em> affiche <code>TRIGGERED</code> avec du
+filament et <code>open</code> sans.</li>
+</ul>
+
+<h2>BTT Smart Filament Sensor V2.0</h2>
+<p>Ce capteur a deux sorties, que le firmware lit différemment :</p>
+<ul>
+<li><strong>Le détecteur de fin de filament</strong> (vers D8) donne un niveau : 5 V tant que le filament est là, 0 V
+quand il n'y en a plus.</li>
+<li><strong>La sortie mouvement</strong> (vers D9) vient d'une petite roue que le filament fait tourner en passant.
+Tous les quelques millimètres de filament, la sortie bascule entre 0 V et 5 V. Le firmware ne regarde que ces
+changements : si l'extrudeur pousse une longueur donnée de filament sans un seul changement, le filament ne suit pas,
+et l'impression se met en pause. Le détecteur de fin de filament ne peut pas le voir : pendant un bourrage, le filament
+est toujours là.</li>
+</ul>
+<h3>Branchement</h3>
+<p><strong>5V</strong> sur 5V, <strong>GND</strong> sur GND, le signal de <strong>fin de filament</strong> sur
+<strong>D8</strong> et le signal de <strong>mouvement</strong> sur <strong>D9</strong>. Les noms imprimés sur le câble
+du capteur peuvent être différents.</p>
+<h3>L'activer</h3>
+<pre><code>M412 S1 L10
+M500</code></pre>
+<p><code>L10</code> est la longueur de bourrage : l'impression se met en pause quand 10 mm de filament passent dans
+l'extrudeur sans que la roue bouge. Augmentez-la (<code>M412 L15</code> puis <code>M500</code>) si des impressions se
+mettent en pause sans raison.</p>
+<h3>Le vérifier</h3>
+<ul>
+<li><code>M412</code> affiche l'état : <em>Filament runout ON ; Distance 5.00mm ; Motion distance 10.00mm</em>.</li>
+<li><code>M119</code> avec du filament : <em>filament: TRIGGERED</em>. Si cette ligne change quand vous poussez le
+filament à la main plutôt que quand vous l'insérez ou le retirez, les deux fils de signal sont inversés : échangez D8
+et D9.</li>
+</ul>
+<div class="note">La prise en charge de ce capteur est nouvelle en v2.0.5 et n'a pas encore été testée avec le capteur.
+Si le détecteur est lu à l'envers (<em>open</em> avec du filament), dites-le sur <a href="https://discord.gg/T37DYHmt2j">Discord</a>.</div>
+
+<h2>Pourquoi la longueur de bourrage vaut 100 m par défaut</h2>
+<p>Sans capteur BTT sur D9, cette broche ne change jamais, ce que le firmware lirait comme « le filament n'avance
+pas ». Un simple détecteur de fin de filament, ou pas de capteur du tout, mettrait alors chaque impression en pause au
+bout de quelques millimètres. La longueur de bourrage par défaut est donc de 100 m, ce qui ne se déclenche jamais en
+pratique, et <code>M412 L10</code> règle la vraie une fois le capteur BTT branché. Les réglages enregistrés par la
+v2.0.4 ou avant ne contiennent aucune de ces deux longueurs : ces firmwares chargent les valeurs par défaut (5 mm et 100 m) à la place.</p>
+</div></main>
+<footer class="site"><div class="wrap">
+<a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9">Sources et tickets sur GitHub</a>
+<a href="https://discord.gg/T37DYHmt2j">Discord</a>
+<span>Firmware sous GNU GPL v3. Les manuels et firmwares Wanhao restent la propriété de Wanhao.</span>
+</div></footer>
+</body>
+</html>

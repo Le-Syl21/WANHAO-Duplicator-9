@@ -18,13 +18,13 @@ DISCORD = "https://discord.gg/T37DYHmt2j"
 # Google Search Console ownership check for the URL-prefix property SITE.
 GOOGLE_VERIFICATION = "TqbXre6qrm9jaoj6tFwRRiI2vuQilAZLm6kUJA-etmo"
 
-PAGES = ["index", "mk1", "mk1u2", "mk2", "mk3", "flash", "screen", "quiet"]
+PAGES = ["index", "mk1", "mk1u2", "mk2", "mk3", "flash", "screen", "sensor", "quiet"]
 SIZES = [("300", "300 × 300 × 400 mm"), ("400", "400 × 400 × 400 mm"), ("500", "500 × 500 × 500 mm")]
 
 UI = {
     "en": {
         "nav": {"index": "Home", "mk1": "MK1", "mk1u2": "MK1 + MK2 kit", "mk2": "MK2", "mk3": "MK3",
-                "flash": "Flash guide", "screen": "Screen", "quiet": "Quieter"},
+                "flash": "Flash guide", "screen": "Screen", "sensor": "Filament sensor", "quiet": "Quieter"},
         "other": ("fr", "Version française", "FR"),
         "size": "Size", "volume": "Build volume", "file": "Firmware",
         "footer_src": "Source and issues on GitHub", "footer_chat": "Discord",
@@ -32,7 +32,7 @@ UI = {
     },
     "fr": {
         "nav": {"index": "Accueil", "mk1": "MK1", "mk1u2": "MK1 + kit MK2", "mk2": "MK2", "mk3": "MK3",
-                "flash": "Guide de flash", "screen": "Écran", "quiet": "Silence"},
+                "flash": "Guide de flash", "screen": "Écran", "sensor": "Capteur filament", "quiet": "Silence"},
         "other": ("en", "English version", "GB"),
         "size": "Taille", "volume": "Volume d'impression", "file": "Firmware",
         "footer_src": "Sources et tickets sur GitHub", "footer_chat": "Discord",
@@ -118,7 +118,8 @@ endstop noise filter.</li>
 <li><strong>Wanhao's factory settings</strong>, taken from Wanhao's own firmware and source for each model: steps/mm,
 speeds, accelerations, hotend PID, probe offsets and probing margins, homing, thermal limits, jerk and axis directions.</li>
 <li><strong>Power-loss recovery</strong>: during an SD print the job is saved on each layer change, and after an outage the screen offers to resume from there.</li>
-<li><strong>Filament runout sensor</strong> support, on by default on the MK3, one command away on the others.</li>
+<li><strong>Filament sensors</strong>: Wanhao's runout switch, on by default on the MK3, and the BTT Smart Filament Sensor V2.0, which also catches jams. See <a href="{p('sensor')}">Filament sensor</a>.</li>
+<li><strong>The head returns to the centre after a bed levelling</strong>, so the bed no longer hides the screen.</li>
 <li><strong>A modern touchscreen interface</strong>, <a href="{p('screen')}">DGUS Reloaded 1.0.3</a>.</li>
 </ul>
 
@@ -173,7 +174,8 @@ filtre anti-parasites des fins de course.</li>
 <li><strong>Les réglages d'usine de Wanhao</strong>, tirés du firmware et des sources Wanhao de chaque modèle : pas/mm,
 vitesses, accélérations, PID de la buse, décalages et marges de palpage, homing, limites thermiques, jerk et sens des axes.</li>
 <li><strong>Reprise après coupure de courant</strong> : pendant une impression depuis la carte SD, l'avancement est enregistré à chaque couche, et après une coupure l'écran propose de reprendre à partir de là.</li>
-<li><strong>Capteur de fin de filament</strong> géré, actif par défaut sur la MK3, activable d'une commande sur les autres.</li>
+<li><strong>Capteurs de filament</strong> : le détecteur de fin de filament Wanhao, actif par défaut sur la MK3, et le BTT Smart Filament Sensor V2.0, qui détecte aussi les bourrages. Voir <a href="{p('sensor')}">Capteur filament</a>.</li>
+<li><strong>La tête revient au centre après un nivellement</strong> : le plateau ne cache plus l'écran.</li>
 <li><strong>Une interface d'écran moderne</strong>, <a href="{p('screen')}">DGUS Reloaded 1.0.3</a>.</li>
 </ul>
 
@@ -504,7 +506,7 @@ result with <code>M503</code>.</p>
 <ul>
 <li>Power-loss recovery is on: the job is saved on each layer change. Turn it off with <code>M413 S0</code> then <code>M500</code>.</li>
 <li>A print that stops at once with <em>power outage</em> as soon as it heats: update to v2.0.4 or later. Earlier builds watched the board's power-fail input, which reads low as soon as the heaters start.</li>
-<li>The filament runout sensor is on by default on the MK3 only. Once a sensor is fitted on another model: <code>M412 S1</code> then <code>M500</code>.</li>
+<li>The filament runout sensor is on by default on the MK3 only. Once a sensor is fitted on another model: <code>M412 S1</code> then <code>M500</code>. Wiring and the BTT Smart Filament Sensor: <a href="{p('sensor')}">Filament sensor</a>.</li>
 </ul>
 
 <h2>Troubleshooting</h2>
@@ -586,7 +588,7 @@ nivellement. Vérifiez le résultat avec <code>M503</code>.</p>
 <ul>
 <li>La reprise après coupure est active : l'avancement est enregistré à chaque couche. Pour la désactiver : <code>M413 S0</code> puis <code>M500</code>.</li>
 <li>Une impression qui s'arrête dès la chauffe avec <em>power outage</em> : mettez à jour vers la v2.0.4 ou plus récente. Les versions précédentes surveillaient l'entrée de détection de coupure de la carte, qui passe à l'état bas dès que les chauffes démarrent.</li>
-<li>Le capteur de fin de filament n'est actif par défaut que sur la MK3. Une fois un capteur monté sur un autre modèle : <code>M412 S1</code> puis <code>M500</code>.</li>
+<li>Le capteur de fin de filament n'est actif par défaut que sur la MK3. Une fois un capteur monté sur un autre modèle : <code>M412 S1</code> puis <code>M500</code>. Branchement et BTT Smart Filament Sensor : <a href="{p('sensor')}">Capteur filament</a>.</li>
 </ul>
 
 <h2>Dépannage</h2>
@@ -694,6 +696,138 @@ normalement, 1 à 3 minutes en tout.</li>
 la version correspondante sur la <a href="{p('mk1')}">page MK1</a>. MK1 + kit, MK2 et MK3 :
 <a href="{RAW}MK2/Wanhao_factory/DWIN_SET_MK2.zip">DWIN_SET_MK2.zip</a>. Même procédure.</p>
 """)
+    if page == "sensor":
+        if en:
+            return ("Filament sensors on the Wanhao Duplicator 9: runout switch and BTT Smart Filament Sensor wiring",
+                    "Where to plug a filament sensor on the Wanhao D9 main board (D8, D9, GND, 5V), how to wire a BTT Smart "
+                    "Filament Sensor V2.0 and turn runout and jam detection on with M412.",
+                    f"""
+<h1>Filament sensors</h1>
+<p class="lead">From v2.0.5 these firmwares read two kinds of sensor: Wanhao's runout switch, and the
+BTT Smart Filament Sensor V2.0, which also notices when the filament stops moving (tangled spool, jam, stripped
+filament). Detection is off until you turn it on, except for the runout switch on the MK3.</p>
+
+<h2>The sensor plug</h2>
+<figure><img src="{img}d9-sensor-plug-en.svg" width="760" height="440" alt="Wanhao D9 main board: the 4-pin sensor plug left of POWER-DET, pins D9, D8, GND and 5V, wired to a BTT Smart Filament Sensor V2.0"></figure>
+<p>The 4-pin plug to the left of <strong>POWER-DET</strong>, below the endstop plugs, carries <strong>D9, D8, GND and 5V</strong>,
+in that order. The pin names come from a wiring diagram by Wanhao that dustovich found and shared on the
+<a href="{DISCORD}">Discord</a>; the back of the board prints the same four pins as CTRL, BTN, GND and VCC.</p>
+<ul>
+<li><strong>D8</strong> is the runout input Wanhao's own firmware reads.</li>
+<li><strong>D9</strong> is not used by Wanhao's firmware: these builds read the BTT sensor's motion signal on it.</li>
+</ul>
+<div class="note">Printer <strong>switched off</strong> while you plug or unplug anything on the board.</div>
+
+<h2>Wanhao's runout switch</h2>
+<p>It tells the firmware whether filament is there. When it goes missing, the print pauses after 5 more mm of
+filament and the screen starts a filament change.</p>
+<ul>
+<li>Turn it on: <code>M412 S1</code> then <code>M500</code>. Off: <code>M412 S0</code> then <code>M500</code>.</li>
+<li>Check it: send <code>M119</code>. The <em>filament</em> line reads <code>TRIGGERED</code> with filament loaded and
+<code>open</code> without.</li>
+</ul>
+
+<h2>BTT Smart Filament Sensor V2.0</h2>
+<p>This sensor has two outputs, and the firmware reads them differently:</p>
+<ul>
+<li><strong>The runout switch</strong> (to D8) is a level: 5 V while filament is there, 0 V once it has gone.</li>
+<li><strong>The motion output</strong> (to D9) comes from a small wheel the filament turns as it passes. Each few
+millimetres of filament, the output flips between 0 V and 5 V. The firmware only watches for those changes: if the
+extruder pushes a set length of filament without a single one, the filament is not following, and the print pauses.
+The runout switch cannot see that: during a jam the filament is still there.</li>
+</ul>
+<h3>Wiring</h3>
+<p><strong>5V</strong> to 5V, <strong>GND</strong> to GND, the <strong>runout switch</strong> signal to <strong>D8</strong>
+and the <strong>motion</strong> signal to <strong>D9</strong>. The names printed on the sensor's cable may differ.</p>
+<h3>Turning it on</h3>
+<pre><code>M412 S1 L10
+M500</code></pre>
+<p><code>L10</code> is the jam length: the print pauses when 10 mm of filament go through the extruder without the
+wheel moving. Raise it (<code>M412 L15</code> then <code>M500</code>) if prints pause without a reason.</p>
+<h3>Checking it</h3>
+<ul>
+<li><code>M412</code> prints the state: <em>Filament runout ON ; Distance 5.00mm ; Motion distance 10.00mm</em>.</li>
+<li><code>M119</code> with filament loaded: <em>filament: TRIGGERED</em>. If that line changes while you push filament
+through by hand instead of when you insert or remove it, the two signal wires are swapped: swap D8 and D9.</li>
+</ul>
+<div class="note">Support for this sensor is new in v2.0.5 and not tested with the sensor yet. If the switch reads the
+wrong way round (<em>open</em> with filament loaded), tell us on <a href="{DISCORD}">Discord</a>.</div>
+
+<h2>Why the jam length is 100 m by default</h2>
+<p>With no BTT sensor on D9, that pin never changes, which the firmware would read as "the filament is not moving".
+A runout switch alone, or no sensor at all, would then pause every print a few millimetres in. The default jam length
+is therefore 100 m, which in practice never triggers, and <code>M412 L10</code> sets the real one once a BTT sensor is
+wired. Settings saved by v2.0.4 or earlier hold neither length: these builds load the defaults (5 mm and 100 m) instead.</p>
+""")
+        return ("Capteurs de filament de la Wanhao Duplicator 9 : fin de filament et branchement du BTT Smart Filament Sensor",
+                "Où brancher un capteur de filament sur la carte mère Wanhao D9 (D8, D9, GND, 5V), comment câbler un BTT Smart "
+                "Filament Sensor V2.0 et activer la détection de fin de filament et de bourrage avec M412.",
+                f"""
+<h1>Capteurs de filament</h1>
+<p class="lead">Depuis la v2.0.5, ces firmwares lisent deux types de capteur : le détecteur de fin de filament Wanhao,
+et le BTT Smart Filament Sensor V2.0, qui remarque aussi quand le filament n'avance plus (bobine emmêlée, bourrage,
+filament rongé). La détection reste désactivée tant que vous ne l'activez pas, sauf le détecteur de fin de filament
+de la MK3.</p>
+
+<h2>La prise capteur</h2>
+<figure><img src="{img}d9-sensor-plug-fr.svg" width="760" height="440" alt="Carte mère Wanhao D9 : la prise capteur 4 broches à gauche de POWER-DET, broches D9, D8, GND et 5V, câblée vers un BTT Smart Filament Sensor V2.0"></figure>
+<p>La prise 4 broches à gauche de <strong>POWER-DET</strong>, sous les prises des fins de course, porte
+<strong>D9, D8, GND et 5V</strong>, dans cet ordre. Les noms des broches viennent d'un schéma de câblage Wanhao que
+dustovich a retrouvé et partagé sur le <a href="{DISCORD}">Discord</a> ; le dos de la carte marque les quatre mêmes
+broches CTRL, BTN, GND et VCC.</p>
+<ul>
+<li><strong>D8</strong> est l'entrée de fin de filament que lit le firmware Wanhao.</li>
+<li><strong>D9</strong> n'est pas utilisée par le firmware Wanhao : ces firmwares y lisent le signal de mouvement du capteur BTT.</li>
+</ul>
+<div class="note">Imprimante <strong>éteinte</strong> pour brancher ou débrancher quoi que ce soit sur la carte.</div>
+
+<h2>Le détecteur de fin de filament Wanhao</h2>
+<p>Il indique au firmware si le filament est là. Quand il manque, l'impression se met en pause 5 mm de filament plus
+loin et l'écran lance un changement de filament.</p>
+<ul>
+<li>L'activer : <code>M412 S1</code> puis <code>M500</code>. Le désactiver : <code>M412 S0</code> puis <code>M500</code>.</li>
+<li>Le vérifier : envoyez <code>M119</code>. La ligne <em>filament</em> affiche <code>TRIGGERED</code> avec du
+filament et <code>open</code> sans.</li>
+</ul>
+
+<h2>BTT Smart Filament Sensor V2.0</h2>
+<p>Ce capteur a deux sorties, que le firmware lit différemment :</p>
+<ul>
+<li><strong>Le détecteur de fin de filament</strong> (vers D8) donne un niveau : 5 V tant que le filament est là, 0 V
+quand il n'y en a plus.</li>
+<li><strong>La sortie mouvement</strong> (vers D9) vient d'une petite roue que le filament fait tourner en passant.
+Tous les quelques millimètres de filament, la sortie bascule entre 0 V et 5 V. Le firmware ne regarde que ces
+changements : si l'extrudeur pousse une longueur donnée de filament sans un seul changement, le filament ne suit pas,
+et l'impression se met en pause. Le détecteur de fin de filament ne peut pas le voir : pendant un bourrage, le filament
+est toujours là.</li>
+</ul>
+<h3>Branchement</h3>
+<p><strong>5V</strong> sur 5V, <strong>GND</strong> sur GND, le signal de <strong>fin de filament</strong> sur
+<strong>D8</strong> et le signal de <strong>mouvement</strong> sur <strong>D9</strong>. Les noms imprimés sur le câble
+du capteur peuvent être différents.</p>
+<h3>L'activer</h3>
+<pre><code>M412 S1 L10
+M500</code></pre>
+<p><code>L10</code> est la longueur de bourrage : l'impression se met en pause quand 10 mm de filament passent dans
+l'extrudeur sans que la roue bouge. Augmentez-la (<code>M412 L15</code> puis <code>M500</code>) si des impressions se
+mettent en pause sans raison.</p>
+<h3>Le vérifier</h3>
+<ul>
+<li><code>M412</code> affiche l'état : <em>Filament runout ON ; Distance 5.00mm ; Motion distance 10.00mm</em>.</li>
+<li><code>M119</code> avec du filament : <em>filament: TRIGGERED</em>. Si cette ligne change quand vous poussez le
+filament à la main plutôt que quand vous l'insérez ou le retirez, les deux fils de signal sont inversés : échangez D8
+et D9.</li>
+</ul>
+<div class="note">La prise en charge de ce capteur est nouvelle en v2.0.5 et n'a pas encore été testée avec le capteur.
+Si le détecteur est lu à l'envers (<em>open</em> avec du filament), dites-le sur <a href="{DISCORD}">Discord</a>.</div>
+
+<h2>Pourquoi la longueur de bourrage vaut 100 m par défaut</h2>
+<p>Sans capteur BTT sur D9, cette broche ne change jamais, ce que le firmware lirait comme « le filament n'avance
+pas ». Un simple détecteur de fin de filament, ou pas de capteur du tout, mettrait alors chaque impression en pause au
+bout de quelques millimètres. La longueur de bourrage par défaut est donc de 100 m, ce qui ne se déclenche jamais en
+pratique, et <code>M412 L10</code> règle la vraie une fois le capteur BTT branché. Les réglages enregistrés par la
+v2.0.4 ou avant ne contiennent aucune de ces deux longueurs : ces firmwares chargent les valeurs par défaut (5 mm et 100 m) à la place.</p>
+""")
     if page == "quiet":
         if en:
             return ("Make a Wanhao Duplicator 9 quieter: which fans, and the board fan on NTC thermistors",
@@ -783,6 +917,76 @@ s'ouvre : le ventilateur s'arrête alors définitivement.</li>
     raise KeyError(page)
 
 
+# ---------------------------------------------------------------- wiring diagram
+
+def sensor_svg(lang):
+    """Top view of the board's sensor plug, wired to a BTT Smart Filament Sensor V2.0.
+
+    Pin names come from Wanhao's own wiring diagram (the 4-pin plug left of POWER-DET:
+    D9, D8, GND, 5V; the back of the board prints CTRL, BTN, GND, VCC in the same order).
+    """
+    en = lang == "en"
+    t = {
+        "board": "Wanhao D9 main board (top view)" if en else "Carte mère Wanhao D9 (vue de dessus)",
+        "plug": "sensor plug" if en else "prise capteur",
+        "sfs": "BTT Smart Filament Sensor V2.0",
+        "switch": "runout switch" if en else "fin de filament",
+        "motion": "motion" if en else "mouvement",
+        "level": "level: filament in / out" if en else "niveau : filament présent / absent",
+        "pulses": "pulses while filament moves" if en else "impulsions quand le filament avance",
+        "names": "names on your sensor may differ" if en else "les noms sur votre capteur peuvent varier",
+    }
+    font = "font-family=\"system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif\""
+    out = [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 440" role="img" '
+           f'aria-label="{html.escape(t["board"])}: D9, D8, GND, 5V → {t["sfs"]}" {font}>',
+           '<rect width="760" height="440" rx="16" fill="#1d1d21"/>',
+           '<rect x="20" y="20" width="380" height="400" rx="12" fill="#0e0e10" stroke="#34343a"/>',
+           f'<text x="36" y="46" font-size="14" fill="#a3a3ab">{html.escape(t["board"])}</text>']
+
+    def jst(x, y, pins, fill="#f2f2ee", w=None):
+        w = w or 20 + pins * 30
+        o = [f'<rect x="{x}" y="{y}" width="{w}" height="44" rx="4" fill="{fill}" stroke="#bdbdb6"/>']
+        for i in range(pins):
+            cx = x + 10 + 15 + i * 30
+            o.append(f'<rect x="{cx - 5}" y="{y + 17}" width="10" height="10" fill="#8a8a84"/>')
+        return o
+
+    # Row of endstop plugs, as on the board.
+    for x, name, pins, fill in ((40, "Z-min", 2, "#f2f2ee"), (140, "Y-min", 2, "#d9352b"), (240, "X-min", 2, "#f2f2ee")):
+        out.append(f'<text x="{x + 40}" y="84" font-size="13" fill="#ececef" text-anchor="middle">{name}</text>')
+        out += jst(x, 92, pins, fill)
+    # The sensor plug, highlighted, and POWER-DET next to it.
+    out.append('<rect x="30" y="158" width="160" height="78" rx="8" fill="none" stroke="#ff5a6e" stroke-width="3"/>')
+    out += jst(40, 181, 4)
+    out += jst(222, 181, 3)
+    out.append('<text x="267" y="252" font-size="13" fill="#a3a3ab" text-anchor="middle">POWER-DET</text>')
+    out.append(f'<text x="32" y="153" font-size="14" font-weight="700" fill="#ff5a6e">{html.escape(t["plug"])}</text>')
+
+    # Pin x centres of the 4-pin plug, left to right: D9, D8, GND, 5V.
+    pins = [(65, "D9", "#4cc47f", 378, t["motion"], t["pulses"]),
+            (95, "D8", "#f0b429", 332, t["switch"], t["level"]),
+            (125, "GND", "#c8c8d0", 296, "GND", ""),
+            (155, "5V", "#ff5a6e", 262, "5V", "")]
+    for x, name, colour, y, _, _ in pins:
+        out.append(f'<text x="{x}" y="176" font-size="12" font-weight="700" fill="{colour}" text-anchor="middle">{name}</text>')
+    # Wires: the rightmost pin turns first, so no two wires cross.
+    for x, _, colour, y, _, _ in pins:
+        out.append(f'<path d="M{x} 226 V{y} H470" fill="none" stroke="{colour}" stroke-width="4" stroke-linejoin="round"/>')
+        out.append(f'<circle cx="{x}" cy="226" r="4" fill="{colour}"/>')
+
+    # The sensor.
+    out.append('<rect x="470" y="244" width="36" height="152" rx="4" fill="#f2f2ee" stroke="#bdbdb6"/>')
+    out.append('<rect x="506" y="204" width="236" height="210" rx="10" fill="#26262b" stroke="#5b5b62"/>')
+    out.append(f'<text x="624" y="228" font-size="14" font-weight="700" fill="#ececef" text-anchor="middle">{t["sfs"]}</text>')
+    for x, name, colour, y, label, hint in pins:
+        out.append(f'<text x="518" y="{y + 5}" font-size="13" font-weight="700" fill="{colour}">{html.escape(label)}</text>')
+        if hint:
+            out.append(f'<text x="518" y="{y + 20}" font-size="11" fill="#a3a3ab">{html.escape(hint)}</text>')
+    out.append(f'<text x="742" y="432" font-size="11" fill="#a3a3ab" text-anchor="end">{html.escape(t["names"])}</text>')
+    out.append('</svg>')
+    return "\n".join(out) + "\n"
+
+
 # ---------------------------------------------------------------- layout
 
 def render(page, lang):
@@ -844,6 +1048,8 @@ def render(page, lang):
 
 def main():
     (DOCS / "fr").mkdir(exist_ok=True)
+    for lang in ("en", "fr"):
+        (DOCS / "img" / f"d9-sensor-plug-{lang}.svg").write_text(sensor_svg(lang), encoding="utf-8")
     for lang in ("en", "fr"):
         out = DOCS / ("fr" if lang == "fr" else "")
         for page in PAGES:
