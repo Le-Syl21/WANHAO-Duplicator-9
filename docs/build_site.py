@@ -70,11 +70,11 @@ def slicer_table(lang):
     for model in MODELS:
         for size, _volume in SIZES:
             rows.append(
-                f'<tr><td><strong>{u["nav"][model.lower()]}</strong></td>'
-                f'<td>D9/{size}</td>'
+                f'<tr><td><strong>{u["nav"][model.lower()]}</strong> D9/{size}</td>'
                 f'<td><a class="btn" href="{DL}D9_{model}_{size}_Cura.zip">Cura</a></td>'
                 f'<td><a class="btn" href="{DL}D9_{model}_{size}.orca_printer">OrcaSlicer</a></td></tr>')
-    return (f'<div class="table"><table class="dl"><thead><tr><th>{u["model"]}</th><th>{u["size"]}</th>'
+    # One column for the printer: the phone layout drops the second column of a download table.
+    return (f'<div class="table"><table class="dl slicer"><thead><tr><th>{u["model"]}</th>'
             f'<th>Cura</th><th>OrcaSlicer</th></tr></thead><tbody>' + "".join(rows) + "</tbody></table></div>")
 
 

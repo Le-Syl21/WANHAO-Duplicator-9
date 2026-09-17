@@ -105,7 +105,7 @@ footer.site { border-top: 1px solid var(--line); color: var(--muted); font-size:
 footer.site .wrap { padding-block: 1.4rem; display: flex; flex-wrap: wrap; gap: 0.4rem 1.5rem; }
 
 @media (max-width: 560px) {
-  table.dl th:nth-child(2), table.dl td:nth-child(2) { display: none; }
+  table.dl:not(.slicer) th:nth-child(2), table.dl:not(.slicer) td:nth-child(2) { display: none; }
   table.dl .btn { white-space: normal; overflow-wrap: anywhere; }
   td a { overflow-wrap: anywhere; }
   table.stack thead { display: none; }
