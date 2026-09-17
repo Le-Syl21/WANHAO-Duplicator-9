@@ -1,0 +1,106 @@
+{
+    "type": "filament",
+    "name": "D9 ABS @Wanhao D9 MK3 300 0.4 nozzle",
+    "from": "User",
+    "inherits": "",
+    "version": "2.0.9",
+    "filament_settings_id": [
+        "D9 ABS @Wanhao D9 MK3 300 0.4 nozzle"
+    ],
+    "compatible_printers": [
+        "Wanhao D9 MK3 300 0.4 nozzle"
+    ],
+    "filament_diameter": [
+        "1.75"
+    ],
+    "filament_type": [
+        "ABS"
+    ],
+    "filament_vendor": [
+        "Generic"
+    ],
+    "filament_density": [
+        "1.04"
+    ],
+    "filament_cost": [
+        "20"
+    ],
+    "filament_flow_ratio": [
+        "0.926"
+    ],
+    "filament_max_volumetric_speed": [
+        "12"
+    ],
+    "nozzle_temperature_range_low": [
+        "230"
+    ],
+    "nozzle_temperature_range_high": [
+        "250"
+    ],
+    "temperature_vitrification": [
+        "110"
+    ],
+    "slow_down_layer_time": [
+        "3"
+    ],
+    "slow_down_min_speed": [
+        "10"
+    ],
+    "fan_cooling_layer_time": [
+        "30"
+    ],
+    "overhang_fan_speed": [
+        "100"
+    ],
+    "overhang_fan_threshold": [
+        "25%"
+    ],
+    "reduce_fan_stop_start_freq": [
+        "1"
+    ],
+    "nozzle_temperature": [
+        "245"
+    ],
+    "nozzle_temperature_initial_layer": [
+        "245"
+    ],
+    "cool_plate_temp": [
+        "95"
+    ],
+    "eng_plate_temp": [
+        "95"
+    ],
+    "hot_plate_temp": [
+        "95"
+    ],
+    "textured_plate_temp": [
+        "95"
+    ],
+    "supertack_plate_temp": [
+        "95"
+    ],
+    "cool_plate_temp_initial_layer": [
+        "95"
+    ],
+    "eng_plate_temp_initial_layer": [
+        "95"
+    ],
+    "hot_plate_temp_initial_layer": [
+        "95"
+    ],
+    "textured_plate_temp_initial_layer": [
+        "95"
+    ],
+    "supertack_plate_temp_initial_layer": [
+        "95"
+    ],
+    "fan_min_speed": [
+        "10"
+    ],
+    "fan_max_speed": [
+        "30"
+    ],
+    "close_fan_the_first_x_layers": [
+        "3"
+    ]
+}

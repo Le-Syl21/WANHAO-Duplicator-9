@@ -1,0 +1,19 @@
+{
+    "version": "2.0.9",
+    "bundle_id": "Le-Syl21_D9_MK3_500",
+    "bundle_type": "printer config bundle",
+    "printer_preset_name": "Wanhao D9 MK3 500 0.4 nozzle",
+    "printer_config": [
+        "printer/Wanhao D9 MK3 500 0.4 nozzle.json"
+    ],
+    "filament_config": [
+        "filament/D9 PLA @Wanhao D9 MK3 500 0.4 nozzle.json",
+        "filament/D9 PETG @Wanhao D9 MK3 500 0.4 nozzle.json",
+        "filament/D9 ABS @Wanhao D9 MK3 500 0.4 nozzle.json"
+    ],
+    "process_config": [
+        "process/0.12mm Fine @Wanhao D9 MK3 500 0.4 nozzle.json",
+        "process/0.20mm Standard @Wanhao D9 MK3 500 0.4 nozzle.json",
+        "process/0.28mm Draft @Wanhao D9 MK3 500 0.4 nozzle.json"
+    ]
+}
