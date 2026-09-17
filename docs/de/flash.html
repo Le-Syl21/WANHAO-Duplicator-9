@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="de" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mainboard-Firmware der Wanhao Duplicator 9 (D9) flashen: Anleitung</title>
+<meta name="description" content="Schritt-für-Schritt-Anleitung: Marlin per USB mit AVRDUDESS oder avrdude auf eine Wanhao D9 flashen, Probleme bei der Referenzfahrt beheben und mit Wanhaos Firmware zurück zum Werkszustand.">
+<link rel="canonical" href="https://le-syl21.github.io/WANHAO-Duplicator-9/de/flash.html">
+<link rel="alternate" hreflang="en" href="https://le-syl21.github.io/WANHAO-Duplicator-9/flash.html">
+<link rel="alternate" hreflang="fr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/fr/flash.html">
+<link rel="alternate" hreflang="de" href="https://le-syl21.github.io/WANHAO-Duplicator-9/de/flash.html">
+<link rel="alternate" hreflang="es" href="https://le-syl21.github.io/WANHAO-Duplicator-9/es/flash.html">
+<link rel="alternate" hreflang="it" href="https://le-syl21.github.io/WANHAO-Duplicator-9/it/flash.html">
+<link rel="alternate" hreflang="pt" href="https://le-syl21.github.io/WANHAO-Duplicator-9/pt/flash.html">
+<link rel="alternate" hreflang="nl" href="https://le-syl21.github.io/WANHAO-Duplicator-9/nl/flash.html">
+<link rel="alternate" hreflang="pl" href="https://le-syl21.github.io/WANHAO-Duplicator-9/pl/flash.html">
+<link rel="alternate" hreflang="tr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/tr/flash.html">
+<link rel="alternate" hreflang="ru" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ru/flash.html">
+<link rel="alternate" hreflang="ar" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ar/flash.html">
+<link rel="alternate" hreflang="hi" href="https://le-syl21.github.io/WANHAO-Duplicator-9/hi/flash.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://le-syl21.github.io/WANHAO-Duplicator-9/zh/flash.html">
+<link rel="alternate" hreflang="ja" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ja/flash.html">
+<link rel="alternate" hreflang="ko" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ko/flash.html">
+<link rel="alternate" hreflang="id" href="https://le-syl21.github.io/WANHAO-Duplicator-9/id/flash.html">
+<link rel="alternate" hreflang="x-default" href="https://le-syl21.github.io/WANHAO-Duplicator-9/flash.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Mainboard-Firmware der Wanhao Duplicator 9 (D9) flashen: Anleitung">
+<meta property="og:description" content="Schritt-für-Schritt-Anleitung: Marlin per USB mit AVRDUDESS oder avrdude auf eine Wanhao D9 flashen, Probleme bei der Referenzfahrt beheben und mit Wanhaos Firmware zurück zum Werkszustand.">
+<meta property="og:url" content="https://le-syl21.github.io/WANHAO-Duplicator-9/de/flash.html">
+<meta property="og:image" content="https://le-syl21.github.io/WANHAO-Duplicator-9/img/og.jpg">
+<meta property="og:locale" content="de_DE">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖨️</text></svg>">
+<link rel="stylesheet" href="../style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Mainboard-Firmware der Wanhao Duplicator 9 (D9) flashen: Anleitung", "description": "Schritt-für-Schritt-Anleitung: Marlin per USB mit AVRDUDESS oder avrdude auf eine Wanhao D9 flashen, Probleme bei der Referenzfahrt beheben und mit Wanhaos Firmware zurück zum Werkszustand.", "url": "https://le-syl21.github.io/WANHAO-Duplicator-9/de/flash.html", "inLanguage": "de", "about": {"@type": "Product", "name": "Wanhao Duplicator 9", "brand": "Wanhao"}}</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="brand" href="../de/">Wanhao <span>D9</span> firmware</a>
+<nav class="main"><a href="../de/">Start</a><a href="../de/mk1.html">MK1</a><a href="../de/mk1u2.html">MK1 + MK2-Kit</a><a href="../de/mk2.html">MK2</a><a href="../de/mk3.html">MK3</a><a href="../de/flash.html" aria-current="page">Flash-Anleitung</a><a href="../de/screen.html">Display</a><a href="../de/sensor.html">Filamentsensor</a><a href="../de/quiet.html">Leiser</a></nav>
+<details class="lang"><summary aria-label="Sprache"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9M12 3c-2.5 2.7-3.8 5.7-3.8 9s1.3 6.3 3.8 9"/></svg><span>Deutsch</span></summary><ul><li><a href="../flash.html" hreflang="en" lang="en">English</a></li><li><a href="../fr/flash.html" hreflang="fr" lang="fr">Français</a></li><li><a href="../de/flash.html" hreflang="de" lang="de" aria-current="true">Deutsch</a></li><li><a href="../es/flash.html" hreflang="es" lang="es">Español</a></li><li><a href="../it/flash.html" hreflang="it" lang="it">Italiano</a></li><li><a href="../pt/flash.html" hreflang="pt" lang="pt">Português</a></li><li><a href="../nl/flash.html" hreflang="nl" lang="nl">Nederlands</a></li><li><a href="../pl/flash.html" hreflang="pl" lang="pl">Polski</a></li><li><a href="../tr/flash.html" hreflang="tr" lang="tr">Türkçe</a></li><li><a href="../ru/flash.html" hreflang="ru" lang="ru">Русский</a></li><li><a href="../ar/flash.html" hreflang="ar" lang="ar">العربية</a></li><li><a href="../hi/flash.html" hreflang="hi" lang="hi">हिन्दी</a></li><li><a href="../zh/flash.html" hreflang="zh-Hans" lang="zh-Hans">中文</a></li><li><a href="../ja/flash.html" hreflang="ja" lang="ja">日本語</a></li><li><a href="../ko/flash.html" hreflang="ko" lang="ko">한국어</a></li><li><a href="../id/flash.html" hreflang="id" lang="id">Bahasa Indonesia</a></li></ul></details>
+</div></header>
+<main><div class="wrap">
+<h1>Das Mainboard der Duplicator 9 flashen</h1>
+<p class="lead">Das Mainboard der D9 hat einen ATmega2560 mit USB-Bootloader: kein Programmiergerät, kein Öffnen des
+Sockels, nur ein USB-Kabel.</p>
+
+<h2>Was du brauchst</h2>
+<ul>
+<li>Ein USB-Kabel zwischen Drucker und Computer, und den Drucker <strong>eingeschaltet</strong>.</li>
+<li><a href="https://github.com/zkemble/AVRDUDESS">AVRDUDESS</a> (Windows, grafisch, am einfachsten) oder
+<a href="https://github.com/avrdudes/avrdude">avrdude</a> (Kommandozeile, alle Betriebssysteme).</li>
+<li>Die <strong>.hex</strong>-Datei für dein Modell und deine Größe: <a href="../de/mk1.html">MK1</a>, <a href="../de/mk1u2.html">MK1 + Kit</a>,
+<a href="../de/mk2.html">MK2</a>, <a href="../de/mk3.html">MK3</a>.</li>
+</ul>
+
+<h2>Vor dem Flashen</h2>
+<div class="note">Sende <code>M503</code> und bewahre die Antwort auf. Seit v2.0.3 behält ein Update die im Drucker
+gespeicherten Einstellungen, aber das Update <strong>auf</strong> v2.0.3 startet einmalig mit den Standardwerten dieser
+Firmware (die Art, wie Einstellungen gespeichert werden, hat sich geändert), ebenso der Umstieg von Wanhaos Firmware.
+Stelle danach den Z-Offset deines Sensors erneut mit <code>M851 Z…</code> und <code>M500</code> ein.</div>
+<p>Schließe alle Programme, die den Port des Druckers belegen könnten: Cura, PrusaSlicer, OctoPrint, Pronterface, serielle Terminals.</p>
+
+<h2>Flashen mit AVRDUDESS</h2>
+<ol>
+<li>Programmer: <code>wiring</code>. MCU: <code>ATmega2560</code>.</li>
+<li>Port: der COM-Port deines Druckers (zum Beispiel <code>COM3</code>). Die Baudrate auf dem Standardwert lassen.</li>
+<li>Flash: die .hex-Datei auswählen und auf <strong>Program!</strong> klicken. Das dauert 30 bis 60 Sekunden.</li>
+</ol>
+
+<h2>Flashen mit avrdude</h2>
+<pre><code># Windows
+avrdude -v -p atmega2560 -c wiring -P COM3 -D -U flash:w:D9_MK2_300.hex:i
+
+# Linux / macOS
+avrdude -v -p atmega2560 -c wiring -P /dev/ttyUSB0 -D -U flash:w:D9_MK2_300.hex:i</code></pre>
+<p>Ersetze Port und Dateinamen durch deine eigenen. Das Protokoll <code>wiring</code> wählt die Geschwindigkeit des Bootloaders selbst.</p>
+
+<h2>Erster Start</h2>
+<ol>
+<li>USB-Kabel abziehen, den Drucker aus- und wieder einschalten, das Kabel wieder einstecken.</li>
+<li>Mit <strong>250000 Baud</strong> verbinden (Wanhaos Firmwares nutzten 115200) und <code>M115</code> senden: Die Antwort zeigt die neue Firmware.</li>
+<li>Alle Achsen referenzieren, dann eine Bettnivellierung über das Display oder mit <code>G29</code> ausführen und mit <code>M500</code> speichern.</li>
+</ol>
+
+<h2 id="reset">Zurück zu den Standardeinstellungen dieser Firmware</h2>
+<p>Seit v2.0.3 <strong>behält</strong> ein Firmware-Update die im Drucker gespeicherten Einstellungen (Z-Offset des Sensors,
+Steps/mm, PID, Mesh…). Neue Standardwerte eines Releases ersetzen die bereits gespeicherten also nicht. Setze einmal
+zurück, wenn du von v2.0.2 oder älter aktualisierst und dabei von Hand gespeicherte Werte hast, wenn sich der Drucker nach
+dem Ausprobieren anderer Firmwares seltsam verhält, oder immer dann, wenn du sauber neu anfangen willst:</p>
+<ul>
+<li><strong>Am Display:</strong> <em>Einstellungen</em> → <em>Mehr</em> → <em>Zurücksetzen</em> → ✓.</li>
+<li><strong>Per USB:</strong> <code>M502</code> senden (lädt die Standardwerte dieser Firmware), dann <code>M500</code> (speichert sie).</li>
+</ul>
+<p>Stelle danach den Z-Offset deines Sensors erneut ein (<code>M851 Z…</code>, dann <code>M500</code>) und führe eine
+Bettnivellierung aus. Prüfe das Ergebnis mit <code>M503</code>.</p>
+
+<h2>Stromausfall und Filamentsensor</h2>
+<ul>
+<li>Die Druckfortsetzung nach Stromausfall ist aktiv: Der Auftrag wird bei jedem Schichtwechsel gespeichert. Abschalten mit <code>M413 S0</code>, dann <code>M500</code>.</li>
+<li>Ein Druck bricht sofort mit <em>power outage</em> ab, sobald das Aufheizen beginnt: Aktualisiere auf v2.0.4 oder neuer. Frühere Builds überwachten den Stromausfall-Eingang des Boards, der auf LOW geht, sobald die Heizungen starten.</li>
+<li>Die Filamentende-Erkennung ist seit v2.0.8 bei jedem Modell standardmäßig aktiv und tut ohne Sensor nichts. Nach einem Update von einem früheren Release schaltest du sie mit <code>M412 S1</code> und dann <code>M500</code> ein, oder am Display unter <em>Einstellungen</em> → <em>Filament</em> → <em>Filamentsensor</em>. Verkabelung und BTT Smart Filament Sensor: <a href="../de/sensor.html">Filamentsensor</a>.</li>
+</ul>
+
+<h2>Fehlerbehebung</h2>
+<div class="table"><table><thead><tr><th>Problem</th><th>Lösung</th></tr></thead><tbody>
+<tr><td>Port belegt</td><td>Alle Programme schließen, die den Port des Druckers verwenden.</td></tr>
+<tr><td>Gerät nicht gefunden</td><td>Den USB-Treiber CH340 installieren, ein anderes Kabel oder einen anderen USB-Port probieren, prüfen, ob der Drucker eingeschaltet ist.</td></tr>
+<tr><td>Unlesbare Zeichen nach dem Flashen</td><td>Mit diesen Firmwares 250000 Baud verwenden, mit denen von Wanhao 115200.</td></tr>
+<tr><td>Temperaturen am Display ×10 angezeigt (236 für 23,6 °C)</td><td>Das Display hat noch alte Dateien: <a href="../de/screen.html">DGUS Reloaded 2.0</a> flashen.</td></tr>
+<tr><td>Das Display springt bei jedem Start zurück auf Englisch, oder seine Seite <em>Filamentsensor</em> tut nichts</td><td>Die Mainboard-Firmware ist älter als v2.0.9: aktualisieren.</td></tr>
+<tr><td>Die Referenzfahrt stoppt einige Millimeter vor dem Schalter, dann <em>Homing Failed</em></td><td>Elektrische Störungen auf der Endschalterleitung. Diese Firmwares filtern sie seit v2.0.1: aktualisieren.</td></tr>
+<tr><td>Die Düse stößt bei der Nivellierung an eine Klammer des Druckbetts</td><td>Auf v2.0.2 oder neuer aktualisieren: Die erste Messpunktspalte liegt 10 mm vom Rand entfernt, wie in Wanhaos Firmware.</td></tr>
+<tr><td>Das Bett fährt vom Y-Endschalter weg</td><td>Prüfen, ob du die Firmware für dein Modell genommen hast: Der Y-Motor sitzt bei MK1, MK1 + Kit und MK2 hinten, bei der MK3 vorne.</td></tr>
+</tbody></table></div>
+
+<h2>Zurück zu Wanhaos Firmware</h2>
+<p>Jede Modellseite verlinkt Wanhaos Original-Firmwares für Mainboard und Display. Sie werden genauso geflasht; Wanhaos
+Mainboard-Firmware braucht Wanhaos Display-Firmware derselben Generation.</p>
+<p>Fragen: <a href="https://discord.gg/T37DYHmt2j">Discord</a> oder <a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/issues">GitHub-Issues</a>.</p>
+</div></main>
+<footer class="site"><div class="wrap">
+<a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9">Quellcode und Issues auf GitHub</a>
+<a href="https://discord.gg/T37DYHmt2j">Discord</a>
+<span>Firmware unter GNU GPL v3. Die Handbücher und Firmwares von Wanhao bleiben Eigentum von Wanhao.</span>
+</div></footer>
+</body>
+</html>

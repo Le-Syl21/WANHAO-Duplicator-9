@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ru" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Как сделать Wanhao Duplicator 9 тише: какие вентиляторы и вентилятор платы на NTC-термисторах</title>
+<meta name="description" content="Какие вентиляторы Wanhao D9 можно сделать тише: вентилятор хотэнда трогать нельзя, вентилятор блока питания уже регулируется сам, а вентилятор платы можно отключить или запитать через NTC-термисторы.">
+<link rel="canonical" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ru/quiet.html">
+<link rel="alternate" hreflang="en" href="https://le-syl21.github.io/WANHAO-Duplicator-9/quiet.html">
+<link rel="alternate" hreflang="fr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/fr/quiet.html">
+<link rel="alternate" hreflang="de" href="https://le-syl21.github.io/WANHAO-Duplicator-9/de/quiet.html">
+<link rel="alternate" hreflang="es" href="https://le-syl21.github.io/WANHAO-Duplicator-9/es/quiet.html">
+<link rel="alternate" hreflang="it" href="https://le-syl21.github.io/WANHAO-Duplicator-9/it/quiet.html">
+<link rel="alternate" hreflang="pt" href="https://le-syl21.github.io/WANHAO-Duplicator-9/pt/quiet.html">
+<link rel="alternate" hreflang="nl" href="https://le-syl21.github.io/WANHAO-Duplicator-9/nl/quiet.html">
+<link rel="alternate" hreflang="pl" href="https://le-syl21.github.io/WANHAO-Duplicator-9/pl/quiet.html">
+<link rel="alternate" hreflang="tr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/tr/quiet.html">
+<link rel="alternate" hreflang="ru" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ru/quiet.html">
+<link rel="alternate" hreflang="ar" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ar/quiet.html">
+<link rel="alternate" hreflang="hi" href="https://le-syl21.github.io/WANHAO-Duplicator-9/hi/quiet.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://le-syl21.github.io/WANHAO-Duplicator-9/zh/quiet.html">
+<link rel="alternate" hreflang="ja" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ja/quiet.html">
+<link rel="alternate" hreflang="ko" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ko/quiet.html">
+<link rel="alternate" hreflang="id" href="https://le-syl21.github.io/WANHAO-Duplicator-9/id/quiet.html">
+<link rel="alternate" hreflang="x-default" href="https://le-syl21.github.io/WANHAO-Duplicator-9/quiet.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Как сделать Wanhao Duplicator 9 тише: какие вентиляторы и вентилятор платы на NTC-термисторах">
+<meta property="og:description" content="Какие вентиляторы Wanhao D9 можно сделать тише: вентилятор хотэнда трогать нельзя, вентилятор блока питания уже регулируется сам, а вентилятор платы можно отключить или запитать через NTC-термисторы.">
+<meta property="og:url" content="https://le-syl21.github.io/WANHAO-Duplicator-9/ru/quiet.html">
+<meta property="og:image" content="https://le-syl21.github.io/WANHAO-Duplicator-9/img/og.jpg">
+<meta property="og:locale" content="ru_RU">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖨️</text></svg>">
+<link rel="stylesheet" href="../style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Как сделать Wanhao Duplicator 9 тише: какие вентиляторы и вентилятор платы на NTC-термисторах", "description": "Какие вентиляторы Wanhao D9 можно сделать тише: вентилятор хотэнда трогать нельзя, вентилятор блока питания уже регулируется сам, а вентилятор платы можно отключить или запитать через NTC-термисторы.", "url": "https://le-syl21.github.io/WANHAO-Duplicator-9/ru/quiet.html", "inLanguage": "ru", "about": {"@type": "Product", "name": "Wanhao Duplicator 9", "brand": "Wanhao"}}</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="brand" href="../ru/">Wanhao <span>D9</span> firmware</a>
+<nav class="main"><a href="../ru/">Главная</a><a href="../ru/mk1.html">MK1</a><a href="../ru/mk1u2.html">MK1 + кит MK2</a><a href="../ru/mk2.html">MK2</a><a href="../ru/mk3.html">MK3</a><a href="../ru/flash.html">Как прошить</a><a href="../ru/screen.html">Экран</a><a href="../ru/sensor.html">Датчик филамента</a><a href="../ru/quiet.html" aria-current="page">Тише</a></nav>
+<details class="lang"><summary aria-label="Язык"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9M12 3c-2.5 2.7-3.8 5.7-3.8 9s1.3 6.3 3.8 9"/></svg><span>Русский</span></summary><ul><li><a href="../quiet.html" hreflang="en" lang="en">English</a></li><li><a href="../fr/quiet.html" hreflang="fr" lang="fr">Français</a></li><li><a href="../de/quiet.html" hreflang="de" lang="de">Deutsch</a></li><li><a href="../es/quiet.html" hreflang="es" lang="es">Español</a></li><li><a href="../it/quiet.html" hreflang="it" lang="it">Italiano</a></li><li><a href="../pt/quiet.html" hreflang="pt" lang="pt">Português</a></li><li><a href="../nl/quiet.html" hreflang="nl" lang="nl">Nederlands</a></li><li><a href="../pl/quiet.html" hreflang="pl" lang="pl">Polski</a></li><li><a href="../tr/quiet.html" hreflang="tr" lang="tr">Türkçe</a></li><li><a href="../ru/quiet.html" hreflang="ru" lang="ru" aria-current="true">Русский</a></li><li><a href="../ar/quiet.html" hreflang="ar" lang="ar">العربية</a></li><li><a href="../hi/quiet.html" hreflang="hi" lang="hi">हिन्दी</a></li><li><a href="../zh/quiet.html" hreflang="zh-Hans" lang="zh-Hans">中文</a></li><li><a href="../ja/quiet.html" hreflang="ja" lang="ja">日本語</a></li><li><a href="../ko/quiet.html" hreflang="ko" lang="ko">한국어</a></li><li><a href="../id/quiet.html" hreflang="id" lang="id">Bahasa Indonesia</a></li></ul></details>
+</div></header>
+<main><div class="wrap">
+<h1>Как сделать Duplicator 9 тише</h1>
+<p class="lead">В простое шум D9 создают вентиляторы. Вот какой из них можно сделать тише и как.</p>
+<div class="note">Работайте с <strong>отключённым от сети</strong> принтером. Держите все провода подальше от части с 230 В.</div>
+
+<h2>Вентиляторы</h2>
+<div class="table"><table class="stack"><thead><tr><th>Вентилятор</th><th>Чем управляется</th><th>Можно сделать тише?</th></tr></thead><tbody>
+<tr><td><strong>Вентилятор радиатора хотэнда</strong> (печатающая голова)</td><td>ничем: 24 В, работает всегда</td><td><strong>нет</strong>: обычно он самый шумный, но если его замедлить, тепло поднимается вверх по хотэнду и филамент застревает (heat creep)</td></tr>
+<tr><td><strong>Вентилятор обдува модели</strong> (печатающая голова)</td><td>прошивкой, контакт D5 (ШИМ)</td><td>уже регулируется: задаётся слайсером и <code>M106</code></td></tr>
+<tr><td><strong>Вентилятор блока питания</strong></td><td>самим блоком питания</td><td>ничего делать не нужно: на проверенном здесь экземпляре (Chuanglian A-350FAK-24) он уже следит за температурой блока</td></tr>
+<tr><td><strong>Вентилятор платы</strong> (блок управления)</td><td>ничем: 24 В, работает всегда</td><td><strong>да</strong>, см. ниже</td></tr>
+</tbody></table></div>
+<p>Прошивка Wanhao не управляет ни вентилятором платы, ни вентилятором хотэнда (<code>CONTROLLER_FAN_PIN</code> и
+<code>E0_AUTO_FAN_PIN</code> оба равны <code>-1</code>), а свободного управляемого выхода на плате нет. Поэтому эти
+два вентилятора питаются от постоянно включённых разъёмов «24V OUT», и никакая прошивка не может их замедлить.</p>
+
+<h2>Вентилятор платы</h2>
+<p>На измеренном здесь экземпляре: <strong>HZ-D 4010MS, 40 × 10 мм, 24 В, макс. 0,10 А, подшипник скольжения</strong>.</p>
+<p><strong>Многие владельцы просто его отключают.</strong> Плата греется слабо: она стоит внизу блока управления, под
+нагреваемым столом, а тепло стола поднимается вверх, от неё. Если вы так сделаете, последите за первыми долгими печатями: перегревшийся
+драйвер шагового двигателя ненадолго отключается, и это проявляется как <strong>смещение слоёв</strong>, а не как сообщение об ошибке.</p>
+<h3>Оставить его, но только когда драйверы нагреты</h3>
+<p>Два силовых NTC-термистора, включённые последовательно, запускают вентилятор примерно при 45–50 °C и разгоняют его по мере нагрева драйверов:
+<strong>MF72-400D9</strong> (400 Ом) + <strong>MF72-200D9</strong> (200 Ом), приклеенные к радиатору драйвера термоклеем,
+выводы заизолированы.</p>
+<pre><code>+24V ── MF72-400D9 ── MF72-200D9 ── вентилятор (+)
+                                    вентилятор (−) ── 0V</code></pre>
+<ul>
+<li>Это расчёт, <strong>на принтере ещё не проверенный</strong>: допуск MF72 составляет ±20 %, а маленький вентилятор может
+стартовать при более низкой температуре, чем ожидалось. Проверьте температуру старта заранее, вне принтера (термисторы в маленьком пакете в горячей воде, с кухонным
+термометром); добавьте второй на 200 Ом, если он стартует слишком рано, уберите 200 Ом, если слишком поздно.</li>
+<li>Термисторы нужно приклеить к радиатору: на открытом воздухе ток вентилятора (до примерно 0,6 Вт на термисторах) нагревает их на
+десятки градусов.</li>
+<li>Так вентилятор никогда не выходит на полную скорость (около 75 % при 80 °C), а вышедший из строя термистор обрывает цепь: тогда вентилятор
+останавливается навсегда.</li>
+</ul>
+<p>Источники: <a href="https://www.cantherm.com/wp-content/uploads/2018/08/MF72_AUG_2018.pdf">даташит MF72</a>.</p>
+</div></main>
+<footer class="site"><div class="wrap">
+<a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9">Исходники и issues на GitHub</a>
+<a href="https://discord.gg/T37DYHmt2j">Discord</a>
+<span>Прошивка распространяется под GNU GPL v3. Руководства и прошивки Wanhao принадлежат Wanhao.</span>
+</div></footer>
+</body>
+</html>

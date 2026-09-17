@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="ja" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wanhao Duplicator 9（D9）のメインボードにファームウェアを書き込む方法</title>
+<meta name="description" content="AVRDUDESS または avrdude で USB 経由で Wanhao D9 に Marlin を書き込む手順、原点復帰トラブルの解決方法、Wanhao ファームウェアへの戻し方。">
+<link rel="canonical" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ja/flash.html">
+<link rel="alternate" hreflang="en" href="https://le-syl21.github.io/WANHAO-Duplicator-9/flash.html">
+<link rel="alternate" hreflang="fr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/fr/flash.html">
+<link rel="alternate" hreflang="de" href="https://le-syl21.github.io/WANHAO-Duplicator-9/de/flash.html">
+<link rel="alternate" hreflang="es" href="https://le-syl21.github.io/WANHAO-Duplicator-9/es/flash.html">
+<link rel="alternate" hreflang="it" href="https://le-syl21.github.io/WANHAO-Duplicator-9/it/flash.html">
+<link rel="alternate" hreflang="pt" href="https://le-syl21.github.io/WANHAO-Duplicator-9/pt/flash.html">
+<link rel="alternate" hreflang="nl" href="https://le-syl21.github.io/WANHAO-Duplicator-9/nl/flash.html">
+<link rel="alternate" hreflang="pl" href="https://le-syl21.github.io/WANHAO-Duplicator-9/pl/flash.html">
+<link rel="alternate" hreflang="tr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/tr/flash.html">
+<link rel="alternate" hreflang="ru" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ru/flash.html">
+<link rel="alternate" hreflang="ar" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ar/flash.html">
+<link rel="alternate" hreflang="hi" href="https://le-syl21.github.io/WANHAO-Duplicator-9/hi/flash.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://le-syl21.github.io/WANHAO-Duplicator-9/zh/flash.html">
+<link rel="alternate" hreflang="ja" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ja/flash.html">
+<link rel="alternate" hreflang="ko" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ko/flash.html">
+<link rel="alternate" hreflang="id" href="https://le-syl21.github.io/WANHAO-Duplicator-9/id/flash.html">
+<link rel="alternate" hreflang="x-default" href="https://le-syl21.github.io/WANHAO-Duplicator-9/flash.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Wanhao Duplicator 9（D9）のメインボードにファームウェアを書き込む方法">
+<meta property="og:description" content="AVRDUDESS または avrdude で USB 経由で Wanhao D9 に Marlin を書き込む手順、原点復帰トラブルの解決方法、Wanhao ファームウェアへの戻し方。">
+<meta property="og:url" content="https://le-syl21.github.io/WANHAO-Duplicator-9/ja/flash.html">
+<meta property="og:image" content="https://le-syl21.github.io/WANHAO-Duplicator-9/img/og.jpg">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖨️</text></svg>">
+<link rel="stylesheet" href="../style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Wanhao Duplicator 9（D9）のメインボードにファームウェアを書き込む方法", "description": "AVRDUDESS または avrdude で USB 経由で Wanhao D9 に Marlin を書き込む手順、原点復帰トラブルの解決方法、Wanhao ファームウェアへの戻し方。", "url": "https://le-syl21.github.io/WANHAO-Duplicator-9/ja/flash.html", "inLanguage": "ja", "about": {"@type": "Product", "name": "Wanhao Duplicator 9", "brand": "Wanhao"}}</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="brand" href="../ja/">Wanhao <span>D9</span> firmware</a>
+<nav class="main"><a href="../ja/">ホーム</a><a href="../ja/mk1.html">MK1</a><a href="../ja/mk1u2.html">MK1 + MK2キット</a><a href="../ja/mk2.html">MK2</a><a href="../ja/mk3.html">MK3</a><a href="../ja/flash.html" aria-current="page">書き込みガイド</a><a href="../ja/screen.html">タッチスクリーン</a><a href="../ja/sensor.html">フィラメントセンサー</a><a href="../ja/quiet.html">静音化</a></nav>
+<details class="lang"><summary aria-label="言語"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9M12 3c-2.5 2.7-3.8 5.7-3.8 9s1.3 6.3 3.8 9"/></svg><span>日本語</span></summary><ul><li><a href="../flash.html" hreflang="en" lang="en">English</a></li><li><a href="../fr/flash.html" hreflang="fr" lang="fr">Français</a></li><li><a href="../de/flash.html" hreflang="de" lang="de">Deutsch</a></li><li><a href="../es/flash.html" hreflang="es" lang="es">Español</a></li><li><a href="../it/flash.html" hreflang="it" lang="it">Italiano</a></li><li><a href="../pt/flash.html" hreflang="pt" lang="pt">Português</a></li><li><a href="../nl/flash.html" hreflang="nl" lang="nl">Nederlands</a></li><li><a href="../pl/flash.html" hreflang="pl" lang="pl">Polski</a></li><li><a href="../tr/flash.html" hreflang="tr" lang="tr">Türkçe</a></li><li><a href="../ru/flash.html" hreflang="ru" lang="ru">Русский</a></li><li><a href="../ar/flash.html" hreflang="ar" lang="ar">العربية</a></li><li><a href="../hi/flash.html" hreflang="hi" lang="hi">हिन्दी</a></li><li><a href="../zh/flash.html" hreflang="zh-Hans" lang="zh-Hans">中文</a></li><li><a href="../ja/flash.html" hreflang="ja" lang="ja" aria-current="true">日本語</a></li><li><a href="../ko/flash.html" hreflang="ko" lang="ko">한국어</a></li><li><a href="../id/flash.html" hreflang="id" lang="id">Bahasa Indonesia</a></li></ul></details>
+</div></header>
+<main><div class="wrap">
+<h1>Duplicator 9 のメインボードに書き込む</h1>
+<p class="lead">D9 のメインボードは USB ブートローダー付きの ATmega2560 です。書き込み器は不要で、ベースを開ける必要もなく、USB ケーブル 1 本だけで済みます。</p>
+
+<h2>必要なもの</h2>
+<ul>
+<li>プリンターとパソコンをつなぐ USB ケーブル。プリンターは<strong>電源を入れた状態</strong>にしておきます。</li>
+<li><a href="https://github.com/zkemble/AVRDUDESS">AVRDUDESS</a>（Windows、GUI、いちばん簡単）または
+<a href="https://github.com/avrdudes/avrdude">avrdude</a>（コマンドライン、すべての OS に対応）。</li>
+<li>お使いのモデルとサイズに合った <strong>.hex</strong>：<a href="../ja/mk1.html">MK1</a>、<a href="../ja/mk1u2.html">MK1 + キット</a>、<a href="../ja/mk2.html">MK2</a>、<a href="../ja/mk3.html">MK3</a>。</li>
+</ul>
+
+<h2>書き込みの前に</h2>
+<div class="note"><code>M503</code> を送信し、その応答を控えておいてください。v2.0.3 以降、アップデートしてもプリンターに保存された設定は保持されますが、v2.0.3 <strong>へ</strong>アップデートするときは一度だけこのファームウェアのデフォルト値から始まります（設定の保存方式が変わったため）。Wanhao のファームウェアから移行する場合も同様です。そのあと <code>M851 Z…</code>
+と <code>M500</code> でプローブの Z オフセットを設定し直してください。</div>
+<p>プリンターのポートを使う可能性のあるプログラムはすべて閉じてください：Cura、PrusaSlicer、OctoPrint、Pronterface、シリアルターミナル。</p>
+
+<h2>AVRDUDESS で書き込む</h2>
+<ol>
+<li>Programmer：<code>wiring</code>。MCU：<code>ATmega2560</code>。</li>
+<li>Port：プリンターの COM ポート（例：<code>COM3</code>）。ボーレートはデフォルトのままにします。</li>
+<li>Flash：.hex ファイルを選び、<strong>Program!</strong> をクリックします。30～60 秒かかります。</li>
+</ol>
+
+<h2>avrdude で書き込む</h2>
+<pre><code># Windows
+avrdude -v -p atmega2560 -c wiring -P COM3 -D -U flash:w:D9_MK2_300.hex:i
+
+# Linux / macOS
+avrdude -v -p atmega2560 -c wiring -P /dev/ttyUSB0 -D -U flash:w:D9_MK2_300.hex:i</code></pre>
+<p>ポートとファイル名はご自身の環境に合わせて置き換えてください。<code>wiring</code> プロトコルはブートローダーの通信速度を自動で選びます。</p>
+
+<h2>初回起動</h2>
+<ol>
+<li>USB ケーブルを抜き、プリンターの電源を切ってから入れ直し、ケーブルを挿し直します。</li>
+<li><strong>250000 bps</strong> で接続し（Wanhao のファームウェアは 115200 でした）、<code>M115</code> を送信します。応答に新しいファームウェアが表示されます。</li>
+<li>全軸を原点復帰させてから、画面または <code>G29</code> でベッドのレベリングを行い、<code>M500</code> で保存します。</li>
+</ol>
+
+<h2 id="reset">このファームウェアのデフォルト設定に戻す</h2>
+<p>v2.0.3 以降、ファームウェアをアップデートしても、プリンターに保存された設定（プローブの Z オフセット、steps/mm、PID、メッシュなど）は<strong>保持</strong>されます。そのため、新しいリリースでデフォルト値が変わっても、すでに保存されている値は置き換わりません。次のような場合は一度リセットしてください：手動で保存した値を残したまま v2.0.2 以前からアップデートするとき、ほかのファームウェアを試したあとプリンターの挙動がおかしいとき、あるいはまっさらな状態から始めたいとき。</p>
+<ul>
+<li><strong>画面から：</strong><em>設定</em> → <em>その他</em> → <em>リセット</em> → ✓。</li>
+<li><strong>USB から：</strong><code>M502</code>（このファームウェアのデフォルト値を読み込む）を送信し、続けて <code>M500</code>（保存する）を送信します。</li>
+</ul>
+<p>そのあとプローブの Z オフセットを設定し直し（<code>M851 Z…</code> のあと <code>M500</code>）、ベッドのレベリングを行ってください。結果は <code>M503</code> で確認できます。</p>
+
+<h2>停電とフィラメントセンサー</h2>
+<ul>
+<li>停電からの復帰は有効になっています。レイヤーが変わるたびにジョブが保存されます。無効にするには <code>M413 S0</code> のあと <code>M500</code> を送信します。</li>
+<li>加熱が始まった途端に <em>power outage</em> で印刷が止まる場合：v2.0.4 以降にアップデートしてください。それより前のビルドはボードの停電検出入力を監視しており、この入力はヒーターが動き出すとすぐに LOW になってしまいます。</li>
+<li>v2.0.8 以降、フィラメント切れ検出は全モデルでデフォルト有効で、センサーがなければ何もしません。それより前のリリースからアップデートした場合は、<code>M412 S1</code> のあと <code>M500</code> で有効にするか、画面の <em>設定</em> → <em>フィラメント</em> → <em>フィラメントセンサー</em> で有効にしてください。配線と BTT Smart Filament Sensor については<a href="../ja/sensor.html">フィラメントセンサー</a>をご覧ください。</li>
+</ul>
+
+<h2>トラブルシューティング</h2>
+<div class="table"><table><thead><tr><th>症状</th><th>対処法</th></tr></thead><tbody>
+<tr><td>ポートが使用中</td><td>プリンターのポートを使っているプログラムをすべて閉じてください。</td></tr>
+<tr><td>デバイスが見つからない</td><td>CH340 USB ドライバーをインストールし、別のケーブルや USB ポートを試し、プリンターの電源が入っているか確認してください。</td></tr>
+<tr><td>書き込み後に文字化けする</td><td>このファームウェアでは 250000 bps、Wanhao のファームウェアでは 115200 bps を使ってください。</td></tr>
+<tr><td>画面の温度が 10 倍で表示される（23.6 °C が 236）</td><td>画面に古いファイルが残っています：<a href="../ja/screen.html">DGUS Reloaded 2.0</a> を書き込んでください。</td></tr>
+<tr><td>起動するたびに画面が英語に戻る、または <em>フィラメントセンサー</em> ページが機能しない</td><td>メインボードのファームウェアが v2.0.9 より古いです：アップデートしてください。</td></tr>
+<tr><td>原点復帰がスイッチの数ミリ手前で止まり、<em>Homing Failed</em> と表示される</td><td>エンドストップの信号線に電気ノイズが乗っています。このファームウェアは v2.0.1 からノイズを除去しています：アップデートしてください。</td></tr>
+<tr><td>レベリング中にノズルがベッドのクリップに当たる</td><td>v2.0.2 以降にアップデートしてください：最初のプロービング列は、Wanhao のファームウェアと同じく端から 10 mm 内側になります。</td></tr>
+<tr><td>ベッドが Y エンドストップから離れる方向に動く</td><td>お使いのモデル用のファームウェアか確認してください：Y 軸モーターは MK1、MK1 + キット、MK2 では背面、MK3 では前面にあります。</td></tr>
+</tbody></table></div>
+
+<h2>Wanhao のファームウェアに戻す</h2>
+<p>各モデルのページに、Wanhao 純正のメインボード用・画面用ファームウェアへのリンクがあります。同じ方法で書き込めます。Wanhao のメインボード用ファームウェアには、同じ世代の Wanhao 画面用ファームウェアが必要です。</p>
+<p>ご質問は <a href="https://discord.gg/T37DYHmt2j">Discord</a> または <a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/issues">GitHub issues</a> へどうぞ。</p>
+</div></main>
+<footer class="site"><div class="wrap">
+<a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9">ソースコードと issue は GitHub で</a>
+<a href="https://discord.gg/T37DYHmt2j">Discord</a>
+<span>ファームウェアは GNU GPL v3 で提供しています。Wanhao のマニュアルとファームウェアの権利は Wanhao に帰属します。</span>
+</div></footer>
+</body>
+</html>

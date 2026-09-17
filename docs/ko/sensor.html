@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="ko" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wanhao Duplicator 9 필라멘트 센서: 필라멘트 소진 스위치와 BTT Smart Filament Sensor 배선</title>
+<meta name="description" content="Wanhao D9 메인보드에서 필라멘트 센서를 꽂는 위치(D8, D9, GND, 5V), BTT Smart Filament Sensor V2.0 배선 방법, M412로 필라멘트 소진 감지와 막힘 감지를 켜는 방법.">
+<link rel="canonical" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ko/sensor.html">
+<link rel="alternate" hreflang="en" href="https://le-syl21.github.io/WANHAO-Duplicator-9/sensor.html">
+<link rel="alternate" hreflang="fr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/fr/sensor.html">
+<link rel="alternate" hreflang="de" href="https://le-syl21.github.io/WANHAO-Duplicator-9/de/sensor.html">
+<link rel="alternate" hreflang="es" href="https://le-syl21.github.io/WANHAO-Duplicator-9/es/sensor.html">
+<link rel="alternate" hreflang="it" href="https://le-syl21.github.io/WANHAO-Duplicator-9/it/sensor.html">
+<link rel="alternate" hreflang="pt" href="https://le-syl21.github.io/WANHAO-Duplicator-9/pt/sensor.html">
+<link rel="alternate" hreflang="nl" href="https://le-syl21.github.io/WANHAO-Duplicator-9/nl/sensor.html">
+<link rel="alternate" hreflang="pl" href="https://le-syl21.github.io/WANHAO-Duplicator-9/pl/sensor.html">
+<link rel="alternate" hreflang="tr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/tr/sensor.html">
+<link rel="alternate" hreflang="ru" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ru/sensor.html">
+<link rel="alternate" hreflang="ar" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ar/sensor.html">
+<link rel="alternate" hreflang="hi" href="https://le-syl21.github.io/WANHAO-Duplicator-9/hi/sensor.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://le-syl21.github.io/WANHAO-Duplicator-9/zh/sensor.html">
+<link rel="alternate" hreflang="ja" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ja/sensor.html">
+<link rel="alternate" hreflang="ko" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ko/sensor.html">
+<link rel="alternate" hreflang="id" href="https://le-syl21.github.io/WANHAO-Duplicator-9/id/sensor.html">
+<link rel="alternate" hreflang="x-default" href="https://le-syl21.github.io/WANHAO-Duplicator-9/sensor.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Wanhao Duplicator 9 필라멘트 센서: 필라멘트 소진 스위치와 BTT Smart Filament Sensor 배선">
+<meta property="og:description" content="Wanhao D9 메인보드에서 필라멘트 센서를 꽂는 위치(D8, D9, GND, 5V), BTT Smart Filament Sensor V2.0 배선 방법, M412로 필라멘트 소진 감지와 막힘 감지를 켜는 방법.">
+<meta property="og:url" content="https://le-syl21.github.io/WANHAO-Duplicator-9/ko/sensor.html">
+<meta property="og:image" content="https://le-syl21.github.io/WANHAO-Duplicator-9/img/og.jpg">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖨️</text></svg>">
+<link rel="stylesheet" href="../style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Wanhao Duplicator 9 필라멘트 센서: 필라멘트 소진 스위치와 BTT Smart Filament Sensor 배선", "description": "Wanhao D9 메인보드에서 필라멘트 센서를 꽂는 위치(D8, D9, GND, 5V), BTT Smart Filament Sensor V2.0 배선 방법, M412로 필라멘트 소진 감지와 막힘 감지를 켜는 방법.", "url": "https://le-syl21.github.io/WANHAO-Duplicator-9/ko/sensor.html", "inLanguage": "ko", "about": {"@type": "Product", "name": "Wanhao Duplicator 9", "brand": "Wanhao"}}</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="brand" href="../ko/">Wanhao <span>D9</span> firmware</a>
+<nav class="main"><a href="../ko/">홈</a><a href="../ko/mk1.html">MK1</a><a href="../ko/mk1u2.html">MK1 + MK2 키트</a><a href="../ko/mk2.html">MK2</a><a href="../ko/mk3.html">MK3</a><a href="../ko/flash.html">플래싱 가이드</a><a href="../ko/screen.html">화면</a><a href="../ko/sensor.html" aria-current="page">필라멘트 센서</a><a href="../ko/quiet.html">소음 줄이기</a></nav>
+<details class="lang"><summary aria-label="언어"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9M12 3c-2.5 2.7-3.8 5.7-3.8 9s1.3 6.3 3.8 9"/></svg><span>한국어</span></summary><ul><li><a href="../sensor.html" hreflang="en" lang="en">English</a></li><li><a href="../fr/sensor.html" hreflang="fr" lang="fr">Français</a></li><li><a href="../de/sensor.html" hreflang="de" lang="de">Deutsch</a></li><li><a href="../es/sensor.html" hreflang="es" lang="es">Español</a></li><li><a href="../it/sensor.html" hreflang="it" lang="it">Italiano</a></li><li><a href="../pt/sensor.html" hreflang="pt" lang="pt">Português</a></li><li><a href="../nl/sensor.html" hreflang="nl" lang="nl">Nederlands</a></li><li><a href="../pl/sensor.html" hreflang="pl" lang="pl">Polski</a></li><li><a href="../tr/sensor.html" hreflang="tr" lang="tr">Türkçe</a></li><li><a href="../ru/sensor.html" hreflang="ru" lang="ru">Русский</a></li><li><a href="../ar/sensor.html" hreflang="ar" lang="ar">العربية</a></li><li><a href="../hi/sensor.html" hreflang="hi" lang="hi">हिन्दी</a></li><li><a href="../zh/sensor.html" hreflang="zh-Hans" lang="zh-Hans">中文</a></li><li><a href="../ja/sensor.html" hreflang="ja" lang="ja">日本語</a></li><li><a href="../ko/sensor.html" hreflang="ko" lang="ko" aria-current="true">한국어</a></li><li><a href="../id/sensor.html" hreflang="id" lang="id">Bahasa Indonesia</a></li></ul></details>
+</div></header>
+<main><div class="wrap">
+<h1>필라멘트 센서</h1>
+<p class="lead">v2.0.5부터 이 펌웨어는 두 종류의 센서를 읽습니다. Wanhao의 필라멘트 소진 스위치, 그리고 필라멘트가
+움직이지 않을 때(엉킨 스풀, 막힘, 갈려 나간 필라멘트)도 알아차리는 BTT Smart Filament Sensor V2.0입니다.
+<strong>필라멘트 소진 감지는 모든 모델에서 기본으로 켜져 있고</strong>, 막힘 감지는 꺼져 있습니다.</p>
+
+<h2>센서 커넥터</h2>
+<figure><img src="../img/d9-sensor-plug-ko.svg" width="760" height="440" alt="Wanhao D9 메인보드: POWER-DET 왼쪽의 4핀 센서 커넥터(핀 D9, D8, GND, 5V)와 BTT Smart Filament Sensor V2.0 배선"></figure>
+<p><strong>POWER-DET</strong> 왼쪽, 엔드스톱 커넥터 아래에 있는 4핀 커넥터에는 <strong>D9, D8, GND, 5V</strong>가
+이 순서대로 있습니다. 핀 이름은 dustovich가 찾아내
+<a href="https://discord.gg/T37DYHmt2j">Discord</a>에 공유한 Wanhao 배선도에서 가져왔습니다. 보드 뒷면에는 같은 네 핀이 CTRL, BTN, GND, VCC로 인쇄되어 있습니다.</p>
+<ul>
+<li><strong>D8</strong>은 Wanhao 순정 펌웨어가 읽는 필라멘트 소진 입력입니다.</li>
+<li><strong>D9</strong>는 Wanhao 펌웨어가 사용하지 않습니다. 이 빌드는 여기서 BTT 센서의 움직임 신호를 읽습니다.</li>
+</ul>
+<div class="note">보드에 무엇이든 꽂거나 뽑을 때는 프린터 <strong>전원을 끄세요</strong>.</div>
+
+<h2 id="screen">화면에서</h2>
+<div class="split"><div>
+<p>화면에 DGUS Reloaded 2.0이 설치되어 있다면(펌웨어 v2.0.9 이상): <em>설정</em> → <em>필라멘트</em> →
+<em>필라멘트 센서</em>.</p>
+<ul>
+<li><strong>필라멘트 소진</strong>: 모든 감지를 켜거나 끕니다. <code>M412 S1</code> / <code>M412 S0</code>과 같습니다.</li>
+<li><strong>막힘 감지</strong>: 아래 길이로 막힘 감지를 켜거나 끕니다(<code>L0</code>).</li>
+<li><strong>막힘 길이</strong>: −와 +로 1 mm씩 바꿉니다. 숫자를 누르면 직접 입력할 수 있습니다.</li>
+<li><strong>필라멘트</strong> 표시등은 소진 스위치가 필라멘트를 감지하면 초록색, 감지하지 못하면 빨간색입니다.</li>
+<li>변경 사항은 바로 적용됩니다. <strong>저장</strong>을 누르면 <code>M500</code>처럼 저장됩니다. 뒤로 화살표로 나가면
+저장되지 않고, 다음 부팅 때 저장된 설정으로 돌아갑니다.</li>
+</ul>
+</div><figure><img src="../img/screen/ko-sensor.png" width="480" height="272" alt="DGUS Reloaded 2.0의 필라멘트 센서 페이지: 필라멘트 소진·막힘 감지 스위치, 빼기·더하기 버튼이 있는 막힘 길이, 필라멘트 표시등, 저장 버튼">
+<figcaption>설정 → 필라멘트 → 필라멘트 센서</figcaption></figure></div>
+
+<h2>M412 명령</h2>
+<p>모든 설정은 시리얼 터미널(Pronterface, 슬라이서나 OctoPrint의 터미널,
+250000 baud)에서 USB로 합니다. 여러 파라미터를 한 명령에 함께 쓸 수 있습니다. 예: <code>M412 S1 L10</code>.</p>
+<div class="table"><table class="stack"><thead><tr><th>명령</th><th>동작</th></tr></thead><tbody>
+<tr><td><code>M412</code></td><td>상태를 표시합니다. 예: <em>Filament runout ON ; Distance 5.00mm ; Motion distance 0.00mm</em>.</td></tr>
+<tr><td><code>M412 S1</code></td><td><strong>감지를 켭니다</strong>: 필라멘트 소진 스위치, 그리고 막힘 길이가 0이 아니면 막힘 감지도 켭니다.</td></tr>
+<tr><td><code>M412 S0</code></td><td>스위치와 막힘을 포함한 <strong>모든 감지를 끕니다</strong>.</td></tr>
+<tr><td><code>M412 D5</code></td><td>스위치가 필라멘트 없음을 감지한 뒤, 센서와 노즐 사이에 남은 필라멘트를 쓰기 위해 <strong>5 mm</strong> 더 출력한 다음 일시 정지합니다. 기본값 5 mm.</td></tr>
+<tr><td><code>M412 L10</code></td><td><strong>막힘 감지를 켭니다</strong>(BTT 센서 전용): 센서 바퀴가 돌지 않은 채 필라멘트 <strong>10 mm</strong>가 익스트루더를 지나가면 일시 정지합니다.</td></tr>
+<tr><td><code>M412 L0</code></td><td><strong>막힘 감지를 끄고</strong> 필라멘트 소진 스위치는 그대로 둡니다. 이것이 기본값입니다.</td></tr>
+<tr><td><code>M500</code></td><td>설정을 저장합니다. 저장하지 않으면 프린터를 끌 때 변경 사항이 사라집니다.</td></tr>
+<tr><td><code>M119</code></td><td><em>filament</em> 줄이 필라멘트가 있으면 <code>TRIGGERED</code>, 없으면 <code>open</code>으로 표시됩니다.</td></tr>
+</tbody></table></div>
+<p><code>M412 L0</code>과 단독으로 쓰는 <code>L</code>은 저희가 Marlin에 제안한 변경
+(<a href="https://github.com/MarlinFirmware/Marlin/pull/28585">MarlinFirmware/Marlin#28585</a>)에서 온 것으로, 이 펌웨어에 포함되어 있습니다. 이 변경이 없는 Marlin에서는 <code>L</code>
+단독 사용은 무시되고, <code>L0</code>은 곧바로 막힘으로 판단해 출력을 일시 정지합니다.</p>
+
+<h2>Wanhao 필라멘트 소진 스위치</h2>
+<p>필라멘트가 있는지 없는지를 펌웨어에 알려 줍니다. 필라멘트가 없어지면 필라멘트 5 mm를 더 출력한 뒤
+일시 정지하고, 화면에서 필라멘트 교체가 시작됩니다.</p>
+<p><strong>v2.0.8부터 모든 모델에서 기본으로 켜져 있습니다.</strong> D8에 아무것도 꽂혀 있지 않으면 보드의
+풀업 저항이 핀을 5 V로 유지하고, 이는 "필라멘트 있음"으로 읽힙니다. 그래서 감지가 절대 트리거되지 않으므로,
+센서 장착 여부와 상관없이 켜 두어도 됩니다. D8에 소진 스위치를 꽂으면 바로 작동합니다.</p>
+<ul>
+<li>막힘 감지는 꺼진 상태(<code>L0</code>)로 유지됩니다. 이 스위치는 필라멘트의 움직임을 볼 수 없습니다.</li>
+<li>스위치를 끄려면: <code>M412 S0</code> 후 <code>M500</code>.</li>
+<li>이전 릴리스에서 저장한 설정은 켜짐/꺼짐 상태를 그대로 유지합니다. 켜려면: <code>M412 S1</code> 후
+<code>M500</code>, 또는 기본값으로 초기화하세요(<code>M502</code> 후 <code>M500</code>. 프로브 Z
+오프셋과 메시도 지워집니다).</li>
+</ul>
+
+<h2>BTT Smart Filament Sensor V2.0</h2>
+<p>이 센서에는 출력이 두 개 있고, 펌웨어는 두 출력을 서로 다르게 읽습니다.</p>
+<ul>
+<li><strong>필라멘트 소진 스위치</strong>(D8로)는 레벨 신호입니다. 필라멘트가 있는 동안 5 V, 없어지면 0 V입니다.</li>
+<li><strong>움직임 출력</strong>(D9로)은 필라멘트가 지나가면서 돌리는 작은 바퀴에서 나옵니다. 필라멘트가 몇
+mm 움직일 때마다 출력이 0 V와 5 V 사이에서 바뀝니다. 펌웨어는 이 변화만 지켜봅니다. 익스트루더가
+막힘 길이만큼 필라멘트를 밀어내는 동안 변화가 한 번도 없으면 필라멘트가 따라오지 않는 것이므로(엉킨 스풀, 막힘,
+갈려 나간 필라멘트) 출력을 일시 정지합니다. 소진 스위치는 이를 알 수 없습니다. 막혀 있어도 필라멘트는 그대로 있기 때문입니다.</li>
+</ul>
+<h3>배선</h3>
+<p><strong>5V</strong>는 5V에, <strong>GND</strong>는 GND에, <strong>필라멘트 소진 스위치</strong> 신호는 <strong>D8</strong>에,
+<strong>움직임</strong> 신호는 <strong>D9</strong>에 연결합니다. 센서 케이블에 인쇄된 이름은 다를 수 있습니다.</p>
+<h3>켜기</h3>
+<pre><code>M412 S1 L10
+M500</code></pre>
+<p>이유 없이 출력이 일시 정지되면 막힘 길이를 늘리세요: <code>M412 L15</code> 후 <code>M500</code>. 필라멘트 소진
+스위치만 쓰려면: <code>M412 L0</code> 후 <code>M500</code>.</p>
+<h3>확인하기</h3>
+<ul>
+<li><code>M412</code>: <em>Filament runout ON ; Distance 5.00mm ; Motion distance 10.00mm</em>.</li>
+<li>필라멘트를 넣은 상태에서 <code>M119</code>: <em>filament: TRIGGERED</em>. 필라멘트를 넣거나 뺄 때가 아니라
+손으로 밀어 넣을 때 이 줄이 바뀐다면 두 신호선이 뒤바뀐 것입니다: D8과 D9를 서로 바꾸세요.</li>
+</ul>
+<div class="note">막힘 감지는 센서 없이 MK2 300에서 테스트했지만(막힘 길이 2 mm는 트리거되고, <code>L0</code>은 절대
+트리거되지 않음), BTT 센서 자체로는 아직 테스트하지 않았습니다. 스위치가 반대로 읽힌다면(필라멘트를 넣었는데
+<em>open</em>) <a href="https://discord.gg/T37DYHmt2j">Discord</a>에서 알려 주세요.</div>
+
+<h2>v2.0.5 또는 v2.0.6에서 업데이트할 때</h2>
+<p>이 릴리스들은 막힘 감지를 끌 방법이 없어서, 절대 도달하지 않을 만큼 긴 막힘 길이를 사용했습니다. v2.0.5는 100 m
+(실제로는 너무 짧았습니다: 1 kg 스풀의 약 3분의 1 정도로, 그 뒤에는 켜 둔 프린터가 괜히 일시 정지할 수 있었습니다),
+v2.0.6은 10 km였습니다. v2.0.7은 프린터가 시작될 때 이 두 값을 <code>L0</code>으로 불러옵니다. BTT 센서용으로 직접 설정한
+실제 길이(예: <code>L10</code>)는 유지됩니다. v2.0.4 이하에서 업데이트하면, 그 버전들이 저장한 0 대신 5 mm 필라멘트 소진 거리를
+불러옵니다.</p>
+</div></main>
+<footer class="site"><div class="wrap">
+<a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9">GitHub의 소스와 이슈</a>
+<a href="https://discord.gg/T37DYHmt2j">Discord</a>
+<span>펌웨어는 GNU GPL v3 라이선스입니다. Wanhao의 매뉴얼과 펌웨어의 권리는 Wanhao에 있습니다.</span>
+</div></footer>
+</body>
+</html>

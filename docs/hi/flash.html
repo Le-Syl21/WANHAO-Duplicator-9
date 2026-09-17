@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="hi" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wanhao Duplicator 9 (D9) का मदरबोर्ड फ़र्मवेयर कैसे फ़्लैश करें</title>
+<meta name="description" content="USB से AVRDUDESS या avrdude के साथ Wanhao D9 पर Marlin फ़्लैश करने की स्टेप-बाय-स्टेप गाइड, होमिंग की समस्याएँ ठीक करना, और Wanhao के फ़र्मवेयर पर वापस जाना।">
+<link rel="canonical" href="https://le-syl21.github.io/WANHAO-Duplicator-9/hi/flash.html">
+<link rel="alternate" hreflang="en" href="https://le-syl21.github.io/WANHAO-Duplicator-9/flash.html">
+<link rel="alternate" hreflang="fr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/fr/flash.html">
+<link rel="alternate" hreflang="de" href="https://le-syl21.github.io/WANHAO-Duplicator-9/de/flash.html">
+<link rel="alternate" hreflang="es" href="https://le-syl21.github.io/WANHAO-Duplicator-9/es/flash.html">
+<link rel="alternate" hreflang="it" href="https://le-syl21.github.io/WANHAO-Duplicator-9/it/flash.html">
+<link rel="alternate" hreflang="pt" href="https://le-syl21.github.io/WANHAO-Duplicator-9/pt/flash.html">
+<link rel="alternate" hreflang="nl" href="https://le-syl21.github.io/WANHAO-Duplicator-9/nl/flash.html">
+<link rel="alternate" hreflang="pl" href="https://le-syl21.github.io/WANHAO-Duplicator-9/pl/flash.html">
+<link rel="alternate" hreflang="tr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/tr/flash.html">
+<link rel="alternate" hreflang="ru" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ru/flash.html">
+<link rel="alternate" hreflang="ar" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ar/flash.html">
+<link rel="alternate" hreflang="hi" href="https://le-syl21.github.io/WANHAO-Duplicator-9/hi/flash.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://le-syl21.github.io/WANHAO-Duplicator-9/zh/flash.html">
+<link rel="alternate" hreflang="ja" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ja/flash.html">
+<link rel="alternate" hreflang="ko" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ko/flash.html">
+<link rel="alternate" hreflang="id" href="https://le-syl21.github.io/WANHAO-Duplicator-9/id/flash.html">
+<link rel="alternate" hreflang="x-default" href="https://le-syl21.github.io/WANHAO-Duplicator-9/flash.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Wanhao Duplicator 9 (D9) का मदरबोर्ड फ़र्मवेयर कैसे फ़्लैश करें">
+<meta property="og:description" content="USB से AVRDUDESS या avrdude के साथ Wanhao D9 पर Marlin फ़्लैश करने की स्टेप-बाय-स्टेप गाइड, होमिंग की समस्याएँ ठीक करना, और Wanhao के फ़र्मवेयर पर वापस जाना।">
+<meta property="og:url" content="https://le-syl21.github.io/WANHAO-Duplicator-9/hi/flash.html">
+<meta property="og:image" content="https://le-syl21.github.io/WANHAO-Duplicator-9/img/og.jpg">
+<meta property="og:locale" content="hi_IN">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖨️</text></svg>">
+<link rel="stylesheet" href="../style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Wanhao Duplicator 9 (D9) का मदरबोर्ड फ़र्मवेयर कैसे फ़्लैश करें", "description": "USB से AVRDUDESS या avrdude के साथ Wanhao D9 पर Marlin फ़्लैश करने की स्टेप-बाय-स्टेप गाइड, होमिंग की समस्याएँ ठीक करना, और Wanhao के फ़र्मवेयर पर वापस जाना।", "url": "https://le-syl21.github.io/WANHAO-Duplicator-9/hi/flash.html", "inLanguage": "hi", "about": {"@type": "Product", "name": "Wanhao Duplicator 9", "brand": "Wanhao"}}</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="brand" href="../hi/">Wanhao <span>D9</span> firmware</a>
+<nav class="main"><a href="../hi/">होम</a><a href="../hi/mk1.html">MK1</a><a href="../hi/mk1u2.html">MK1 + MK2 किट</a><a href="../hi/mk2.html">MK2</a><a href="../hi/mk3.html">MK3</a><a href="../hi/flash.html" aria-current="page">फ़्लैश गाइड</a><a href="../hi/screen.html">स्क्रीन</a><a href="../hi/sensor.html">फिलामेंट सेंसर</a><a href="../hi/quiet.html">कम शोर</a></nav>
+<details class="lang"><summary aria-label="भाषा"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9M12 3c-2.5 2.7-3.8 5.7-3.8 9s1.3 6.3 3.8 9"/></svg><span>हिन्दी</span></summary><ul><li><a href="../flash.html" hreflang="en" lang="en">English</a></li><li><a href="../fr/flash.html" hreflang="fr" lang="fr">Français</a></li><li><a href="../de/flash.html" hreflang="de" lang="de">Deutsch</a></li><li><a href="../es/flash.html" hreflang="es" lang="es">Español</a></li><li><a href="../it/flash.html" hreflang="it" lang="it">Italiano</a></li><li><a href="../pt/flash.html" hreflang="pt" lang="pt">Português</a></li><li><a href="../nl/flash.html" hreflang="nl" lang="nl">Nederlands</a></li><li><a href="../pl/flash.html" hreflang="pl" lang="pl">Polski</a></li><li><a href="../tr/flash.html" hreflang="tr" lang="tr">Türkçe</a></li><li><a href="../ru/flash.html" hreflang="ru" lang="ru">Русский</a></li><li><a href="../ar/flash.html" hreflang="ar" lang="ar">العربية</a></li><li><a href="../hi/flash.html" hreflang="hi" lang="hi" aria-current="true">हिन्दी</a></li><li><a href="../zh/flash.html" hreflang="zh-Hans" lang="zh-Hans">中文</a></li><li><a href="../ja/flash.html" hreflang="ja" lang="ja">日本語</a></li><li><a href="../ko/flash.html" hreflang="ko" lang="ko">한국어</a></li><li><a href="../id/flash.html" hreflang="id" lang="id">Bahasa Indonesia</a></li></ul></details>
+</div></header>
+<main><div class="wrap">
+<h1>Duplicator 9 का मदरबोर्ड फ़्लैश करना</h1>
+<p class="lead">D9 का मदरबोर्ड USB बूटलोडर वाला ATmega2560 है: न प्रोग्रामर चाहिए, न बेस खोलना पड़ता है,
+बस एक USB केबल।</p>
+
+<h2>क्या चाहिए</h2>
+<ul>
+<li>प्रिंटर और कंप्यूटर के बीच USB केबल, और प्रिंटर <strong>चालू</strong> हो।</li>
+<li><a href="https://github.com/zkemble/AVRDUDESS">AVRDUDESS</a> (Windows, ग्राफ़िकल, सबसे आसान) या
+<a href="https://github.com/avrdudes/avrdude">avrdude</a> (कमांड लाइन, हर सिस्टम पर)।</li>
+<li>अपने मॉडल और साइज़ की <strong>.hex</strong> फ़ाइल: <a href="../hi/mk1.html">MK1</a>, <a href="../hi/mk1u2.html">MK1 + किट</a>,
+<a href="../hi/mk2.html">MK2</a>, <a href="../hi/mk3.html">MK3</a>।</li>
+</ul>
+
+<h2>फ़्लैश करने से पहले</h2>
+<div class="note"><code>M503</code> भेजें और उसका जवाब सँभालकर रखें। v2.0.3 से, अपडेट करने पर प्रिंटर में सेव सेटिंग्स बनी रहती हैं,
+लेकिन v2.0.3 <strong>पर</strong> अपडेट करते समय प्रिंटर एक बार इस फ़र्मवेयर की डिफ़ॉल्ट सेटिंग्स से शुरू होता है (सेटिंग्स सेव करने का
+तरीका बदला है), और Wanhao के फ़र्मवेयर से आने पर भी ऐसा ही होता है। इसके बाद प्रोब का Z ऑफ़सेट <code>M851 Z…</code>
+और <code>M500</code> से फिर से सेट करें।</div>
+<p>प्रिंटर का पोर्ट इस्तेमाल कर सकने वाले सभी प्रोग्राम बंद करें: Cura, PrusaSlicer, OctoPrint, Pronterface, सीरियल टर्मिनल।</p>
+
+<h2>AVRDUDESS से फ़्लैश करें</h2>
+<ol>
+<li>Programmer: <code>wiring</code>। MCU: <code>ATmega2560</code>।</li>
+<li>Port: आपके प्रिंटर का COM पोर्ट (जैसे <code>COM3</code>)। बॉड रेट डिफ़ॉल्ट पर ही रहने दें।</li>
+<li>Flash: .hex फ़ाइल चुनें, फिर <strong>Program!</strong> पर क्लिक करें। इसमें 30 से 60 सेकंड लगते हैं।</li>
+</ol>
+
+<h2>avrdude से फ़्लैश करें</h2>
+<pre><code># Windows
+avrdude -v -p atmega2560 -c wiring -P COM3 -D -U flash:w:D9_MK2_300.hex:i
+
+# Linux / macOS
+avrdude -v -p atmega2560 -c wiring -P /dev/ttyUSB0 -D -U flash:w:D9_MK2_300.hex:i</code></pre>
+<p>पोर्ट और फ़ाइल का नाम अपने हिसाब से बदलें। <code>wiring</code> प्रोटोकॉल बूटलोडर की स्पीड खुद चुन लेता है।</p>
+
+<h2>पहली बार चालू करना</h2>
+<ol>
+<li>USB केबल निकालें, प्रिंटर बंद करके फिर चालू करें, और केबल वापस लगाएँ।</li>
+<li><strong>250000 बॉड</strong> पर कनेक्ट करें (Wanhao के फ़र्मवेयर 115200 इस्तेमाल करते थे) और <code>M115</code> भेजें: जवाब में नया फ़र्मवेयर दिखेगा।</li>
+<li>सभी एक्सिस की होमिंग करें, फिर स्क्रीन से या <code>G29</code> से बेड लेवलिंग चलाएँ, और <code>M500</code> से सेव करें।</li>
+</ol>
+
+<h2 id="reset">इस फ़र्मवेयर की डिफ़ॉल्ट सेटिंग्स पर वापस जाना</h2>
+<p>v2.0.3 से, फ़र्मवेयर अपडेट करने पर प्रिंटर में सेव सेटिंग्स <strong>बनी रहती हैं</strong> (प्रोब का Z ऑफ़सेट, steps/mm,
+PID, मेश…)। इसलिए किसी रिलीज़ की नई डिफ़ॉल्ट वैल्यू पहले से सेव वैल्यू की जगह नहीं लेतीं। एक बार रीसेट करें अगर आप
+v2.0.2 या उससे पुराने वर्ज़न से अपडेट कर रहे हैं और आपने कुछ वैल्यू हाथ से सेव की थीं, अगर दूसरे फ़र्मवेयर आज़माने के बाद
+प्रिंटर अजीब व्यवहार कर रहा है, या जब भी आप नए सिरे से शुरू करना चाहें:</p>
+<ul>
+<li><strong>स्क्रीन पर:</strong> <em>सेटिंग्स</em> → <em>अधिक</em> → <em>रीसेट करें</em> → ✓।</li>
+<li><strong>USB से:</strong> <code>M502</code> भेजें (इस फ़र्मवेयर की डिफ़ॉल्ट सेटिंग्स लोड करता है), फिर <code>M500</code> (उन्हें सेव करता है)।</li>
+</ul>
+<p>इसके बाद प्रोब का Z ऑफ़सेट फिर से सेट करें (<code>M851 Z…</code> फिर <code>M500</code>) और बेड लेवलिंग चलाएँ।
+नतीजा <code>M503</code> से जाँचें।</p>
+
+<h2>बिजली जाना और फिलामेंट सेंसर</h2>
+<ul>
+<li>बिजली जाने के बाद रिकवरी चालू है: हर लेयर बदलने पर जॉब सेव होता है। इसे बंद करने के लिए <code>M413 S0</code> फिर <code>M500</code>।</li>
+<li>अगर प्रिंट गरम होना शुरू होते ही <em>power outage</em> दिखाकर तुरंत रुक जाता है: v2.0.4 या उससे नए वर्ज़न पर अपडेट करें। पुराने बिल्ड बोर्ड के power-fail इनपुट पर नज़र रखते थे, जो हीटर चालू होते ही LOW पढ़ता है।</li>
+<li>v2.0.8 से फिलामेंट रनआउट डिटेक्शन हर मॉडल पर डिफ़ॉल्ट रूप से चालू है, और सेंसर न हो तो कुछ नहीं करता। किसी पुरानी रिलीज़ से अपडेट करने के बाद इसे <code>M412 S1</code> फिर <code>M500</code> से चालू करें, या स्क्रीन पर <em>सेटिंग्स</em> → <em>फिलामेंट</em> → <em>फिलामेंट सेंसर</em> में। वायरिंग और BTT Smart Filament Sensor: <a href="../hi/sensor.html">फिलामेंट सेंसर</a>।</li>
+</ul>
+
+<h2>समस्या समाधान</h2>
+<div class="table"><table><thead><tr><th>समस्या</th><th>समाधान</th></tr></thead><tbody>
+<tr><td>पोर्ट पहले से इस्तेमाल में है</td><td>प्रिंटर का पोर्ट इस्तेमाल करने वाले सभी प्रोग्राम बंद करें।</td></tr>
+<tr><td>डिवाइस नहीं मिला</td><td>CH340 USB ड्राइवर इंस्टॉल करें, दूसरी केबल या दूसरा USB पोर्ट आज़माएँ, देखें कि प्रिंटर चालू है।</td></tr>
+<tr><td>फ़्लैश करने के बाद अक्षर समझ में नहीं आते</td><td>इन फ़र्मवेयर के साथ 250000 बॉड इस्तेमाल करें, Wanhao वालों के साथ 115200।</td></tr>
+<tr><td>स्क्रीन पर तापमान ×10 दिखता है (23.6 °C की जगह 236)</td><td>स्क्रीन में अभी भी पुरानी फ़ाइलें हैं: <a href="../hi/screen.html">DGUS Reloaded 2.0</a> फ़्लैश करें।</td></tr>
+<tr><td>हर बार चालू होने पर स्क्रीन अंग्रेज़ी में लौट जाती है, या उसका <em>फिलामेंट सेंसर</em> पेज कुछ नहीं करता</td><td>मदरबोर्ड फ़र्मवेयर v2.0.9 से पुराना है: उसे अपडेट करें।</td></tr>
+<tr><td>होमिंग स्विच से कुछ मिलीमीटर पहले रुक जाती है, फिर <em>Homing Failed</em></td><td>एंडस्टॉप लाइन पर इलेक्ट्रिकल नॉइज़। ये फ़र्मवेयर v2.0.1 से इसे फ़िल्टर करते हैं: अपडेट करें।</td></tr>
+<tr><td>लेवलिंग के दौरान नोज़ल बेड की क्लिप से टकराता है</td><td>v2.0.2 या उससे नए वर्ज़न पर अपडेट करें: प्रोबिंग का पहला कॉलम किनारे से 10 mm अंदर है, जैसे Wanhao के फ़र्मवेयर में।</td></tr>
+<tr><td>बेड Y स्विच से दूर चला जाता है</td><td>जाँचें कि आपने अपने मॉडल का फ़र्मवेयर लिया है: MK1, MK1 + किट और MK2 पर Y मोटर पीछे है, MK3 पर आगे।</td></tr>
+</tbody></table></div>
+
+<h2>Wanhao के फ़र्मवेयर पर वापस जाना</h2>
+<p>हर मॉडल के पेज पर Wanhao के ओरिजिनल मदरबोर्ड और स्क्रीन फ़र्मवेयर के लिंक हैं। इन्हें भी इसी तरह फ़्लैश करें; Wanhao के
+मदरबोर्ड फ़र्मवेयर को उसी पीढ़ी का Wanhao स्क्रीन फ़र्मवेयर चाहिए।</p>
+<p>सवाल: <a href="https://discord.gg/T37DYHmt2j">Discord</a> या <a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/issues">GitHub issues</a>।</p>
+</div></main>
+<footer class="site"><div class="wrap">
+<a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9">सोर्स कोड और issues GitHub पर</a>
+<a href="https://discord.gg/T37DYHmt2j">Discord</a>
+<span>फ़र्मवेयर GNU GPL v3 लाइसेंस के तहत है। Wanhao के मैनुअल और फ़र्मवेयर Wanhao के ही हैं।</span>
+</div></footer>
+</body>
+</html>

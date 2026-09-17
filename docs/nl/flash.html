@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="nl" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zo flash je de moederbordfirmware van een Wanhao Duplicator 9 (D9)</title>
+<meta name="description" content="Stapsgewijze handleiding om Marlin via USB met AVRDUDESS of avrdude op een Wanhao D9 te flashen, homingproblemen op te lossen en terug te gaan naar de firmware van Wanhao.">
+<link rel="canonical" href="https://le-syl21.github.io/WANHAO-Duplicator-9/nl/flash.html">
+<link rel="alternate" hreflang="en" href="https://le-syl21.github.io/WANHAO-Duplicator-9/flash.html">
+<link rel="alternate" hreflang="fr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/fr/flash.html">
+<link rel="alternate" hreflang="de" href="https://le-syl21.github.io/WANHAO-Duplicator-9/de/flash.html">
+<link rel="alternate" hreflang="es" href="https://le-syl21.github.io/WANHAO-Duplicator-9/es/flash.html">
+<link rel="alternate" hreflang="it" href="https://le-syl21.github.io/WANHAO-Duplicator-9/it/flash.html">
+<link rel="alternate" hreflang="pt" href="https://le-syl21.github.io/WANHAO-Duplicator-9/pt/flash.html">
+<link rel="alternate" hreflang="nl" href="https://le-syl21.github.io/WANHAO-Duplicator-9/nl/flash.html">
+<link rel="alternate" hreflang="pl" href="https://le-syl21.github.io/WANHAO-Duplicator-9/pl/flash.html">
+<link rel="alternate" hreflang="tr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/tr/flash.html">
+<link rel="alternate" hreflang="ru" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ru/flash.html">
+<link rel="alternate" hreflang="ar" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ar/flash.html">
+<link rel="alternate" hreflang="hi" href="https://le-syl21.github.io/WANHAO-Duplicator-9/hi/flash.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://le-syl21.github.io/WANHAO-Duplicator-9/zh/flash.html">
+<link rel="alternate" hreflang="ja" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ja/flash.html">
+<link rel="alternate" hreflang="ko" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ko/flash.html">
+<link rel="alternate" hreflang="id" href="https://le-syl21.github.io/WANHAO-Duplicator-9/id/flash.html">
+<link rel="alternate" hreflang="x-default" href="https://le-syl21.github.io/WANHAO-Duplicator-9/flash.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Zo flash je de moederbordfirmware van een Wanhao Duplicator 9 (D9)">
+<meta property="og:description" content="Stapsgewijze handleiding om Marlin via USB met AVRDUDESS of avrdude op een Wanhao D9 te flashen, homingproblemen op te lossen en terug te gaan naar de firmware van Wanhao.">
+<meta property="og:url" content="https://le-syl21.github.io/WANHAO-Duplicator-9/nl/flash.html">
+<meta property="og:image" content="https://le-syl21.github.io/WANHAO-Duplicator-9/img/og.jpg">
+<meta property="og:locale" content="nl_NL">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖨️</text></svg>">
+<link rel="stylesheet" href="../style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Zo flash je de moederbordfirmware van een Wanhao Duplicator 9 (D9)", "description": "Stapsgewijze handleiding om Marlin via USB met AVRDUDESS of avrdude op een Wanhao D9 te flashen, homingproblemen op te lossen en terug te gaan naar de firmware van Wanhao.", "url": "https://le-syl21.github.io/WANHAO-Duplicator-9/nl/flash.html", "inLanguage": "nl", "about": {"@type": "Product", "name": "Wanhao Duplicator 9", "brand": "Wanhao"}}</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="brand" href="../nl/">Wanhao <span>D9</span> firmware</a>
+<nav class="main"><a href="../nl/">Home</a><a href="../nl/mk1.html">MK1</a><a href="../nl/mk1u2.html">MK1 + MK2-kit</a><a href="../nl/mk2.html">MK2</a><a href="../nl/mk3.html">MK3</a><a href="../nl/flash.html" aria-current="page">Flashhandleiding</a><a href="../nl/screen.html">Scherm</a><a href="../nl/sensor.html">Filamentsensor</a><a href="../nl/quiet.html">Stiller</a></nav>
+<details class="lang"><summary aria-label="Taal"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9M12 3c-2.5 2.7-3.8 5.7-3.8 9s1.3 6.3 3.8 9"/></svg><span>Nederlands</span></summary><ul><li><a href="../flash.html" hreflang="en" lang="en">English</a></li><li><a href="../fr/flash.html" hreflang="fr" lang="fr">Français</a></li><li><a href="../de/flash.html" hreflang="de" lang="de">Deutsch</a></li><li><a href="../es/flash.html" hreflang="es" lang="es">Español</a></li><li><a href="../it/flash.html" hreflang="it" lang="it">Italiano</a></li><li><a href="../pt/flash.html" hreflang="pt" lang="pt">Português</a></li><li><a href="../nl/flash.html" hreflang="nl" lang="nl" aria-current="true">Nederlands</a></li><li><a href="../pl/flash.html" hreflang="pl" lang="pl">Polski</a></li><li><a href="../tr/flash.html" hreflang="tr" lang="tr">Türkçe</a></li><li><a href="../ru/flash.html" hreflang="ru" lang="ru">Русский</a></li><li><a href="../ar/flash.html" hreflang="ar" lang="ar">العربية</a></li><li><a href="../hi/flash.html" hreflang="hi" lang="hi">हिन्दी</a></li><li><a href="../zh/flash.html" hreflang="zh-Hans" lang="zh-Hans">中文</a></li><li><a href="../ja/flash.html" hreflang="ja" lang="ja">日本語</a></li><li><a href="../ko/flash.html" hreflang="ko" lang="ko">한국어</a></li><li><a href="../id/flash.html" hreflang="id" lang="id">Bahasa Indonesia</a></li></ul></details>
+</div></header>
+<main><div class="wrap">
+<h1>Het moederbord van de Duplicator 9 flashen</h1>
+<p class="lead">Het moederbord van de D9 is een ATmega2560 met een USB-bootloader: geen programmer, de voet hoeft niet
+open, alleen een USB-kabel.</p>
+
+<h2>Wat je nodig hebt</h2>
+<ul>
+<li>Een USB-kabel tussen de printer en de computer, en de printer <strong>ingeschakeld</strong>.</li>
+<li><a href="https://github.com/zkemble/AVRDUDESS">AVRDUDESS</a> (Windows, grafisch, het makkelijkst) of
+<a href="https://github.com/avrdudes/avrdude">avrdude</a> (opdrachtregel, elk besturingssysteem).</li>
+<li>De <strong>.hex</strong> voor je model en formaat: <a href="../nl/mk1.html">MK1</a>, <a href="../nl/mk1u2.html">MK1 + kit</a>,
+<a href="../nl/mk2.html">MK2</a>, <a href="../nl/mk3.html">MK3</a>.</li>
+</ul>
+
+<h2>Voor het flashen</h2>
+<div class="note">Stuur <code>M503</code> en bewaar het antwoord. Sinds v2.0.3 blijven bij een update de instellingen in de
+printer bewaard, maar een update <strong>naar</strong> v2.0.3 begint eenmalig met de standaardwaarden van deze firmware (de
+manier waarop instellingen worden opgeslagen is veranderd), en dat geldt ook als je van de firmware van Wanhao komt. Stel
+daarna de Z-offset van je sensor opnieuw in met <code>M851 Z…</code> en <code>M500</code>.</div>
+<p>Sluit alle programma's die de poort van de printer bezet kunnen houden: Cura, PrusaSlicer, OctoPrint, Pronterface, seriële terminals.</p>
+
+<h2>Flashen met AVRDUDESS</h2>
+<ol>
+<li>Programmer: <code>wiring</code>. MCU: <code>ATmega2560</code>.</li>
+<li>Port: de COM-poort van je printer (bijvoorbeeld <code>COM3</code>). Laat de baudrate op de standaardwaarde staan.</li>
+<li>Flash: kies het .hex-bestand en klik op <strong>Program!</strong>. Dat duurt 30 tot 60 seconden.</li>
+</ol>
+
+<h2>Flashen met avrdude</h2>
+<pre><code># Windows
+avrdude -v -p atmega2560 -c wiring -P COM3 -D -U flash:w:D9_MK2_300.hex:i
+
+# Linux / macOS
+avrdude -v -p atmega2560 -c wiring -P /dev/ttyUSB0 -D -U flash:w:D9_MK2_300.hex:i</code></pre>
+<p>Vervang de poort en de bestandsnaam door die van jou. Het protocol <code>wiring</code> kiest zelf de snelheid van de bootloader.</p>
+
+<h2>Eerste keer opstarten</h2>
+<ol>
+<li>Haal de USB-kabel los, zet de printer uit en weer aan, en sluit de kabel weer aan.</li>
+<li>Maak verbinding op <strong>250000 baud</strong> (de firmwares van Wanhao gebruikten 115200) en stuur <code>M115</code>: het antwoord toont de nieuwe firmware.</li>
+<li>Home alle assen, nivelleer daarna het bed via het scherm of met <code>G29</code>, en sla op met <code>M500</code>.</li>
+</ol>
+
+<h2 id="reset">Terug naar de standaardinstellingen van deze firmware</h2>
+<p>Sinds v2.0.3 <strong>blijven</strong> bij een firmware-update de instellingen in de printer bewaard (Z-offset van de sensor,
+steps/mm, PID, mesh…). Nieuwe standaardwaarden in een release vervangen dus niet de waarden die al zijn opgeslagen. Reset
+één keer als je bijwerkt vanaf v2.0.2 of ouder en met de hand opgeslagen waarden hebt, als de printer zich vreemd gedraagt
+nadat je andere firmwares hebt geprobeerd, of wanneer je schoon wilt beginnen:</p>
+<ul>
+<li><strong>Op het scherm:</strong> <em>Instellingen</em> → <em>Meer</em> → <em>Resetten</em> → ✓.</li>
+<li><strong>Via USB:</strong> stuur <code>M502</code> (laadt de standaardwaarden van deze firmware) en daarna <code>M500</code> (slaat ze op).</li>
+</ul>
+<p>Stel daarna de Z-offset van je sensor opnieuw in (<code>M851 Z…</code> en daarna <code>M500</code>) en nivelleer het bed. Controleer het
+resultaat met <code>M503</code>.</p>
+
+<h2>Stroomuitval en filamentsensor</h2>
+<ul>
+<li>Hervatten na stroomuitval staat aan: de opdracht wordt bij elke laagwissel opgeslagen. Zet het uit met <code>M413 S0</code> en daarna <code>M500</code>.</li>
+<li>Een print die meteen stopt met <em>power outage</em> zodra hij opwarmt: werk bij naar v2.0.4 of nieuwer. Eerdere builds bewaakten de stroomuitvalingang van het bord, die laag wordt zodra de verwarmingen aangaan.</li>
+<li>Detectie van einde filament staat sinds v2.0.8 standaard aan op elk model, en doet niets zonder sensor. Na een update vanaf een eerdere release zet je hem aan met <code>M412 S1</code> en daarna <code>M500</code>, of op het scherm onder <em>Instellingen</em> → <em>Filament</em> → <em>Filamentsensor</em>. Aansluiten en de BTT Smart Filament Sensor: <a href="../nl/sensor.html">Filamentsensor</a>.</li>
+</ul>
+
+<h2>Problemen oplossen</h2>
+<div class="table"><table><thead><tr><th>Probleem</th><th>Oplossing</th></tr></thead><tbody>
+<tr><td>Poort in gebruik</td><td>Sluit alle programma's die de poort van de printer gebruiken.</td></tr>
+<tr><td>Apparaat niet gevonden</td><td>Installeer de CH340 USB-driver, probeer een andere kabel of USB-poort, controleer of de printer aanstaat.</td></tr>
+<tr><td>Onleesbare tekens na het flashen</td><td>Gebruik 250000 baud met deze firmwares, 115200 met die van Wanhao.</td></tr>
+<tr><td>Temperaturen ×10 op het scherm (236 voor 23,6 °C)</td><td>Het scherm heeft nog oude bestanden: flash <a href="../nl/screen.html">DGUS Reloaded 2.0</a>.</td></tr>
+<tr><td>Het scherm springt bij elke start terug naar Engels, of de pagina <em>Filamentsensor</em> doet niets</td><td>De moederbordfirmware is ouder dan v2.0.9: werk hem bij.</td></tr>
+<tr><td>Homing stopt een paar millimeter voor de schakelaar, daarna <em>Homing Failed</em></td><td>Elektrische storing op de lijn van de eindschakelaar. Deze firmwares filteren die sinds v2.0.1: werk bij.</td></tr>
+<tr><td>De nozzle raakt tijdens het nivelleren een klem van het bed</td><td>Werk bij naar v2.0.2 of nieuwer: de eerste kolom meetpunten ligt 10 mm van de rand, zoals in de firmware van Wanhao.</td></tr>
+<tr><td>Het bed beweegt weg van de Y-schakelaar</td><td>Controleer of je de firmware voor jouw model hebt genomen: de Y-motor zit achteraan bij de MK1, MK1 + kit en MK2, vooraan bij de MK3.</td></tr>
+</tbody></table></div>
+
+<h2>Terug naar de firmware van Wanhao</h2>
+<p>Elke modelpagina linkt naar de originele moederbord- en schermfirmwares van Wanhao. Flash ze op dezelfde manier; de
+moederbordfirmware van Wanhao heeft de schermfirmware van Wanhao van dezelfde generatie nodig.</p>
+<p>Vragen: <a href="https://discord.gg/T37DYHmt2j">Discord</a> of <a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/issues">GitHub-issues</a>.</p>
+</div></main>
+<footer class="site"><div class="wrap">
+<a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9">Broncode en issues op GitHub</a>
+<a href="https://discord.gg/T37DYHmt2j">Discord</a>
+<span>Firmware onder GNU GPL v3. De handleidingen en firmwares van Wanhao blijven eigendom van Wanhao.</span>
+</div></footer>
+</body>
+</html>

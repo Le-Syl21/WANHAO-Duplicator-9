@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>كيفية تثبيت البرنامج الثابت (firmware) على اللوحة الأم لطابعة Wanhao Duplicator 9 (D9)</title>
+<meta name="description" content="دليل خطوة بخطوة لتثبيت Marlin على Wanhao D9 عبر USB باستخدام AVRDUDESS أو avrdude، وحل مشكلات العودة إلى نقطة الأصل، والرجوع إلى البرنامج الثابت من Wanhao.">
+<link rel="canonical" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ar/flash.html">
+<link rel="alternate" hreflang="en" href="https://le-syl21.github.io/WANHAO-Duplicator-9/flash.html">
+<link rel="alternate" hreflang="fr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/fr/flash.html">
+<link rel="alternate" hreflang="de" href="https://le-syl21.github.io/WANHAO-Duplicator-9/de/flash.html">
+<link rel="alternate" hreflang="es" href="https://le-syl21.github.io/WANHAO-Duplicator-9/es/flash.html">
+<link rel="alternate" hreflang="it" href="https://le-syl21.github.io/WANHAO-Duplicator-9/it/flash.html">
+<link rel="alternate" hreflang="pt" href="https://le-syl21.github.io/WANHAO-Duplicator-9/pt/flash.html">
+<link rel="alternate" hreflang="nl" href="https://le-syl21.github.io/WANHAO-Duplicator-9/nl/flash.html">
+<link rel="alternate" hreflang="pl" href="https://le-syl21.github.io/WANHAO-Duplicator-9/pl/flash.html">
+<link rel="alternate" hreflang="tr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/tr/flash.html">
+<link rel="alternate" hreflang="ru" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ru/flash.html">
+<link rel="alternate" hreflang="ar" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ar/flash.html">
+<link rel="alternate" hreflang="hi" href="https://le-syl21.github.io/WANHAO-Duplicator-9/hi/flash.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://le-syl21.github.io/WANHAO-Duplicator-9/zh/flash.html">
+<link rel="alternate" hreflang="ja" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ja/flash.html">
+<link rel="alternate" hreflang="ko" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ko/flash.html">
+<link rel="alternate" hreflang="id" href="https://le-syl21.github.io/WANHAO-Duplicator-9/id/flash.html">
+<link rel="alternate" hreflang="x-default" href="https://le-syl21.github.io/WANHAO-Duplicator-9/flash.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="كيفية تثبيت البرنامج الثابت (firmware) على اللوحة الأم لطابعة Wanhao Duplicator 9 (D9)">
+<meta property="og:description" content="دليل خطوة بخطوة لتثبيت Marlin على Wanhao D9 عبر USB باستخدام AVRDUDESS أو avrdude، وحل مشكلات العودة إلى نقطة الأصل، والرجوع إلى البرنامج الثابت من Wanhao.">
+<meta property="og:url" content="https://le-syl21.github.io/WANHAO-Duplicator-9/ar/flash.html">
+<meta property="og:image" content="https://le-syl21.github.io/WANHAO-Duplicator-9/img/og.jpg">
+<meta property="og:locale" content="ar_AR">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖨️</text></svg>">
+<link rel="stylesheet" href="../style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "كيفية تثبيت البرنامج الثابت (firmware) على اللوحة الأم لطابعة Wanhao Duplicator 9 (D9)", "description": "دليل خطوة بخطوة لتثبيت Marlin على Wanhao D9 عبر USB باستخدام AVRDUDESS أو avrdude، وحل مشكلات العودة إلى نقطة الأصل، والرجوع إلى البرنامج الثابت من Wanhao.", "url": "https://le-syl21.github.io/WANHAO-Duplicator-9/ar/flash.html", "inLanguage": "ar", "about": {"@type": "Product", "name": "Wanhao Duplicator 9", "brand": "Wanhao"}}</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="brand" href="../ar/">Wanhao <span>D9</span> firmware</a>
+<nav class="main"><a href="../ar/">الرئيسية</a><a href="../ar/mk1.html">MK1</a><a href="../ar/mk1u2.html">MK1 + طقم MK2</a><a href="../ar/mk2.html">MK2</a><a href="../ar/mk3.html">MK3</a><a href="../ar/flash.html" aria-current="page">دليل التثبيت</a><a href="../ar/screen.html">الشاشة</a><a href="../ar/sensor.html">حساس الخيط</a><a href="../ar/quiet.html">تقليل الضجيج</a></nav>
+<details class="lang"><summary aria-label="اللغة"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9M12 3c-2.5 2.7-3.8 5.7-3.8 9s1.3 6.3 3.8 9"/></svg><span>العربية</span></summary><ul><li><a href="../flash.html" hreflang="en" lang="en">English</a></li><li><a href="../fr/flash.html" hreflang="fr" lang="fr">Français</a></li><li><a href="../de/flash.html" hreflang="de" lang="de">Deutsch</a></li><li><a href="../es/flash.html" hreflang="es" lang="es">Español</a></li><li><a href="../it/flash.html" hreflang="it" lang="it">Italiano</a></li><li><a href="../pt/flash.html" hreflang="pt" lang="pt">Português</a></li><li><a href="../nl/flash.html" hreflang="nl" lang="nl">Nederlands</a></li><li><a href="../pl/flash.html" hreflang="pl" lang="pl">Polski</a></li><li><a href="../tr/flash.html" hreflang="tr" lang="tr">Türkçe</a></li><li><a href="../ru/flash.html" hreflang="ru" lang="ru">Русский</a></li><li><a href="../ar/flash.html" hreflang="ar" lang="ar" aria-current="true">العربية</a></li><li><a href="../hi/flash.html" hreflang="hi" lang="hi">हिन्दी</a></li><li><a href="../zh/flash.html" hreflang="zh-Hans" lang="zh-Hans">中文</a></li><li><a href="../ja/flash.html" hreflang="ja" lang="ja">日本語</a></li><li><a href="../ko/flash.html" hreflang="ko" lang="ko">한국어</a></li><li><a href="../id/flash.html" hreflang="id" lang="id">Bahasa Indonesia</a></li></ul></details>
+</div></header>
+<main><div class="wrap">
+<h1>تثبيت البرنامج الثابت على اللوحة الأم لطابعة Duplicator 9</h1>
+<p class="lead">اللوحة الأم في D9 مبنية على ATmega2560 مع محمّل إقلاع (bootloader) عبر USB: لا حاجة إلى مبرمجة، ولا إلى فتح القاعدة،
+يكفي كابل USB.</p>
+
+<h2>ما تحتاج إليه</h2>
+<ul>
+<li>كابل USB بين الطابعة والحاسوب، والطابعة <strong>مُشغَّلة</strong>.</li>
+<li><a href="https://github.com/zkemble/AVRDUDESS">AVRDUDESS</a> (Windows، بواجهة رسومية، الأسهل) أو
+<a href="https://github.com/avrdudes/avrdude">avrdude</a> (سطر الأوامر، لكل الأنظمة).</li>
+<li>ملف <strong>.hex</strong> الخاص بطرازك ومقاسك: <a href="../ar/mk1.html">MK1</a>، <a href="../ar/mk1u2.html">MK1 + الطقم</a>،
+<a href="../ar/mk2.html">MK2</a>، <a href="../ar/mk3.html">MK3</a>.</li>
+</ul>
+
+<h2>قبل التثبيت</h2>
+<div class="note">أرسل الأمر <code>M503</code> واحتفظ بالرد. منذ v2.0.3 يحتفظ التحديث بالإعدادات المخزّنة في
+الطابعة، لكن التحديث <strong>إلى</strong> v2.0.3 يبدأ مرة واحدة من القيم الافتراضية لهذا البرنامج الثابت (لأن طريقة تخزين الإعدادات
+تغيّرت)، وكذلك الأمر عند القدوم من البرنامج الثابت لـ Wanhao. بعد ذلك اضبط إزاحة Z للمجس من جديد بالأمر <code>M851 Z…</code>
+ثم <code>M500</code>.</div>
+<p>أغلق كل البرامج التي قد تشغل منفذ الطابعة: Cura وPrusaSlicer وOctoPrint وPronterface وطرفيات الاتصال التسلسلي.</p>
+
+<h2>التثبيت باستخدام AVRDUDESS</h2>
+<ol>
+<li>Programmer: <code>wiring</code>. MCU: <code>ATmega2560</code>.</li>
+<li>Port: منفذ COM الخاص بطابعتك (مثلًا <code>COM3</code>). اترك سرعة الباود على قيمتها الافتراضية.</li>
+<li>Flash: اختر ملف .hex، ثم انقر <strong>Program!</strong>. يستغرق ذلك من 30 إلى 60 ثانية.</li>
+</ol>
+
+<h2>التثبيت باستخدام avrdude</h2>
+<pre><code># Windows
+avrdude -v -p atmega2560 -c wiring -P COM3 -D -U flash:w:D9_MK2_300.hex:i
+
+# Linux / macOS
+avrdude -v -p atmega2560 -c wiring -P /dev/ttyUSB0 -D -U flash:w:D9_MK2_300.hex:i</code></pre>
+<p>استبدل المنفذ واسم الملف بما يخصّك. بروتوكول <code>wiring</code> يختار سرعة محمّل الإقلاع تلقائيًا.</p>
+
+<h2>التشغيل الأول</h2>
+<ol>
+<li>افصل كابل USB، وأطفئ الطابعة ثم شغّلها، وأعد توصيل الكابل.</li>
+<li>اتصل بسرعة <strong>250000 باود</strong> (كانت برامج Wanhao الثابتة تستخدم 115200) وأرسل <code>M115</code>: يُظهر الرد البرنامج الثابت الجديد.</li>
+<li>أعد كل المحاور إلى نقطة الأصل، ثم نفّذ تسوية السرير من الشاشة أو بالأمر <code>G29</code>، واحفظ بالأمر <code>M500</code>.</li>
+</ol>
+
+<h2 id="reset">العودة إلى الإعدادات الافتراضية لهذا البرنامج الثابت</h2>
+<p>منذ v2.0.3، <strong>يحتفظ</strong> تحديث البرنامج الثابت بالإعدادات المخزّنة في الطابعة (إزاحة Z للمجس، والخطوات/مم،
+وPID، وشبكة التسوية…). لذلك لا تحلّ القيم الافتراضية الجديدة في أي إصدار محلّ القيم المخزّنة مسبقًا. أعد الضبط مرة واحدة عند
+التحديث من v2.0.2 أو ما قبلها مع الاحتفاظ بقيم حفظتها يدويًا، أو عندما تتصرف الطابعة بشكل غريب بعد تجربة برامج
+ثابتة أخرى، أو متى أردت البدء من جديد:</p>
+<ul>
+<li><strong>من الشاشة:</strong> <em>الإعدادات</em> ← <em>المزيد</em> ← <em>إعادة الضبط</em> ← ✓.</li>
+<li><strong>عبر USB:</strong> أرسل <code>M502</code> (تحميل القيم الافتراضية لهذا البرنامج الثابت) ثم <code>M500</code> (حفظها).</li>
+</ul>
+<p>بعد ذلك اضبط إزاحة Z للمجس من جديد (<code>M851 Z…</code> ثم <code>M500</code>) ونفّذ تسوية السرير. تحقّق من
+النتيجة بالأمر <code>M503</code>.</p>
+
+<h2>انقطاع الكهرباء وحساس الخيط</h2>
+<ul>
+<li>الاستئناف بعد انقطاع الكهرباء مفعّل: تُحفظ المهمة عند كل تغيير للطبقة. لتعطيله: <code>M413 S0</code> ثم <code>M500</code>.</li>
+<li>طباعة تتوقف فورًا برسالة <em>power outage</em> بمجرد بدء التسخين: حدّث إلى v2.0.4 أو أحدث. كانت النسخ السابقة تراقب مدخل اكتشاف انقطاع الكهرباء في اللوحة، وهو يقرأ مستوى منخفضًا بمجرد تشغيل السخانات.</li>
+<li>اكتشاف نفاد الخيط مفعّل افتراضيًا في كل الطرازات منذ v2.0.8، ولا يفعل شيئًا من دون حساس. بعد التحديث من إصدار سابق، فعّله بالأمر <code>M412 S1</code> ثم <code>M500</code>، أو من الشاشة عبر <em>الإعدادات</em> ← <em>الخيط</em> ← <em>حساس الخيط</em>. التوصيل وحساس BTT Smart Filament Sensor: <a href="../ar/sensor.html">حساس الخيط</a>.</li>
+</ul>
+
+<h2>حل المشكلات</h2>
+<div class="table"><table><thead><tr><th>المشكلة</th><th>الحل</th></tr></thead><tbody>
+<tr><td>المنفذ مشغول</td><td>أغلق كل البرامج التي تستخدم منفذ الطابعة.</td></tr>
+<tr><td>لم يُعثر على الجهاز</td><td>ثبّت تعريف USB الخاص بـ CH340، وجرّب كابلًا أو منفذ USB آخر، وتأكّد من أن الطابعة مُشغَّلة.</td></tr>
+<tr><td>رموز غير مقروءة بعد التثبيت</td><td>استخدم 250000 باود مع هذه البرامج الثابتة، و115200 مع برامج Wanhao.</td></tr>
+<tr><td>درجات الحرارة تظهر مضروبة في 10 على الشاشة (236 بدل 23.6 °C)</td><td>ما زالت الشاشة تحمل ملفات قديمة: ثبّت <a href="../ar/screen.html">DGUS Reloaded 2.0</a>.</td></tr>
+<tr><td>تعود الشاشة إلى الإنجليزية عند كل تشغيل، أو لا تعمل صفحة <em>حساس الخيط</em> فيها</td><td>البرنامج الثابت للوحة الأم أقدم من v2.0.9: حدّثه.</td></tr>
+<tr><td>تتوقف العودة إلى نقطة الأصل قبل المفتاح ببضعة مليمترات، ثم تظهر <em>Homing Failed</em></td><td>تشويش كهربائي على خط مفتاح نهاية المسار. تُرشّحه هذه البرامج الثابتة منذ v2.0.1: حدّث.</td></tr>
+<tr><td>تصطدم الفوهة بمشبك السرير أثناء التسوية</td><td>حدّث إلى v2.0.2 أو أحدث: أول عمود قياس يبعد 10 مم عن الحافة، كما في البرنامج الثابت من Wanhao.</td></tr>
+<tr><td>يتحرك السرير مبتعدًا عن مفتاح Y</td><td>تأكّد من أنك أخذت البرنامج الثابت لطرازك: محرك Y في الخلف في MK1 وMK1 + الطقم وMK2، وفي الأمام في MK3.</td></tr>
+</tbody></table></div>
+
+<h2>الرجوع إلى البرنامج الثابت من Wanhao</h2>
+<p>تحتوي صفحة كل طراز على روابط البرامج الثابتة الأصلية من Wanhao للوحة الأم وللشاشة. ثبّتها بالطريقة نفسها؛ فالبرنامج الثابت
+للوحة الأم من Wanhao يحتاج إلى برنامج شاشة Wanhao من الجيل نفسه.</p>
+<p>للأسئلة: <a href="https://discord.gg/T37DYHmt2j">Discord</a> أو <a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/issues">بلاغات GitHub</a>.</p>
+</div></main>
+<footer class="site"><div class="wrap">
+<a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9">المصدر والبلاغات على GitHub</a>
+<a href="https://discord.gg/T37DYHmt2j">Discord</a>
+<span>البرنامج الثابت مرخّص بموجب GNU GPL v3. تبقى أدلة Wanhao وبرامجها الثابتة ملكًا لـ Wanhao.</span>
+</div></footer>
+</body>
+</html>

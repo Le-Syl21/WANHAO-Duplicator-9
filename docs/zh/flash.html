@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="zh-Hans" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>如何刷写 Wanhao Duplicator 9（D9）主板固件</title>
+<meta name="description" content="分步指南：通过 USB 用 AVRDUDESS 或 avrdude 为 Wanhao D9 刷写 Marlin，解决归零问题，以及刷回 Wanhao 固件进行恢复。">
+<link rel="canonical" href="https://le-syl21.github.io/WANHAO-Duplicator-9/zh/flash.html">
+<link rel="alternate" hreflang="en" href="https://le-syl21.github.io/WANHAO-Duplicator-9/flash.html">
+<link rel="alternate" hreflang="fr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/fr/flash.html">
+<link rel="alternate" hreflang="de" href="https://le-syl21.github.io/WANHAO-Duplicator-9/de/flash.html">
+<link rel="alternate" hreflang="es" href="https://le-syl21.github.io/WANHAO-Duplicator-9/es/flash.html">
+<link rel="alternate" hreflang="it" href="https://le-syl21.github.io/WANHAO-Duplicator-9/it/flash.html">
+<link rel="alternate" hreflang="pt" href="https://le-syl21.github.io/WANHAO-Duplicator-9/pt/flash.html">
+<link rel="alternate" hreflang="nl" href="https://le-syl21.github.io/WANHAO-Duplicator-9/nl/flash.html">
+<link rel="alternate" hreflang="pl" href="https://le-syl21.github.io/WANHAO-Duplicator-9/pl/flash.html">
+<link rel="alternate" hreflang="tr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/tr/flash.html">
+<link rel="alternate" hreflang="ru" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ru/flash.html">
+<link rel="alternate" hreflang="ar" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ar/flash.html">
+<link rel="alternate" hreflang="hi" href="https://le-syl21.github.io/WANHAO-Duplicator-9/hi/flash.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://le-syl21.github.io/WANHAO-Duplicator-9/zh/flash.html">
+<link rel="alternate" hreflang="ja" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ja/flash.html">
+<link rel="alternate" hreflang="ko" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ko/flash.html">
+<link rel="alternate" hreflang="id" href="https://le-syl21.github.io/WANHAO-Duplicator-9/id/flash.html">
+<link rel="alternate" hreflang="x-default" href="https://le-syl21.github.io/WANHAO-Duplicator-9/flash.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="如何刷写 Wanhao Duplicator 9（D9）主板固件">
+<meta property="og:description" content="分步指南：通过 USB 用 AVRDUDESS 或 avrdude 为 Wanhao D9 刷写 Marlin，解决归零问题，以及刷回 Wanhao 固件进行恢复。">
+<meta property="og:url" content="https://le-syl21.github.io/WANHAO-Duplicator-9/zh/flash.html">
+<meta property="og:image" content="https://le-syl21.github.io/WANHAO-Duplicator-9/img/og.jpg">
+<meta property="og:locale" content="zh_CN">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖨️</text></svg>">
+<link rel="stylesheet" href="../style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "如何刷写 Wanhao Duplicator 9（D9）主板固件", "description": "分步指南：通过 USB 用 AVRDUDESS 或 avrdude 为 Wanhao D9 刷写 Marlin，解决归零问题，以及刷回 Wanhao 固件进行恢复。", "url": "https://le-syl21.github.io/WANHAO-Duplicator-9/zh/flash.html", "inLanguage": "zh-Hans", "about": {"@type": "Product", "name": "Wanhao Duplicator 9", "brand": "Wanhao"}}</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="brand" href="../zh/">Wanhao <span>D9</span> firmware</a>
+<nav class="main"><a href="../zh/">首页</a><a href="../zh/mk1.html">MK1</a><a href="../zh/mk1u2.html">MK1 + MK2 套件</a><a href="../zh/mk2.html">MK2</a><a href="../zh/mk3.html">MK3</a><a href="../zh/flash.html" aria-current="page">刷写指南</a><a href="../zh/screen.html">触摸屏</a><a href="../zh/sensor.html">耗材传感器</a><a href="../zh/quiet.html">降噪</a></nav>
+<details class="lang"><summary aria-label="语言"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9M12 3c-2.5 2.7-3.8 5.7-3.8 9s1.3 6.3 3.8 9"/></svg><span>中文</span></summary><ul><li><a href="../flash.html" hreflang="en" lang="en">English</a></li><li><a href="../fr/flash.html" hreflang="fr" lang="fr">Français</a></li><li><a href="../de/flash.html" hreflang="de" lang="de">Deutsch</a></li><li><a href="../es/flash.html" hreflang="es" lang="es">Español</a></li><li><a href="../it/flash.html" hreflang="it" lang="it">Italiano</a></li><li><a href="../pt/flash.html" hreflang="pt" lang="pt">Português</a></li><li><a href="../nl/flash.html" hreflang="nl" lang="nl">Nederlands</a></li><li><a href="../pl/flash.html" hreflang="pl" lang="pl">Polski</a></li><li><a href="../tr/flash.html" hreflang="tr" lang="tr">Türkçe</a></li><li><a href="../ru/flash.html" hreflang="ru" lang="ru">Русский</a></li><li><a href="../ar/flash.html" hreflang="ar" lang="ar">العربية</a></li><li><a href="../hi/flash.html" hreflang="hi" lang="hi">हिन्दी</a></li><li><a href="../zh/flash.html" hreflang="zh-Hans" lang="zh-Hans" aria-current="true">中文</a></li><li><a href="../ja/flash.html" hreflang="ja" lang="ja">日本語</a></li><li><a href="../ko/flash.html" hreflang="ko" lang="ko">한국어</a></li><li><a href="../id/flash.html" hreflang="id" lang="id">Bahasa Indonesia</a></li></ul></details>
+</div></header>
+<main><div class="wrap">
+<h1>刷写 Duplicator 9 主板</h1>
+<p class="lead">D9 的主板是带 USB 引导程序（bootloader）的 ATmega2560：不需要编程器，也不用打开底座，只要一根 USB 线。</p>
+
+<h2>准备工作</h2>
+<ul>
+<li>一根连接打印机和电脑的 USB 线，并且打印机<strong>已开机</strong>。</li>
+<li><a href="https://github.com/zkemble/AVRDUDESS">AVRDUDESS</a>（Windows，图形界面，最简单）或
+<a href="https://github.com/avrdudes/avrdude">avrdude</a>（命令行，适用于所有系统）。</li>
+<li>适用于你的型号和尺寸的 <strong>.hex</strong> 文件：<a href="../zh/mk1.html">MK1</a>、<a href="../zh/mk1u2.html">MK1 + 套件</a>、<a href="../zh/mk2.html">MK2</a>、<a href="../zh/mk3.html">MK3</a>。</li>
+</ul>
+
+<h2>刷写之前</h2>
+<div class="note">发送 <code>M503</code> 并保存返回的内容。从 v2.0.3 起，更新固件会保留打印机中已保存的设置，但升级<strong>到</strong> v2.0.3 时会先恢复一次本固件的默认值（设置的存储方式变了），从 Wanhao 固件切换过来时也是如此。之后请用 <code>M851 Z…</code>
+和 <code>M500</code> 重新设置探针 Z 偏移。</div>
+<p>关闭所有可能占用打印机端口的程序：Cura、PrusaSlicer、OctoPrint、Pronterface、串口终端。</p>
+
+<h2>用 AVRDUDESS 刷写</h2>
+<ol>
+<li>Programmer：<code>wiring</code>。MCU：<code>ATmega2560</code>。</li>
+<li>Port：打印机的 COM 端口（例如 <code>COM3</code>）。波特率保持默认。</li>
+<li>Flash：选择 .hex 文件，然后点击 <strong>Program!</strong>。大约需要 30 到 60 秒。</li>
+</ol>
+
+<h2>用 avrdude 刷写</h2>
+<pre><code># Windows
+avrdude -v -p atmega2560 -c wiring -P COM3 -D -U flash:w:D9_MK2_300.hex:i
+
+# Linux / macOS
+avrdude -v -p atmega2560 -c wiring -P /dev/ttyUSB0 -D -U flash:w:D9_MK2_300.hex:i</code></pre>
+<p>把端口和文件名换成你自己的。<code>wiring</code> 协议会自动选择引导程序的通信速率。</p>
+
+<h2>首次启动</h2>
+<ol>
+<li>拔下 USB 线，关闭并重新打开打印机，再插回 USB 线。</li>
+<li>以 <strong>250000 波特率</strong>连接（Wanhao 固件使用 115200），发送 <code>M115</code>：返回内容会显示新固件。</li>
+<li>所有轴归零，然后在屏幕上或用 <code>G29</code> 进行热床调平，再用 <code>M500</code> 保存。</li>
+</ol>
+
+<h2 id="reset">恢复本固件的默认设置</h2>
+<p>从 v2.0.3 起，固件更新会<strong>保留</strong>打印机中已保存的设置（探针 Z 偏移、步数/mm、PID、网格……）。因此新版本中的新默认值不会覆盖已经保存的值。以下情况请重置一次：从 v2.0.2 或更早版本更新，并且保留着手动保存的值；试过其他固件后打印机表现异常；或者任何你想从头开始的时候：</p>
+<ul>
+<li><strong>在屏幕上：</strong><em>设置</em> → <em>更多</em> → <em>恢复默认</em> → ✓。</li>
+<li><strong>通过 USB：</strong>发送 <code>M502</code>（载入本固件的默认值），然后发送 <code>M500</code>（保存）。</li>
+</ul>
+<p>然后重新设置探针 Z 偏移（<code>M851 Z…</code> 然后 <code>M500</code>），并进行热床调平。用 <code>M503</code> 检查结果。</p>
+
+<h2>断电与耗材传感器</h2>
+<ul>
+<li>断电续打已开启：每换一层都会保存打印进度。关闭方法：<code>M413 S0</code> 然后 <code>M500</code>。</li>
+<li>打印一开始加热就立即停止并显示 <em>power outage</em>：请更新到 v2.0.4 或更高版本。早期版本会监测主板的断电检测输入，而加热器一启动，该输入就会变为低电平。</li>
+<li>从 v2.0.8 起，所有型号默认开启断料检测，未安装传感器时不起作用。从更早的版本更新后，请用 <code>M412 S1</code> 然后 <code>M500</code> 开启，或在屏幕上进入 <em>设置</em> → <em>耗材</em> → <em>耗材传感器</em> 开启。接线方法及 BTT Smart Filament Sensor：参见<a href="../zh/sensor.html">耗材传感器</a>。</li>
+</ul>
+
+<h2>故障排除</h2>
+<div class="table"><table><thead><tr><th>问题</th><th>解决方法</th></tr></thead><tbody>
+<tr><td>端口被占用</td><td>关闭所有正在使用打印机端口的程序。</td></tr>
+<tr><td>找不到设备</td><td>安装 CH340 USB 驱动，换一根线或换一个 USB 口，确认打印机已开机。</td></tr>
+<tr><td>刷写后出现乱码</td><td>这些固件使用 250000 波特率，Wanhao 固件使用 115200。</td></tr>
+<tr><td>屏幕上温度显示为实际的 10 倍（23.6 °C 显示为 236）</td><td>屏幕里仍是旧文件：刷写 <a href="../zh/screen.html">DGUS Reloaded 2.0</a>。</td></tr>
+<tr><td>每次开机屏幕都变回英文，或其 <em>耗材传感器</em> 页面不起作用</td><td>主板固件早于 v2.0.9：请更新。</td></tr>
+<tr><td>归零时在碰到限位开关前几毫米就停下，然后显示 <em>Homing Failed</em></td><td>限位开关线路上有电气干扰。这些固件从 v2.0.1 起会过滤这种干扰：请更新。</td></tr>
+<tr><td>调平时喷嘴撞到热床夹子</td><td>请更新到 v2.0.2 或更高版本：第一列探测点距边缘 10 mm，与 Wanhao 固件相同。</td></tr>
+<tr><td>热床朝远离 Y 轴限位开关的方向移动</td><td>检查你下载的是否是自己型号的固件：MK1、MK1 + 套件和 MK2 的 Y 轴电机在后面，MK3 的在前面。</td></tr>
+</tbody></table></div>
+
+<h2>刷回 Wanhao 固件</h2>
+<p>每个型号页面都提供 Wanhao 原厂主板固件和屏幕固件的链接。刷写方法相同；Wanhao 主板固件需要配合同一代的 Wanhao 屏幕固件。</p>
+<p>有问题？请到 <a href="https://discord.gg/T37DYHmt2j">Discord</a> 或 <a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/issues">GitHub issues</a>。</p>
+</div></main>
+<footer class="site"><div class="wrap">
+<a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9">GitHub 上的源代码和 issue</a>
+<a href="https://discord.gg/T37DYHmt2j">Discord</a>
+<span>固件采用 GNU GPL v3 许可。Wanhao 的说明书和固件版权仍归 Wanhao 所有。</span>
+</div></footer>
+</body>
+</html>

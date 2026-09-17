@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="pl" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Czujniki filamentu w Wanhao Duplicator 9: czujnik końca filamentu i podłączenie BTT Smart Filament Sensor</title>
+<meta name="description" content="Gdzie podłączyć czujnik filamentu na płycie głównej Wanhao D9 (D8, D9, GND, 5V), jak podłączyć BTT Smart Filament Sensor V2.0 i włączyć wykrywanie końca filamentu oraz zatorów poleceniem M412.">
+<link rel="canonical" href="https://le-syl21.github.io/WANHAO-Duplicator-9/pl/sensor.html">
+<link rel="alternate" hreflang="en" href="https://le-syl21.github.io/WANHAO-Duplicator-9/sensor.html">
+<link rel="alternate" hreflang="fr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/fr/sensor.html">
+<link rel="alternate" hreflang="de" href="https://le-syl21.github.io/WANHAO-Duplicator-9/de/sensor.html">
+<link rel="alternate" hreflang="es" href="https://le-syl21.github.io/WANHAO-Duplicator-9/es/sensor.html">
+<link rel="alternate" hreflang="it" href="https://le-syl21.github.io/WANHAO-Duplicator-9/it/sensor.html">
+<link rel="alternate" hreflang="pt" href="https://le-syl21.github.io/WANHAO-Duplicator-9/pt/sensor.html">
+<link rel="alternate" hreflang="nl" href="https://le-syl21.github.io/WANHAO-Duplicator-9/nl/sensor.html">
+<link rel="alternate" hreflang="pl" href="https://le-syl21.github.io/WANHAO-Duplicator-9/pl/sensor.html">
+<link rel="alternate" hreflang="tr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/tr/sensor.html">
+<link rel="alternate" hreflang="ru" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ru/sensor.html">
+<link rel="alternate" hreflang="ar" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ar/sensor.html">
+<link rel="alternate" hreflang="hi" href="https://le-syl21.github.io/WANHAO-Duplicator-9/hi/sensor.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://le-syl21.github.io/WANHAO-Duplicator-9/zh/sensor.html">
+<link rel="alternate" hreflang="ja" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ja/sensor.html">
+<link rel="alternate" hreflang="ko" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ko/sensor.html">
+<link rel="alternate" hreflang="id" href="https://le-syl21.github.io/WANHAO-Duplicator-9/id/sensor.html">
+<link rel="alternate" hreflang="x-default" href="https://le-syl21.github.io/WANHAO-Duplicator-9/sensor.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Czujniki filamentu w Wanhao Duplicator 9: czujnik końca filamentu i podłączenie BTT Smart Filament Sensor">
+<meta property="og:description" content="Gdzie podłączyć czujnik filamentu na płycie głównej Wanhao D9 (D8, D9, GND, 5V), jak podłączyć BTT Smart Filament Sensor V2.0 i włączyć wykrywanie końca filamentu oraz zatorów poleceniem M412.">
+<meta property="og:url" content="https://le-syl21.github.io/WANHAO-Duplicator-9/pl/sensor.html">
+<meta property="og:image" content="https://le-syl21.github.io/WANHAO-Duplicator-9/img/og.jpg">
+<meta property="og:locale" content="pl_PL">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖨️</text></svg>">
+<link rel="stylesheet" href="../style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Czujniki filamentu w Wanhao Duplicator 9: czujnik końca filamentu i podłączenie BTT Smart Filament Sensor", "description": "Gdzie podłączyć czujnik filamentu na płycie głównej Wanhao D9 (D8, D9, GND, 5V), jak podłączyć BTT Smart Filament Sensor V2.0 i włączyć wykrywanie końca filamentu oraz zatorów poleceniem M412.", "url": "https://le-syl21.github.io/WANHAO-Duplicator-9/pl/sensor.html", "inLanguage": "pl", "about": {"@type": "Product", "name": "Wanhao Duplicator 9", "brand": "Wanhao"}}</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="brand" href="../pl/">Wanhao <span>D9</span> firmware</a>
+<nav class="main"><a href="../pl/">Strona główna</a><a href="../pl/mk1.html">MK1</a><a href="../pl/mk1u2.html">MK1 + zestaw MK2</a><a href="../pl/mk2.html">MK2</a><a href="../pl/mk3.html">MK3</a><a href="../pl/flash.html">Wgrywanie firmware'u</a><a href="../pl/screen.html">Ekran</a><a href="../pl/sensor.html" aria-current="page">Czujnik filamentu</a><a href="../pl/quiet.html">Wyciszanie</a></nav>
+<details class="lang"><summary aria-label="Język"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9M12 3c-2.5 2.7-3.8 5.7-3.8 9s1.3 6.3 3.8 9"/></svg><span>Polski</span></summary><ul><li><a href="../sensor.html" hreflang="en" lang="en">English</a></li><li><a href="../fr/sensor.html" hreflang="fr" lang="fr">Français</a></li><li><a href="../de/sensor.html" hreflang="de" lang="de">Deutsch</a></li><li><a href="../es/sensor.html" hreflang="es" lang="es">Español</a></li><li><a href="../it/sensor.html" hreflang="it" lang="it">Italiano</a></li><li><a href="../pt/sensor.html" hreflang="pt" lang="pt">Português</a></li><li><a href="../nl/sensor.html" hreflang="nl" lang="nl">Nederlands</a></li><li><a href="../pl/sensor.html" hreflang="pl" lang="pl" aria-current="true">Polski</a></li><li><a href="../tr/sensor.html" hreflang="tr" lang="tr">Türkçe</a></li><li><a href="../ru/sensor.html" hreflang="ru" lang="ru">Русский</a></li><li><a href="../ar/sensor.html" hreflang="ar" lang="ar">العربية</a></li><li><a href="../hi/sensor.html" hreflang="hi" lang="hi">हिन्दी</a></li><li><a href="../zh/sensor.html" hreflang="zh-Hans" lang="zh-Hans">中文</a></li><li><a href="../ja/sensor.html" hreflang="ja" lang="ja">日本語</a></li><li><a href="../ko/sensor.html" hreflang="ko" lang="ko">한국어</a></li><li><a href="../id/sensor.html" hreflang="id" lang="id">Bahasa Indonesia</a></li></ul></details>
+</div></header>
+<main><div class="wrap">
+<h1>Czujniki filamentu</h1>
+<p class="lead">Od v2.0.5 ten firmware obsługuje dwa rodzaje czujników: czujnik końca filamentu Wanhao oraz
+BTT Smart Filament Sensor V2.0, który wykrywa też, gdy filament przestaje się przesuwać (splątana szpula, zator, filament
+zmielony przez ekstruder). <strong>Wykrywanie końca filamentu jest domyślnie włączone w każdym modelu</strong>, a wykrywanie zatorów jest wyłączone.</p>
+
+<h2>Złącze czujnika</h2>
+<figure><img src="../img/d9-sensor-plug-pl.svg" width="760" height="440" alt="Płyta główna Wanhao D9: 4-pinowe złącze czujnika na lewo od POWER-DET, piny D9, D8, GND i 5V, podłączone do BTT Smart Filament Sensor V2.0"></figure>
+<p>4-pinowe złącze na lewo od <strong>POWER-DET</strong>, pod złączami krańcówek, ma piny <strong>D9, D8, GND i 5V</strong>,
+w tej kolejności. Nazwy pinów pochodzą ze schematu połączeń Wanhao, który znalazł i udostępnił dustovich na
+<a href="https://discord.gg/T37DYHmt2j">Discordzie</a>; na spodzie płyty te same cztery piny są opisane jako CTRL, BTN, GND i VCC.</p>
+<ul>
+<li><strong>D8</strong> to wejście końca filamentu, które odczytuje firmware Wanhao.</li>
+<li><strong>D9</strong> nie jest używany przez firmware Wanhao: nasze wersje odczytują na nim sygnał ruchu z czujnika BTT.</li>
+</ul>
+<div class="note">Drukarka musi być <strong>wyłączona</strong>, gdy cokolwiek podłączasz do płyty lub odłączasz.</div>
+
+<h2 id="screen">Na ekranie</h2>
+<div class="split"><div>
+<p>Z DGUS Reloaded 2.0 na ekranie (firmware v2.0.9 lub nowszy): <em>Ustawienia</em> → <em>Filament</em> →
+<em>Czujnik filamentu</em>.</p>
+<ul>
+<li><strong>Koniec filamentu</strong> włącza lub wyłącza całe wykrywanie, jak <code>M412 S1</code> / <code>M412 S0</code>.</li>
+<li><strong>Wykrywanie zatoru</strong> włącza wykrywanie zatorów z długością ustawioną poniżej albo je wyłącza (<code>L0</code>).</li>
+<li><strong>Długość zatoru</strong>: − i + zmieniają ją o 1 mm; dotknij liczby, aby ją wpisać.</li>
+<li>Kropka <strong>Filament</strong> jest zielona, gdy czujnik końca filamentu wykrywa filament, i czerwona, gdy go nie wykrywa.</li>
+<li>Zmiany działają od razu. <strong>Zapisz</strong> je zapamiętuje, jak <code>M500</code>. Strzałka wstecz wychodzi bez
+zapisywania: przy następnym uruchomieniu wracają zapisane ustawienia.</li>
+</ul>
+</div><figure><img src="../img/screen/pl-sensor.png" width="480" height="272" alt="Strona czujnika filamentu w DGUS Reloaded 2.0: przełączniki wykrywania końca filamentu i zatoru, długość zatoru z przyciskami minus i plus, wskaźnik filamentu i przycisk Zapisz">
+<figcaption>Ustawienia → Filament → Czujnik filamentu</figcaption></figure></div>
+
+<h2>Polecenia M412</h2>
+<p>Wszystko ustawia się przez USB z terminala szeregowego (Pronterface, terminal slicera lub OctoPrinta,
+250000 bodów). Parametry można łączyć w jednym poleceniu, na przykład <code>M412 S1 L10</code>.</p>
+<div class="table"><table class="stack"><thead><tr><th>Polecenie</th><th>Co robi</th></tr></thead><tbody>
+<tr><td><code>M412</code></td><td>Pokazuje stan, na przykład <em>Filament runout ON ; Distance 5.00mm ; Motion distance 0.00mm</em>.</td></tr>
+<tr><td><code>M412 S1</code></td><td><strong>Włącza wykrywanie</strong>: czujnik końca filamentu, a także wykrywanie zatorów, jeśli długość zatoru nie wynosi 0.</td></tr>
+<tr><td><code>M412 S0</code></td><td><strong>Wyłącza całe wykrywanie</strong>, końca filamentu i zatorów.</td></tr>
+<tr><td><code>M412 D5</code></td><td>Gdy czujnik nie wykrywa już filamentu, drukuje jeszcze <strong>5 mm</strong> przed pauzą, aby zużyć filament pozostały między czujnikiem a dyszą. Domyślnie 5 mm.</td></tr>
+<tr><td><code>M412 L10</code></td><td><strong>Włącza wykrywanie zatorów</strong> (tylko czujnik BTT): pauzuje, gdy przez ekstruder przejdzie <strong>10 mm</strong> filamentu, a kółko czujnika się nie poruszy.</td></tr>
+<tr><td><code>M412 L0</code></td><td><strong>Wyłącza wykrywanie zatorów</strong> i nie zmienia ustawienia czujnika końca filamentu. To ustawienie domyślne.</td></tr>
+<tr><td><code>M500</code></td><td>Zapisuje ustawienia. Bez tego zmiana przepada po wyłączeniu drukarki.</td></tr>
+<tr><td><code>M119</code></td><td>Linia <em>filament</em> pokazuje <code>TRIGGERED</code>, gdy filament jest załadowany, i <code>open</code>, gdy go nie ma.</td></tr>
+</tbody></table></div>
+<p><code>M412 L0</code> oraz samo <code>L</code> pochodzą z naszej zmiany w Marlinie
+(<a href="https://github.com/MarlinFirmware/Marlin/pull/28585">MarlinFirmware/Marlin#28585</a>), wbudowanej w ten firmware. W Marlinie bez tej zmiany samo <code>L</code>
+jest ignorowane, a <code>L0</code> od razu pauzuje wydruk jak przy zatorze.</p>
+
+<h2>Czujnik końca filamentu Wanhao</h2>
+<p>Informuje firmware, czy filament jest obecny. Gdy filamentu zabraknie, wydruk pauzuje po kolejnych 5 mm
+filamentu, a ekran rozpoczyna wymianę filamentu.</p>
+<p><strong>Od v2.0.8 jest domyślnie włączony w każdym modelu.</strong> Gdy do D8 nic nie jest podłączone, rezystor
+podciągający na płycie utrzymuje pin na 5 V, co jest odczytywane jako „filament obecny”: wykrywanie nigdy wtedy nie zadziała, więc może pozostać włączone
+niezależnie od tego, czy czujnik jest zamontowany. Podłącz czujnik końca filamentu do D8, a od razu zacznie działać.</p>
+<ul>
+<li>Wykrywanie zatorów pozostaje wyłączone (<code>L0</code>): ten czujnik nie widzi ruchu filamentu.</li>
+<li>Aby wyłączyć czujnik: <code>M412 S0</code>, potem <code>M500</code>.</li>
+<li>Ustawienia zapisane przez wcześniejsze wydanie zachowują swój stan (włączony lub wyłączony). Aby go włączyć: <code>M412 S1</code>, potem
+<code>M500</code>, albo przywróć ustawienia domyślne (<code>M502</code>, potem <code>M500</code>, co kasuje też offset Z czujnika
+i siatkę stołu).</li>
+</ul>
+
+<h2>BTT Smart Filament Sensor V2.0</h2>
+<p>Ten czujnik ma dwa wyjścia, a firmware odczytuje je na różne sposoby:</p>
+<ul>
+<li><strong>Czujnik końca filamentu</strong> (do D8) podaje poziom: 5 V, dopóki filament jest, 0 V, gdy go zabraknie.</li>
+<li><strong>Wyjście ruchu</strong> (do D9) pochodzi z małego kółka, które obraca przesuwający się filament. Co kilka
+milimetrów filamentu wyjście przełącza się między 0 V a 5 V. Firmware obserwuje tylko te zmiany: jeśli
+ekstruder przepchnie długość zatoru bez ani jednej zmiany, filament nie nadąża (splątana szpula, zator,
+filament zmielony przez ekstruder) i wydruk pauzuje. Czujnik końca filamentu tego nie wykryje: podczas zatoru filament wciąż jest na miejscu.</li>
+</ul>
+<h3>Podłączenie</h3>
+<p><strong>5V</strong> do 5V, <strong>GND</strong> do GND, sygnał <strong>końca filamentu</strong> do <strong>D8</strong>,
+a sygnał <strong>ruchu</strong> do <strong>D9</strong>. Nazwy nadrukowane na przewodzie czujnika mogą być inne.</p>
+<h3>Włączanie</h3>
+<pre><code>M412 S1 L10
+M500</code></pre>
+<p>Jeśli wydruki pauzują bez powodu, zwiększ długość zatoru: <code>M412 L15</code>, potem <code>M500</code>. Aby zostawić tylko
+czujnik końca filamentu: <code>M412 L0</code>, potem <code>M500</code>.</p>
+<h3>Sprawdzanie</h3>
+<ul>
+<li><code>M412</code>: <em>Filament runout ON ; Distance 5.00mm ; Motion distance 10.00mm</em>.</li>
+<li><code>M119</code> z załadowanym filamentem: <em>filament: TRIGGERED</em>. Jeśli ta linia zmienia się, gdy przepychasz filament
+ręką, a nie gdy go wkładasz lub wyjmujesz, dwa przewody sygnałowe są zamienione: zamień D8 z D9.</li>
+</ul>
+<div class="note">Wykrywanie zatorów przetestowano na MK2 300 bez czujnika (długość zatoru 2 mm wyzwala pauzę, <code>L0</code> nigdy),
+ale jeszcze nie z samym czujnikiem BTT. Jeśli czujnik jest odczytywany odwrotnie (<em>open</em> z załadowanym
+filamentem), daj nam znać na <a href="https://discord.gg/T37DYHmt2j">Discordzie</a>.</div>
+
+<h2>Aktualizacja z v2.0.5 lub v2.0.6</h2>
+<p>Te wydania nie pozwalały wyłączyć wykrywania zatorów, więc używały długości zatoru tak dużej, by nigdy nie została osiągnięta: 100 m w
+v2.0.5 (w praktyce za mało: około jednej trzeciej szpuli 1 kg, po czym pozostawiona włączona drukarka mogła zapauzować bez powodu) i
+10 km w v2.0.6. Przy uruchomieniu drukarki v2.0.7 wczytuje te dwie wartości jako <code>L0</code>. Rzeczywista długość ustawiona
+dla czujnika BTT, taka jak <code>L10</code>, zostaje zachowana. Przy aktualizacji z v2.0.4 lub starszej wczytywana jest odległość końca filamentu 5 mm
+zamiast 0 zapisanego przez tamte wersje.</p>
+</div></main>
+<footer class="site"><div class="wrap">
+<a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9">Kod źródłowy i zgłoszenia na GitHubie</a>
+<a href="https://discord.gg/T37DYHmt2j">Discord</a>
+<span>Firmware na licencji GNU GPL v3. Instrukcje i firmware Wanhao pozostają własnością Wanhao.</span>
+</div></footer>
+</body>
+</html>

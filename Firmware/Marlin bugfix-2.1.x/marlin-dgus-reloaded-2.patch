@@ -100,19 +100,10 @@ index 9143b83554..c5f239f458 100644
  
    void volume(DGUS_VP &, void *);
 diff --git a/Marlin/src/lcd/extui/dgus_reloaded/DGUSScreenHandler.cpp b/Marlin/src/lcd/extui/dgus_reloaded/DGUSScreenHandler.cpp
-index 13d399083b..58307da88d 100644
+index 13d399083b..8f4a2d9180 100644
 --- a/Marlin/src/lcd/extui/dgus_reloaded/DGUSScreenHandler.cpp
 +++ b/Marlin/src/lcd/extui/dgus_reloaded/DGUSScreenHandler.cpp
-@@ -26,6 +26,8 @@
- 
- #include "DGUSScreenHandler.h"
- 
-+static const char machine_name[] PROGMEM = MACHINE_NAME;
-+
- #include "DGUSDisplay.h"
- #include "definition/DGUS_ScreenAddrList.h"
- #include "definition/DGUS_ScreenSetup.h"
-@@ -66,7 +68,14 @@ bool DGUSScreenHandler::wait_continue = false;
+@@ -66,7 +66,14 @@ bool DGUSScreenHandler::wait_continue = false;
  
  bool DGUSScreenHandler::leveling_active = false;
  
@@ -127,7 +118,7 @@ index 13d399083b..58307da88d 100644
  millis_t DGUSScreenHandler::eeprom_save = 0;
  
  void DGUSScreenHandler::init() {
-@@ -135,7 +144,7 @@ void DGUSScreenHandler::loop() {
+@@ -135,7 +142,7 @@ void DGUSScreenHandler::loop() {
    }
  
    if (status_expire > 0 && ELAPSED(ms, status_expire)) {
@@ -136,7 +127,7 @@ index 13d399083b..58307da88d 100644
      return;
    }
  
-@@ -191,6 +200,7 @@ void DGUSScreenHandler::storeSettings(char *buff) {
+@@ -191,6 +198,7 @@ void DGUSScreenHandler::storeSettings(char *buff) {
    data.volume = dgus.getVolume();
    data.brightness = dgus.getBrightness();
    data.abl_okay = (ExtUI::getLevelingActive() && ExtUI::getLevelingIsValid());
@@ -144,7 +135,7 @@ index 13d399083b..58307da88d 100644
  
    memcpy(buff, &data, sizeof(data));
  }
-@@ -204,6 +214,7 @@ void DGUSScreenHandler::loadSettings(const char *buff) {
+@@ -204,6 +212,7 @@ void DGUSScreenHandler::loadSettings(const char *buff) {
  
    dgus.setVolume(data.initialized ? data.volume : DGUS_DEFAULT_VOLUME);
    dgus.setBrightness(data.initialized ? data.brightness : DGUS_DEFAULT_BRIGHTNESS);
@@ -152,7 +143,7 @@ index 13d399083b..58307da88d 100644
  
    if (data.initialized) {
      leveling_active = (data.abl_okay && ExtUI::getLevelingIsValid());
-@@ -372,15 +383,26 @@ void DGUSScreenHandler::setMessageLine_P(PGM_P const msg, const uint8_t line) {
+@@ -372,15 +381,28 @@ void DGUSScreenHandler::setMessageLine_P(PGM_P const msg, const uint8_t line) {
  }
  
  void DGUSScreenHandler::setStatusMessage(const char* msg, const millis_t duration) {
@@ -167,6 +158,8 @@ index 13d399083b..58307da88d 100644
    status_expire = (duration > 0 ? ExtUI::safe_millis() + duration : 0);
  }
  
++static const char machine_name[] PROGMEM = MACHINE_NAME;
++
 +// Marlin's own status ("<machine name> Ready.", "Printing...") stays on screen until the next one, and comes
 +// back when a screen message expires. The machine name has its own field, so drop it from the message.
 +void DGUSScreenHandler::setStandingStatus(const char * const msg) {

@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="de" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Filamentsensoren an der Wanhao Duplicator 9: Filamentende-Schalter und Anschluss des BTT Smart Filament Sensor</title>
+<meta name="description" content="Wo ein Filamentsensor am Mainboard der Wanhao D9 angeschlossen wird (D8, D9, GND, 5V), wie ein BTT Smart Filament Sensor V2.0 verkabelt wird und wie man Filamentende- und Stauerkennung mit M412 einschaltet.">
+<link rel="canonical" href="https://le-syl21.github.io/WANHAO-Duplicator-9/de/sensor.html">
+<link rel="alternate" hreflang="en" href="https://le-syl21.github.io/WANHAO-Duplicator-9/sensor.html">
+<link rel="alternate" hreflang="fr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/fr/sensor.html">
+<link rel="alternate" hreflang="de" href="https://le-syl21.github.io/WANHAO-Duplicator-9/de/sensor.html">
+<link rel="alternate" hreflang="es" href="https://le-syl21.github.io/WANHAO-Duplicator-9/es/sensor.html">
+<link rel="alternate" hreflang="it" href="https://le-syl21.github.io/WANHAO-Duplicator-9/it/sensor.html">
+<link rel="alternate" hreflang="pt" href="https://le-syl21.github.io/WANHAO-Duplicator-9/pt/sensor.html">
+<link rel="alternate" hreflang="nl" href="https://le-syl21.github.io/WANHAO-Duplicator-9/nl/sensor.html">
+<link rel="alternate" hreflang="pl" href="https://le-syl21.github.io/WANHAO-Duplicator-9/pl/sensor.html">
+<link rel="alternate" hreflang="tr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/tr/sensor.html">
+<link rel="alternate" hreflang="ru" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ru/sensor.html">
+<link rel="alternate" hreflang="ar" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ar/sensor.html">
+<link rel="alternate" hreflang="hi" href="https://le-syl21.github.io/WANHAO-Duplicator-9/hi/sensor.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://le-syl21.github.io/WANHAO-Duplicator-9/zh/sensor.html">
+<link rel="alternate" hreflang="ja" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ja/sensor.html">
+<link rel="alternate" hreflang="ko" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ko/sensor.html">
+<link rel="alternate" hreflang="id" href="https://le-syl21.github.io/WANHAO-Duplicator-9/id/sensor.html">
+<link rel="alternate" hreflang="x-default" href="https://le-syl21.github.io/WANHAO-Duplicator-9/sensor.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Filamentsensoren an der Wanhao Duplicator 9: Filamentende-Schalter und Anschluss des BTT Smart Filament Sensor">
+<meta property="og:description" content="Wo ein Filamentsensor am Mainboard der Wanhao D9 angeschlossen wird (D8, D9, GND, 5V), wie ein BTT Smart Filament Sensor V2.0 verkabelt wird und wie man Filamentende- und Stauerkennung mit M412 einschaltet.">
+<meta property="og:url" content="https://le-syl21.github.io/WANHAO-Duplicator-9/de/sensor.html">
+<meta property="og:image" content="https://le-syl21.github.io/WANHAO-Duplicator-9/img/og.jpg">
+<meta property="og:locale" content="de_DE">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖨️</text></svg>">
+<link rel="stylesheet" href="../style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Filamentsensoren an der Wanhao Duplicator 9: Filamentende-Schalter und Anschluss des BTT Smart Filament Sensor", "description": "Wo ein Filamentsensor am Mainboard der Wanhao D9 angeschlossen wird (D8, D9, GND, 5V), wie ein BTT Smart Filament Sensor V2.0 verkabelt wird und wie man Filamentende- und Stauerkennung mit M412 einschaltet.", "url": "https://le-syl21.github.io/WANHAO-Duplicator-9/de/sensor.html", "inLanguage": "de", "about": {"@type": "Product", "name": "Wanhao Duplicator 9", "brand": "Wanhao"}}</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="brand" href="../de/">Wanhao <span>D9</span> firmware</a>
+<nav class="main"><a href="../de/">Start</a><a href="../de/mk1.html">MK1</a><a href="../de/mk1u2.html">MK1 + MK2-Kit</a><a href="../de/mk2.html">MK2</a><a href="../de/mk3.html">MK3</a><a href="../de/flash.html">Flash-Anleitung</a><a href="../de/screen.html">Display</a><a href="../de/sensor.html" aria-current="page">Filamentsensor</a><a href="../de/quiet.html">Leiser</a></nav>
+<details class="lang"><summary aria-label="Sprache"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9M12 3c-2.5 2.7-3.8 5.7-3.8 9s1.3 6.3 3.8 9"/></svg><span>Deutsch</span></summary><ul><li><a href="../sensor.html" hreflang="en" lang="en">English</a></li><li><a href="../fr/sensor.html" hreflang="fr" lang="fr">Français</a></li><li><a href="../de/sensor.html" hreflang="de" lang="de" aria-current="true">Deutsch</a></li><li><a href="../es/sensor.html" hreflang="es" lang="es">Español</a></li><li><a href="../it/sensor.html" hreflang="it" lang="it">Italiano</a></li><li><a href="../pt/sensor.html" hreflang="pt" lang="pt">Português</a></li><li><a href="../nl/sensor.html" hreflang="nl" lang="nl">Nederlands</a></li><li><a href="../pl/sensor.html" hreflang="pl" lang="pl">Polski</a></li><li><a href="../tr/sensor.html" hreflang="tr" lang="tr">Türkçe</a></li><li><a href="../ru/sensor.html" hreflang="ru" lang="ru">Русский</a></li><li><a href="../ar/sensor.html" hreflang="ar" lang="ar">العربية</a></li><li><a href="../hi/sensor.html" hreflang="hi" lang="hi">हिन्दी</a></li><li><a href="../zh/sensor.html" hreflang="zh-Hans" lang="zh-Hans">中文</a></li><li><a href="../ja/sensor.html" hreflang="ja" lang="ja">日本語</a></li><li><a href="../ko/sensor.html" hreflang="ko" lang="ko">한국어</a></li><li><a href="../id/sensor.html" hreflang="id" lang="id">Bahasa Indonesia</a></li></ul></details>
+</div></header>
+<main><div class="wrap">
+<h1>Filamentsensoren</h1>
+<p class="lead">Ab v2.0.5 lesen diese Firmwares zwei Arten von Sensoren: Wanhaos Filamentende-Schalter und den
+BTT Smart Filament Sensor V2.0, der auch bemerkt, wenn sich das Filament nicht mehr bewegt (verhedderte Spule, Stau,
+abgeschliffenes Filament). <strong>Die Filamentende-Erkennung ist bei jedem Modell standardmäßig aktiv</strong>, die
+Stauerkennung ist aus.</p>
+
+<h2>Der Sensorstecker</h2>
+<figure><img src="../img/d9-sensor-plug-de.svg" width="760" height="440" alt="Mainboard der Wanhao D9: der 4-polige Sensorstecker links von POWER-DET, Pins D9, D8, GND und 5V, verkabelt mit einem BTT Smart Filament Sensor V2.0"></figure>
+<p>Der 4-polige Stecker links von <strong>POWER-DET</strong>, unterhalb der Endschalter-Stecker, führt <strong>D9, D8, GND und 5V</strong>,
+in dieser Reihenfolge. Die Pin-Namen stammen aus einem Anschlussplan von Wanhao, den dustovich gefunden und auf dem
+<a href="https://discord.gg/T37DYHmt2j">Discord</a> geteilt hat; auf der Rückseite des Boards sind dieselben vier Pins als CTRL, BTN, GND und VCC beschriftet.</p>
+<ul>
+<li><strong>D8</strong> ist der Filamentende-Eingang, den Wanhaos eigene Firmware liest.</li>
+<li><strong>D9</strong> wird von Wanhaos Firmware nicht genutzt: Diese Builds lesen dort das Bewegungssignal des BTT-Sensors.</li>
+</ul>
+<div class="note">Drucker <strong>ausschalten</strong>, bevor du etwas am Board ansteckst oder abziehst.</div>
+
+<h2 id="screen">Am Display</h2>
+<div class="split"><div>
+<p>Mit DGUS Reloaded 2.0 auf dem Display (Firmware v2.0.9 oder neuer): <em>Einstellungen</em> → <em>Filament</em> →
+<em>Filamentsensor</em>.</p>
+<ul>
+<li><strong>Filamentende</strong> schaltet die gesamte Erkennung ein oder aus, wie <code>M412 S1</code> / <code>M412 S0</code>.</li>
+<li><strong>Stauerkennung</strong> schaltet die Stauerkennung mit der darunter eingestellten Länge ein oder aus (<code>L0</code>).</li>
+<li><strong>Staulänge</strong>: − und + ändern sie um 1 mm; die Zahl antippen, um sie einzutippen.</li>
+<li>Der Punkt <strong>Filament</strong> ist grün, solange der Filamentende-Schalter Filament erkennt, und rot, wenn nicht.</li>
+<li>Änderungen wirken sofort. <strong>Speichern</strong> speichert sie dauerhaft, wie <code>M500</code>. Der Zurück-Pfeil verlässt die Seite
+ohne zu speichern: Beim nächsten Start gelten wieder die gespeicherten Einstellungen.</li>
+</ul>
+</div><figure><img src="../img/screen/de-sensor.png" width="480" height="272" alt="Filamentsensor-Seite von DGUS Reloaded 2.0: Schalter für Filamentende- und Stauerkennung, Staulänge mit Minus- und Plus-Schaltflächen, Filamentanzeige und Schaltfläche Speichern">
+<figcaption>Einstellungen → Filament → Filamentsensor</figcaption></figure></div>
+
+<h2>Die M412-Befehle</h2>
+<p>Alles wird per USB über ein serielles Terminal eingestellt (Pronterface, das Terminal deines Slicers oder von OctoPrint,
+250000 Baud). Parameter lassen sich in einem Befehl kombinieren, zum Beispiel <code>M412 S1 L10</code>.</p>
+<div class="table"><table class="stack"><thead><tr><th>Befehl</th><th>Was er bewirkt</th></tr></thead><tbody>
+<tr><td><code>M412</code></td><td>Zeigt den Status an, zum Beispiel <em>Filament runout ON ; Distance 5.00mm ; Motion distance 0.00mm</em>.</td></tr>
+<tr><td><code>M412 S1</code></td><td><strong>Schaltet die Erkennung ein</strong>: den Filamentende-Schalter und, wenn die Staulänge nicht 0 ist, auch die Stauerkennung.</td></tr>
+<tr><td><code>M412 S0</code></td><td><strong>Schaltet die gesamte Erkennung aus</strong>, Schalter und Stau.</td></tr>
+<tr><td><code>M412 D5</code></td><td>Sobald der Schalter kein Filament mehr erkennt, wird noch <strong>5 mm</strong> weitergedruckt, bevor pausiert wird, um das Filament zwischen Sensor und Düse aufzubrauchen. Standard 5 mm.</td></tr>
+<tr><td><code>M412 L10</code></td><td><strong>Schaltet die Stauerkennung ein</strong> (nur BTT-Sensor): pausiert, wenn <strong>10 mm</strong> Filament durch den Extruder gehen, ohne dass sich das Rad des Sensors dreht.</td></tr>
+<tr><td><code>M412 L0</code></td><td><strong>Schaltet die Stauerkennung aus</strong> und lässt den Filamentende-Schalter, wie er ist. Das ist die Standardeinstellung.</td></tr>
+<tr><td><code>M500</code></td><td>Speichert die Einstellungen. Ohne diesen Befehl geht eine Änderung beim Ausschalten des Druckers verloren.</td></tr>
+<tr><td><code>M119</code></td><td>Die Zeile <em>filament</em> zeigt <code>TRIGGERED</code> mit eingelegtem Filament, <code>open</code> ohne.</td></tr>
+</tbody></table></div>
+<p><code>M412 L0</code> und <code>L</code> allein stammen aus unserer Änderung an Marlin
+(<a href="https://github.com/MarlinFirmware/Marlin/pull/28585">MarlinFirmware/Marlin#28585</a>), die in diese Firmwares eingebaut ist. In Marlin ohne sie wird <code>L</code>
+allein ignoriert, und <code>L0</code> pausiert den Druck sofort wegen eines Staus.</p>
+
+<h2>Wanhaos Filamentende-Schalter</h2>
+<p>Er meldet der Firmware, ob Filament vorhanden ist. Fehlt es, pausiert der Druck nach weiteren 5 mm Filament, und das
+Display startet einen Filamentwechsel.</p>
+<p><strong>Er ist seit v2.0.8 bei jedem Modell standardmäßig aktiv.</strong> Ist an D8 nichts angeschlossen, hält der
+Pull-up-Widerstand des Boards den Pin auf 5 V, was als „Filament vorhanden“ gelesen wird: Die Erkennung löst dann nie aus,
+sie kann also aktiv bleiben, ob ein Sensor verbaut ist oder nicht. Schließt man einen Filamentende-Schalter an D8 an,
+funktioniert er sofort.</p>
+<ul>
+<li>Die Stauerkennung bleibt aus (<code>L0</code>): Dieser Schalter kann nicht sehen, ob sich das Filament bewegt.</li>
+<li>Um den Schalter abzuschalten: <code>M412 S0</code>, dann <code>M500</code>.</li>
+<li>Von einem früheren Release gespeicherte Einstellungen behalten ihren Ein/Aus-Zustand. Zum Einschalten: <code>M412 S1</code>, dann
+<code>M500</code>, oder auf die Standardwerte zurücksetzen (<code>M502</code>, dann <code>M500</code>, was auch den Z-Offset deines
+Sensors und das Mesh löscht).</li>
+</ul>
+
+<h2>BTT Smart Filament Sensor V2.0</h2>
+<p>Dieser Sensor hat zwei Ausgänge, und die Firmware liest sie unterschiedlich:</p>
+<ul>
+<li><strong>Der Filamentende-Schalter</strong> (an D8) liefert einen Pegel: 5 V, solange Filament da ist, 0 V, sobald es weg ist.</li>
+<li><strong>Der Bewegungsausgang</strong> (an D9) kommt von einem kleinen Rad, das das durchlaufende Filament dreht. Alle paar
+Millimeter Filament wechselt der Ausgang zwischen 0 V und 5 V. Die Firmware achtet nur auf diese Wechsel: Schiebt der
+Extruder die Staulänge an Filament durch, ohne dass ein einziger kommt, folgt das Filament nicht (verhedderte Spule, Stau,
+abgeschliffenes Filament), und der Druck pausiert. Der Filamentende-Schalter kann das nicht erkennen: Bei einem Stau ist das Filament ja noch da.</li>
+</ul>
+<h3>Verkabelung</h3>
+<p><strong>5V</strong> an 5V, <strong>GND</strong> an GND, das Signal des <strong>Filamentende-Schalters</strong> an <strong>D8</strong>
+und das <strong>Bewegungssignal</strong> an <strong>D9</strong>. Die Bezeichnungen am Kabel des Sensors können abweichen.</p>
+<h3>Einschalten</h3>
+<pre><code>M412 S1 L10
+M500</code></pre>
+<p>Pausieren Drucke ohne Grund, erhöhe die Staulänge: <code>M412 L15</code>, dann <code>M500</code>. Um nur den
+Filamentende-Schalter zu behalten: <code>M412 L0</code>, dann <code>M500</code>.</p>
+<h3>Prüfen</h3>
+<ul>
+<li><code>M412</code>: <em>Filament runout ON ; Distance 5.00mm ; Motion distance 10.00mm</em>.</li>
+<li><code>M119</code> mit eingelegtem Filament: <em>filament: TRIGGERED</em>. Ändert sich diese Zeile, wenn du Filament von Hand
+durchschiebst, statt beim Einlegen oder Herausziehen, sind die beiden Signalleitungen vertauscht: D8 und D9 tauschen.</li>
+</ul>
+<div class="note">Die Stauerkennung wurde an einer MK2 300 ohne den Sensor getestet (eine Staulänge von 2 mm löst aus, <code>L0</code> nie),
+aber noch nicht mit dem BTT-Sensor selbst. Wird der Schalter falsch herum gelesen (<em>open</em> mit eingelegtem
+Filament), sag uns auf <a href="https://discord.gg/T37DYHmt2j">Discord</a> Bescheid.</div>
+
+<h2>Update von v2.0.5 oder v2.0.6</h2>
+<p>Diese Releases konnten die Stauerkennung nicht abschalten und nutzten daher eine Staulänge, die nie erreicht werden sollte: 100 m in
+v2.0.5 (tatsächlich zu kurz: etwa ein Drittel einer 1-kg-Spule, danach konnte ein eingeschaltet gelassener Drucker grundlos pausieren) und
+10 km in v2.0.6. Beim Start des Druckers lädt v2.0.7 diese beiden Werte als <code>L0</code>. Eine echte Länge, die du
+für einen BTT-Sensor eingestellt hast, etwa <code>L10</code>, bleibt erhalten. Von v2.0.4 oder älter wird die Filamentende-Distanz
+von 5 mm geladen statt der 0, die diese Versionen gespeichert haben.</p>
+</div></main>
+<footer class="site"><div class="wrap">
+<a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9">Quellcode und Issues auf GitHub</a>
+<a href="https://discord.gg/T37DYHmt2j">Discord</a>
+<span>Firmware unter GNU GPL v3. Die Handbücher und Firmwares von Wanhao bleiben Eigentum von Wanhao.</span>
+</div></footer>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="zh-Hans" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wanhao Duplicator 9 耗材传感器：断料开关与 BTT Smart Filament Sensor 接线</title>
+<meta name="description" content="在 Wanhao D9 主板上的哪里连接耗材传感器（D8、D9、GND、5V），如何为 BTT Smart Filament Sensor V2.0 接线，以及如何用 M412 开启断料检测和堵料检测。">
+<link rel="canonical" href="https://le-syl21.github.io/WANHAO-Duplicator-9/zh/sensor.html">
+<link rel="alternate" hreflang="en" href="https://le-syl21.github.io/WANHAO-Duplicator-9/sensor.html">
+<link rel="alternate" hreflang="fr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/fr/sensor.html">
+<link rel="alternate" hreflang="de" href="https://le-syl21.github.io/WANHAO-Duplicator-9/de/sensor.html">
+<link rel="alternate" hreflang="es" href="https://le-syl21.github.io/WANHAO-Duplicator-9/es/sensor.html">
+<link rel="alternate" hreflang="it" href="https://le-syl21.github.io/WANHAO-Duplicator-9/it/sensor.html">
+<link rel="alternate" hreflang="pt" href="https://le-syl21.github.io/WANHAO-Duplicator-9/pt/sensor.html">
+<link rel="alternate" hreflang="nl" href="https://le-syl21.github.io/WANHAO-Duplicator-9/nl/sensor.html">
+<link rel="alternate" hreflang="pl" href="https://le-syl21.github.io/WANHAO-Duplicator-9/pl/sensor.html">
+<link rel="alternate" hreflang="tr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/tr/sensor.html">
+<link rel="alternate" hreflang="ru" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ru/sensor.html">
+<link rel="alternate" hreflang="ar" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ar/sensor.html">
+<link rel="alternate" hreflang="hi" href="https://le-syl21.github.io/WANHAO-Duplicator-9/hi/sensor.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://le-syl21.github.io/WANHAO-Duplicator-9/zh/sensor.html">
+<link rel="alternate" hreflang="ja" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ja/sensor.html">
+<link rel="alternate" hreflang="ko" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ko/sensor.html">
+<link rel="alternate" hreflang="id" href="https://le-syl21.github.io/WANHAO-Duplicator-9/id/sensor.html">
+<link rel="alternate" hreflang="x-default" href="https://le-syl21.github.io/WANHAO-Duplicator-9/sensor.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Wanhao Duplicator 9 耗材传感器：断料开关与 BTT Smart Filament Sensor 接线">
+<meta property="og:description" content="在 Wanhao D9 主板上的哪里连接耗材传感器（D8、D9、GND、5V），如何为 BTT Smart Filament Sensor V2.0 接线，以及如何用 M412 开启断料检测和堵料检测。">
+<meta property="og:url" content="https://le-syl21.github.io/WANHAO-Duplicator-9/zh/sensor.html">
+<meta property="og:image" content="https://le-syl21.github.io/WANHAO-Duplicator-9/img/og.jpg">
+<meta property="og:locale" content="zh_CN">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖨️</text></svg>">
+<link rel="stylesheet" href="../style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Wanhao Duplicator 9 耗材传感器：断料开关与 BTT Smart Filament Sensor 接线", "description": "在 Wanhao D9 主板上的哪里连接耗材传感器（D8、D9、GND、5V），如何为 BTT Smart Filament Sensor V2.0 接线，以及如何用 M412 开启断料检测和堵料检测。", "url": "https://le-syl21.github.io/WANHAO-Duplicator-9/zh/sensor.html", "inLanguage": "zh-Hans", "about": {"@type": "Product", "name": "Wanhao Duplicator 9", "brand": "Wanhao"}}</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="brand" href="../zh/">Wanhao <span>D9</span> firmware</a>
+<nav class="main"><a href="../zh/">首页</a><a href="../zh/mk1.html">MK1</a><a href="../zh/mk1u2.html">MK1 + MK2 套件</a><a href="../zh/mk2.html">MK2</a><a href="../zh/mk3.html">MK3</a><a href="../zh/flash.html">刷写指南</a><a href="../zh/screen.html">触摸屏</a><a href="../zh/sensor.html" aria-current="page">耗材传感器</a><a href="../zh/quiet.html">降噪</a></nav>
+<details class="lang"><summary aria-label="语言"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9M12 3c-2.5 2.7-3.8 5.7-3.8 9s1.3 6.3 3.8 9"/></svg><span>中文</span></summary><ul><li><a href="../sensor.html" hreflang="en" lang="en">English</a></li><li><a href="../fr/sensor.html" hreflang="fr" lang="fr">Français</a></li><li><a href="../de/sensor.html" hreflang="de" lang="de">Deutsch</a></li><li><a href="../es/sensor.html" hreflang="es" lang="es">Español</a></li><li><a href="../it/sensor.html" hreflang="it" lang="it">Italiano</a></li><li><a href="../pt/sensor.html" hreflang="pt" lang="pt">Português</a></li><li><a href="../nl/sensor.html" hreflang="nl" lang="nl">Nederlands</a></li><li><a href="../pl/sensor.html" hreflang="pl" lang="pl">Polski</a></li><li><a href="../tr/sensor.html" hreflang="tr" lang="tr">Türkçe</a></li><li><a href="../ru/sensor.html" hreflang="ru" lang="ru">Русский</a></li><li><a href="../ar/sensor.html" hreflang="ar" lang="ar">العربية</a></li><li><a href="../hi/sensor.html" hreflang="hi" lang="hi">हिन्दी</a></li><li><a href="../zh/sensor.html" hreflang="zh-Hans" lang="zh-Hans" aria-current="true">中文</a></li><li><a href="../ja/sensor.html" hreflang="ja" lang="ja">日本語</a></li><li><a href="../ko/sensor.html" hreflang="ko" lang="ko">한국어</a></li><li><a href="../id/sensor.html" hreflang="id" lang="id">Bahasa Indonesia</a></li></ul></details>
+</div></header>
+<main><div class="wrap">
+<h1>耗材传感器</h1>
+<p class="lead">从 v2.0.5 起，这些固件支持两种传感器：Wanhao 的断料开关，以及
+BTT Smart Filament Sensor V2.0，后者还能发现耗材停止移动（料盘缠绕、堵料、耗材被挤出齿轮啃坏）。<strong>所有型号默认开启断料检测</strong>，堵料检测默认关闭。</p>
+
+<h2>传感器插座</h2>
+<figure><img src="../img/d9-sensor-plug-zh.svg" width="760" height="440" alt="Wanhao D9 主板：POWER-DET 左侧的 4 针传感器插座，针脚为 D9、D8、GND 和 5V，连接到 BTT Smart Filament Sensor V2.0"></figure>
+<p><strong>POWER-DET</strong> 左侧、限位开关插座下方的 4 针插座，依次为 <strong>D9、D8、GND 和 5V</strong>。针脚名称来自 dustovich 找到并分享在
+<a href="https://discord.gg/T37DYHmt2j">Discord</a> 上的一份 Wanhao 接线图；主板背面把这四个针脚分别标为 CTRL、BTN、GND 和 VCC。</p>
+<ul>
+<li><strong>D8</strong> 是 Wanhao 原厂固件读取的断料输入。</li>
+<li><strong>D9</strong> 在 Wanhao 固件中未使用：这些固件在这里读取 BTT 传感器的运动信号。</li>
+</ul>
+<div class="note">在主板上插拔任何东西时，打印机都必须<strong>关机</strong>。</div>
+
+<h2 id="screen">在屏幕上设置</h2>
+<div class="split"><div>
+<p>屏幕刷入 DGUS Reloaded 2.0 后（主板固件 v2.0.9 或更高版本）：<em>设置</em> → <em>耗材</em> →
+<em>耗材传感器</em>。</p>
+<ul>
+<li><strong>断料检测</strong>开启或关闭全部检测，相当于 <code>M412 S1</code> / <code>M412 S0</code>。</li>
+<li><strong>堵料检测</strong>按下方设置的长度开启堵料检测，或将其关闭（<code>L0</code>）。</li>
+<li><strong>堵料长度</strong>：− 和 + 每次调整 1 mm；点击数字可直接输入。</li>
+<li>断料开关检测到耗材时，<strong>耗材</strong>指示点为绿色，检测不到时为红色。</li>
+<li>更改会立即生效。<strong>保存</strong>会保存这些更改，相当于 <code>M500</code>。点返回箭头则不保存直接离开：下次开机时会恢复已保存的设置。</li>
+</ul>
+</div><figure><img src="../img/screen/zh-sensor.png" width="480" height="272" alt="DGUS Reloaded 2.0 的耗材传感器页面：断料检测和堵料检测开关、带减号和加号按钮的堵料长度、耗材指示灯和保存按钮">
+<figcaption>设置 → 耗材 → 耗材传感器</figcaption></figure></div>
+
+<h2>M412 命令</h2>
+<p>所有设置都可以通过 USB 在串口终端中完成（Pronterface、切片软件或 OctoPrint 自带的终端，250000 波特率）。多个参数可以合并在一条命令中，例如 <code>M412 S1 L10</code>。</p>
+<div class="table"><table class="stack"><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
+<tr><td><code>M412</code></td><td>显示当前状态，例如 <em>Filament runout ON ; Distance 5.00mm ; Motion distance 0.00mm</em>。</td></tr>
+<tr><td><code>M412 S1</code></td><td><strong>开启检测</strong>：开启断料开关；如果堵料长度不为 0，也同时开启堵料检测。</td></tr>
+<tr><td><code>M412 S0</code></td><td><strong>关闭全部检测</strong>，包括断料开关和堵料检测。</td></tr>
+<tr><td><code>M412 D5</code></td><td>断料开关检测不到耗材后，继续打印 <strong>5 mm</strong> 再暂停，以用完传感器和喷嘴之间剩余的耗材。默认 5 mm。</td></tr>
+<tr><td><code>M412 L10</code></td><td><strong>开启堵料检测</strong>（仅限 BTT 传感器）：当 <strong>10 mm</strong> 耗材经过挤出机而传感器的滚轮没有转动时暂停。</td></tr>
+<tr><td><code>M412 L0</code></td><td><strong>关闭堵料检测</strong>，断料开关保持不变。这是默认设置。</td></tr>
+<tr><td><code>M500</code></td><td>保存设置。不保存的话，关机后更改就会丢失。</td></tr>
+<tr><td><code>M119</code></td><td>装有耗材时 <em>filament</em> 一行显示 <code>TRIGGERED</code>，没有耗材时显示 <code>open</code>。</td></tr>
+</tbody></table></div>
+<p><code>M412 L0</code> 以及单独使用 <code>L</code> 的功能，来自我们对 Marlin 的修改（<a href="https://github.com/MarlinFirmware/Marlin/pull/28585">MarlinFirmware/Marlin#28585</a>），已集成到这些固件中。在没有这项修改的 Marlin 中，单独的 <code>L</code>
+会被忽略，而 <code>L0</code> 会立即判定为堵料并暂停打印。</p>
+
+<h2>Wanhao 断料开关</h2>
+<p>它告诉固件耗材是否存在。耗材用完时，再走 5 mm 耗材后打印暂停，屏幕开始换料流程。</p>
+<p><strong>从 v2.0.8 起，所有型号默认开启。</strong>D8 上什么都没接时，主板的上拉电阻会把该针脚保持在 5 V，读作“有耗材”：检测永远不会触发，所以无论是否安装了传感器，都可以保持开启。把断料开关接到 D8 上，就能直接工作。</p>
+<ul>
+<li>堵料检测保持关闭（<code>L0</code>）：这种开关无法看出耗材是否在移动。</li>
+<li>关闭开关：<code>M412 S0</code> 然后 <code>M500</code>。</li>
+<li>由早期版本保存的设置会保留其开/关状态。要开启：<code>M412 S1</code> 然后
+<code>M500</code>，或恢复默认值（<code>M502</code> 然后 <code>M500</code>，这也会清除你的探针 Z
+偏移和网格）。</li>
+</ul>
+
+<h2>BTT Smart Filament Sensor V2.0</h2>
+<p>这款传感器有两个输出，固件以不同方式读取它们：</p>
+<ul>
+<li><strong>断料开关</strong>（接 D8）是电平信号：有耗材时为 5 V，耗材用完后为 0 V。</li>
+<li><strong>运动输出</strong>（接 D9）来自一个由经过的耗材带动旋转的小滚轮。耗材每前进几毫米，输出就在 0 V 和 5 V 之间翻转一次。固件只关注这些变化：如果挤出机推送了堵料长度的耗材，却一次变化都没有，说明耗材没有跟着走（料盘缠绕、堵料、耗材被啃坏），打印就会暂停。断料开关无法发现这种情况：堵料时耗材仍然在。</li>
+</ul>
+<h3>接线</h3>
+<p><strong>5V</strong> 接 5V，<strong>GND</strong> 接 GND，<strong>断料开关</strong>信号接 <strong>D8</strong>，<strong>运动</strong>信号接 <strong>D9</strong>。传感器线缆上印的名称可能不同。</p>
+<h3>开启</h3>
+<pre><code>M412 S1 L10
+M500</code></pre>
+<p>如果打印无故暂停，请加大堵料长度：<code>M412 L15</code> 然后 <code>M500</code>。如果只想保留断料开关：<code>M412 L0</code> 然后 <code>M500</code>。</p>
+<h3>检查</h3>
+<ul>
+<li><code>M412</code>：<em>Filament runout ON ; Distance 5.00mm ; Motion distance 10.00mm</em>。</li>
+<li>装有耗材时 <code>M119</code>：<em>filament: TRIGGERED</em>。如果这一行是在你用手推动耗材时变化，而不是在插入或取出耗材时变化，说明两根信号线接反了：对调 D8 和 D9。</li>
+</ul>
+<div class="note">堵料检测已在一台未装传感器的 MK2 300 上测试过（堵料长度设为 2 mm 时会触发，<code>L0</code> 则从不触发），但尚未用 BTT 传感器本身测试。如果开关读数反了（装有耗材时显示 <em>open</em>），请在 <a href="https://discord.gg/T37DYHmt2j">Discord</a> 上告诉我们。</div>
+
+<h2>从 v2.0.5 或 v2.0.6 更新</h2>
+<p>这两个版本无法关闭堵料检测，因此使用了一个长到永远达不到的堵料长度：v2.0.5 中为 100 m
+（实际上太短了：约为 1 kg 料盘的三分之一，超过之后，一直开着的打印机可能会无故暂停），v2.0.6 中为 10 km。打印机启动时，v2.0.7 会把这两个值载入为 <code>L0</code>。你为 BTT 传感器设置的实际长度（如 <code>L10</code>）会被保留。从 v2.0.4 或更早版本更新时，会载入 5 mm 的断料距离，而不是这些版本保存的 0。</p>
+</div></main>
+<footer class="site"><div class="wrap">
+<a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9">GitHub 上的源代码和 issue</a>
+<a href="https://discord.gg/T37DYHmt2j">Discord</a>
+<span>固件采用 GNU GPL v3 许可。Wanhao 的说明书和固件版权仍归 Wanhao 所有。</span>
+</div></footer>
+</body>
+</html>

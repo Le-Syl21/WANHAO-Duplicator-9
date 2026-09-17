@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="ru" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Как прошить материнскую плату Wanhao Duplicator 9 (D9): прошивка по USB</title>
+<meta name="description" content="Пошаговая инструкция: как прошить Marlin на Wanhao D9 по USB с помощью AVRDUDESS или avrdude, исправить проблемы с парковкой и вернуться на прошивку Wanhao.">
+<link rel="canonical" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ru/flash.html">
+<link rel="alternate" hreflang="en" href="https://le-syl21.github.io/WANHAO-Duplicator-9/flash.html">
+<link rel="alternate" hreflang="fr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/fr/flash.html">
+<link rel="alternate" hreflang="de" href="https://le-syl21.github.io/WANHAO-Duplicator-9/de/flash.html">
+<link rel="alternate" hreflang="es" href="https://le-syl21.github.io/WANHAO-Duplicator-9/es/flash.html">
+<link rel="alternate" hreflang="it" href="https://le-syl21.github.io/WANHAO-Duplicator-9/it/flash.html">
+<link rel="alternate" hreflang="pt" href="https://le-syl21.github.io/WANHAO-Duplicator-9/pt/flash.html">
+<link rel="alternate" hreflang="nl" href="https://le-syl21.github.io/WANHAO-Duplicator-9/nl/flash.html">
+<link rel="alternate" hreflang="pl" href="https://le-syl21.github.io/WANHAO-Duplicator-9/pl/flash.html">
+<link rel="alternate" hreflang="tr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/tr/flash.html">
+<link rel="alternate" hreflang="ru" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ru/flash.html">
+<link rel="alternate" hreflang="ar" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ar/flash.html">
+<link rel="alternate" hreflang="hi" href="https://le-syl21.github.io/WANHAO-Duplicator-9/hi/flash.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://le-syl21.github.io/WANHAO-Duplicator-9/zh/flash.html">
+<link rel="alternate" hreflang="ja" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ja/flash.html">
+<link rel="alternate" hreflang="ko" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ko/flash.html">
+<link rel="alternate" hreflang="id" href="https://le-syl21.github.io/WANHAO-Duplicator-9/id/flash.html">
+<link rel="alternate" hreflang="x-default" href="https://le-syl21.github.io/WANHAO-Duplicator-9/flash.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Как прошить материнскую плату Wanhao Duplicator 9 (D9): прошивка по USB">
+<meta property="og:description" content="Пошаговая инструкция: как прошить Marlin на Wanhao D9 по USB с помощью AVRDUDESS или avrdude, исправить проблемы с парковкой и вернуться на прошивку Wanhao.">
+<meta property="og:url" content="https://le-syl21.github.io/WANHAO-Duplicator-9/ru/flash.html">
+<meta property="og:image" content="https://le-syl21.github.io/WANHAO-Duplicator-9/img/og.jpg">
+<meta property="og:locale" content="ru_RU">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖨️</text></svg>">
+<link rel="stylesheet" href="../style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Как прошить материнскую плату Wanhao Duplicator 9 (D9): прошивка по USB", "description": "Пошаговая инструкция: как прошить Marlin на Wanhao D9 по USB с помощью AVRDUDESS или avrdude, исправить проблемы с парковкой и вернуться на прошивку Wanhao.", "url": "https://le-syl21.github.io/WANHAO-Duplicator-9/ru/flash.html", "inLanguage": "ru", "about": {"@type": "Product", "name": "Wanhao Duplicator 9", "brand": "Wanhao"}}</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="brand" href="../ru/">Wanhao <span>D9</span> firmware</a>
+<nav class="main"><a href="../ru/">Главная</a><a href="../ru/mk1.html">MK1</a><a href="../ru/mk1u2.html">MK1 + кит MK2</a><a href="../ru/mk2.html">MK2</a><a href="../ru/mk3.html">MK3</a><a href="../ru/flash.html" aria-current="page">Как прошить</a><a href="../ru/screen.html">Экран</a><a href="../ru/sensor.html">Датчик филамента</a><a href="../ru/quiet.html">Тише</a></nav>
+<details class="lang"><summary aria-label="Язык"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9M12 3c-2.5 2.7-3.8 5.7-3.8 9s1.3 6.3 3.8 9"/></svg><span>Русский</span></summary><ul><li><a href="../flash.html" hreflang="en" lang="en">English</a></li><li><a href="../fr/flash.html" hreflang="fr" lang="fr">Français</a></li><li><a href="../de/flash.html" hreflang="de" lang="de">Deutsch</a></li><li><a href="../es/flash.html" hreflang="es" lang="es">Español</a></li><li><a href="../it/flash.html" hreflang="it" lang="it">Italiano</a></li><li><a href="../pt/flash.html" hreflang="pt" lang="pt">Português</a></li><li><a href="../nl/flash.html" hreflang="nl" lang="nl">Nederlands</a></li><li><a href="../pl/flash.html" hreflang="pl" lang="pl">Polski</a></li><li><a href="../tr/flash.html" hreflang="tr" lang="tr">Türkçe</a></li><li><a href="../ru/flash.html" hreflang="ru" lang="ru" aria-current="true">Русский</a></li><li><a href="../ar/flash.html" hreflang="ar" lang="ar">العربية</a></li><li><a href="../hi/flash.html" hreflang="hi" lang="hi">हिन्दी</a></li><li><a href="../zh/flash.html" hreflang="zh-Hans" lang="zh-Hans">中文</a></li><li><a href="../ja/flash.html" hreflang="ja" lang="ja">日本語</a></li><li><a href="../ko/flash.html" hreflang="ko" lang="ko">한국어</a></li><li><a href="../id/flash.html" hreflang="id" lang="id">Bahasa Indonesia</a></li></ul></details>
+</div></header>
+<main><div class="wrap">
+<h1>Прошивка материнской платы Duplicator 9</h1>
+<p class="lead">Материнская плата D9 — это ATmega2560 с USB-загрузчиком: не нужен ни программатор, ни разборка основания,
+только USB-кабель.</p>
+
+<h2>Что понадобится</h2>
+<ul>
+<li>USB-кабель между принтером и компьютером, и принтер <strong>включён</strong>.</li>
+<li><a href="https://github.com/zkemble/AVRDUDESS">AVRDUDESS</a> (Windows, графический интерфейс, проще всего) или
+<a href="https://github.com/avrdudes/avrdude">avrdude</a> (командная строка, любая система).</li>
+<li><strong>.hex</strong> для вашей модели и размера: <a href="../ru/mk1.html">MK1</a>, <a href="../ru/mk1u2.html">MK1 + кит</a>,
+<a href="../ru/mk2.html">MK2</a>, <a href="../ru/mk3.html">MK3</a>.</li>
+</ul>
+
+<h2>Перед прошивкой</h2>
+<div class="note">Отправьте <code>M503</code> и сохраните ответ. Начиная с v2.0.3 обновление сохраняет настройки, записанные в
+принтер, но при обновлении <strong>до</strong> v2.0.3 принтер один раз стартует с настроек по умолчанию этой прошивки (изменился
+способ хранения настроек), как и при переходе с прошивки Wanhao. После этого заново задайте Z-offset датчика командой <code>M851 Z…</code>
+и <code>M500</code>.</div>
+<p>Закройте все программы, которые могут занимать порт принтера: Cura, PrusaSlicer, OctoPrint, Pronterface, терминалы последовательного порта.</p>
+
+<h2>Прошивка через AVRDUDESS</h2>
+<ol>
+<li>Programmer: <code>wiring</code>. MCU: <code>ATmega2560</code>.</li>
+<li>Port: COM-порт вашего принтера (например, <code>COM3</code>). Скорость (baud rate) оставьте по умолчанию.</li>
+<li>Flash: выберите файл .hex и нажмите <strong>Program!</strong>. Это займёт от 30 до 60 секунд.</li>
+</ol>
+
+<h2>Прошивка через avrdude</h2>
+<pre><code># Windows
+avrdude -v -p atmega2560 -c wiring -P COM3 -D -U flash:w:D9_MK2_300.hex:i
+
+# Linux / macOS
+avrdude -v -p atmega2560 -c wiring -P /dev/ttyUSB0 -D -U flash:w:D9_MK2_300.hex:i</code></pre>
+<p>Подставьте свой порт и имя файла. Протокол <code>wiring</code> сам подбирает скорость загрузчика.</p>
+
+<h2>Первый запуск</h2>
+<ol>
+<li>Отключите USB-кабель, выключите и снова включите принтер, подключите кабель обратно.</li>
+<li>Подключитесь на скорости <strong>250000 бод</strong> (прошивки Wanhao использовали 115200) и отправьте <code>M115</code>: в ответе будет новая прошивка.</li>
+<li>Выполните парковку всех осей, затем выполните выравнивание стола с экрана или командой <code>G29</code> и сохраните через <code>M500</code>.</li>
+</ol>
+
+<h2 id="reset">Возврат к настройкам по умолчанию этой прошивки</h2>
+<p>Начиная с v2.0.3 обновление прошивки <strong>сохраняет</strong> настройки, записанные в принтер (Z-offset датчика, шаги/мм,
+PID, сетку стола…). Поэтому новые значения по умолчанию в релизе не заменяют уже сохранённые. Сбросьте настройки один раз, если
+обновляетесь с v2.0.2 или более ранней и у вас есть значения, сохранённые вручную, если принтер ведёт себя странно после
+экспериментов с другими прошивками, или просто когда хотите начать с чистого листа:</p>
+<ul>
+<li><strong>На экране:</strong> <em>Настройки</em> → <em>Ещё</em> → <em>Сброс настроек</em> → ✓.</li>
+<li><strong>По USB:</strong> отправьте <code>M502</code> (загрузить настройки по умолчанию этой прошивки), затем <code>M500</code> (сохранить их).</li>
+</ul>
+<p>Затем заново задайте Z-offset датчика (<code>M851 Z…</code>, затем <code>M500</code>) и выполните выравнивание стола. Проверьте
+результат командой <code>M503</code>.</p>
+
+<h2>Отключение питания и датчик филамента</h2>
+<ul>
+<li>Восстановление после отключения питания включено: задание сохраняется при каждой смене слоя. Отключить: <code>M413 S0</code>, затем <code>M500</code>.</li>
+<li>Печать сразу останавливается с сообщением <em>power outage</em>, как только начинается нагрев: обновитесь до v2.0.4 или новее. Более ранние сборки следили за входом контроля питания на плате, а он показывает низкий уровень, как только включаются нагреватели.</li>
+<li>Обнаружение окончания филамента включено по умолчанию на всех моделях начиная с v2.0.8 и без датчика ничего не делает. После обновления с более раннего релиза включите его командой <code>M412 S1</code>, затем <code>M500</code>, или на экране: <em>Настройки</em> → <em>Филамент</em> → <em>Датчик филамента</em>. Подключение и BTT Smart Filament Sensor: <a href="../ru/sensor.html">Датчик филамента</a>.</li>
+</ul>
+
+<h2>Устранение неполадок</h2>
+<div class="table"><table><thead><tr><th>Проблема</th><th>Решение</th></tr></thead><tbody>
+<tr><td>Порт занят</td><td>Закройте все программы, использующие порт принтера.</td></tr>
+<tr><td>Устройство не найдено</td><td>Установите USB-драйвер CH340, попробуйте другой кабель или USB-порт, проверьте, что принтер включён.</td></tr>
+<tr><td>Нечитаемые символы после прошивки</td><td>Используйте 250000 бод с этими прошивками и 115200 с прошивками Wanhao.</td></tr>
+<tr><td>Температуры на экране показаны ×10 (236 вместо 23,6 °C)</td><td>На экране остались старые файлы: прошейте <a href="../ru/screen.html">DGUS Reloaded 2.0</a>.</td></tr>
+<tr><td>Экран при каждом запуске возвращается к английскому языку, или его страница <em>Датчик филамента</em> ничего не делает</td><td>Прошивка материнской платы старее v2.0.9: обновите её.</td></tr>
+<tr><td>Парковка останавливается за несколько миллиметров до концевика, затем <em>Homing Failed</em></td><td>Электрические помехи на линии концевика. Эти прошивки фильтруют их начиная с v2.0.1: обновитесь.</td></tr>
+<tr><td>Сопло задевает зажим стола во время выравнивания</td><td>Обновитесь до v2.0.2 или новее: первый столбец точек зондирования отстоит от края на 10 мм, как в прошивке Wanhao.</td></tr>
+<tr><td>Стол уезжает от концевика Y</td><td>Проверьте, что взяли прошивку для своей модели: мотор Y стоит сзади на MK1, MK1 + кит и MK2, спереди на MK3.</td></tr>
+</tbody></table></div>
+
+<h2>Возврат на прошивку Wanhao</h2>
+<p>На странице каждой модели есть ссылки на оригинальные прошивки Wanhao для материнской платы и экрана. Прошиваются они так же;
+прошивке материнской платы Wanhao нужна прошивка экрана Wanhao того же поколения.</p>
+<p>Вопросы: <a href="https://discord.gg/T37DYHmt2j">Discord</a> или <a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/issues">issues на GitHub</a>.</p>
+</div></main>
+<footer class="site"><div class="wrap">
+<a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9">Исходники и issues на GitHub</a>
+<a href="https://discord.gg/T37DYHmt2j">Discord</a>
+<span>Прошивка распространяется под GNU GPL v3. Руководства и прошивки Wanhao принадлежат Wanhao.</span>
+</div></footer>
+</body>
+</html>

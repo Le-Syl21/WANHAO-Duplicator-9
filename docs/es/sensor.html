@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="es" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sensores de filamento en la Wanhao Duplicator 9: interruptor de fin de filamento y conexión del BTT Smart Filament Sensor</title>
+<meta name="description" content="Dónde conectar un sensor de filamento en la placa base de la Wanhao D9 (D8, D9, GND, 5V), cómo cablear un BTT Smart Filament Sensor V2.0 y activar la detección de fin de filamento y de atascos con M412.">
+<link rel="canonical" href="https://le-syl21.github.io/WANHAO-Duplicator-9/es/sensor.html">
+<link rel="alternate" hreflang="en" href="https://le-syl21.github.io/WANHAO-Duplicator-9/sensor.html">
+<link rel="alternate" hreflang="fr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/fr/sensor.html">
+<link rel="alternate" hreflang="de" href="https://le-syl21.github.io/WANHAO-Duplicator-9/de/sensor.html">
+<link rel="alternate" hreflang="es" href="https://le-syl21.github.io/WANHAO-Duplicator-9/es/sensor.html">
+<link rel="alternate" hreflang="it" href="https://le-syl21.github.io/WANHAO-Duplicator-9/it/sensor.html">
+<link rel="alternate" hreflang="pt" href="https://le-syl21.github.io/WANHAO-Duplicator-9/pt/sensor.html">
+<link rel="alternate" hreflang="nl" href="https://le-syl21.github.io/WANHAO-Duplicator-9/nl/sensor.html">
+<link rel="alternate" hreflang="pl" href="https://le-syl21.github.io/WANHAO-Duplicator-9/pl/sensor.html">
+<link rel="alternate" hreflang="tr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/tr/sensor.html">
+<link rel="alternate" hreflang="ru" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ru/sensor.html">
+<link rel="alternate" hreflang="ar" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ar/sensor.html">
+<link rel="alternate" hreflang="hi" href="https://le-syl21.github.io/WANHAO-Duplicator-9/hi/sensor.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://le-syl21.github.io/WANHAO-Duplicator-9/zh/sensor.html">
+<link rel="alternate" hreflang="ja" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ja/sensor.html">
+<link rel="alternate" hreflang="ko" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ko/sensor.html">
+<link rel="alternate" hreflang="id" href="https://le-syl21.github.io/WANHAO-Duplicator-9/id/sensor.html">
+<link rel="alternate" hreflang="x-default" href="https://le-syl21.github.io/WANHAO-Duplicator-9/sensor.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Sensores de filamento en la Wanhao Duplicator 9: interruptor de fin de filamento y conexión del BTT Smart Filament Sensor">
+<meta property="og:description" content="Dónde conectar un sensor de filamento en la placa base de la Wanhao D9 (D8, D9, GND, 5V), cómo cablear un BTT Smart Filament Sensor V2.0 y activar la detección de fin de filamento y de atascos con M412.">
+<meta property="og:url" content="https://le-syl21.github.io/WANHAO-Duplicator-9/es/sensor.html">
+<meta property="og:image" content="https://le-syl21.github.io/WANHAO-Duplicator-9/img/og.jpg">
+<meta property="og:locale" content="es_ES">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖨️</text></svg>">
+<link rel="stylesheet" href="../style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Sensores de filamento en la Wanhao Duplicator 9: interruptor de fin de filamento y conexión del BTT Smart Filament Sensor", "description": "Dónde conectar un sensor de filamento en la placa base de la Wanhao D9 (D8, D9, GND, 5V), cómo cablear un BTT Smart Filament Sensor V2.0 y activar la detección de fin de filamento y de atascos con M412.", "url": "https://le-syl21.github.io/WANHAO-Duplicator-9/es/sensor.html", "inLanguage": "es", "about": {"@type": "Product", "name": "Wanhao Duplicator 9", "brand": "Wanhao"}}</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="brand" href="../es/">Wanhao <span>D9</span> firmware</a>
+<nav class="main"><a href="../es/">Inicio</a><a href="../es/mk1.html">MK1</a><a href="../es/mk1u2.html">MK1 + kit MK2</a><a href="../es/mk2.html">MK2</a><a href="../es/mk3.html">MK3</a><a href="../es/flash.html">Guía de flasheo</a><a href="../es/screen.html">Pantalla</a><a href="../es/sensor.html" aria-current="page">Sensor de filamento</a><a href="../es/quiet.html">Menos ruido</a></nav>
+<details class="lang"><summary aria-label="Idioma"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9M12 3c-2.5 2.7-3.8 5.7-3.8 9s1.3 6.3 3.8 9"/></svg><span>Español</span></summary><ul><li><a href="../sensor.html" hreflang="en" lang="en">English</a></li><li><a href="../fr/sensor.html" hreflang="fr" lang="fr">Français</a></li><li><a href="../de/sensor.html" hreflang="de" lang="de">Deutsch</a></li><li><a href="../es/sensor.html" hreflang="es" lang="es" aria-current="true">Español</a></li><li><a href="../it/sensor.html" hreflang="it" lang="it">Italiano</a></li><li><a href="../pt/sensor.html" hreflang="pt" lang="pt">Português</a></li><li><a href="../nl/sensor.html" hreflang="nl" lang="nl">Nederlands</a></li><li><a href="../pl/sensor.html" hreflang="pl" lang="pl">Polski</a></li><li><a href="../tr/sensor.html" hreflang="tr" lang="tr">Türkçe</a></li><li><a href="../ru/sensor.html" hreflang="ru" lang="ru">Русский</a></li><li><a href="../ar/sensor.html" hreflang="ar" lang="ar">العربية</a></li><li><a href="../hi/sensor.html" hreflang="hi" lang="hi">हिन्दी</a></li><li><a href="../zh/sensor.html" hreflang="zh-Hans" lang="zh-Hans">中文</a></li><li><a href="../ja/sensor.html" hreflang="ja" lang="ja">日本語</a></li><li><a href="../ko/sensor.html" hreflang="ko" lang="ko">한국어</a></li><li><a href="../id/sensor.html" hreflang="id" lang="id">Bahasa Indonesia</a></li></ul></details>
+</div></header>
+<main><div class="wrap">
+<h1>Sensores de filamento</h1>
+<p class="lead">Desde la v2.0.5, estos firmwares leen dos tipos de sensor: el interruptor de fin de filamento de Wanhao y el
+BTT Smart Filament Sensor V2.0, que además detecta cuando el filamento deja de avanzar (bobina enredada, atasco, filamento
+mordido). <strong>La detección de fin de filamento está activada por defecto en todos los modelos</strong>, y la detección de atascos está desactivada.</p>
+
+<h2>El conector del sensor</h2>
+<figure><img src="../img/d9-sensor-plug-es.svg" width="760" height="440" alt="Placa base de la Wanhao D9: el conector de sensor de 4 pines a la izquierda de POWER-DET, pines D9, D8, GND y 5V, cableado a un BTT Smart Filament Sensor V2.0"></figure>
+<p>El conector de 4 pines a la izquierda de <strong>POWER-DET</strong>, debajo de los conectores de los finales de carrera, lleva <strong>D9, D8, GND y 5V</strong>,
+en ese orden. Los nombres de los pines vienen de un esquema de cableado de Wanhao que dustovich encontró y compartió en el
+<a href="https://discord.gg/T37DYHmt2j">Discord</a>; en la parte trasera de la placa, los mismos cuatro pines están rotulados CTRL, BTN, GND y VCC.</p>
+<ul>
+<li><strong>D8</strong> es la entrada de fin de filamento que lee el propio firmware de Wanhao.</li>
+<li><strong>D9</strong> no la usa el firmware de Wanhao: estas compilaciones leen en ella la señal de movimiento del sensor BTT.</li>
+</ul>
+<div class="note">Impresora <strong>apagada</strong> siempre que conecte o desconecte algo en la placa.</div>
+
+<h2 id="screen">En la pantalla</h2>
+<div class="split"><div>
+<p>Con DGUS Reloaded 2.0 en la pantalla (firmware v2.0.9 o posterior): <em>Ajustes</em> → <em>Filamento</em> →
+<em>Sensor de filamento</em>.</p>
+<ul>
+<li><strong>Fin de filamento</strong> activa o desactiva toda la detección, como <code>M412 S1</code> / <code>M412 S0</code>.</li>
+<li><strong>Detección de atasco</strong> activa la detección de atascos con la longitud de abajo, o la desactiva (<code>L0</code>).</li>
+<li><strong>Longitud de atasco</strong>: − y + la cambian de 1 mm en 1 mm; toque el número para escribirlo.</li>
+<li>El punto <strong>Filamento</strong> se ve verde cuando el interruptor detecta filamento, y rojo cuando no.</li>
+<li>Los cambios se aplican al instante. <strong>Guardar</strong> los almacena, como <code>M500</code>. La flecha de volver sale sin
+guardar: los ajustes guardados vuelven en el siguiente arranque.</li>
+</ul>
+</div><figure><img src="../img/screen/es-sensor.png" width="480" height="272" alt="Página del sensor de filamento de DGUS Reloaded 2.0: interruptores de detección de fin de filamento y de atasco, longitud de atasco con botones menos y más, indicador de filamento y botón Guardar">
+<figcaption>Ajustes → Filamento → Sensor de filamento</figcaption></figure></div>
+
+<h2>Los comandos M412</h2>
+<p>Todo se configura por USB desde un terminal serie (Pronterface, el terminal de su slicer o de OctoPrint,
+250000 baudios). Los parámetros se pueden combinar en un mismo comando, por ejemplo <code>M412 S1 L10</code>.</p>
+<div class="table"><table class="stack"><thead><tr><th>Comando</th><th>Qué hace</th></tr></thead><tbody>
+<tr><td><code>M412</code></td><td>Muestra el estado, por ejemplo <em>Filament runout ON ; Distance 5.00mm ; Motion distance 0.00mm</em>.</td></tr>
+<tr><td><code>M412 S1</code></td><td><strong>Activa la detección</strong>: el interruptor de fin de filamento y también la detección de atascos si la longitud de atasco no es 0.</td></tr>
+<tr><td><code>M412 S0</code></td><td><strong>Desactiva toda la detección</strong>, interruptor y atascos.</td></tr>
+<tr><td><code>M412 D5</code></td><td>Cuando el interruptor deja de detectar filamento, sigue imprimiendo <strong>5 mm</strong> antes de pausar, para aprovechar el filamento que queda entre el sensor y la boquilla. Por defecto, 5 mm.</td></tr>
+<tr><td><code>M412 L10</code></td><td><strong>Activa la detección de atascos</strong> (solo sensor BTT): pausa cuando pasan <strong>10 mm</strong> de filamento por el extrusor sin que se mueva la rueda del sensor.</td></tr>
+<tr><td><code>M412 L0</code></td><td><strong>Desactiva la detección de atascos</strong> y deja el interruptor de fin de filamento como está. Es el valor por defecto.</td></tr>
+<tr><td><code>M500</code></td><td>Guarda los ajustes. Sin él, los cambios se pierden al apagar la impresora.</td></tr>
+<tr><td><code>M119</code></td><td>La línea <em>filament</em> muestra <code>TRIGGERED</code> con filamento cargado y <code>open</code> sin él.</td></tr>
+</tbody></table></div>
+<p><code>M412 L0</code>, y <code>L</code> usado solo, vienen de nuestra modificación de Marlin
+(<a href="https://github.com/MarlinFirmware/Marlin/pull/28585">MarlinFirmware/Marlin#28585</a>), incluida en estos firmwares. En un Marlin sin ella, <code>L</code>
+solo se ignora y <code>L0</code> pausa la impresión de inmediato como si hubiera un atasco.</p>
+
+<h2>El interruptor de fin de filamento de Wanhao</h2>
+<p>Indica al firmware si hay filamento. Cuando se acaba, la impresión se pausa tras 5 mm más de filamento
+y la pantalla inicia un cambio de filamento.</p>
+<p><strong>Está activado por defecto en todos los modelos desde la v2.0.8.</strong> Sin nada conectado en D8, la resistencia
+pull-up de la placa mantiene el pin a 5 V, lo que se lee como «hay filamento»: la detección nunca salta, así que puede quedar
+activada tanto si hay sensor como si no. Conecte un interruptor de fin de filamento en D8 y funciona directamente.</p>
+<ul>
+<li>La detección de atascos sigue desactivada (<code>L0</code>): este interruptor no puede ver si el filamento avanza.</li>
+<li>Para desactivar el interruptor: <code>M412 S0</code> y luego <code>M500</code>.</li>
+<li>Los ajustes guardados por una versión anterior conservan su estado activado o desactivado. Para activarlo: <code>M412 S1</code> y luego
+<code>M500</code>, o vuelva a los valores por defecto (<code>M502</code> y luego <code>M500</code>, lo que también borra el offset Z de la
+sonda y la malla).</li>
+</ul>
+
+<h2>BTT Smart Filament Sensor V2.0</h2>
+<p>Este sensor tiene dos salidas, y el firmware las lee de forma distinta:</p>
+<ul>
+<li><strong>El interruptor de fin de filamento</strong> (a D8) da un nivel: 5 V mientras hay filamento, 0 V cuando se ha acabado.</li>
+<li><strong>La salida de movimiento</strong> (a D9) viene de una pequeña rueda que el filamento hace girar al pasar. Cada pocos
+milímetros de filamento, la salida cambia entre 0 V y 5 V. El firmware solo vigila esos cambios: si el
+extrusor empuja la longitud de atasco sin que se produzca ni uno, el filamento no está avanzando (bobina enredada, atasco,
+filamento mordido) y la impresión se pausa. El interruptor de fin de filamento no puede verlo: durante un atasco, el filamento sigue ahí.</li>
+</ul>
+<h3>Cableado</h3>
+<p><strong>5V</strong> a 5V, <strong>GND</strong> a GND, la señal del <strong>interruptor de fin de filamento</strong> a <strong>D8</strong>
+y la señal de <strong>movimiento</strong> a <strong>D9</strong>. Los nombres impresos en el cable del sensor pueden ser distintos.</p>
+<h3>Activarlo</h3>
+<pre><code>M412 S1 L10
+M500</code></pre>
+<p>Si las impresiones se pausan sin motivo, aumente la longitud de atasco: <code>M412 L15</code> y luego <code>M500</code>. Para dejar solo
+el interruptor de fin de filamento: <code>M412 L0</code> y luego <code>M500</code>.</p>
+<h3>Comprobarlo</h3>
+<ul>
+<li><code>M412</code>: <em>Filament runout ON ; Distance 5.00mm ; Motion distance 10.00mm</em>.</li>
+<li><code>M119</code> con filamento cargado: <em>filament: TRIGGERED</em>. Si esa línea cambia cuando empuja el filamento
+a mano en lugar de cuando lo introduce o lo retira, los dos cables de señal están intercambiados: intercambie D8 y D9.</li>
+</ul>
+<div class="note">La detección de atascos se probó en una MK2 300 sin el sensor (con una longitud de atasco de 2 mm salta, con <code>L0</code> nunca),
+pero todavía no con el propio sensor BTT. Si el interruptor se lee al revés (<em>open</em> con filamento
+cargado), díganoslo en <a href="https://discord.gg/T37DYHmt2j">Discord</a>.</div>
+
+<h2>Actualizar desde la v2.0.5 o la v2.0.6</h2>
+<p>Esas versiones no permitían desactivar la detección de atascos, así que usaban una longitud de atasco tan larga que nunca se alcanzara: 100 m en
+la v2.0.5 (en realidad demasiado corta: más o menos un tercio de una bobina de 1 kg, tras lo cual una impresora que se quedara encendida podía pausarse sin motivo) y
+10 km en la v2.0.6. Al arrancar la impresora, la v2.0.7 carga esos dos valores como <code>L0</code>. Una longitud real que haya ajustado
+para un sensor BTT, como <code>L10</code>, se conserva. Desde la v2.0.4 o anterior, se carga la distancia de fin de filamento de 5 mm
+en lugar del 0 que guardaban esas versiones.</p>
+</div></main>
+<footer class="site"><div class="wrap">
+<a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9">Código fuente e issues en GitHub</a>
+<a href="https://discord.gg/T37DYHmt2j">Discord</a>
+<span>Firmware bajo licencia GNU GPL v3. Los manuales y firmwares de Wanhao siguen siendo de Wanhao.</span>
+</div></footer>
+</body>
+</html>

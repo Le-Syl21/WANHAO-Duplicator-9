@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="id" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cara flash firmware mainboard Wanhao Duplicator 9 (D9)</title>
+<meta name="description" content="Panduan langkah demi langkah untuk flash Marlin ke Wanhao D9 lewat USB dengan AVRDUDESS atau avrdude, mengatasi masalah homing, dan kembali ke firmware Wanhao.">
+<link rel="canonical" href="https://le-syl21.github.io/WANHAO-Duplicator-9/id/flash.html">
+<link rel="alternate" hreflang="en" href="https://le-syl21.github.io/WANHAO-Duplicator-9/flash.html">
+<link rel="alternate" hreflang="fr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/fr/flash.html">
+<link rel="alternate" hreflang="de" href="https://le-syl21.github.io/WANHAO-Duplicator-9/de/flash.html">
+<link rel="alternate" hreflang="es" href="https://le-syl21.github.io/WANHAO-Duplicator-9/es/flash.html">
+<link rel="alternate" hreflang="it" href="https://le-syl21.github.io/WANHAO-Duplicator-9/it/flash.html">
+<link rel="alternate" hreflang="pt" href="https://le-syl21.github.io/WANHAO-Duplicator-9/pt/flash.html">
+<link rel="alternate" hreflang="nl" href="https://le-syl21.github.io/WANHAO-Duplicator-9/nl/flash.html">
+<link rel="alternate" hreflang="pl" href="https://le-syl21.github.io/WANHAO-Duplicator-9/pl/flash.html">
+<link rel="alternate" hreflang="tr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/tr/flash.html">
+<link rel="alternate" hreflang="ru" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ru/flash.html">
+<link rel="alternate" hreflang="ar" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ar/flash.html">
+<link rel="alternate" hreflang="hi" href="https://le-syl21.github.io/WANHAO-Duplicator-9/hi/flash.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://le-syl21.github.io/WANHAO-Duplicator-9/zh/flash.html">
+<link rel="alternate" hreflang="ja" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ja/flash.html">
+<link rel="alternate" hreflang="ko" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ko/flash.html">
+<link rel="alternate" hreflang="id" href="https://le-syl21.github.io/WANHAO-Duplicator-9/id/flash.html">
+<link rel="alternate" hreflang="x-default" href="https://le-syl21.github.io/WANHAO-Duplicator-9/flash.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Cara flash firmware mainboard Wanhao Duplicator 9 (D9)">
+<meta property="og:description" content="Panduan langkah demi langkah untuk flash Marlin ke Wanhao D9 lewat USB dengan AVRDUDESS atau avrdude, mengatasi masalah homing, dan kembali ke firmware Wanhao.">
+<meta property="og:url" content="https://le-syl21.github.io/WANHAO-Duplicator-9/id/flash.html">
+<meta property="og:image" content="https://le-syl21.github.io/WANHAO-Duplicator-9/img/og.jpg">
+<meta property="og:locale" content="id_ID">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖨️</text></svg>">
+<link rel="stylesheet" href="../style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Cara flash firmware mainboard Wanhao Duplicator 9 (D9)", "description": "Panduan langkah demi langkah untuk flash Marlin ke Wanhao D9 lewat USB dengan AVRDUDESS atau avrdude, mengatasi masalah homing, dan kembali ke firmware Wanhao.", "url": "https://le-syl21.github.io/WANHAO-Duplicator-9/id/flash.html", "inLanguage": "id", "about": {"@type": "Product", "name": "Wanhao Duplicator 9", "brand": "Wanhao"}}</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="brand" href="../id/">Wanhao <span>D9</span> firmware</a>
+<nav class="main"><a href="../id/">Beranda</a><a href="../id/mk1.html">MK1</a><a href="../id/mk1u2.html">MK1 + kit MK2</a><a href="../id/mk2.html">MK2</a><a href="../id/mk3.html">MK3</a><a href="../id/flash.html" aria-current="page">Panduan flash</a><a href="../id/screen.html">Layar</a><a href="../id/sensor.html">Sensor filamen</a><a href="../id/quiet.html">Lebih senyap</a></nav>
+<details class="lang"><summary aria-label="Bahasa"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9M12 3c-2.5 2.7-3.8 5.7-3.8 9s1.3 6.3 3.8 9"/></svg><span>Bahasa Indonesia</span></summary><ul><li><a href="../flash.html" hreflang="en" lang="en">English</a></li><li><a href="../fr/flash.html" hreflang="fr" lang="fr">Français</a></li><li><a href="../de/flash.html" hreflang="de" lang="de">Deutsch</a></li><li><a href="../es/flash.html" hreflang="es" lang="es">Español</a></li><li><a href="../it/flash.html" hreflang="it" lang="it">Italiano</a></li><li><a href="../pt/flash.html" hreflang="pt" lang="pt">Português</a></li><li><a href="../nl/flash.html" hreflang="nl" lang="nl">Nederlands</a></li><li><a href="../pl/flash.html" hreflang="pl" lang="pl">Polski</a></li><li><a href="../tr/flash.html" hreflang="tr" lang="tr">Türkçe</a></li><li><a href="../ru/flash.html" hreflang="ru" lang="ru">Русский</a></li><li><a href="../ar/flash.html" hreflang="ar" lang="ar">العربية</a></li><li><a href="../hi/flash.html" hreflang="hi" lang="hi">हिन्दी</a></li><li><a href="../zh/flash.html" hreflang="zh-Hans" lang="zh-Hans">中文</a></li><li><a href="../ja/flash.html" hreflang="ja" lang="ja">日本語</a></li><li><a href="../ko/flash.html" hreflang="ko" lang="ko">한국어</a></li><li><a href="../id/flash.html" hreflang="id" lang="id" aria-current="true">Bahasa Indonesia</a></li></ul></details>
+</div></header>
+<main><div class="wrap">
+<h1>Flash mainboard Duplicator 9</h1>
+<p class="lead">Mainboard D9 memakai ATmega2560 dengan bootloader USB: tanpa programmer, tanpa membongkar base,
+cukup kabel USB.</p>
+
+<h2>Yang dibutuhkan</h2>
+<ul>
+<li>Kabel USB antara printer dan komputer, dan printer dalam keadaan <strong>menyala</strong>.</li>
+<li><a href="https://github.com/zkemble/AVRDUDESS">AVRDUDESS</a> (Windows, grafis, paling mudah) atau
+<a href="https://github.com/avrdudes/avrdude">avrdude</a> (command line, semua sistem operasi).</li>
+<li>File <strong>.hex</strong> untuk model dan ukuran printer Anda: <a href="../id/mk1.html">MK1</a>, <a href="../id/mk1u2.html">MK1 + kit</a>,
+<a href="../id/mk2.html">MK2</a>, <a href="../id/mk3.html">MK3</a>.</li>
+</ul>
+
+<h2>Sebelum flash</h2>
+<div class="note">Kirim <code>M503</code> dan simpan balasannya. Sejak v2.0.3, update mempertahankan setelan yang tersimpan di
+printer, tetapi update <strong>ke</strong> v2.0.3 akan dimulai sekali dari nilai default firmware ini (cara penyimpanan
+setelan berubah), begitu juga jika berasal dari firmware Wanhao. Setelah itu atur ulang Z offset probe Anda dengan <code>M851 Z…</code>
+dan <code>M500</code>.</div>
+<p>Tutup semua program yang mungkin sedang memakai port printer: Cura, PrusaSlicer, OctoPrint, Pronterface, terminal serial.</p>
+
+<h2>Flash dengan AVRDUDESS</h2>
+<ol>
+<li>Programmer: <code>wiring</code>. MCU: <code>ATmega2560</code>.</li>
+<li>Port: port COM printer Anda (misalnya <code>COM3</code>). Biarkan baud rate pada nilai default.</li>
+<li>Flash: pilih file .hex, lalu klik <strong>Program!</strong>. Prosesnya 30 sampai 60 detik.</li>
+</ol>
+
+<h2>Flash dengan avrdude</h2>
+<pre><code># Windows
+avrdude -v -p atmega2560 -c wiring -P COM3 -D -U flash:w:D9_MK2_300.hex:i
+
+# Linux / macOS
+avrdude -v -p atmega2560 -c wiring -P /dev/ttyUSB0 -D -U flash:w:D9_MK2_300.hex:i</code></pre>
+<p>Ganti port dan nama file dengan milik Anda. Protokol <code>wiring</code> memilih sendiri kecepatan bootloader.</p>
+
+<h2>Boot pertama</h2>
+<ol>
+<li>Cabut kabel USB, matikan lalu nyalakan lagi printer, pasang kembali kabelnya.</li>
+<li>Sambungkan pada <strong>250000 baud</strong> (firmware Wanhao memakai 115200) dan kirim <code>M115</code>: balasannya menunjukkan firmware baru.</li>
+<li>Lakukan homing semua sumbu, lalu leveling bed dari layar atau dengan <code>G29</code>, dan simpan dengan <code>M500</code>.</li>
+</ol>
+
+<h2 id="reset">Kembali ke setelan default firmware ini</h2>
+<p>Sejak v2.0.3, update firmware <strong>mempertahankan</strong> setelan yang tersimpan di printer (Z offset probe, steps/mm,
+PID, mesh…). Karena itu nilai default baru dalam sebuah rilis tidak menggantikan nilai yang sudah tersimpan. Lakukan reset
+sekali jika Anda update dari v2.0.2 atau lebih lama sambil mempertahankan nilai yang disimpan manual, jika printer
+berperilaku aneh setelah mencoba firmware lain, atau kapan pun Anda ingin mulai dari awal:</p>
+<ul>
+<li><strong>Di layar:</strong> <em>Pengaturan</em> → <em>Lainnya</em> → <em>Atur ulang</em> → ✓.</li>
+<li><strong>Lewat USB:</strong> kirim <code>M502</code> (memuat nilai default firmware ini) lalu <code>M500</code> (menyimpannya).</li>
+</ul>
+<p>Setelah itu atur lagi Z offset probe Anda (<code>M851 Z…</code> lalu <code>M500</code>) dan lakukan leveling bed. Periksa
+hasilnya dengan <code>M503</code>.</p>
+
+<h2>Listrik padam dan sensor filamen</h2>
+<ul>
+<li>Pemulihan saat listrik padam aktif: progres disimpan setiap ganti layer. Untuk mematikannya: <code>M413 S0</code> lalu <code>M500</code>.</li>
+<li>Cetakan langsung berhenti dengan pesan <em>power outage</em> begitu mulai memanaskan: update ke v2.0.4 atau yang lebih baru. Build sebelumnya memantau input deteksi listrik padam pada board, yang terbaca low begitu heater mulai menyala.</li>
+<li>Deteksi filamen habis aktif secara default di semua model sejak v2.0.8, dan tidak melakukan apa pun jika tidak ada sensor. Setelah update dari rilis sebelumnya, aktifkan dengan <code>M412 S1</code> lalu <code>M500</code>, atau di layar lewat <em>Pengaturan</em> → <em>Filamen</em> → <em>Sensor filamen</em>. Pengkabelan dan BTT Smart Filament Sensor: <a href="../id/sensor.html">Sensor filamen</a>.</li>
+</ul>
+
+<h2>Pemecahan masalah</h2>
+<div class="table"><table><thead><tr><th>Masalah</th><th>Solusi</th></tr></thead><tbody>
+<tr><td>Port sedang dipakai</td><td>Tutup semua program yang memakai port printer.</td></tr>
+<tr><td>Perangkat tidak ditemukan</td><td>Pasang driver USB CH340, coba kabel atau port USB lain, pastikan printer menyala.</td></tr>
+<tr><td>Karakter tidak terbaca setelah flash</td><td>Gunakan 250000 baud dengan firmware ini, 115200 dengan firmware Wanhao.</td></tr>
+<tr><td>Suhu di layar tampil ×10 (236 untuk 23,6 °C)</td><td>Layar masih memakai file lama: flash <a href="../id/screen.html">DGUS Reloaded 2.0</a>.</td></tr>
+<tr><td>Layar kembali ke bahasa Inggris setiap dinyalakan, atau halaman <em>Sensor filamen</em> tidak berfungsi</td><td>Firmware mainboard lebih lama dari v2.0.9: update firmware tersebut.</td></tr>
+<tr><td>Homing berhenti beberapa milimeter sebelum sakelar, lalu muncul <em>Homing Failed</em></td><td>Noise listrik pada jalur endstop. Firmware ini sudah menyaringnya sejak v2.0.1: lakukan update.</td></tr>
+<tr><td>Nozzle menabrak klip bed saat leveling</td><td>Update ke v2.0.2 atau yang lebih baru: kolom probing pertama berada 10 mm dari tepi, seperti di firmware Wanhao.</td></tr>
+<tr><td>Bed bergerak menjauhi sakelar Y</td><td>Pastikan Anda mengambil firmware untuk model Anda: motor Y ada di belakang pada MK1, MK1 + kit, dan MK2, dan di depan pada MK3.</td></tr>
+</tbody></table></div>
+
+<h2>Kembali ke firmware Wanhao</h2>
+<p>Setiap halaman model menyediakan tautan ke firmware mainboard dan layar asli Wanhao. Flash dengan cara yang sama; firmware
+mainboard Wanhao membutuhkan firmware layar Wanhao dari generasi yang sama.</p>
+<p>Pertanyaan: <a href="https://discord.gg/T37DYHmt2j">Discord</a> atau <a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/issues">issue di GitHub</a>.</p>
+</div></main>
+<footer class="site"><div class="wrap">
+<a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9">Kode sumber dan issue di GitHub</a>
+<a href="https://discord.gg/T37DYHmt2j">Discord</a>
+<span>Firmware berlisensi GNU GPL v3. Manual dan firmware Wanhao tetap milik Wanhao.</span>
+</div></footer>
+</body>
+</html>

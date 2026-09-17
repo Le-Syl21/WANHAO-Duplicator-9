@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 440" role="img" aria-label="Płyta główna Wanhao D9 (widok z góry): D9, D8, GND, 5V → BTT Smart Filament Sensor V2.0" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif">
+<rect width="760" height="440" rx="16" fill="#1d1d21"/>
+<rect x="20" y="20" width="380" height="400" rx="12" fill="#0e0e10" stroke="#34343a"/>
+<text x="36" y="46" font-size="14" fill="#a3a3ab">Płyta główna Wanhao D9 (widok z góry)</text>
+<text x="80" y="84" font-size="13" fill="#ececef" text-anchor="middle">Z-min</text>
+<rect x="40" y="92" width="80" height="44" rx="4" fill="#f2f2ee" stroke="#bdbdb6"/>
+<rect x="60" y="109" width="10" height="10" fill="#8a8a84"/>
+<rect x="90" y="109" width="10" height="10" fill="#8a8a84"/>
+<text x="180" y="84" font-size="13" fill="#ececef" text-anchor="middle">Y-min</text>
+<rect x="140" y="92" width="80" height="44" rx="4" fill="#d9352b" stroke="#bdbdb6"/>
+<rect x="160" y="109" width="10" height="10" fill="#8a8a84"/>
+<rect x="190" y="109" width="10" height="10" fill="#8a8a84"/>
+<text x="280" y="84" font-size="13" fill="#ececef" text-anchor="middle">X-min</text>
+<rect x="240" y="92" width="80" height="44" rx="4" fill="#f2f2ee" stroke="#bdbdb6"/>
+<rect x="260" y="109" width="10" height="10" fill="#8a8a84"/>
+<rect x="290" y="109" width="10" height="10" fill="#8a8a84"/>
+<rect x="30" y="158" width="160" height="78" rx="8" fill="none" stroke="#ff5a6e" stroke-width="3"/>
+<rect x="40" y="181" width="140" height="44" rx="4" fill="#f2f2ee" stroke="#bdbdb6"/>
+<rect x="60" y="198" width="10" height="10" fill="#8a8a84"/>
+<rect x="90" y="198" width="10" height="10" fill="#8a8a84"/>
+<rect x="120" y="198" width="10" height="10" fill="#8a8a84"/>
+<rect x="150" y="198" width="10" height="10" fill="#8a8a84"/>
+<rect x="222" y="181" width="110" height="44" rx="4" fill="#f2f2ee" stroke="#bdbdb6"/>
+<rect x="242" y="198" width="10" height="10" fill="#8a8a84"/>
+<rect x="272" y="198" width="10" height="10" fill="#8a8a84"/>
+<rect x="302" y="198" width="10" height="10" fill="#8a8a84"/>
+<text x="267" y="252" font-size="13" fill="#a3a3ab" text-anchor="middle">POWER-DET</text>
+<text x="32" y="153" font-size="14" font-weight="700" fill="#ff5a6e">złącze czujnika</text>
+<text x="65" y="176" font-size="12" font-weight="700" fill="#4cc47f" text-anchor="middle">D9</text>
+<text x="95" y="176" font-size="12" font-weight="700" fill="#f0b429" text-anchor="middle">D8</text>
+<text x="125" y="176" font-size="12" font-weight="700" fill="#c8c8d0" text-anchor="middle">GND</text>
+<text x="155" y="176" font-size="12" font-weight="700" fill="#ff5a6e" text-anchor="middle">5V</text>
+<path d="M65 226 V378 H470" fill="none" stroke="#4cc47f" stroke-width="4" stroke-linejoin="round"/>
+<circle cx="65" cy="226" r="4" fill="#4cc47f"/>
+<path d="M95 226 V332 H470" fill="none" stroke="#f0b429" stroke-width="4" stroke-linejoin="round"/>
+<circle cx="95" cy="226" r="4" fill="#f0b429"/>
+<path d="M125 226 V296 H470" fill="none" stroke="#c8c8d0" stroke-width="4" stroke-linejoin="round"/>
+<circle cx="125" cy="226" r="4" fill="#c8c8d0"/>
+<path d="M155 226 V262 H470" fill="none" stroke="#ff5a6e" stroke-width="4" stroke-linejoin="round"/>
+<circle cx="155" cy="226" r="4" fill="#ff5a6e"/>
+<rect x="470" y="244" width="36" height="152" rx="4" fill="#f2f2ee" stroke="#bdbdb6"/>
+<rect x="506" y="204" width="236" height="210" rx="10" fill="#26262b" stroke="#5b5b62"/>
+<text x="624" y="228" font-size="14" font-weight="700" fill="#ececef" text-anchor="middle">BTT Smart Filament Sensor V2.0</text>
+<text x="518" y="383" font-size="13" font-weight="700" fill="#4cc47f">ruch</text>
+<text x="518" y="398" font-size="11" fill="#a3a3ab">impulsy, gdy filament się przesuwa</text>
+<text x="518" y="337" font-size="13" font-weight="700" fill="#f0b429">koniec filamentu</text>
+<text x="518" y="352" font-size="11" fill="#a3a3ab">poziom: filament jest / brak</text>
+<text x="518" y="301" font-size="13" font-weight="700" fill="#c8c8d0">GND</text>
+<text x="518" y="267" font-size="13" font-weight="700" fill="#ff5a6e">5V</text>
+<text x="742" y="432" font-size="11" fill="#a3a3ab" text-anchor="end">nazwy na Twoim czujniku mogą być inne</text>
+</svg>

@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="de" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wanhao Duplicator 9 leiser machen: welche Lüfter, und der Mainboard-Lüfter mit NTC-Thermistoren</title>
+<meta name="description" content="Welche Lüfter der Wanhao D9 sich leiser machen lassen: Der Hotend-Lüfter muss bleiben, der Netzteillüfter regelt sich bereits selbst, und der Mainboard-Lüfter kann abgesteckt oder über NTC-Thermistoren betrieben werden.">
+<link rel="canonical" href="https://le-syl21.github.io/WANHAO-Duplicator-9/de/quiet.html">
+<link rel="alternate" hreflang="en" href="https://le-syl21.github.io/WANHAO-Duplicator-9/quiet.html">
+<link rel="alternate" hreflang="fr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/fr/quiet.html">
+<link rel="alternate" hreflang="de" href="https://le-syl21.github.io/WANHAO-Duplicator-9/de/quiet.html">
+<link rel="alternate" hreflang="es" href="https://le-syl21.github.io/WANHAO-Duplicator-9/es/quiet.html">
+<link rel="alternate" hreflang="it" href="https://le-syl21.github.io/WANHAO-Duplicator-9/it/quiet.html">
+<link rel="alternate" hreflang="pt" href="https://le-syl21.github.io/WANHAO-Duplicator-9/pt/quiet.html">
+<link rel="alternate" hreflang="nl" href="https://le-syl21.github.io/WANHAO-Duplicator-9/nl/quiet.html">
+<link rel="alternate" hreflang="pl" href="https://le-syl21.github.io/WANHAO-Duplicator-9/pl/quiet.html">
+<link rel="alternate" hreflang="tr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/tr/quiet.html">
+<link rel="alternate" hreflang="ru" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ru/quiet.html">
+<link rel="alternate" hreflang="ar" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ar/quiet.html">
+<link rel="alternate" hreflang="hi" href="https://le-syl21.github.io/WANHAO-Duplicator-9/hi/quiet.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://le-syl21.github.io/WANHAO-Duplicator-9/zh/quiet.html">
+<link rel="alternate" hreflang="ja" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ja/quiet.html">
+<link rel="alternate" hreflang="ko" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ko/quiet.html">
+<link rel="alternate" hreflang="id" href="https://le-syl21.github.io/WANHAO-Duplicator-9/id/quiet.html">
+<link rel="alternate" hreflang="x-default" href="https://le-syl21.github.io/WANHAO-Duplicator-9/quiet.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Wanhao Duplicator 9 leiser machen: welche Lüfter, und der Mainboard-Lüfter mit NTC-Thermistoren">
+<meta property="og:description" content="Welche Lüfter der Wanhao D9 sich leiser machen lassen: Der Hotend-Lüfter muss bleiben, der Netzteillüfter regelt sich bereits selbst, und der Mainboard-Lüfter kann abgesteckt oder über NTC-Thermistoren betrieben werden.">
+<meta property="og:url" content="https://le-syl21.github.io/WANHAO-Duplicator-9/de/quiet.html">
+<meta property="og:image" content="https://le-syl21.github.io/WANHAO-Duplicator-9/img/og.jpg">
+<meta property="og:locale" content="de_DE">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖨️</text></svg>">
+<link rel="stylesheet" href="../style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Wanhao Duplicator 9 leiser machen: welche Lüfter, und der Mainboard-Lüfter mit NTC-Thermistoren", "description": "Welche Lüfter der Wanhao D9 sich leiser machen lassen: Der Hotend-Lüfter muss bleiben, der Netzteillüfter regelt sich bereits selbst, und der Mainboard-Lüfter kann abgesteckt oder über NTC-Thermistoren betrieben werden.", "url": "https://le-syl21.github.io/WANHAO-Duplicator-9/de/quiet.html", "inLanguage": "de", "about": {"@type": "Product", "name": "Wanhao Duplicator 9", "brand": "Wanhao"}}</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="brand" href="../de/">Wanhao <span>D9</span> firmware</a>
+<nav class="main"><a href="../de/">Start</a><a href="../de/mk1.html">MK1</a><a href="../de/mk1u2.html">MK1 + MK2-Kit</a><a href="../de/mk2.html">MK2</a><a href="../de/mk3.html">MK3</a><a href="../de/flash.html">Flash-Anleitung</a><a href="../de/screen.html">Display</a><a href="../de/sensor.html">Filamentsensor</a><a href="../de/quiet.html" aria-current="page">Leiser</a></nav>
+<details class="lang"><summary aria-label="Sprache"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9M12 3c-2.5 2.7-3.8 5.7-3.8 9s1.3 6.3 3.8 9"/></svg><span>Deutsch</span></summary><ul><li><a href="../quiet.html" hreflang="en" lang="en">English</a></li><li><a href="../fr/quiet.html" hreflang="fr" lang="fr">Français</a></li><li><a href="../de/quiet.html" hreflang="de" lang="de" aria-current="true">Deutsch</a></li><li><a href="../es/quiet.html" hreflang="es" lang="es">Español</a></li><li><a href="../it/quiet.html" hreflang="it" lang="it">Italiano</a></li><li><a href="../pt/quiet.html" hreflang="pt" lang="pt">Português</a></li><li><a href="../nl/quiet.html" hreflang="nl" lang="nl">Nederlands</a></li><li><a href="../pl/quiet.html" hreflang="pl" lang="pl">Polski</a></li><li><a href="../tr/quiet.html" hreflang="tr" lang="tr">Türkçe</a></li><li><a href="../ru/quiet.html" hreflang="ru" lang="ru">Русский</a></li><li><a href="../ar/quiet.html" hreflang="ar" lang="ar">العربية</a></li><li><a href="../hi/quiet.html" hreflang="hi" lang="hi">हिन्दी</a></li><li><a href="../zh/quiet.html" hreflang="zh-Hans" lang="zh-Hans">中文</a></li><li><a href="../ja/quiet.html" hreflang="ja" lang="ja">日本語</a></li><li><a href="../ko/quiet.html" hreflang="ko" lang="ko">한국어</a></li><li><a href="../id/quiet.html" hreflang="id" lang="id">Bahasa Indonesia</a></li></ul></details>
+</div></header>
+<main><div class="wrap">
+<h1>Die Duplicator 9 leiser machen</h1>
+<p class="lead">Im Ruhezustand kommt das Geräusch der D9 von ihren Lüftern. Hier steht, welcher leiser werden kann und wie.</p>
+<div class="note">Nur mit <strong>ausgestecktem</strong> Drucker arbeiten. Alle Leitungen von der 230-V-Seite fernhalten.</div>
+
+<h2>Die Lüfter</h2>
+<div class="table"><table class="stack"><thead><tr><th>Lüfter</th><th>Gesteuert von</th><th>Lässt er sich leiser machen?</th></tr></thead><tbody>
+<tr><td><strong>Hotend-Kühlkörperlüfter</strong> (Druckkopf)</td><td>nichts: 24 V, immer an</td><td><strong>nein</strong>: meist der lauteste, aber wird er langsamer, steigt die Wärme im Hotend nach oben und das Filament verstopft (Heat Creep)</td></tr>
+<tr><td><strong>Bauteillüfter</strong> (Druckkopf)</td><td>Firmware, Pin D5 (PWM)</td><td>bereits regelbar: gesteuert vom Slicer und von <code>M106</code></td></tr>
+<tr><td><strong>Netzteillüfter</strong></td><td>das Netzteil selbst</td><td>nichts zu tun: Beim hier geprüften Gerät (Chuanglian A-350FAK-24) folgt er bereits der Temperatur des Netzteils</td></tr>
+<tr><td><strong>Mainboard-Lüfter</strong> (Elektronikgehäuse)</td><td>nichts: 24 V, immer an</td><td><strong>ja</strong>, siehe unten</td></tr>
+</tbody></table></div>
+<p>Wanhaos Firmware steuert weder einen Mainboard-Lüfter noch einen Hotend-Lüfter (<code>CONTROLLER_FAN_PIN</code> und
+<code>E0_AUTO_FAN_PIN</code> sind beide <code>-1</code>), und das Board hat keinen freien schaltbaren Ausgang. Deshalb hängen
+diese beiden an den dauerhaft versorgten „24V OUT“-Anschlüssen, und deshalb kann keine Firmware sie verlangsamen.</p>
+
+<h2>Mainboard-Lüfter</h2>
+<p>Beim hier vermessenen Exemplar: <strong>HZ-D 4010MS, 40 × 10 mm, 24 V, 0,10 A max., Gleitlager</strong>.</p>
+<p><strong>Viele Besitzer stecken ihn einfach ab.</strong> Das Board bleibt kühl: Es sitzt unten im Elektronikgehäuse, unter
+dem beheizten Druckbett, und die Wärme des Betts steigt von ihm weg nach oben. Wenn du das machst, behalte deine ersten langen
+Drucke im Auge: Ein überhitzter Schrittmotortreiber schaltet kurz ab, was sich als <strong>Schichtversatz</strong> zeigt, nicht
+als Fehlermeldung.</p>
+<h3>Ihn behalten, aber nur, wenn die Treiber warm sind</h3>
+<p>Zwei Leistungs-NTC-Thermistoren in Reihe lassen den Lüfter bei etwa 45–50 °C anlaufen und schneller werden, je wärmer
+die Treiber werden: <strong>MF72-400D9</strong> (400 Ω) + <strong>MF72-200D9</strong> (200 Ω), mit Wärmeleitkleber auf einen
+Treiberkühlkörper geklebt, Anschlussdrähte isoliert.</p>
+<pre><code>+24V ── MF72-400D9 ── MF72-200D9 ── Lüfter (+)
+                                    Lüfter (−) ── 0V</code></pre>
+<ul>
+<li>Das ist eine Berechnung, <strong>noch nicht an einem Drucker getestet</strong>: Die Toleranz der MF72 liegt bei ±20 %, und
+ein kleiner Lüfter kann schon bei einer niedrigeren Temperatur als erwartet anlaufen. Prüfe die Anlauftemperatur auf dem Tisch (NTCs in einem kleinen Beutel
+in heißem Wasser, mit einem Küchenthermometer); füge einen zweiten 200-Ω-NTC hinzu, wenn er zu früh anläuft, lass den 200-Ω-NTC
+weg, wenn zu spät.</li>
+<li>Die NTCs müssen auf einen Kühlkörper geklebt sein: An freier Luft erwärmt der Lüfterstrom (bis etwa 0,6 W in den NTCs) sie um
+mehrere zehn Grad.</li>
+<li>Der Lüfter erreicht so nie die volle Drehzahl (etwa 75 % bei 80 °C), und ein ausfallender NTC wird hochohmig: Der Lüfter
+steht dann dauerhaft still.</li>
+</ul>
+<p>Quellen: <a href="https://www.cantherm.com/wp-content/uploads/2018/08/MF72_AUG_2018.pdf">Datenblatt MF72</a>.</p>
+</div></main>
+<footer class="site"><div class="wrap">
+<a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9">Quellcode und Issues auf GitHub</a>
+<a href="https://discord.gg/T37DYHmt2j">Discord</a>
+<span>Firmware unter GNU GPL v3. Die Handbücher und Firmwares von Wanhao bleiben Eigentum von Wanhao.</span>
+</div></footer>
+</body>
+</html>

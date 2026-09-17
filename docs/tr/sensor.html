@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="tr" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wanhao Duplicator 9&#x27;da filament sensörleri: filament bitti anahtarı ve BTT Smart Filament Sensor bağlantısı</title>
+<meta name="description" content="Wanhao D9 anakartında filament sensörü nereye takılır (D8, D9, GND, 5V), BTT Smart Filament Sensor V2.0 nasıl bağlanır ve M412 ile filament bitti ve tıkanma algılama nasıl açılır.">
+<link rel="canonical" href="https://le-syl21.github.io/WANHAO-Duplicator-9/tr/sensor.html">
+<link rel="alternate" hreflang="en" href="https://le-syl21.github.io/WANHAO-Duplicator-9/sensor.html">
+<link rel="alternate" hreflang="fr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/fr/sensor.html">
+<link rel="alternate" hreflang="de" href="https://le-syl21.github.io/WANHAO-Duplicator-9/de/sensor.html">
+<link rel="alternate" hreflang="es" href="https://le-syl21.github.io/WANHAO-Duplicator-9/es/sensor.html">
+<link rel="alternate" hreflang="it" href="https://le-syl21.github.io/WANHAO-Duplicator-9/it/sensor.html">
+<link rel="alternate" hreflang="pt" href="https://le-syl21.github.io/WANHAO-Duplicator-9/pt/sensor.html">
+<link rel="alternate" hreflang="nl" href="https://le-syl21.github.io/WANHAO-Duplicator-9/nl/sensor.html">
+<link rel="alternate" hreflang="pl" href="https://le-syl21.github.io/WANHAO-Duplicator-9/pl/sensor.html">
+<link rel="alternate" hreflang="tr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/tr/sensor.html">
+<link rel="alternate" hreflang="ru" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ru/sensor.html">
+<link rel="alternate" hreflang="ar" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ar/sensor.html">
+<link rel="alternate" hreflang="hi" href="https://le-syl21.github.io/WANHAO-Duplicator-9/hi/sensor.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://le-syl21.github.io/WANHAO-Duplicator-9/zh/sensor.html">
+<link rel="alternate" hreflang="ja" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ja/sensor.html">
+<link rel="alternate" hreflang="ko" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ko/sensor.html">
+<link rel="alternate" hreflang="id" href="https://le-syl21.github.io/WANHAO-Duplicator-9/id/sensor.html">
+<link rel="alternate" hreflang="x-default" href="https://le-syl21.github.io/WANHAO-Duplicator-9/sensor.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Wanhao Duplicator 9&#x27;da filament sensörleri: filament bitti anahtarı ve BTT Smart Filament Sensor bağlantısı">
+<meta property="og:description" content="Wanhao D9 anakartında filament sensörü nereye takılır (D8, D9, GND, 5V), BTT Smart Filament Sensor V2.0 nasıl bağlanır ve M412 ile filament bitti ve tıkanma algılama nasıl açılır.">
+<meta property="og:url" content="https://le-syl21.github.io/WANHAO-Duplicator-9/tr/sensor.html">
+<meta property="og:image" content="https://le-syl21.github.io/WANHAO-Duplicator-9/img/og.jpg">
+<meta property="og:locale" content="tr_TR">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖨️</text></svg>">
+<link rel="stylesheet" href="../style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Wanhao Duplicator 9'da filament sensörleri: filament bitti anahtarı ve BTT Smart Filament Sensor bağlantısı", "description": "Wanhao D9 anakartında filament sensörü nereye takılır (D8, D9, GND, 5V), BTT Smart Filament Sensor V2.0 nasıl bağlanır ve M412 ile filament bitti ve tıkanma algılama nasıl açılır.", "url": "https://le-syl21.github.io/WANHAO-Duplicator-9/tr/sensor.html", "inLanguage": "tr", "about": {"@type": "Product", "name": "Wanhao Duplicator 9", "brand": "Wanhao"}}</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="brand" href="../tr/">Wanhao <span>D9</span> firmware</a>
+<nav class="main"><a href="../tr/">Ana sayfa</a><a href="../tr/mk1.html">MK1</a><a href="../tr/mk1u2.html">MK1 + MK2 kiti</a><a href="../tr/mk2.html">MK2</a><a href="../tr/mk3.html">MK3</a><a href="../tr/flash.html">Yükleme rehberi</a><a href="../tr/screen.html">Ekran</a><a href="../tr/sensor.html" aria-current="page">Filament sensörü</a><a href="../tr/quiet.html">Sessizleştirme</a></nav>
+<details class="lang"><summary aria-label="Dil"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9M12 3c-2.5 2.7-3.8 5.7-3.8 9s1.3 6.3 3.8 9"/></svg><span>Türkçe</span></summary><ul><li><a href="../sensor.html" hreflang="en" lang="en">English</a></li><li><a href="../fr/sensor.html" hreflang="fr" lang="fr">Français</a></li><li><a href="../de/sensor.html" hreflang="de" lang="de">Deutsch</a></li><li><a href="../es/sensor.html" hreflang="es" lang="es">Español</a></li><li><a href="../it/sensor.html" hreflang="it" lang="it">Italiano</a></li><li><a href="../pt/sensor.html" hreflang="pt" lang="pt">Português</a></li><li><a href="../nl/sensor.html" hreflang="nl" lang="nl">Nederlands</a></li><li><a href="../pl/sensor.html" hreflang="pl" lang="pl">Polski</a></li><li><a href="../tr/sensor.html" hreflang="tr" lang="tr" aria-current="true">Türkçe</a></li><li><a href="../ru/sensor.html" hreflang="ru" lang="ru">Русский</a></li><li><a href="../ar/sensor.html" hreflang="ar" lang="ar">العربية</a></li><li><a href="../hi/sensor.html" hreflang="hi" lang="hi">हिन्दी</a></li><li><a href="../zh/sensor.html" hreflang="zh-Hans" lang="zh-Hans">中文</a></li><li><a href="../ja/sensor.html" hreflang="ja" lang="ja">日本語</a></li><li><a href="../ko/sensor.html" hreflang="ko" lang="ko">한국어</a></li><li><a href="../id/sensor.html" hreflang="id" lang="id">Bahasa Indonesia</a></li></ul></details>
+</div></header>
+<main><div class="wrap">
+<h1>Filament sensörleri</h1>
+<p class="lead">v2.0.5'ten itibaren bu firmware'ler iki tür sensör okur: Wanhao'nun filament bitti anahtarı ve
+filamentin ilerlemeyi bıraktığını da fark eden (dolaşmış makara, tıkanma, dişlinin yediği filament) BTT Smart Filament
+Sensor V2.0. <strong>Filament bitti algılama her modelde varsayılan olarak açıktır</strong>, tıkanma algılama ise kapalıdır.</p>
+
+<h2>Sensör soketi</h2>
+<figure><img src="../img/d9-sensor-plug-tr.svg" width="760" height="440" alt="Wanhao D9 anakartı: POWER-DET'in solundaki 4 pinli sensör soketi, D9, D8, GND ve 5V pinleri, bir BTT Smart Filament Sensor V2.0'a bağlı"></figure>
+<p>Endstop soketlerinin altında, <strong>POWER-DET</strong> yazısının solundaki 4 pinli soket, bu sırayla <strong>D9, D8, GND ve 5V</strong>
+pinlerini taşır. Pin adları, dustovich'in bulup <a href="https://discord.gg/T37DYHmt2j">Discord</a> sunucusunda paylaştığı bir Wanhao kablolama
+şemasından geliyor; kartın arka yüzünde aynı dört pin CTRL, BTN, GND ve VCC olarak yazılıdır.</p>
+<ul>
+<li><strong>D8</strong>, Wanhao'nun kendi firmware'inin okuduğu filament bitti girişidir.</li>
+<li><strong>D9</strong> Wanhao'nun firmware'i tarafından kullanılmaz: bu derlemeler BTT sensörünün hareket sinyalini bu pinden okur.</li>
+</ul>
+<div class="note">Kart üzerinde herhangi bir şeyi takıp çıkarırken yazıcı <strong>kapalı</strong> olmalıdır.</div>
+
+<h2 id="screen">Ekranda</h2>
+<div class="split"><div>
+<p>Ekranda DGUS Reloaded 2.0 varken (firmware v2.0.9 veya daha yeni): <em>Ayarlar</em> → <em>Filament</em> →
+<em>Filament sensörü</em>.</p>
+<ul>
+<li><strong>Filament bitti</strong> tüm algılamayı açar veya kapatır, <code>M412 S1</code> / <code>M412 S0</code> gibi.</li>
+<li><strong>Tıkanma algılama</strong>, tıkanma algılamayı alttaki uzunlukla açar ya da kapatır (<code>L0</code>).</li>
+<li><strong>Tıkanma uzunluğu</strong>: − ve + değeri 1 mm değiştirir; elle yazmak için sayıya dokunun.</li>
+<li><strong>Filament</strong> noktası, filament bitti anahtarı filamenti gördüğü sürece yeşil, görmediğinde kırmızıdır.</li>
+<li>Değişiklikler hemen uygulanır. <strong>Kaydet</strong> onları saklar, <code>M500</code> gibi. Geri oku kaydetmeden
+çıkar: kayıtlı ayarlar bir sonraki açılışta geri gelir.</li>
+</ul>
+</div><figure><img src="../img/screen/tr-sensor.png" width="480" height="272" alt="DGUS Reloaded 2.0 filament sensörü sayfası: filament bitti ve tıkanma algılama anahtarları, eksi ve artı düğmeli tıkanma uzunluğu, filament göstergesi ve Kaydet düğmesi">
+<figcaption>Ayarlar → Filament → Filament sensörü</figcaption></figure></div>
+
+<h2>M412 komutları</h2>
+<p>Her şey USB üzerinden bir seri terminalden ayarlanır (Pronterface, dilimleyicinizin ya da OctoPrint'in terminali,
+250000 baud). Parametreler tek bir komutta birleştirilebilir, örneğin <code>M412 S1 L10</code>.</p>
+<div class="table"><table class="stack"><thead><tr><th>Komut</th><th>Ne yapar</th></tr></thead><tbody>
+<tr><td><code>M412</code></td><td>Durumu gösterir, örneğin <em>Filament runout ON ; Distance 5.00mm ; Motion distance 0.00mm</em>.</td></tr>
+<tr><td><code>M412 S1</code></td><td><strong>Algılamayı açar</strong>: filament bitti anahtarını, tıkanma uzunluğu 0 değilse tıkanma algılamayı da.</td></tr>
+<tr><td><code>M412 S0</code></td><td><strong>Tüm algılamayı kapatır</strong>: anahtar ve tıkanma.</td></tr>
+<tr><td><code>M412 D5</code></td><td>Anahtar filament görmediğinde, sensör ile nozul arasında kalan filamenti kullanmak için duraklatmadan önce <strong>5 mm</strong> daha baskıya devam eder. Varsayılan 5 mm.</td></tr>
+<tr><td><code>M412 L10</code></td><td><strong>Tıkanma algılamayı açar</strong> (yalnızca BTT sensörü): sensörün tekerleği dönmeden ekstrüderden <strong>10 mm</strong> filament geçtiğinde baskıyı duraklatır.</td></tr>
+<tr><td><code>M412 L0</code></td><td><strong>Tıkanma algılamayı kapatır</strong>, filament bitti anahtarına dokunmaz. Varsayılan budur.</td></tr>
+<tr><td><code>M500</code></td><td>Ayarları kaydeder. Bu komut olmadan, yazıcı kapatılınca değişiklik kaybolur.</td></tr>
+<tr><td><code>M119</code></td><td><em>filament</em> satırı filament takılıyken <code>TRIGGERED</code>, takılı değilken <code>open</code> gösterir.</td></tr>
+</tbody></table></div>
+<p><code>M412 L0</code> ve tek başına kullanılan <code>L</code>, bu firmware'lere dahil edilen Marlin değişikliğimizden
+(<a href="https://github.com/MarlinFirmware/Marlin/pull/28585">MarlinFirmware/Marlin#28585</a>) gelir. Bu değişiklik olmayan Marlin'de tek başına <code>L</code>
+yok sayılır ve <code>L0</code> baskıyı hemen tıkanma varmış gibi duraklatır.</p>
+
+<h2>Wanhao'nun filament bitti anahtarı</h2>
+<p>Firmware'e filamentin olup olmadığını bildirir. Filament bittiğinde baskı 5 mm daha filament kullandıktan sonra
+duraklar ve ekran bir filament değişimi başlatır.</p>
+<p><strong>v2.0.8'den beri her modelde varsayılan olarak açıktır.</strong> D8'e hiçbir şey takılı değilken kartın pull-up
+direnci pini 5 V'ta tutar ve bu “filament var” olarak okunur: algılama bu durumda hiç tetiklenmez, bu yüzden sensör
+takılı olsun ya da olmasın açık kalabilir. D8'e bir filament bitti anahtarı takın, hemen çalışır.</p>
+<ul>
+<li>Tıkanma algılama kapalı kalır (<code>L0</code>): bu anahtar filamentin hareket ettiğini göremez.</li>
+<li>Anahtarı kapatmak için: <code>M412 S0</code> ve ardından <code>M500</code>.</li>
+<li>Önceki bir sürümün kaydettiği ayarlar açık/kapalı durumunu korur. Açmak için: <code>M412 S1</code> ve ardından
+<code>M500</code>, ya da varsayılanlara sıfırlayın (<code>M502</code> ve ardından <code>M500</code>; bu, prob Z
+ofsetinizi ve mesh'inizi de siler).</li>
+</ul>
+
+<h2>BTT Smart Filament Sensor V2.0</h2>
+<p>Bu sensörün iki çıkışı vardır ve firmware bunları farklı şekilde okur:</p>
+<ul>
+<li><strong>Filament bitti anahtarı</strong> (D8'e) bir seviye verir: filament varken 5 V, filament bitince 0 V.</li>
+<li><strong>Hareket çıkışı</strong> (D9'a), filament geçerken döndürdüğü küçük bir tekerlekten gelir. Her birkaç
+milimetre filamentte çıkış 0 V ile 5 V arasında değişir. Firmware yalnızca bu değişimleri izler: ekstrüder tek bir
+değişim olmadan tıkanma uzunluğu kadar filament iterse filament takip etmiyordur (dolaşmış makara, tıkanma, dişlinin
+yediği filament) ve baskı duraklar. Filament bitti anahtarı bunu göremez: tıkanma sırasında filament hâlâ oradadır.</li>
+</ul>
+<h3>Kablolama</h3>
+<p><strong>5V</strong> ucunu 5V'a, <strong>GND</strong> ucunu GND'ye, <strong>filament bitti anahtarı</strong> sinyalini <strong>D8</strong>
+pinine ve <strong>hareket</strong> sinyalini <strong>D9</strong> pinine bağlayın. Sensörün kablosunda yazan adlar farklı olabilir.</p>
+<h3>Açmak</h3>
+<pre><code>M412 S1 L10
+M500</code></pre>
+<p>Baskılar sebepsiz yere duraklıyorsa tıkanma uzunluğunu artırın: <code>M412 L15</code> ve ardından <code>M500</code>. Yalnızca
+filament bitti anahtarını kullanmak için: <code>M412 L0</code> ve ardından <code>M500</code>.</p>
+<h3>Kontrol etmek</h3>
+<ul>
+<li><code>M412</code>: <em>Filament runout ON ; Distance 5.00mm ; Motion distance 10.00mm</em>.</li>
+<li>Filament takılıyken <code>M119</code>: <em>filament: TRIGGERED</em>. Bu satır filamenti takıp çıkardığınızda değil de
+elle ittiğinizde değişiyorsa, iki sinyal kablosu yer değiştirmiştir: D8 ile D9'u yer değiştirin.</li>
+</ul>
+<div class="note">Tıkanma algılama, sensör olmadan bir MK2 300 üzerinde test edildi (2 mm'lik tıkanma uzunluğu tetikler, <code>L0</code> hiç
+tetiklemez), ama henüz BTT sensörünün kendisiyle test edilmedi. Anahtar ters okuyorsa (filament takılıyken <em>open</em>),
+bize <a href="https://discord.gg/T37DYHmt2j">Discord</a> üzerinden bildirin.</div>
+
+<h2>v2.0.5 veya v2.0.6'dan güncelleme</h2>
+<p>Bu sürümlerde tıkanma algılamayı kapatmanın bir yolu yoktu, bu yüzden asla ulaşılamayacak kadar uzun bir tıkanma
+uzunluğu kullanıyorlardı: v2.0.5'te 100 m (aslında fazla kısa: 1 kg'lık bir makaranın yaklaşık üçte biri; bu miktardan
+sonra açık bırakılmış bir yazıcı boş yere duraklayabiliyordu) ve v2.0.6'da 10 km. Yazıcı açılırken v2.0.7 bu iki değeri
+<code>L0</code> olarak yükler. BTT sensörü için ayarladığınız gerçek bir uzunluk, örneğin <code>L10</code>, korunur. v2.0.4
+veya daha eski bir sürümden gelindiğinde, bu sürümlerin kaydettiği 0 yerine 5 mm'lik filament bitti mesafesi yüklenir.</p>
+</div></main>
+<footer class="site"><div class="wrap">
+<a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9">Kaynak kod ve sorun kayıtları GitHub'da</a>
+<a href="https://discord.gg/T37DYHmt2j">Discord</a>
+<span>Firmware GNU GPL v3 lisanslıdır. Wanhao'nun kılavuzları ve firmware'leri Wanhao'ya aittir.</span>
+</div></footer>
+</body>
+</html>

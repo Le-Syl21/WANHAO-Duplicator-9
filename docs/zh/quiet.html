@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="zh-Hans" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>让 Wanhao Duplicator 9 更安静：哪些风扇可以降噪，以及用 NTC 热敏电阻控制主板风扇</title>
+<meta name="description" content="Wanhao D9 的哪些风扇可以降噪：热端风扇必须保留，电源风扇本身已经会自动调速，主板风扇可以拔掉，或改用 NTC 热敏电阻控制。">
+<link rel="canonical" href="https://le-syl21.github.io/WANHAO-Duplicator-9/zh/quiet.html">
+<link rel="alternate" hreflang="en" href="https://le-syl21.github.io/WANHAO-Duplicator-9/quiet.html">
+<link rel="alternate" hreflang="fr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/fr/quiet.html">
+<link rel="alternate" hreflang="de" href="https://le-syl21.github.io/WANHAO-Duplicator-9/de/quiet.html">
+<link rel="alternate" hreflang="es" href="https://le-syl21.github.io/WANHAO-Duplicator-9/es/quiet.html">
+<link rel="alternate" hreflang="it" href="https://le-syl21.github.io/WANHAO-Duplicator-9/it/quiet.html">
+<link rel="alternate" hreflang="pt" href="https://le-syl21.github.io/WANHAO-Duplicator-9/pt/quiet.html">
+<link rel="alternate" hreflang="nl" href="https://le-syl21.github.io/WANHAO-Duplicator-9/nl/quiet.html">
+<link rel="alternate" hreflang="pl" href="https://le-syl21.github.io/WANHAO-Duplicator-9/pl/quiet.html">
+<link rel="alternate" hreflang="tr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/tr/quiet.html">
+<link rel="alternate" hreflang="ru" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ru/quiet.html">
+<link rel="alternate" hreflang="ar" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ar/quiet.html">
+<link rel="alternate" hreflang="hi" href="https://le-syl21.github.io/WANHAO-Duplicator-9/hi/quiet.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://le-syl21.github.io/WANHAO-Duplicator-9/zh/quiet.html">
+<link rel="alternate" hreflang="ja" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ja/quiet.html">
+<link rel="alternate" hreflang="ko" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ko/quiet.html">
+<link rel="alternate" hreflang="id" href="https://le-syl21.github.io/WANHAO-Duplicator-9/id/quiet.html">
+<link rel="alternate" hreflang="x-default" href="https://le-syl21.github.io/WANHAO-Duplicator-9/quiet.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="让 Wanhao Duplicator 9 更安静：哪些风扇可以降噪，以及用 NTC 热敏电阻控制主板风扇">
+<meta property="og:description" content="Wanhao D9 的哪些风扇可以降噪：热端风扇必须保留，电源风扇本身已经会自动调速，主板风扇可以拔掉，或改用 NTC 热敏电阻控制。">
+<meta property="og:url" content="https://le-syl21.github.io/WANHAO-Duplicator-9/zh/quiet.html">
+<meta property="og:image" content="https://le-syl21.github.io/WANHAO-Duplicator-9/img/og.jpg">
+<meta property="og:locale" content="zh_CN">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖨️</text></svg>">
+<link rel="stylesheet" href="../style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "让 Wanhao Duplicator 9 更安静：哪些风扇可以降噪，以及用 NTC 热敏电阻控制主板风扇", "description": "Wanhao D9 的哪些风扇可以降噪：热端风扇必须保留，电源风扇本身已经会自动调速，主板风扇可以拔掉，或改用 NTC 热敏电阻控制。", "url": "https://le-syl21.github.io/WANHAO-Duplicator-9/zh/quiet.html", "inLanguage": "zh-Hans", "about": {"@type": "Product", "name": "Wanhao Duplicator 9", "brand": "Wanhao"}}</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="brand" href="../zh/">Wanhao <span>D9</span> firmware</a>
+<nav class="main"><a href="../zh/">首页</a><a href="../zh/mk1.html">MK1</a><a href="../zh/mk1u2.html">MK1 + MK2 套件</a><a href="../zh/mk2.html">MK2</a><a href="../zh/mk3.html">MK3</a><a href="../zh/flash.html">刷写指南</a><a href="../zh/screen.html">触摸屏</a><a href="../zh/sensor.html">耗材传感器</a><a href="../zh/quiet.html" aria-current="page">降噪</a></nav>
+<details class="lang"><summary aria-label="语言"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9M12 3c-2.5 2.7-3.8 5.7-3.8 9s1.3 6.3 3.8 9"/></svg><span>中文</span></summary><ul><li><a href="../quiet.html" hreflang="en" lang="en">English</a></li><li><a href="../fr/quiet.html" hreflang="fr" lang="fr">Français</a></li><li><a href="../de/quiet.html" hreflang="de" lang="de">Deutsch</a></li><li><a href="../es/quiet.html" hreflang="es" lang="es">Español</a></li><li><a href="../it/quiet.html" hreflang="it" lang="it">Italiano</a></li><li><a href="../pt/quiet.html" hreflang="pt" lang="pt">Português</a></li><li><a href="../nl/quiet.html" hreflang="nl" lang="nl">Nederlands</a></li><li><a href="../pl/quiet.html" hreflang="pl" lang="pl">Polski</a></li><li><a href="../tr/quiet.html" hreflang="tr" lang="tr">Türkçe</a></li><li><a href="../ru/quiet.html" hreflang="ru" lang="ru">Русский</a></li><li><a href="../ar/quiet.html" hreflang="ar" lang="ar">العربية</a></li><li><a href="../hi/quiet.html" hreflang="hi" lang="hi">हिन्दी</a></li><li><a href="../zh/quiet.html" hreflang="zh-Hans" lang="zh-Hans" aria-current="true">中文</a></li><li><a href="../ja/quiet.html" hreflang="ja" lang="ja">日本語</a></li><li><a href="../ko/quiet.html" hreflang="ko" lang="ko">한국어</a></li><li><a href="../id/quiet.html" hreflang="id" lang="id">Bahasa Indonesia</a></li></ul></details>
+</div></header>
+<main><div class="wrap">
+<h1>让 Duplicator 9 更安静</h1>
+<p class="lead">待机时，D9 的噪音来自它的风扇。下面介绍哪个风扇可以降噪，以及具体怎么做。</p>
+<div class="note">操作时请<strong>拔掉</strong>打印机电源。所有导线都要远离 230 V 一侧。</div>
+
+<h2>风扇</h2>
+<div class="table"><table class="stack"><thead><tr><th>风扇</th><th>控制方式</th><th>能否降噪？</th></tr></thead><tbody>
+<tr><td><strong>热端散热风扇</strong>（打印头）</td><td>无：24 V 常开</td><td><strong>不能</strong>：通常是最吵的一个，但降低转速会让热量沿热端向上蔓延，导致耗材堵塞（heat creep）</td></tr>
+<tr><td><strong>模型冷却风扇</strong>（打印头）</td><td>固件，D5 针脚（PWM）</td><td>本来就可调速：由切片软件和 <code>M106</code> 设定</td></tr>
+<tr><td><strong>电源风扇</strong></td><td>电源自身</td><td>无需处理：在这里检查的这台电源（Chuanglian A-350FAK-24）上，它已经会根据电源温度调速</td></tr>
+<tr><td><strong>主板风扇</strong>（控制盒）</td><td>无：24 V 常开</td><td><strong>能</strong>，见下文</td></tr>
+</tbody></table></div>
+<p>Wanhao 固件既不控制主板风扇，也不控制热端风扇（<code>CONTROLLER_FAN_PIN</code> 和
+<code>E0_AUTO_FAN_PIN</code> 都是 <code>-1</code>），主板上也没有空闲的可开关输出。所以这两个风扇接在常开的“24V OUT”接口上，任何固件都无法降低它们的转速。</p>
+
+<h2>主板风扇</h2>
+<p>在这里实测的这台机器上：<strong>HZ-D 4010MS，40 × 10 mm，24 V，最大 0.10 A，含油轴承</strong>。</p>
+<p><strong>很多用户干脆把它拔掉。</strong>主板温度并不高：它位于控制盒底部、热床下方，热床的热量向上散发，不会传到它那里。如果你这么做，请留意最初几次长时间打印：步进电机驱动过热时会短暂断开，表现为<strong>层错位</strong>，而不是报错信息。</p>
+<h3>保留风扇，但只在驱动变热时运转</h3>
+<p>将两个功率型 NTC 热敏电阻串联，可以让风扇在约 45–50 °C 时启动，并随驱动升温而加速：<strong>MF72-400D9</strong>（400 Ω）+ <strong>MF72-200D9</strong>（200 Ω），用导热胶粘在驱动散热片上，引脚做好绝缘。</p>
+<pre><code>+24V ── MF72-400D9 ── MF72-200D9 ── 风扇 (+)
+                                    风扇 (−) ── 0V</code></pre>
+<ul>
+<li>这是计算结果，<strong>尚未在打印机上实测</strong>：MF72 的公差为 ±20 %，小风扇的启动温度可能比预期低。请先在工作台上检查启动温度（把 NTC 装进小袋子泡在热水里，配合厨房温度计）；如果启动太早就再串一个 200 Ω，太晚就去掉那个 200 Ω。</li>
+<li>NTC 必须粘在散热片上：悬空时，风扇电流（NTC 上最多约 0.6 W）会让它们升温几十度。</li>
+<li>用这种方式，风扇永远达不到全速（80 °C 时约为 75 %），而且 NTC 损坏时会开路：风扇就会彻底停转。</li>
+</ul>
+<p>资料来源：<a href="https://www.cantherm.com/wp-content/uploads/2018/08/MF72_AUG_2018.pdf">MF72 数据手册</a>。</p>
+</div></main>
+<footer class="site"><div class="wrap">
+<a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9">GitHub 上的源代码和 issue</a>
+<a href="https://discord.gg/T37DYHmt2j">Discord</a>
+<span>固件采用 GNU GPL v3 许可。Wanhao 的说明书和固件版权仍归 Wanhao 所有。</span>
+</div></footer>
+</body>
+</html>

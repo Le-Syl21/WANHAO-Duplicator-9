@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="es" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hacer más silenciosa una Wanhao Duplicator 9: qué ventiladores, y el ventilador de la placa con termistores NTC</title>
+<meta name="description" content="Qué ventiladores de la Wanhao D9 se pueden silenciar: el del hotend debe quedarse, el de la fuente de alimentación ya se regula solo, y el de la placa se puede desconectar o alimentar a través de termistores NTC.">
+<link rel="canonical" href="https://le-syl21.github.io/WANHAO-Duplicator-9/es/quiet.html">
+<link rel="alternate" hreflang="en" href="https://le-syl21.github.io/WANHAO-Duplicator-9/quiet.html">
+<link rel="alternate" hreflang="fr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/fr/quiet.html">
+<link rel="alternate" hreflang="de" href="https://le-syl21.github.io/WANHAO-Duplicator-9/de/quiet.html">
+<link rel="alternate" hreflang="es" href="https://le-syl21.github.io/WANHAO-Duplicator-9/es/quiet.html">
+<link rel="alternate" hreflang="it" href="https://le-syl21.github.io/WANHAO-Duplicator-9/it/quiet.html">
+<link rel="alternate" hreflang="pt" href="https://le-syl21.github.io/WANHAO-Duplicator-9/pt/quiet.html">
+<link rel="alternate" hreflang="nl" href="https://le-syl21.github.io/WANHAO-Duplicator-9/nl/quiet.html">
+<link rel="alternate" hreflang="pl" href="https://le-syl21.github.io/WANHAO-Duplicator-9/pl/quiet.html">
+<link rel="alternate" hreflang="tr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/tr/quiet.html">
+<link rel="alternate" hreflang="ru" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ru/quiet.html">
+<link rel="alternate" hreflang="ar" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ar/quiet.html">
+<link rel="alternate" hreflang="hi" href="https://le-syl21.github.io/WANHAO-Duplicator-9/hi/quiet.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://le-syl21.github.io/WANHAO-Duplicator-9/zh/quiet.html">
+<link rel="alternate" hreflang="ja" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ja/quiet.html">
+<link rel="alternate" hreflang="ko" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ko/quiet.html">
+<link rel="alternate" hreflang="id" href="https://le-syl21.github.io/WANHAO-Duplicator-9/id/quiet.html">
+<link rel="alternate" hreflang="x-default" href="https://le-syl21.github.io/WANHAO-Duplicator-9/quiet.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hacer más silenciosa una Wanhao Duplicator 9: qué ventiladores, y el ventilador de la placa con termistores NTC">
+<meta property="og:description" content="Qué ventiladores de la Wanhao D9 se pueden silenciar: el del hotend debe quedarse, el de la fuente de alimentación ya se regula solo, y el de la placa se puede desconectar o alimentar a través de termistores NTC.">
+<meta property="og:url" content="https://le-syl21.github.io/WANHAO-Duplicator-9/es/quiet.html">
+<meta property="og:image" content="https://le-syl21.github.io/WANHAO-Duplicator-9/img/og.jpg">
+<meta property="og:locale" content="es_ES">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖨️</text></svg>">
+<link rel="stylesheet" href="../style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Hacer más silenciosa una Wanhao Duplicator 9: qué ventiladores, y el ventilador de la placa con termistores NTC", "description": "Qué ventiladores de la Wanhao D9 se pueden silenciar: el del hotend debe quedarse, el de la fuente de alimentación ya se regula solo, y el de la placa se puede desconectar o alimentar a través de termistores NTC.", "url": "https://le-syl21.github.io/WANHAO-Duplicator-9/es/quiet.html", "inLanguage": "es", "about": {"@type": "Product", "name": "Wanhao Duplicator 9", "brand": "Wanhao"}}</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="brand" href="../es/">Wanhao <span>D9</span> firmware</a>
+<nav class="main"><a href="../es/">Inicio</a><a href="../es/mk1.html">MK1</a><a href="../es/mk1u2.html">MK1 + kit MK2</a><a href="../es/mk2.html">MK2</a><a href="../es/mk3.html">MK3</a><a href="../es/flash.html">Guía de flasheo</a><a href="../es/screen.html">Pantalla</a><a href="../es/sensor.html">Sensor de filamento</a><a href="../es/quiet.html" aria-current="page">Menos ruido</a></nav>
+<details class="lang"><summary aria-label="Idioma"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9M12 3c-2.5 2.7-3.8 5.7-3.8 9s1.3 6.3 3.8 9"/></svg><span>Español</span></summary><ul><li><a href="../quiet.html" hreflang="en" lang="en">English</a></li><li><a href="../fr/quiet.html" hreflang="fr" lang="fr">Français</a></li><li><a href="../de/quiet.html" hreflang="de" lang="de">Deutsch</a></li><li><a href="../es/quiet.html" hreflang="es" lang="es" aria-current="true">Español</a></li><li><a href="../it/quiet.html" hreflang="it" lang="it">Italiano</a></li><li><a href="../pt/quiet.html" hreflang="pt" lang="pt">Português</a></li><li><a href="../nl/quiet.html" hreflang="nl" lang="nl">Nederlands</a></li><li><a href="../pl/quiet.html" hreflang="pl" lang="pl">Polski</a></li><li><a href="../tr/quiet.html" hreflang="tr" lang="tr">Türkçe</a></li><li><a href="../ru/quiet.html" hreflang="ru" lang="ru">Русский</a></li><li><a href="../ar/quiet.html" hreflang="ar" lang="ar">العربية</a></li><li><a href="../hi/quiet.html" hreflang="hi" lang="hi">हिन्दी</a></li><li><a href="../zh/quiet.html" hreflang="zh-Hans" lang="zh-Hans">中文</a></li><li><a href="../ja/quiet.html" hreflang="ja" lang="ja">日本語</a></li><li><a href="../ko/quiet.html" hreflang="ko" lang="ko">한국어</a></li><li><a href="../id/quiet.html" hreflang="id" lang="id">Bahasa Indonesia</a></li></ul></details>
+</div></header>
+<main><div class="wrap">
+<h1>Hacer más silenciosa la Duplicator 9</h1>
+<p class="lead">En reposo, el ruido de la D9 viene de sus ventiladores. Aquí se explica cuál se puede silenciar y cómo.</p>
+<div class="note">Trabaje con la impresora <strong>desenchufada</strong>. Mantenga todos los cables alejados del lado de 230 V.</div>
+
+<h2>Los ventiladores</h2>
+<div class="table"><table class="stack"><thead><tr><th>Ventilador</th><th>Controlado por</th><th>¿Se puede silenciar?</th></tr></thead><tbody>
+<tr><td><strong>Ventilador del disipador del hotend</strong> (cabezal)</td><td>nada: 24 V siempre encendido</td><td><strong>no</strong>: suele ser el más ruidoso, pero si se ralentiza el calor sube por el hotend y atasca el filamento (heat creep)</td></tr>
+<tr><td><strong>Ventilador de capa</strong> (cabezal)</td><td>el firmware, pin D5 (PWM)</td><td>ya es variable: lo ajustan el slicer y <code>M106</code></td></tr>
+<tr><td><strong>Ventilador de la fuente de alimentación</strong></td><td>la propia fuente</td><td>no hace falta nada: en la unidad revisada aquí (Chuanglian A-350FAK-24) ya sigue la temperatura de la fuente</td></tr>
+<tr><td><strong>Ventilador de la placa</strong> (caja de control)</td><td>nada: 24 V siempre encendido</td><td><strong>sí</strong>, vea más abajo</td></tr>
+</tbody></table></div>
+<p>El firmware de Wanhao no controla ningún ventilador de placa ni de hotend (<code>CONTROLLER_FAN_PIN</code> y
+<code>E0_AUTO_FAN_PIN</code> valen ambos <code>-1</code>), y la placa no tiene ninguna salida conmutada libre. Por eso estos
+dos van conectados a los conectores «24V OUT», siempre encendidos, y por eso ningún firmware puede ralentizarlos.</p>
+
+<h2>Ventilador de la placa</h2>
+<p>En la unidad medida aquí: <strong>HZ-D 4010MS, 40 × 10 mm, 24 V, 0,10 A máx., cojinete de deslizamiento (sleeve)</strong>.</p>
+<p><strong>Muchos usuarios simplemente lo desconectan.</strong> La placa trabaja fría: está en el fondo de la caja de control, debajo de
+la cama caliente, y el calor de la cama sube, alejándose de ella. Si lo hace, vigile sus primeras impresiones largas: un driver
+de motor que se sobrecalienta se corta un instante, lo que se nota como <strong>capas desplazadas</strong>, no como un mensaje de error.</p>
+<h3>Conservarlo, pero solo cuando los drivers se calientan</h3>
+<p>Dos termistores NTC de potencia en serie hacen que el ventilador arranque hacia 45–50 °C y acelere a medida que se calientan los drivers:
+<strong>MF72-400D9</strong> (400 Ω) + <strong>MF72-200D9</strong> (200 Ω), pegados al disipador de un driver con adhesivo
+térmico, con las patas aisladas.</p>
+<pre><code>+24V ── MF72-400D9 ── MF72-200D9 ── ventilador (+)
+                                    ventilador (−) ── 0V</code></pre>
+<ul>
+<li>Esto es un cálculo, <strong>todavía no probado en una impresora</strong>: la tolerancia de los MF72 es de ±20 %, y un ventilador pequeño puede
+arrancar a una temperatura más baja de lo previsto. Compruebe la temperatura de arranque en el banco de trabajo (los NTC en una bolsita dentro de agua caliente, con un
+termómetro de cocina); añada un segundo de 200 Ω si arranca demasiado pronto, quite el de 200 Ω si arranca demasiado tarde.</li>
+<li>Los NTC deben ir pegados a un disipador: al aire libre, la corriente del ventilador (hasta unos 0,6 W en los NTC) los calienta
+decenas de grados.</li>
+<li>Así el ventilador nunca llega a su velocidad máxima (alrededor del 75 % a 80 °C), y un NTC que falla queda en circuito abierto: entonces el ventilador se para
+definitivamente.</li>
+</ul>
+<p>Fuentes: <a href="https://www.cantherm.com/wp-content/uploads/2018/08/MF72_AUG_2018.pdf">hoja de datos de los MF72</a>.</p>
+</div></main>
+<footer class="site"><div class="wrap">
+<a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9">Código fuente e issues en GitHub</a>
+<a href="https://discord.gg/T37DYHmt2j">Discord</a>
+<span>Firmware bajo licencia GNU GPL v3. Los manuales y firmwares de Wanhao siguen siendo de Wanhao.</span>
+</div></footer>
+</body>
+</html>

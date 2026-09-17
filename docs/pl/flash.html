@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="pl" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jak wgrać firmware płyty głównej do Wanhao Duplicator 9 (D9)</title>
+<meta name="description" content="Poradnik krok po kroku: wgrywanie Marlina do Wanhao D9 przez USB za pomocą AVRDUDESS lub avrdude, rozwiązywanie problemów z bazowaniem i powrót do firmware&#x27;u Wanhao.">
+<link rel="canonical" href="https://le-syl21.github.io/WANHAO-Duplicator-9/pl/flash.html">
+<link rel="alternate" hreflang="en" href="https://le-syl21.github.io/WANHAO-Duplicator-9/flash.html">
+<link rel="alternate" hreflang="fr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/fr/flash.html">
+<link rel="alternate" hreflang="de" href="https://le-syl21.github.io/WANHAO-Duplicator-9/de/flash.html">
+<link rel="alternate" hreflang="es" href="https://le-syl21.github.io/WANHAO-Duplicator-9/es/flash.html">
+<link rel="alternate" hreflang="it" href="https://le-syl21.github.io/WANHAO-Duplicator-9/it/flash.html">
+<link rel="alternate" hreflang="pt" href="https://le-syl21.github.io/WANHAO-Duplicator-9/pt/flash.html">
+<link rel="alternate" hreflang="nl" href="https://le-syl21.github.io/WANHAO-Duplicator-9/nl/flash.html">
+<link rel="alternate" hreflang="pl" href="https://le-syl21.github.io/WANHAO-Duplicator-9/pl/flash.html">
+<link rel="alternate" hreflang="tr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/tr/flash.html">
+<link rel="alternate" hreflang="ru" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ru/flash.html">
+<link rel="alternate" hreflang="ar" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ar/flash.html">
+<link rel="alternate" hreflang="hi" href="https://le-syl21.github.io/WANHAO-Duplicator-9/hi/flash.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://le-syl21.github.io/WANHAO-Duplicator-9/zh/flash.html">
+<link rel="alternate" hreflang="ja" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ja/flash.html">
+<link rel="alternate" hreflang="ko" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ko/flash.html">
+<link rel="alternate" hreflang="id" href="https://le-syl21.github.io/WANHAO-Duplicator-9/id/flash.html">
+<link rel="alternate" hreflang="x-default" href="https://le-syl21.github.io/WANHAO-Duplicator-9/flash.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Jak wgrać firmware płyty głównej do Wanhao Duplicator 9 (D9)">
+<meta property="og:description" content="Poradnik krok po kroku: wgrywanie Marlina do Wanhao D9 przez USB za pomocą AVRDUDESS lub avrdude, rozwiązywanie problemów z bazowaniem i powrót do firmware&#x27;u Wanhao.">
+<meta property="og:url" content="https://le-syl21.github.io/WANHAO-Duplicator-9/pl/flash.html">
+<meta property="og:image" content="https://le-syl21.github.io/WANHAO-Duplicator-9/img/og.jpg">
+<meta property="og:locale" content="pl_PL">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖨️</text></svg>">
+<link rel="stylesheet" href="../style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Jak wgrać firmware płyty głównej do Wanhao Duplicator 9 (D9)", "description": "Poradnik krok po kroku: wgrywanie Marlina do Wanhao D9 przez USB za pomocą AVRDUDESS lub avrdude, rozwiązywanie problemów z bazowaniem i powrót do firmware'u Wanhao.", "url": "https://le-syl21.github.io/WANHAO-Duplicator-9/pl/flash.html", "inLanguage": "pl", "about": {"@type": "Product", "name": "Wanhao Duplicator 9", "brand": "Wanhao"}}</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="brand" href="../pl/">Wanhao <span>D9</span> firmware</a>
+<nav class="main"><a href="../pl/">Strona główna</a><a href="../pl/mk1.html">MK1</a><a href="../pl/mk1u2.html">MK1 + zestaw MK2</a><a href="../pl/mk2.html">MK2</a><a href="../pl/mk3.html">MK3</a><a href="../pl/flash.html" aria-current="page">Wgrywanie firmware'u</a><a href="../pl/screen.html">Ekran</a><a href="../pl/sensor.html">Czujnik filamentu</a><a href="../pl/quiet.html">Wyciszanie</a></nav>
+<details class="lang"><summary aria-label="Język"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9M12 3c-2.5 2.7-3.8 5.7-3.8 9s1.3 6.3 3.8 9"/></svg><span>Polski</span></summary><ul><li><a href="../flash.html" hreflang="en" lang="en">English</a></li><li><a href="../fr/flash.html" hreflang="fr" lang="fr">Français</a></li><li><a href="../de/flash.html" hreflang="de" lang="de">Deutsch</a></li><li><a href="../es/flash.html" hreflang="es" lang="es">Español</a></li><li><a href="../it/flash.html" hreflang="it" lang="it">Italiano</a></li><li><a href="../pt/flash.html" hreflang="pt" lang="pt">Português</a></li><li><a href="../nl/flash.html" hreflang="nl" lang="nl">Nederlands</a></li><li><a href="../pl/flash.html" hreflang="pl" lang="pl" aria-current="true">Polski</a></li><li><a href="../tr/flash.html" hreflang="tr" lang="tr">Türkçe</a></li><li><a href="../ru/flash.html" hreflang="ru" lang="ru">Русский</a></li><li><a href="../ar/flash.html" hreflang="ar" lang="ar">العربية</a></li><li><a href="../hi/flash.html" hreflang="hi" lang="hi">हिन्दी</a></li><li><a href="../zh/flash.html" hreflang="zh-Hans" lang="zh-Hans">中文</a></li><li><a href="../ja/flash.html" hreflang="ja" lang="ja">日本語</a></li><li><a href="../ko/flash.html" hreflang="ko" lang="ko">한국어</a></li><li><a href="../id/flash.html" hreflang="id" lang="id">Bahasa Indonesia</a></li></ul></details>
+</div></header>
+<main><div class="wrap">
+<h1>Wgrywanie firmware'u płyty głównej Duplicatora 9</h1>
+<p class="lead">Płyta główna D9 to ATmega2560 z bootloaderem USB: bez programatora, bez otwierania podstawy,
+wystarczy kabel USB.</p>
+
+<h2>Czego potrzebujesz</h2>
+<ul>
+<li>Kabla USB między drukarką a komputerem oraz <strong>włączonej</strong> drukarki.</li>
+<li><a href="https://github.com/zkemble/AVRDUDESS">AVRDUDESS</a> (Windows, graficzny, najprostszy) lub
+<a href="https://github.com/avrdudes/avrdude">avrdude</a> (wiersz poleceń, każdy system).</li>
+<li>Pliku <strong>.hex</strong> dla swojego modelu i rozmiaru: <a href="../pl/mk1.html">MK1</a>, <a href="../pl/mk1u2.html">MK1 + zestaw</a>,
+<a href="../pl/mk2.html">MK2</a>, <a href="../pl/mk3.html">MK3</a>.</li>
+</ul>
+
+<h2>Przed wgraniem</h2>
+<div class="note">Wyślij <code>M503</code> i zachowaj odpowiedź. Od v2.0.3 aktualizacja zachowuje ustawienia zapisane w
+drukarce, ale aktualizacja <strong>do</strong> v2.0.3 jednorazowo startuje od domyślnych wartości tego firmware'u (zmienił się
+sposób zapisu ustawień); tak samo przy przejściu z firmware'u Wanhao. Potem ustaw ponownie offset Z czujnika poleceniem <code>M851 Z…</code>
+i <code>M500</code>.</div>
+<p>Zamknij wszystkie programy, które mogą zajmować port drukarki: Cura, PrusaSlicer, OctoPrint, Pronterface, terminale szeregowe.</p>
+
+<h2>Wgrywanie za pomocą AVRDUDESS</h2>
+<ol>
+<li>Programmer: <code>wiring</code>. MCU: <code>ATmega2560</code>.</li>
+<li>Port: port COM drukarki (na przykład <code>COM3</code>). Prędkość (baud rate) zostaw domyślną.</li>
+<li>Flash: wybierz plik .hex, a potem kliknij <strong>Program!</strong>. Trwa to od 30 do 60 sekund.</li>
+</ol>
+
+<h2>Wgrywanie za pomocą avrdude</h2>
+<pre><code># Windows
+avrdude -v -p atmega2560 -c wiring -P COM3 -D -U flash:w:D9_MK2_300.hex:i
+
+# Linux / macOS
+avrdude -v -p atmega2560 -c wiring -P /dev/ttyUSB0 -D -U flash:w:D9_MK2_300.hex:i</code></pre>
+<p>Zastąp port i nazwę pliku własnymi. Protokół <code>wiring</code> sam dobiera prędkość bootloadera.</p>
+
+<h2>Pierwsze uruchomienie</h2>
+<ol>
+<li>Odłącz kabel USB, wyłącz i włącz drukarkę, podłącz kabel z powrotem.</li>
+<li>Połącz się z prędkością <strong>250000 bodów</strong> (firmware Wanhao używał 115200) i wyślij <code>M115</code>: odpowiedź pokaże nowy firmware.</li>
+<li>Zbazuj wszystkie osie, potem wykonaj poziomowanie stołu z ekranu lub poleceniem <code>G29</code> i zapisz przez <code>M500</code>.</li>
+</ol>
+
+<h2 id="reset">Powrót do domyślnych ustawień tego firmware'u</h2>
+<p>Od v2.0.3 aktualizacja firmware'u <strong>zachowuje</strong> ustawienia zapisane w drukarce (offset Z czujnika, kroki/mm,
+PID, siatkę…). Nowe wartości domyślne z danego wydania nie zastępują więc tych już zapisanych. Zresetuj ustawienia raz, gdy
+aktualizujesz z v2.0.2 lub starszej i masz wartości zapisane ręcznie, gdy drukarka zachowuje się dziwnie po testowaniu innych
+firmware'ów albo zawsze, gdy chcesz zacząć od czystej karty:</p>
+<ul>
+<li><strong>Na ekranie:</strong> <em>Ustawienia</em> → <em>Więcej</em> → <em>Resetuj</em> → ✓.</li>
+<li><strong>Przez USB:</strong> wyślij <code>M502</code> (wczytuje domyślne wartości tego firmware'u), a potem <code>M500</code> (zapisuje je).</li>
+</ul>
+<p>Następnie ustaw ponownie offset Z czujnika (<code>M851 Z…</code>, potem <code>M500</code>) i wykonaj poziomowanie stołu. Sprawdź
+wynik poleceniem <code>M503</code>.</p>
+
+<h2>Zanik zasilania i czujnik filamentu</h2>
+<ul>
+<li>Wznawianie po zaniku zasilania jest włączone: zadanie jest zapisywane przy każdej zmianie warstwy. Wyłączysz je poleceniem <code>M413 S0</code>, a potem <code>M500</code>.</li>
+<li>Wydruk zatrzymuje się od razu z komunikatem <em>power outage</em>, gdy tylko zaczyna grzać: zaktualizuj do v2.0.4 lub nowszej. Wcześniejsze wersje obserwowały wejście wykrywania zaniku zasilania na płycie, które pokazuje stan niski, gdy tylko włączą się grzałki.</li>
+<li>Wykrywanie końca filamentu jest domyślnie włączone w każdym modelu od v2.0.8 i bez czujnika nic nie robi. Po aktualizacji z wcześniejszego wydania włącz je poleceniem <code>M412 S1</code>, a potem <code>M500</code>, albo na ekranie w <em>Ustawienia</em> → <em>Filament</em> → <em>Czujnik filamentu</em>. Podłączenie i BTT Smart Filament Sensor: <a href="../pl/sensor.html">Czujnik filamentu</a>.</li>
+</ul>
+
+<h2>Rozwiązywanie problemów</h2>
+<div class="table"><table><thead><tr><th>Problem</th><th>Rozwiązanie</th></tr></thead><tbody>
+<tr><td>Port zajęty</td><td>Zamknij wszystkie programy używające portu drukarki.</td></tr>
+<tr><td>Nie znaleziono urządzenia</td><td>Zainstaluj sterownik USB CH340, spróbuj innego kabla lub portu USB, sprawdź, czy drukarka jest włączona.</td></tr>
+<tr><td>Nieczytelne znaki po wgraniu</td><td>Używaj 250000 bodów z tym firmware'em, 115200 z firmware'em Wanhao.</td></tr>
+<tr><td>Temperatury na ekranie ×10 (236 zamiast 23,6 °C)</td><td>Ekran ma jeszcze stare pliki: wgraj <a href="../pl/screen.html">DGUS Reloaded 2.0</a>.</td></tr>
+<tr><td>Ekran przy każdym uruchomieniu wraca do angielskiego albo jego strona <em>Czujnik filamentu</em> nic nie robi</td><td>Firmware płyty głównej jest starszy niż v2.0.9: zaktualizuj go.</td></tr>
+<tr><td>Bazowanie zatrzymuje się kilka milimetrów przed krańcówką, a potem pojawia się <em>Homing Failed</em></td><td>Zakłócenia elektryczne na linii krańcówki. Ten firmware filtruje je od v2.0.1: zaktualizuj.</td></tr>
+<tr><td>Dysza uderza w klips stołu podczas poziomowania</td><td>Zaktualizuj do v2.0.2 lub nowszej: pierwsza kolumna punktów pomiarowych jest 10 mm od krawędzi, jak w firmware'ze Wanhao.</td></tr>
+<tr><td>Stół odjeżdża od krańcówki Y</td><td>Sprawdź, czy wgrałeś firmware dla swojego modelu: silnik osi Y jest z tyłu w MK1, MK1 + zestaw i MK2, a z przodu w MK3.</td></tr>
+</tbody></table></div>
+
+<h2>Powrót do firmware'u Wanhao</h2>
+<p>Strona każdego modelu zawiera odnośniki do oryginalnego firmware'u Wanhao dla płyty głównej i ekranu. Wgrywa się go tak samo; firmware
+płyty głównej Wanhao wymaga firmware'u ekranu Wanhao z tej samej generacji.</p>
+<p>Pytania: <a href="https://discord.gg/T37DYHmt2j">Discord</a> lub <a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/issues">zgłoszenia na GitHubie</a>.</p>
+</div></main>
+<footer class="site"><div class="wrap">
+<a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9">Kod źródłowy i zgłoszenia na GitHubie</a>
+<a href="https://discord.gg/T37DYHmt2j">Discord</a>
+<span>Firmware na licencji GNU GPL v3. Instrukcje i firmware Wanhao pozostają własnością Wanhao.</span>
+</div></footer>
+</body>
+</html>

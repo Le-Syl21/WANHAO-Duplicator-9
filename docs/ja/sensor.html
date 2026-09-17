@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="ja" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wanhao Duplicator 9 のフィラメントセンサー：フィラメント切れスイッチと BTT Smart Filament Sensor の配線</title>
+<meta name="description" content="Wanhao D9 のメインボードでフィラメントセンサーを接続する場所（D8、D9、GND、5V）、BTT Smart Filament Sensor V2.0 の配線、M412 でフィラメント切れ検出と詰まり検出を有効にする方法。">
+<link rel="canonical" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ja/sensor.html">
+<link rel="alternate" hreflang="en" href="https://le-syl21.github.io/WANHAO-Duplicator-9/sensor.html">
+<link rel="alternate" hreflang="fr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/fr/sensor.html">
+<link rel="alternate" hreflang="de" href="https://le-syl21.github.io/WANHAO-Duplicator-9/de/sensor.html">
+<link rel="alternate" hreflang="es" href="https://le-syl21.github.io/WANHAO-Duplicator-9/es/sensor.html">
+<link rel="alternate" hreflang="it" href="https://le-syl21.github.io/WANHAO-Duplicator-9/it/sensor.html">
+<link rel="alternate" hreflang="pt" href="https://le-syl21.github.io/WANHAO-Duplicator-9/pt/sensor.html">
+<link rel="alternate" hreflang="nl" href="https://le-syl21.github.io/WANHAO-Duplicator-9/nl/sensor.html">
+<link rel="alternate" hreflang="pl" href="https://le-syl21.github.io/WANHAO-Duplicator-9/pl/sensor.html">
+<link rel="alternate" hreflang="tr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/tr/sensor.html">
+<link rel="alternate" hreflang="ru" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ru/sensor.html">
+<link rel="alternate" hreflang="ar" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ar/sensor.html">
+<link rel="alternate" hreflang="hi" href="https://le-syl21.github.io/WANHAO-Duplicator-9/hi/sensor.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://le-syl21.github.io/WANHAO-Duplicator-9/zh/sensor.html">
+<link rel="alternate" hreflang="ja" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ja/sensor.html">
+<link rel="alternate" hreflang="ko" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ko/sensor.html">
+<link rel="alternate" hreflang="id" href="https://le-syl21.github.io/WANHAO-Duplicator-9/id/sensor.html">
+<link rel="alternate" hreflang="x-default" href="https://le-syl21.github.io/WANHAO-Duplicator-9/sensor.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Wanhao Duplicator 9 のフィラメントセンサー：フィラメント切れスイッチと BTT Smart Filament Sensor の配線">
+<meta property="og:description" content="Wanhao D9 のメインボードでフィラメントセンサーを接続する場所（D8、D9、GND、5V）、BTT Smart Filament Sensor V2.0 の配線、M412 でフィラメント切れ検出と詰まり検出を有効にする方法。">
+<meta property="og:url" content="https://le-syl21.github.io/WANHAO-Duplicator-9/ja/sensor.html">
+<meta property="og:image" content="https://le-syl21.github.io/WANHAO-Duplicator-9/img/og.jpg">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖨️</text></svg>">
+<link rel="stylesheet" href="../style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Wanhao Duplicator 9 のフィラメントセンサー：フィラメント切れスイッチと BTT Smart Filament Sensor の配線", "description": "Wanhao D9 のメインボードでフィラメントセンサーを接続する場所（D8、D9、GND、5V）、BTT Smart Filament Sensor V2.0 の配線、M412 でフィラメント切れ検出と詰まり検出を有効にする方法。", "url": "https://le-syl21.github.io/WANHAO-Duplicator-9/ja/sensor.html", "inLanguage": "ja", "about": {"@type": "Product", "name": "Wanhao Duplicator 9", "brand": "Wanhao"}}</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="brand" href="../ja/">Wanhao <span>D9</span> firmware</a>
+<nav class="main"><a href="../ja/">ホーム</a><a href="../ja/mk1.html">MK1</a><a href="../ja/mk1u2.html">MK1 + MK2キット</a><a href="../ja/mk2.html">MK2</a><a href="../ja/mk3.html">MK3</a><a href="../ja/flash.html">書き込みガイド</a><a href="../ja/screen.html">タッチスクリーン</a><a href="../ja/sensor.html" aria-current="page">フィラメントセンサー</a><a href="../ja/quiet.html">静音化</a></nav>
+<details class="lang"><summary aria-label="言語"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9M12 3c-2.5 2.7-3.8 5.7-3.8 9s1.3 6.3 3.8 9"/></svg><span>日本語</span></summary><ul><li><a href="../sensor.html" hreflang="en" lang="en">English</a></li><li><a href="../fr/sensor.html" hreflang="fr" lang="fr">Français</a></li><li><a href="../de/sensor.html" hreflang="de" lang="de">Deutsch</a></li><li><a href="../es/sensor.html" hreflang="es" lang="es">Español</a></li><li><a href="../it/sensor.html" hreflang="it" lang="it">Italiano</a></li><li><a href="../pt/sensor.html" hreflang="pt" lang="pt">Português</a></li><li><a href="../nl/sensor.html" hreflang="nl" lang="nl">Nederlands</a></li><li><a href="../pl/sensor.html" hreflang="pl" lang="pl">Polski</a></li><li><a href="../tr/sensor.html" hreflang="tr" lang="tr">Türkçe</a></li><li><a href="../ru/sensor.html" hreflang="ru" lang="ru">Русский</a></li><li><a href="../ar/sensor.html" hreflang="ar" lang="ar">العربية</a></li><li><a href="../hi/sensor.html" hreflang="hi" lang="hi">हिन्दी</a></li><li><a href="../zh/sensor.html" hreflang="zh-Hans" lang="zh-Hans">中文</a></li><li><a href="../ja/sensor.html" hreflang="ja" lang="ja" aria-current="true">日本語</a></li><li><a href="../ko/sensor.html" hreflang="ko" lang="ko">한국어</a></li><li><a href="../id/sensor.html" hreflang="id" lang="id">Bahasa Indonesia</a></li></ul></details>
+</div></header>
+<main><div class="wrap">
+<h1>フィラメントセンサー</h1>
+<p class="lead">v2.0.5 以降、このファームウェアは 2 種類のセンサーを読み取れます。Wanhao のフィラメント切れスイッチと、フィラメントが動かなくなったこと（スプールの絡まり、詰まり、フィラメントの削れ）も検知する BTT Smart Filament Sensor V2.0 です。<strong>フィラメント切れ検出は全モデルでデフォルト有効</strong>で、詰まり検出は無効です。</p>
+
+<h2>センサーコネクター</h2>
+<figure><img src="../img/d9-sensor-plug-ja.svg" width="760" height="440" alt="Wanhao D9 のメインボード：POWER-DET の左にある 4 ピンのセンサーコネクター（ピン D9、D8、GND、5V）と、BTT Smart Filament Sensor V2.0 への配線"></figure>
+<p><strong>POWER-DET</strong> の左、エンドストップ用コネクターの下にある 4 ピンのコネクターには、<strong>D9、D8、GND、5V</strong> がこの順に並んでいます。ピン名は、dustovich さんが見つけて
+<a href="https://discord.gg/T37DYHmt2j">Discord</a> で共有してくれた Wanhao の配線図によるものです。ボードの裏面には、同じ 4 本のピンが CTRL、BTN、GND、VCC と印字されています。</p>
+<ul>
+<li><strong>D8</strong> は、Wanhao 純正ファームウェアが読み取るフィラメント切れ入力です。</li>
+<li><strong>D9</strong> は Wanhao のファームウェアでは使われていません。このビルドでは、ここで BTT センサーの動き検出信号を読み取ります。</li>
+</ul>
+<div class="note">ボードに何かを挿したり抜いたりするときは、必ずプリンターの<strong>電源を切って</strong>ください。</div>
+
+<h2 id="screen">画面から設定する</h2>
+<div class="split"><div>
+<p>画面に DGUS Reloaded 2.0 を入れている場合（ファームウェア v2.0.9 以降）：<em>設定</em> → <em>フィラメント</em> →
+<em>フィラメントセンサー</em>。</p>
+<ul>
+<li><strong>フィラメント切れ</strong>は、すべての検出をオン／オフします。<code>M412 S1</code> / <code>M412 S0</code> と同じです。</li>
+<li><strong>詰まり検出</strong>は、下の長さで詰まり検出をオンにするか、オフ（<code>L0</code>）にします。</li>
+<li><strong>詰まり長さ</strong>：− と + で 1 mm ずつ変更します。数値をタップすると直接入力できます。</li>
+<li><strong>フィラメント</strong>の丸印は、フィラメント切れスイッチがフィラメントを検知しているときは緑、検知していないときは赤になります。</li>
+<li>変更はすぐに反映されます。<strong>保存</strong>で保存されます（<code>M500</code> と同じ）。戻る矢印で抜けると保存されず、次回の起動時に保存済みの設定に戻ります。</li>
+</ul>
+</div><figure><img src="../img/screen/ja-sensor.png" width="480" height="272" alt="DGUS Reloaded 2.0 のフィラメントセンサーページ：フィラメント切れ検出と詰まり検出のスイッチ、マイナス・プラスボタン付きの詰まり長さ、フィラメント表示、保存ボタン">
+<figcaption>設定 → フィラメント → フィラメントセンサー</figcaption></figure></div>
+
+<h2>M412 コマンド</h2>
+<p>設定はすべて、シリアルターミナル（Pronterface、スライサーや OctoPrint のターミナル、250000 bps）から USB 経由で行います。パラメーターは 1 つのコマンドにまとめられます。例：<code>M412 S1 L10</code>。</p>
+<div class="table"><table class="stack"><thead><tr><th>コマンド</th><th>機能</th></tr></thead><tbody>
+<tr><td><code>M412</code></td><td>状態を表示します。例：<em>Filament runout ON ; Distance 5.00mm ; Motion distance 0.00mm</em>。</td></tr>
+<tr><td><code>M412 S1</code></td><td><strong>検出を有効にします</strong>：フィラメント切れスイッチと、詰まり長さが 0 でなければ詰まり検出も有効になります。</td></tr>
+<tr><td><code>M412 S0</code></td><td>スイッチと詰まりの<strong>すべての検出を無効にします</strong>。</td></tr>
+<tr><td><code>M412 D5</code></td><td>スイッチがフィラメントなしを検知してから <strong>5 mm</strong> 印刷を続けて一時停止し、センサーとノズルの間に残ったフィラメントを使い切ります。デフォルトは 5 mm。</td></tr>
+<tr><td><code>M412 L10</code></td><td><strong>詰まり検出を有効にします</strong>（BTT センサーのみ）：センサーのホイールが回らないまま <strong>10 mm</strong> のフィラメントがエクストルーダーを通過すると一時停止します。</td></tr>
+<tr><td><code>M412 L0</code></td><td><strong>詰まり検出を無効にします</strong>。フィラメント切れスイッチはそのままです。これがデフォルトです。</td></tr>
+<tr><td><code>M500</code></td><td>設定を保存します。保存しないと、電源を切ったときに変更が失われます。</td></tr>
+<tr><td><code>M119</code></td><td><em>filament</em> の行は、フィラメントが入っていると <code>TRIGGERED</code>、入っていないと <code>open</code> になります。</td></tr>
+</tbody></table></div>
+<p><code>M412 L0</code> と、<code>L</code> を単独で使う機能は、私たちが Marlin に加えた変更（<a href="https://github.com/MarlinFirmware/Marlin/pull/28585">MarlinFirmware/Marlin#28585</a>）によるもので、このファームウェアに組み込まれています。この変更のない Marlin では、単独の <code>L</code>
+は無視され、<code>L0</code> はすぐに詰まりとして印刷を一時停止してしまいます。</p>
+
+<h2>Wanhao のフィラメント切れスイッチ</h2>
+<p>フィラメントがあるかどうかをファームウェアに伝えます。フィラメントがなくなると、さらに 5 mm 分のフィラメントを使ったところで印刷が一時停止し、画面でフィラメント交換が始まります。</p>
+<p><strong>v2.0.8 以降、全モデルでデフォルト有効です。</strong>D8 に何も接続されていないときは、ボードのプルアップによってピンが 5 V に保たれ、「フィラメントあり」と読み取られます。そのため検出が作動することはなく、センサーの有無にかかわらず有効のままにしておけます。D8 にフィラメント切れスイッチを接続すれば、そのまま動作します。</p>
+<ul>
+<li>詰まり検出は無効のままです（<code>L0</code>）：このスイッチではフィラメントの動きを検知できません。</li>
+<li>スイッチを無効にするには：<code>M412 S0</code> のあと <code>M500</code>。</li>
+<li>以前のリリースで保存された設定は、オン／オフの状態がそのまま残ります。有効にするには：<code>M412 S1</code> のあと
+<code>M500</code>、またはデフォルトに戻します（<code>M502</code> のあと <code>M500</code>。プローブの Z
+オフセットとメッシュも消去されます）。</li>
+</ul>
+
+<h2>BTT Smart Filament Sensor V2.0</h2>
+<p>このセンサーには出力が 2 つあり、ファームウェアはそれぞれを異なる方法で読み取ります：</p>
+<ul>
+<li><strong>フィラメント切れスイッチ</strong>（D8 へ）はレベル信号です：フィラメントがある間は 5 V、なくなると 0 V になります。</li>
+<li><strong>動き検出出力</strong>（D9 へ）は、通過するフィラメントによって回る小さなホイールから出ています。フィラメントが数ミリ進むごとに、出力が 0 V と 5 V の間で切り替わります。ファームウェアが見ているのはこの切り替わりだけです。エクストルーダーが詰まり長さ分のフィラメントを押し出しても一度も切り替わらなければ、フィラメントが付いてきていない（スプールの絡まり、詰まり、フィラメントの削れ）ということなので、印刷を一時停止します。フィラメント切れスイッチではこれを検知できません：詰まっている間もフィラメントはそこにあるからです。</li>
+</ul>
+<h3>配線</h3>
+<p><strong>5V</strong> を 5V に、<strong>GND</strong> を GND に、<strong>フィラメント切れスイッチ</strong>の信号を <strong>D8</strong> に、<strong>動き検出</strong>の信号を <strong>D9</strong> に接続します。センサーのケーブルに印字された名前は異なる場合があります。</p>
+<h3>有効にする</h3>
+<pre><code>M412 S1 L10
+M500</code></pre>
+<p>理由もなく印刷が一時停止する場合は、詰まり長さを大きくしてください：<code>M412 L15</code> のあと <code>M500</code>。フィラメント切れスイッチだけを使う場合：<code>M412 L0</code> のあと <code>M500</code>。</p>
+<h3>動作確認</h3>
+<ul>
+<li><code>M412</code>：<em>Filament runout ON ; Distance 5.00mm ; Motion distance 10.00mm</em>。</li>
+<li>フィラメントを入れた状態で <code>M119</code>：<em>filament: TRIGGERED</em>。この行が、フィラメントを挿入・取り外したときではなく、手でフィラメントを押し込んだときに変わる場合は、2 本の信号線が逆になっています：D8 と D9 を入れ替えてください。</li>
+</ul>
+<div class="note">詰まり検出は、センサーなしの MK2 300 でテスト済みです（詰まり長さ 2 mm で作動し、<code>L0</code> では作動しない）が、BTT センサー本体ではまだテストしていません。スイッチの読み取りが逆（フィラメントが入っているのに <em>open</em>）の場合は、<a href="https://discord.gg/T37DYHmt2j">Discord</a> で教えてください。</div>
+
+<h2>v2.0.5 または v2.0.6 からのアップデート</h2>
+<p>これらのリリースには詰まり検出を無効にする手段がなかったため、決して到達しないはずの長い詰まり長さを使っていました。v2.0.5 では
+100 m（実際には短すぎました：1 kg スプールの約 3 分の 1 で、それを超えると電源を入れたままのプリンターが意味もなく一時停止することがありました）、v2.0.6 では 10 km です。プリンターの起動時に、v2.0.7 はこの 2 つの値を <code>L0</code> として読み込みます。BTT センサー用に設定した実際の長さ（<code>L10</code> など）はそのまま保持されます。v2.0.4 以前からの場合は、それらのバージョンが保存した 0 の代わりに、5 mm のフィラメント切れ距離が読み込まれます。</p>
+</div></main>
+<footer class="site"><div class="wrap">
+<a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9">ソースコードと issue は GitHub で</a>
+<a href="https://discord.gg/T37DYHmt2j">Discord</a>
+<span>ファームウェアは GNU GPL v3 で提供しています。Wanhao のマニュアルとファームウェアの権利は Wanhao に帰属します。</span>
+</div></footer>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="nl" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Filamentsensoren op de Wanhao Duplicator 9: filamentschakelaar en aansluiten van de BTT Smart Filament Sensor</title>
+<meta name="description" content="Waar je een filamentsensor aansluit op het moederbord van de Wanhao D9 (D8, D9, GND, 5V), hoe je een BTT Smart Filament Sensor V2.0 bedraadt en detectie van einde filament en verstoppingen aanzet met M412.">
+<link rel="canonical" href="https://le-syl21.github.io/WANHAO-Duplicator-9/nl/sensor.html">
+<link rel="alternate" hreflang="en" href="https://le-syl21.github.io/WANHAO-Duplicator-9/sensor.html">
+<link rel="alternate" hreflang="fr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/fr/sensor.html">
+<link rel="alternate" hreflang="de" href="https://le-syl21.github.io/WANHAO-Duplicator-9/de/sensor.html">
+<link rel="alternate" hreflang="es" href="https://le-syl21.github.io/WANHAO-Duplicator-9/es/sensor.html">
+<link rel="alternate" hreflang="it" href="https://le-syl21.github.io/WANHAO-Duplicator-9/it/sensor.html">
+<link rel="alternate" hreflang="pt" href="https://le-syl21.github.io/WANHAO-Duplicator-9/pt/sensor.html">
+<link rel="alternate" hreflang="nl" href="https://le-syl21.github.io/WANHAO-Duplicator-9/nl/sensor.html">
+<link rel="alternate" hreflang="pl" href="https://le-syl21.github.io/WANHAO-Duplicator-9/pl/sensor.html">
+<link rel="alternate" hreflang="tr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/tr/sensor.html">
+<link rel="alternate" hreflang="ru" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ru/sensor.html">
+<link rel="alternate" hreflang="ar" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ar/sensor.html">
+<link rel="alternate" hreflang="hi" href="https://le-syl21.github.io/WANHAO-Duplicator-9/hi/sensor.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://le-syl21.github.io/WANHAO-Duplicator-9/zh/sensor.html">
+<link rel="alternate" hreflang="ja" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ja/sensor.html">
+<link rel="alternate" hreflang="ko" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ko/sensor.html">
+<link rel="alternate" hreflang="id" href="https://le-syl21.github.io/WANHAO-Duplicator-9/id/sensor.html">
+<link rel="alternate" hreflang="x-default" href="https://le-syl21.github.io/WANHAO-Duplicator-9/sensor.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Filamentsensoren op de Wanhao Duplicator 9: filamentschakelaar en aansluiten van de BTT Smart Filament Sensor">
+<meta property="og:description" content="Waar je een filamentsensor aansluit op het moederbord van de Wanhao D9 (D8, D9, GND, 5V), hoe je een BTT Smart Filament Sensor V2.0 bedraadt en detectie van einde filament en verstoppingen aanzet met M412.">
+<meta property="og:url" content="https://le-syl21.github.io/WANHAO-Duplicator-9/nl/sensor.html">
+<meta property="og:image" content="https://le-syl21.github.io/WANHAO-Duplicator-9/img/og.jpg">
+<meta property="og:locale" content="nl_NL">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖨️</text></svg>">
+<link rel="stylesheet" href="../style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Filamentsensoren op de Wanhao Duplicator 9: filamentschakelaar en aansluiten van de BTT Smart Filament Sensor", "description": "Waar je een filamentsensor aansluit op het moederbord van de Wanhao D9 (D8, D9, GND, 5V), hoe je een BTT Smart Filament Sensor V2.0 bedraadt en detectie van einde filament en verstoppingen aanzet met M412.", "url": "https://le-syl21.github.io/WANHAO-Duplicator-9/nl/sensor.html", "inLanguage": "nl", "about": {"@type": "Product", "name": "Wanhao Duplicator 9", "brand": "Wanhao"}}</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="brand" href="../nl/">Wanhao <span>D9</span> firmware</a>
+<nav class="main"><a href="../nl/">Home</a><a href="../nl/mk1.html">MK1</a><a href="../nl/mk1u2.html">MK1 + MK2-kit</a><a href="../nl/mk2.html">MK2</a><a href="../nl/mk3.html">MK3</a><a href="../nl/flash.html">Flashhandleiding</a><a href="../nl/screen.html">Scherm</a><a href="../nl/sensor.html" aria-current="page">Filamentsensor</a><a href="../nl/quiet.html">Stiller</a></nav>
+<details class="lang"><summary aria-label="Taal"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9M12 3c-2.5 2.7-3.8 5.7-3.8 9s1.3 6.3 3.8 9"/></svg><span>Nederlands</span></summary><ul><li><a href="../sensor.html" hreflang="en" lang="en">English</a></li><li><a href="../fr/sensor.html" hreflang="fr" lang="fr">Français</a></li><li><a href="../de/sensor.html" hreflang="de" lang="de">Deutsch</a></li><li><a href="../es/sensor.html" hreflang="es" lang="es">Español</a></li><li><a href="../it/sensor.html" hreflang="it" lang="it">Italiano</a></li><li><a href="../pt/sensor.html" hreflang="pt" lang="pt">Português</a></li><li><a href="../nl/sensor.html" hreflang="nl" lang="nl" aria-current="true">Nederlands</a></li><li><a href="../pl/sensor.html" hreflang="pl" lang="pl">Polski</a></li><li><a href="../tr/sensor.html" hreflang="tr" lang="tr">Türkçe</a></li><li><a href="../ru/sensor.html" hreflang="ru" lang="ru">Русский</a></li><li><a href="../ar/sensor.html" hreflang="ar" lang="ar">العربية</a></li><li><a href="../hi/sensor.html" hreflang="hi" lang="hi">हिन्दी</a></li><li><a href="../zh/sensor.html" hreflang="zh-Hans" lang="zh-Hans">中文</a></li><li><a href="../ja/sensor.html" hreflang="ja" lang="ja">日本語</a></li><li><a href="../ko/sensor.html" hreflang="ko" lang="ko">한국어</a></li><li><a href="../id/sensor.html" hreflang="id" lang="id">Bahasa Indonesia</a></li></ul></details>
+</div></header>
+<main><div class="wrap">
+<h1>Filamentsensoren</h1>
+<p class="lead">Vanaf v2.0.5 lezen deze firmwares twee soorten sensoren: de filamentschakelaar van Wanhao, en de
+BTT Smart Filament Sensor V2.0, die ook merkt wanneer het filament niet meer beweegt (spoel in de knoop, verstopping,
+weggeslepen filament). <strong>Detectie van einde filament staat standaard aan op elk model</strong>, verstoppingsdetectie staat uit.</p>
+
+<h2>De sensorconnector</h2>
+<figure><img src="../img/d9-sensor-plug-nl.svg" width="760" height="440" alt="Moederbord van de Wanhao D9: de 4-pins sensorconnector links van POWER-DET, pinnen D9, D8, GND en 5V, aangesloten op een BTT Smart Filament Sensor V2.0"></figure>
+<p>De 4-pins connector links van <strong>POWER-DET</strong>, onder de connectoren van de eindschakelaars, voert <strong>D9, D8, GND en 5V</strong>,
+in die volgorde. De pinnamen komen uit een aansluitschema van Wanhao dat dustovich vond en deelde op de
+<a href="https://discord.gg/T37DYHmt2j">Discord</a>; op de achterkant van het bord staan dezelfde vier pinnen als CTRL, BTN, GND en VCC.</p>
+<ul>
+<li><strong>D8</strong> is de ingang voor einde filament die de eigen firmware van Wanhao leest.</li>
+<li><strong>D9</strong> wordt niet gebruikt door de firmware van Wanhao: deze builds lezen daar het bewegingssignaal van de BTT-sensor.</li>
+</ul>
+<div class="note">Zet de printer <strong>uit</strong> voordat je iets op het bord aansluit of loskoppelt.</div>
+
+<h2 id="screen">Op het scherm</h2>
+<div class="split"><div>
+<p>Met DGUS Reloaded 2.0 op het scherm (firmware v2.0.9 of nieuwer): <em>Instellingen</em> → <em>Filament</em> →
+<em>Filamentsensor</em>.</p>
+<ul>
+<li><strong>Filament op</strong> zet alle detectie aan of uit, zoals <code>M412 S1</code> / <code>M412 S0</code>.</li>
+<li><strong>Verstoppingsdetectie</strong> zet verstoppingsdetectie aan met de lengte eronder, of uit (<code>L0</code>).</li>
+<li><strong>Verstoppingslengte</strong>: − en + veranderen die met 1 mm; tik op het getal om het in te typen.</li>
+<li>De stip <strong>Filament</strong> is groen zolang de filamentschakelaar filament ziet, rood als dat niet zo is.</li>
+<li>Wijzigingen gelden meteen. <strong>Opslaan</strong> bewaart ze, zoals <code>M500</code>. De terugpijl gaat terug zonder
+op te slaan: bij de volgende start zijn de opgeslagen instellingen weer actief.</li>
+</ul>
+</div><figure><img src="../img/screen/nl-sensor.png" width="480" height="272" alt="Filamentsensorpagina van DGUS Reloaded 2.0: schakelaars voor einde filament en verstoppingsdetectie, verstoppingslengte met min- en plusknop, filamentindicator en knop Opslaan">
+<figcaption>Instellingen → Filament → Filamentsensor</figcaption></figure></div>
+
+<h2>De M412-opdrachten</h2>
+<p>Alles wordt via USB ingesteld vanuit een seriële terminal (Pronterface, de terminal van je slicer of van OctoPrint,
+250000 baud). Parameters kun je in één opdracht combineren, bijvoorbeeld <code>M412 S1 L10</code>.</p>
+<div class="table"><table class="stack"><thead><tr><th>Opdracht</th><th>Wat het doet</th></tr></thead><tbody>
+<tr><td><code>M412</code></td><td>Toont de status, bijvoorbeeld <em>Filament runout ON ; Distance 5.00mm ; Motion distance 0.00mm</em>.</td></tr>
+<tr><td><code>M412 S1</code></td><td><strong>Zet detectie aan</strong>: de filamentschakelaar, en ook verstoppingsdetectie als de verstoppingslengte niet 0 is.</td></tr>
+<tr><td><code>M412 S0</code></td><td><strong>Zet alle detectie uit</strong>, schakelaar en verstopping.</td></tr>
+<tr><td><code>M412 D5</code></td><td>Zodra de schakelaar geen filament meer ziet, wordt nog <strong>5 mm</strong> doorgeprint voordat de print pauzeert, om het filament tussen de sensor en de nozzle op te gebruiken. Standaard 5 mm.</td></tr>
+<tr><td><code>M412 L10</code></td><td><strong>Zet verstoppingsdetectie aan</strong> (alleen BTT-sensor): pauzeert wanneer er <strong>10 mm</strong> filament door de extruder gaat zonder dat het wieltje van de sensor draait.</td></tr>
+<tr><td><code>M412 L0</code></td><td><strong>Zet verstoppingsdetectie uit</strong> en laat de filamentschakelaar zoals hij is. Dit is de standaardinstelling.</td></tr>
+<tr><td><code>M500</code></td><td>Slaat de instellingen op. Zonder deze opdracht gaat een wijziging verloren als de printer wordt uitgezet.</td></tr>
+<tr><td><code>M119</code></td><td>De regel <em>filament</em> toont <code>TRIGGERED</code> met filament geladen, <code>open</code> zonder.</td></tr>
+</tbody></table></div>
+<p><code>M412 L0</code>, en <code>L</code> op zichzelf, komen uit onze wijziging aan Marlin
+(<a href="https://github.com/MarlinFirmware/Marlin/pull/28585">MarlinFirmware/Marlin#28585</a>), die in deze firmwares is ingebouwd. In Marlin zonder die wijziging wordt <code>L</code>
+op zichzelf genegeerd en pauzeert <code>L0</code> de print meteen wegens een verstopping.</p>
+
+<h2>De filamentschakelaar van Wanhao</h2>
+<p>Die vertelt de firmware of er filament is. Raakt het filament op, dan pauzeert de print na nog 5 mm filament en start het
+scherm een filamentwissel.</p>
+<p><strong>Hij staat sinds v2.0.8 standaard aan op elk model.</strong> Als er niets op D8 is aangesloten, houdt de
+pull-upweerstand van het bord de pin op 5 V, wat wordt gelezen als “filament aanwezig”: de detectie gaat dan nooit af, dus hij kan
+aan blijven staan, met of zonder sensor. Sluit je een filamentschakelaar aan op D8, dan werkt die meteen.</p>
+<ul>
+<li>Verstoppingsdetectie blijft uit (<code>L0</code>): deze schakelaar kan niet zien of het filament beweegt.</li>
+<li>De schakelaar uitzetten: <code>M412 S0</code> en daarna <code>M500</code>.</li>
+<li>Instellingen die door een eerdere release zijn opgeslagen, houden hun aan/uit-stand. Aanzetten: <code>M412 S1</code> en daarna
+<code>M500</code>, of terug naar de standaardwaarden (<code>M502</code> en daarna <code>M500</code>, wat ook de Z-offset van je sensor
+en de mesh wist).</li>
+</ul>
+
+<h2>BTT Smart Filament Sensor V2.0</h2>
+<p>Deze sensor heeft twee uitgangen, en de firmware leest ze verschillend:</p>
+<ul>
+<li><strong>De filamentschakelaar</strong> (naar D8) geeft een niveau: 5 V zolang er filament is, 0 V zodra het weg is.</li>
+<li><strong>De bewegingsuitgang</strong> (naar D9) komt van een klein wieltje dat door het passerende filament wordt rondgedraaid. Om de paar
+millimeter filament wisselt de uitgang tussen 0 V en 5 V. De firmware let alleen op die wisselingen: duwt de extruder
+de verstoppingslengte aan filament door zonder één wisseling, dan volgt het filament niet (spoel in de knoop, verstopping,
+weggeslepen filament) en pauzeert de print. De filamentschakelaar kan dat niet zien: bij een verstopping is het filament er nog gewoon.</li>
+</ul>
+<h3>Aansluiten</h3>
+<p><strong>5V</strong> op 5V, <strong>GND</strong> op GND, het signaal van de <strong>filamentschakelaar</strong> op <strong>D8</strong>
+en het <strong>bewegingssignaal</strong> op <strong>D9</strong>. De namen op de kabel van de sensor kunnen afwijken.</p>
+<h3>Aanzetten</h3>
+<pre><code>M412 S1 L10
+M500</code></pre>
+<p>Pauzeren prints zonder reden, verhoog dan de verstoppingslengte: <code>M412 L15</code> en daarna <code>M500</code>. Om alleen
+de filamentschakelaar te houden: <code>M412 L0</code> en daarna <code>M500</code>.</p>
+<h3>Controleren</h3>
+<ul>
+<li><code>M412</code>: <em>Filament runout ON ; Distance 5.00mm ; Motion distance 10.00mm</em>.</li>
+<li><code>M119</code> met filament geladen: <em>filament: TRIGGERED</em>. Verandert die regel als je het filament met de hand
+doorduwt in plaats van wanneer je het erin steekt of eruit haalt, dan zijn de twee signaaldraden verwisseld: wissel D8 en D9 om.</li>
+</ul>
+<div class="note">Verstoppingsdetectie is getest op een MK2 300 zonder de sensor (een verstoppingslengte van 2 mm gaat af, <code>L0</code> nooit),
+maar nog niet met de BTT-sensor zelf. Leest de schakelaar andersom (<em>open</em> met filament
+geladen), laat het ons dan weten op <a href="https://discord.gg/T37DYHmt2j">Discord</a>.</div>
+
+<h2>Bijwerken vanaf v2.0.5 of v2.0.6</h2>
+<p>Die releases konden verstoppingsdetectie niet uitzetten, dus gebruikten ze een verstoppingslengte die nooit bereikt zou worden: 100 m in
+v2.0.5 (eigenlijk te kort: ongeveer een derde van een spoel van 1 kg, waarna een printer die aan bleef staan zonder reden kon pauzeren) en
+10 km in v2.0.6. Bij het opstarten van de printer laadt v2.0.7 die twee waarden als <code>L0</code>. Een echte lengte die je
+voor een BTT-sensor hebt ingesteld, zoals <code>L10</code>, blijft behouden. Vanaf v2.0.4 of ouder wordt de afstand van 5 mm voor
+einde filament geladen in plaats van de 0 die die versies opsloegen.</p>
+</div></main>
+<footer class="site"><div class="wrap">
+<a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9">Broncode en issues op GitHub</a>
+<a href="https://discord.gg/T37DYHmt2j">Discord</a>
+<span>Firmware onder GNU GPL v3. De handleidingen en firmwares van Wanhao blijven eigendom van Wanhao.</span>
+</div></footer>
+</body>
+</html>

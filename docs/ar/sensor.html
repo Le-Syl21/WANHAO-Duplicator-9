@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>حساسات الخيط في Wanhao Duplicator 9: توصيل مفتاح نفاد الخيط وحساس BTT Smart Filament Sensor</title>
+<meta name="description" content="أين يُوصَل حساس الخيط على اللوحة الأم لـ Wanhao D9 (D8 وD9 وGND و5V)، وكيف يُوصَل حساس BTT Smart Filament Sensor V2.0، وكيف يُفعَّل اكتشاف نفاد الخيط والانسداد بالأمر M412.">
+<link rel="canonical" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ar/sensor.html">
+<link rel="alternate" hreflang="en" href="https://le-syl21.github.io/WANHAO-Duplicator-9/sensor.html">
+<link rel="alternate" hreflang="fr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/fr/sensor.html">
+<link rel="alternate" hreflang="de" href="https://le-syl21.github.io/WANHAO-Duplicator-9/de/sensor.html">
+<link rel="alternate" hreflang="es" href="https://le-syl21.github.io/WANHAO-Duplicator-9/es/sensor.html">
+<link rel="alternate" hreflang="it" href="https://le-syl21.github.io/WANHAO-Duplicator-9/it/sensor.html">
+<link rel="alternate" hreflang="pt" href="https://le-syl21.github.io/WANHAO-Duplicator-9/pt/sensor.html">
+<link rel="alternate" hreflang="nl" href="https://le-syl21.github.io/WANHAO-Duplicator-9/nl/sensor.html">
+<link rel="alternate" hreflang="pl" href="https://le-syl21.github.io/WANHAO-Duplicator-9/pl/sensor.html">
+<link rel="alternate" hreflang="tr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/tr/sensor.html">
+<link rel="alternate" hreflang="ru" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ru/sensor.html">
+<link rel="alternate" hreflang="ar" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ar/sensor.html">
+<link rel="alternate" hreflang="hi" href="https://le-syl21.github.io/WANHAO-Duplicator-9/hi/sensor.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://le-syl21.github.io/WANHAO-Duplicator-9/zh/sensor.html">
+<link rel="alternate" hreflang="ja" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ja/sensor.html">
+<link rel="alternate" hreflang="ko" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ko/sensor.html">
+<link rel="alternate" hreflang="id" href="https://le-syl21.github.io/WANHAO-Duplicator-9/id/sensor.html">
+<link rel="alternate" hreflang="x-default" href="https://le-syl21.github.io/WANHAO-Duplicator-9/sensor.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="حساسات الخيط في Wanhao Duplicator 9: توصيل مفتاح نفاد الخيط وحساس BTT Smart Filament Sensor">
+<meta property="og:description" content="أين يُوصَل حساس الخيط على اللوحة الأم لـ Wanhao D9 (D8 وD9 وGND و5V)، وكيف يُوصَل حساس BTT Smart Filament Sensor V2.0، وكيف يُفعَّل اكتشاف نفاد الخيط والانسداد بالأمر M412.">
+<meta property="og:url" content="https://le-syl21.github.io/WANHAO-Duplicator-9/ar/sensor.html">
+<meta property="og:image" content="https://le-syl21.github.io/WANHAO-Duplicator-9/img/og.jpg">
+<meta property="og:locale" content="ar_AR">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖨️</text></svg>">
+<link rel="stylesheet" href="../style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "حساسات الخيط في Wanhao Duplicator 9: توصيل مفتاح نفاد الخيط وحساس BTT Smart Filament Sensor", "description": "أين يُوصَل حساس الخيط على اللوحة الأم لـ Wanhao D9 (D8 وD9 وGND و5V)، وكيف يُوصَل حساس BTT Smart Filament Sensor V2.0، وكيف يُفعَّل اكتشاف نفاد الخيط والانسداد بالأمر M412.", "url": "https://le-syl21.github.io/WANHAO-Duplicator-9/ar/sensor.html", "inLanguage": "ar", "about": {"@type": "Product", "name": "Wanhao Duplicator 9", "brand": "Wanhao"}}</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="brand" href="../ar/">Wanhao <span>D9</span> firmware</a>
+<nav class="main"><a href="../ar/">الرئيسية</a><a href="../ar/mk1.html">MK1</a><a href="../ar/mk1u2.html">MK1 + طقم MK2</a><a href="../ar/mk2.html">MK2</a><a href="../ar/mk3.html">MK3</a><a href="../ar/flash.html">دليل التثبيت</a><a href="../ar/screen.html">الشاشة</a><a href="../ar/sensor.html" aria-current="page">حساس الخيط</a><a href="../ar/quiet.html">تقليل الضجيج</a></nav>
+<details class="lang"><summary aria-label="اللغة"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9M12 3c-2.5 2.7-3.8 5.7-3.8 9s1.3 6.3 3.8 9"/></svg><span>العربية</span></summary><ul><li><a href="../sensor.html" hreflang="en" lang="en">English</a></li><li><a href="../fr/sensor.html" hreflang="fr" lang="fr">Français</a></li><li><a href="../de/sensor.html" hreflang="de" lang="de">Deutsch</a></li><li><a href="../es/sensor.html" hreflang="es" lang="es">Español</a></li><li><a href="../it/sensor.html" hreflang="it" lang="it">Italiano</a></li><li><a href="../pt/sensor.html" hreflang="pt" lang="pt">Português</a></li><li><a href="../nl/sensor.html" hreflang="nl" lang="nl">Nederlands</a></li><li><a href="../pl/sensor.html" hreflang="pl" lang="pl">Polski</a></li><li><a href="../tr/sensor.html" hreflang="tr" lang="tr">Türkçe</a></li><li><a href="../ru/sensor.html" hreflang="ru" lang="ru">Русский</a></li><li><a href="../ar/sensor.html" hreflang="ar" lang="ar" aria-current="true">العربية</a></li><li><a href="../hi/sensor.html" hreflang="hi" lang="hi">हिन्दी</a></li><li><a href="../zh/sensor.html" hreflang="zh-Hans" lang="zh-Hans">中文</a></li><li><a href="../ja/sensor.html" hreflang="ja" lang="ja">日本語</a></li><li><a href="../ko/sensor.html" hreflang="ko" lang="ko">한국어</a></li><li><a href="../id/sensor.html" hreflang="id" lang="id">Bahasa Indonesia</a></li></ul></details>
+</div></header>
+<main><div class="wrap">
+<h1>حساسات الخيط</h1>
+<p class="lead">منذ v2.0.5 تقرأ هذه البرامج الثابتة نوعين من الحساسات: مفتاح نفاد الخيط من Wanhao، و
+BTT Smart Filament Sensor V2.0 الذي يلاحظ أيضًا توقف الخيط عن الحركة (بكرة متشابكة، انسداد، خيط
+متآكل). <strong>اكتشاف نفاد الخيط مفعّل افتراضيًا في كل الطرازات</strong>، أما اكتشاف الانسداد فمعطّل.</p>
+
+<h2>منفذ الحساس</h2>
+<figure><img src="../img/d9-sensor-plug-ar.svg" width="760" height="440" alt="اللوحة الأم لـ Wanhao D9: منفذ الحساس ذو الأطراف الأربعة على يسار POWER-DET، بالأطراف D9 وD8 وGND و5V، موصول بحساس BTT Smart Filament Sensor V2.0"></figure>
+<p>المنفذ ذو الأطراف الأربعة على يسار <strong>POWER-DET</strong>، أسفل منافذ مفاتيح نهاية المسار، يحمل <strong>D9 وD8 وGND و5V</strong>،
+بهذا الترتيب. أسماء الأطراف مأخوذة من مخطط توصيل من Wanhao عثر عليه dustovich وشاركه على
+<a href="https://discord.gg/T37DYHmt2j">Discord</a>؛ والجهة الخلفية للوحة تطبع الأطراف الأربعة نفسها بالأسماء CTRL وBTN وGND وVCC.</p>
+<ul>
+<li><strong>D8</strong> هو مدخل نفاد الخيط الذي يقرؤه البرنامج الثابت من Wanhao نفسه.</li>
+<li><strong>D9</strong> لا يستخدمه البرنامج الثابت من Wanhao: تقرأ هذه النسخ عليه إشارة الحركة من حساس BTT.</li>
+</ul>
+<div class="note">يجب أن تكون الطابعة <strong>مُطفأة</strong> أثناء توصيل أي شيء باللوحة أو فصله عنها.</div>
+
+<h2 id="screen">على الشاشة</h2>
+<div class="split"><div>
+<p>مع DGUS Reloaded 2.0 على الشاشة (البرنامج الثابت v2.0.9 أو أحدث): <em>الإعدادات</em> ← <em>الخيط</em> ←
+<em>حساس الخيط</em>.</p>
+<ul>
+<li><strong>نفاد الخيط</strong> يفعّل كل أنواع الاكتشاف أو يعطّلها، مثل <code>M412 S1</code> / <code>M412 S0</code>.</li>
+<li><strong>كشف الانسداد</strong> يفعّل اكتشاف الانسداد بالطول المحدد أدناه، أو يعطّله (<code>L0</code>).</li>
+<li><strong>طول الانسداد</strong>: الزرّان − و+ يغيّرانه بمقدار 1 مم؛ المس الرقم لكتابته.</li>
+<li>تكون نقطة <strong>الخيط</strong> خضراء ما دام مفتاح نفاد الخيط يرى الخيط، وحمراء عندما لا يراه.</li>
+<li>تُطبَّق التغييرات فورًا. الزر <strong>حفظ</strong> يخزّنها، مثل <code>M500</code>. سهم الرجوع يخرج من دون
+حفظ: تعود الإعدادات المخزّنة عند التشغيل التالي.</li>
+</ul>
+</div><figure><img src="../img/screen/ar-sensor.png" width="480" height="272" alt="صفحة حساس الخيط في DGUS Reloaded 2.0: مفتاحا اكتشاف نفاد الخيط والانسداد، وطول الانسداد مع زرّي الناقص والزائد، ومؤشر الخيط، وزر حفظ">
+<figcaption>الإعدادات ← الخيط ← حساس الخيط</figcaption></figure></div>
+
+<h2>أوامر M412</h2>
+<p>يُضبط كل شيء عبر USB من طرفية تسلسلية (Pronterface، أو طرفية برنامج التقطيع أو OctoPrint،
+بسرعة 250000 باود). يمكن جمع عدة معاملات في أمر واحد، مثل <code>M412 S1 L10</code>.</p>
+<div class="table"><table class="stack"><thead><tr><th>الأمر</th><th>ما الذي يفعله</th></tr></thead><tbody>
+<tr><td><code>M412</code></td><td>يعرض الحالة، مثلًا <em>Filament runout ON ; Distance 5.00mm ; Motion distance 0.00mm</em>.</td></tr>
+<tr><td><code>M412 S1</code></td><td><strong>يفعّل الاكتشاف</strong>: مفتاح نفاد الخيط، واكتشاف الانسداد أيضًا إن لم يكن طول الانسداد 0.</td></tr>
+<tr><td><code>M412 S0</code></td><td><strong>يعطّل كل أنواع الاكتشاف</strong>، المفتاح والانسداد.</td></tr>
+<tr><td><code>M412 D5</code></td><td>بعد أن يتوقف المفتاح عن رؤية الخيط، تستمر الطباعة <strong>5 مم</strong> قبل الإيقاف المؤقت، لاستهلاك الخيط المتبقي بين الحساس والفوهة. القيمة الافتراضية 5 مم.</td></tr>
+<tr><td><code>M412 L10</code></td><td><strong>يفعّل اكتشاف الانسداد</strong> (لحساس BTT فقط): يوقف الطباعة مؤقتًا عندما تمر <strong>10 مم</strong> من الخيط عبر الطارد (extruder) من دون أن تدور عجلة الحساس.</td></tr>
+<tr><td><code>M412 L0</code></td><td><strong>يعطّل اكتشاف الانسداد</strong> ويترك مفتاح نفاد الخيط على حاله. هذه هي القيمة الافتراضية.</td></tr>
+<tr><td><code>M500</code></td><td>يحفظ الإعدادات. من دونه يضيع أي تغيير عند إطفاء الطابعة.</td></tr>
+<tr><td><code>M119</code></td><td>يُظهر سطر <em>filament</em> القيمة <code>TRIGGERED</code> عند وجود الخيط، و<code>open</code> عند غيابه.</td></tr>
+</tbody></table></div>
+<p>الأمر <code>M412 L0</code>، واستخدام <code>L</code> وحده، مصدرهما تعديلنا على Marlin
+(<a href="https://github.com/MarlinFirmware/Marlin/pull/28585">MarlinFirmware/Marlin#28585</a>)، وهو مدمج في هذه البرامج الثابتة. في Marlin من دون هذا التعديل، يُتجاهل <code>L</code>
+وحده، ويوقف <code>L0</code> الطباعة فورًا على أنها انسداد.</p>
+
+<h2>مفتاح نفاد الخيط من Wanhao</h2>
+<p>يُخبر البرنامج الثابت بوجود الخيط أو عدمه. عندما ينفد الخيط، تتوقف الطباعة مؤقتًا بعد 5 مم إضافية من
+الخيط وتبدأ الشاشة عملية تغيير الخيط.</p>
+<p><strong>وهو مفعّل افتراضيًا في كل الطرازات منذ v2.0.8.</strong> عندما لا يكون أي شيء موصولًا بـ D8، تُبقي مقاومة
+الرفع (pull-up) في اللوحة الطرف على 5 V، وهذا يُقرأ على أنه «الخيط موجود»: لذلك لا ينطلق الاكتشاف أبدًا، ويمكن تركه مفعّلًا
+سواء رُكّب حساس أم لا. صِل مفتاح نفاد الخيط بـ D8 وسيعمل فورًا.</p>
+<ul>
+<li>يبقى اكتشاف الانسداد معطّلًا (<code>L0</code>): هذا المفتاح لا يستطيع رؤية حركة الخيط.</li>
+<li>لتعطيل المفتاح: <code>M412 S0</code> ثم <code>M500</code>.</li>
+<li>الإعدادات المحفوظة بإصدار سابق تحتفظ بحالة التفعيل أو التعطيل. لتفعيله: <code>M412 S1</code> ثم
+<code>M500</code>، أو أعد الإعدادات الافتراضية (<code>M502</code> ثم <code>M500</code>، وهذا يمسح أيضًا إزاحة Z للمجس
+وشبكة التسوية).</li>
+</ul>
+
+<h2>BTT Smart Filament Sensor V2.0</h2>
+<p>لهذا الحساس مخرجان، ويقرؤهما البرنامج الثابت بطريقتين مختلفتين:</p>
+<ul>
+<li><strong>مفتاح نفاد الخيط</strong> (إلى D8) يعطي مستوى ثابتًا: 5 V ما دام الخيط موجودًا، و0 V بعد نفاده.</li>
+<li><strong>مخرج الحركة</strong> (إلى D9) يأتي من عجلة صغيرة يُديرها الخيط أثناء مروره. كل بضعة
+مليمترات من الخيط، يتبدّل المخرج بين 0 V و5 V. لا يراقب البرنامج الثابت إلا هذه التبدّلات: فإذا دفع
+الطارد طولَ الانسداد من الخيط من دون أي تبدّل، فهذا يعني أن الخيط لا يتحرك (بكرة متشابكة، انسداد،
+خيط متآكل)، فتتوقف الطباعة مؤقتًا. مفتاح نفاد الخيط لا يستطيع رؤية ذلك: أثناء الانسداد يبقى الخيط موجودًا.</li>
+</ul>
+<h3>التوصيل</h3>
+<p><strong>5V</strong> إلى 5V، و<strong>GND</strong> إلى GND، وإشارة <strong>مفتاح نفاد الخيط</strong> إلى <strong>D8</strong>
+وإشارة <strong>الحركة</strong> إلى <strong>D9</strong>. قد تختلف الأسماء المطبوعة على كابل الحساس.</p>
+<h3>تفعيله</h3>
+<pre><code>M412 S1 L10
+M500</code></pre>
+<p>إن توقفت الطباعة مؤقتًا بلا سبب، فارفع طول الانسداد: <code>M412 L15</code> ثم <code>M500</code>. للإبقاء على
+مفتاح نفاد الخيط وحده: <code>M412 L0</code> ثم <code>M500</code>.</p>
+<h3>التحقق منه</h3>
+<ul>
+<li><code>M412</code>: <em>Filament runout ON ; Distance 5.00mm ; Motion distance 10.00mm</em>.</li>
+<li><code>M119</code> مع وجود الخيط: <em>filament: TRIGGERED</em>. إذا تغيّر هذا السطر عندما تدفع الخيط
+بيدك بدلًا من أن يتغير عند إدخاله أو إخراجه، فسلكا الإشارة معكوسان: بدّل بين D8 وD9.</li>
+</ul>
+<div class="note">جُرّب اكتشاف الانسداد على MK2 300 من دون الحساس (طول انسداد 2 مم ينطلق، و<code>L0</code> لا ينطلق
+أبدًا)، لكن لم يُجرَّب بعد مع حساس BTT نفسه. إذا قُرئ المفتاح بالاتجاه المعكوس (<em>open</em> مع وجود
+الخيط)، فأخبرنا على <a href="https://discord.gg/T37DYHmt2j">Discord</a>.</div>
+
+<h2>التحديث من v2.0.5 أو v2.0.6</h2>
+<p>لم يكن في هذين الإصدارين أي طريقة لتعطيل اكتشاف الانسداد، لذا استخدما طول انسداد أكبر من أن يُبلغ: 100 متر في
+v2.0.5 (وهو في الواقع قصير جدًا: نحو ثلث بكرة وزنها 1 كغ، وبعده قد تتوقف طابعة تُركت مُشغَّلة مؤقتًا بلا سبب) و
+10 كم في v2.0.6. عند تشغيل الطابعة، يحمّل v2.0.7 هاتين القيمتين على أنهما <code>L0</code>. أما الطول الحقيقي الذي ضبطته
+لحساس BTT، مثل <code>L10</code>، فيُحتفظ به. وعند التحديث من v2.0.4 أو ما قبلها، تُحمَّل مسافة نفاد الخيط 5 مم
+بدل القيمة 0 التي كانت تحفظها تلك الإصدارات.</p>
+</div></main>
+<footer class="site"><div class="wrap">
+<a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9">المصدر والبلاغات على GitHub</a>
+<a href="https://discord.gg/T37DYHmt2j">Discord</a>
+<span>البرنامج الثابت مرخّص بموجب GNU GPL v3. تبقى أدلة Wanhao وبرامجها الثابتة ملكًا لـ Wanhao.</span>
+</div></footer>
+</body>
+</html>

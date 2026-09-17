@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="tr" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wanhao Duplicator 9 (D9) anakart firmware&#x27;i nasıl yüklenir</title>
+<meta name="description" content="Wanhao D9&#x27;a AVRDUDESS veya avrdude ile USB üzerinden Marlin yükleme, homing sorunlarını çözme ve Wanhao&#x27;nun firmware&#x27;ine geri dönme için adım adım rehber.">
+<link rel="canonical" href="https://le-syl21.github.io/WANHAO-Duplicator-9/tr/flash.html">
+<link rel="alternate" hreflang="en" href="https://le-syl21.github.io/WANHAO-Duplicator-9/flash.html">
+<link rel="alternate" hreflang="fr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/fr/flash.html">
+<link rel="alternate" hreflang="de" href="https://le-syl21.github.io/WANHAO-Duplicator-9/de/flash.html">
+<link rel="alternate" hreflang="es" href="https://le-syl21.github.io/WANHAO-Duplicator-9/es/flash.html">
+<link rel="alternate" hreflang="it" href="https://le-syl21.github.io/WANHAO-Duplicator-9/it/flash.html">
+<link rel="alternate" hreflang="pt" href="https://le-syl21.github.io/WANHAO-Duplicator-9/pt/flash.html">
+<link rel="alternate" hreflang="nl" href="https://le-syl21.github.io/WANHAO-Duplicator-9/nl/flash.html">
+<link rel="alternate" hreflang="pl" href="https://le-syl21.github.io/WANHAO-Duplicator-9/pl/flash.html">
+<link rel="alternate" hreflang="tr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/tr/flash.html">
+<link rel="alternate" hreflang="ru" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ru/flash.html">
+<link rel="alternate" hreflang="ar" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ar/flash.html">
+<link rel="alternate" hreflang="hi" href="https://le-syl21.github.io/WANHAO-Duplicator-9/hi/flash.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://le-syl21.github.io/WANHAO-Duplicator-9/zh/flash.html">
+<link rel="alternate" hreflang="ja" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ja/flash.html">
+<link rel="alternate" hreflang="ko" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ko/flash.html">
+<link rel="alternate" hreflang="id" href="https://le-syl21.github.io/WANHAO-Duplicator-9/id/flash.html">
+<link rel="alternate" hreflang="x-default" href="https://le-syl21.github.io/WANHAO-Duplicator-9/flash.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Wanhao Duplicator 9 (D9) anakart firmware&#x27;i nasıl yüklenir">
+<meta property="og:description" content="Wanhao D9&#x27;a AVRDUDESS veya avrdude ile USB üzerinden Marlin yükleme, homing sorunlarını çözme ve Wanhao&#x27;nun firmware&#x27;ine geri dönme için adım adım rehber.">
+<meta property="og:url" content="https://le-syl21.github.io/WANHAO-Duplicator-9/tr/flash.html">
+<meta property="og:image" content="https://le-syl21.github.io/WANHAO-Duplicator-9/img/og.jpg">
+<meta property="og:locale" content="tr_TR">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖨️</text></svg>">
+<link rel="stylesheet" href="../style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Wanhao Duplicator 9 (D9) anakart firmware'i nasıl yüklenir", "description": "Wanhao D9'a AVRDUDESS veya avrdude ile USB üzerinden Marlin yükleme, homing sorunlarını çözme ve Wanhao'nun firmware'ine geri dönme için adım adım rehber.", "url": "https://le-syl21.github.io/WANHAO-Duplicator-9/tr/flash.html", "inLanguage": "tr", "about": {"@type": "Product", "name": "Wanhao Duplicator 9", "brand": "Wanhao"}}</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="brand" href="../tr/">Wanhao <span>D9</span> firmware</a>
+<nav class="main"><a href="../tr/">Ana sayfa</a><a href="../tr/mk1.html">MK1</a><a href="../tr/mk1u2.html">MK1 + MK2 kiti</a><a href="../tr/mk2.html">MK2</a><a href="../tr/mk3.html">MK3</a><a href="../tr/flash.html" aria-current="page">Yükleme rehberi</a><a href="../tr/screen.html">Ekran</a><a href="../tr/sensor.html">Filament sensörü</a><a href="../tr/quiet.html">Sessizleştirme</a></nav>
+<details class="lang"><summary aria-label="Dil"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9M12 3c-2.5 2.7-3.8 5.7-3.8 9s1.3 6.3 3.8 9"/></svg><span>Türkçe</span></summary><ul><li><a href="../flash.html" hreflang="en" lang="en">English</a></li><li><a href="../fr/flash.html" hreflang="fr" lang="fr">Français</a></li><li><a href="../de/flash.html" hreflang="de" lang="de">Deutsch</a></li><li><a href="../es/flash.html" hreflang="es" lang="es">Español</a></li><li><a href="../it/flash.html" hreflang="it" lang="it">Italiano</a></li><li><a href="../pt/flash.html" hreflang="pt" lang="pt">Português</a></li><li><a href="../nl/flash.html" hreflang="nl" lang="nl">Nederlands</a></li><li><a href="../pl/flash.html" hreflang="pl" lang="pl">Polski</a></li><li><a href="../tr/flash.html" hreflang="tr" lang="tr" aria-current="true">Türkçe</a></li><li><a href="../ru/flash.html" hreflang="ru" lang="ru">Русский</a></li><li><a href="../ar/flash.html" hreflang="ar" lang="ar">العربية</a></li><li><a href="../hi/flash.html" hreflang="hi" lang="hi">हिन्दी</a></li><li><a href="../zh/flash.html" hreflang="zh-Hans" lang="zh-Hans">中文</a></li><li><a href="../ja/flash.html" hreflang="ja" lang="ja">日本語</a></li><li><a href="../ko/flash.html" hreflang="ko" lang="ko">한국어</a></li><li><a href="../id/flash.html" hreflang="id" lang="id">Bahasa Indonesia</a></li></ul></details>
+</div></header>
+<main><div class="wrap">
+<h1>Duplicator 9 anakartına firmware yükleme</h1>
+<p class="lead">D9'un anakartı USB bootloader'lı bir ATmega2560'tır: programlayıcı yok, tabanı açmak yok,
+sadece bir USB kablosu.</p>
+
+<h2>Gerekenler</h2>
+<ul>
+<li>Yazıcı ile bilgisayar arasında bir USB kablosu ve <strong>açık</strong> bir yazıcı.</li>
+<li><a href="https://github.com/zkemble/AVRDUDESS">AVRDUDESS</a> (Windows, grafik arayüz, en kolayı) veya
+<a href="https://github.com/avrdudes/avrdude">avrdude</a> (komut satırı, tüm sistemler).</li>
+<li>Modelinize ve boyutunuza uygun <strong>.hex</strong>: <a href="../tr/mk1.html">MK1</a>, <a href="../tr/mk1u2.html">MK1 + kit</a>,
+<a href="../tr/mk2.html">MK2</a>, <a href="../tr/mk3.html">MK3</a>.</li>
+</ul>
+
+<h2>Yüklemeden önce</h2>
+<div class="note"><code>M503</code> gönderin ve yanıtı saklayın. v2.0.3'ten beri bir güncelleme yazıcıda kayıtlı ayarları
+korur, ama <strong>v2.0.3'e</strong> güncelleme bir kereliğine bu firmware'in varsayılan değerleriyle başlar (ayarların
+saklanma şekli değişti); Wanhao'nun firmware'inden geçişte de durum aynıdır. Sonrasında prob Z ofsetinizi
+<code>M851 Z…</code> ve <code>M500</code> ile yeniden ayarlayın.</div>
+<p>Yazıcının portunu kullanıyor olabilecek tüm programları kapatın: Cura, PrusaSlicer, OctoPrint, Pronterface, seri terminaller.</p>
+
+<h2>AVRDUDESS ile yükleme</h2>
+<ol>
+<li>Programmer: <code>wiring</code>. MCU: <code>ATmega2560</code>.</li>
+<li>Port: yazıcınızın COM portu (örneğin <code>COM3</code>). Baud hızını varsayılan değerinde bırakın.</li>
+<li>Flash: .hex dosyasını seçin, ardından <strong>Program!</strong> düğmesine tıklayın. İşlem 30 ile 60 saniye sürer.</li>
+</ol>
+
+<h2>avrdude ile yükleme</h2>
+<pre><code># Windows
+avrdude -v -p atmega2560 -c wiring -P COM3 -D -U flash:w:D9_MK2_300.hex:i
+
+# Linux / macOS
+avrdude -v -p atmega2560 -c wiring -P /dev/ttyUSB0 -D -U flash:w:D9_MK2_300.hex:i</code></pre>
+<p>Portu ve dosya adını kendinizinkilerle değiştirin. <code>wiring</code> protokolü bootloader'ın hızını kendisi seçer.</p>
+
+<h2>İlk açılış</h2>
+<ol>
+<li>USB kablosunu çıkarın, yazıcıyı kapatıp açın, kabloyu yeniden takın.</li>
+<li><strong>250000 baud</strong> ile bağlanın (Wanhao'nun firmware'leri 115200 kullanıyordu) ve <code>M115</code> gönderin: yanıtta yeni firmware görünür.</li>
+<li>Tüm eksenlerde homing yapın, ardından ekrandan veya <code>G29</code> ile tabla seviyelemesi yapın ve <code>M500</code> ile kaydedin.</li>
+</ol>
+
+<h2 id="reset">Bu firmware'in varsayılan ayarlarına dönmek</h2>
+<p>v2.0.3'ten beri bir firmware güncellemesi yazıcıda kayıtlı ayarları <strong>korur</strong> (prob Z ofseti, steps/mm,
+PID, mesh…). Bu yüzden bir sürümdeki yeni varsayılan değerler, zaten kayıtlı olanların yerine geçmez. Elle kaydedilmiş
+değerleri koruyarak v2.0.2 veya daha eski bir sürümden güncelliyorsanız, başka firmware'ler denedikten sonra yazıcı tuhaf
+davranıyorsa ya da temiz bir başlangıç yapmak istediğiniz her durumda bir kez sıfırlama yapın:</p>
+<ul>
+<li><strong>Ekrandan:</strong> <em>Ayarlar</em> → <em>Diğer</em> → <em>Sıfırla</em> → ✓.</li>
+<li><strong>USB üzerinden:</strong> <code>M502</code> (bu firmware'in varsayılanlarını yükler) ve ardından <code>M500</code> (bunları kaydeder) gönderin.</li>
+</ul>
+<p>Ardından prob Z ofsetinizi yeniden ayarlayın (<code>M851 Z…</code> ve ardından <code>M500</code>) ve bir tabla
+seviyelemesi yapın. Sonucu <code>M503</code> ile kontrol edin.</p>
+
+<h2>Elektrik kesintisi ve filament sensörü</h2>
+<ul>
+<li>Elektrik kesintisinden kurtarma açıktır: iş her katman değişiminde kaydedilir. Kapatmak için: <code>M413 S0</code> ve ardından <code>M500</code>.</li>
+<li>Isınmaya başlar başlamaz <em>power outage</em> mesajıyla hemen duran bir baskı: v2.0.4 veya daha yeni bir sürüme güncelleyin. Önceki derlemeler kartın elektrik kesintisi girişini izliyordu; bu giriş ısıtıcılar çalışmaya başlar başlamaz düşük okunur.</li>
+<li>Filament bitti algılama v2.0.8'den beri her modelde varsayılan olarak açıktır ve sensör yoksa hiçbir şey yapmaz. Daha eski bir sürümden güncelledikten sonra <code>M412 S1</code> ve ardından <code>M500</code> ile ya da ekranda <em>Ayarlar</em> → <em>Filament</em> → <em>Filament sensörü</em> altından açın. Kablolama ve BTT Smart Filament Sensor: <a href="../tr/sensor.html">Filament sensörü</a>.</li>
+</ul>
+
+<h2>Sorun giderme</h2>
+<div class="table"><table><thead><tr><th>Sorun</th><th>Çözüm</th></tr></thead><tbody>
+<tr><td>Port kullanımda</td><td>Yazıcının portunu kullanan tüm programları kapatın.</td></tr>
+<tr><td>Cihaz bulunamadı</td><td>CH340 USB sürücüsünü kurun, başka bir kablo veya USB portu deneyin, yazıcının açık olduğunu kontrol edin.</td></tr>
+<tr><td>Yüklemeden sonra okunamayan karakterler</td><td>Bu firmware'lerle 250000 baud, Wanhao'nunkilerle 115200 kullanın.</td></tr>
+<tr><td>Ekranda sıcaklıklar ×10 gösteriliyor (23,6 °C için 236)</td><td>Ekranda hâlâ eski dosyalar var: <a href="../tr/screen.html">DGUS Reloaded 2.0</a> yükleyin.</td></tr>
+<tr><td>Ekran her açılışta İngilizceye dönüyor ya da <em>Filament sensörü</em> sayfası hiçbir şey yapmıyor</td><td>Anakart firmware'i v2.0.9'dan eski: güncelleyin.</td></tr>
+<tr><td>Homing, anahtara birkaç milimetre kala duruyor, ardından <em>Homing Failed</em></td><td>Endstop hattında elektriksel parazit. Bu firmware'ler v2.0.1'den beri bunu filtreliyor: güncelleyin.</td></tr>
+<tr><td>Seviyeleme sırasında nozul bir tabla klipsine çarpıyor</td><td>v2.0.2 veya daha yeni bir sürüme güncelleyin: ilk ölçüm sütunu, Wanhao'nun firmware'inde olduğu gibi kenardan 10 mm içeridedir.</td></tr>
+<tr><td>Tabla Y anahtarından uzağa gidiyor</td><td>Modelinize ait firmware'i aldığınızı kontrol edin: Y motoru MK1, MK1 + kit ve MK2'de arkada, MK3'te öndedir.</td></tr>
+</tbody></table></div>
+
+<h2>Wanhao'nun firmware'ine geri dönmek</h2>
+<p>Her model sayfası Wanhao'nun orijinal anakart ve ekran firmware'lerine bağlantı verir. Bunları aynı şekilde yükleyin;
+Wanhao'nun anakart firmware'i, aynı nesilden Wanhao ekran firmware'ine ihtiyaç duyar.</p>
+<p>Sorular için: <a href="https://discord.gg/T37DYHmt2j">Discord</a> veya <a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/issues">GitHub sorun kayıtları</a>.</p>
+</div></main>
+<footer class="site"><div class="wrap">
+<a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9">Kaynak kod ve sorun kayıtları GitHub'da</a>
+<a href="https://discord.gg/T37DYHmt2j">Discord</a>
+<span>Firmware GNU GPL v3 lisanslıdır. Wanhao'nun kılavuzları ve firmware'leri Wanhao'ya aittir.</span>
+</div></footer>
+</body>
+</html>

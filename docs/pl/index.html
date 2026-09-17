@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="pl" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Firmware Wanhao Duplicator 9 (D9 MK1, MK2, MK3) – Marlin 2.1</title>
+<meta name="description" content="Aktualny firmware Marlin dla każdej drukarki Wanhao Duplicator 9 (D9/300, D9/400, D9/500; MK1, MK2, MK3), pliki ekranu, oryginalny firmware i instrukcje Wanhao oraz sposób ich wgrania.">
+<meta name="google-site-verification" content="TqbXre6qrm9jaoj6tFwRRiI2vuQilAZLm6kUJA-etmo">
+<link rel="canonical" href="https://le-syl21.github.io/WANHAO-Duplicator-9/pl/">
+<link rel="alternate" hreflang="en" href="https://le-syl21.github.io/WANHAO-Duplicator-9/">
+<link rel="alternate" hreflang="fr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/fr/">
+<link rel="alternate" hreflang="de" href="https://le-syl21.github.io/WANHAO-Duplicator-9/de/">
+<link rel="alternate" hreflang="es" href="https://le-syl21.github.io/WANHAO-Duplicator-9/es/">
+<link rel="alternate" hreflang="it" href="https://le-syl21.github.io/WANHAO-Duplicator-9/it/">
+<link rel="alternate" hreflang="pt" href="https://le-syl21.github.io/WANHAO-Duplicator-9/pt/">
+<link rel="alternate" hreflang="nl" href="https://le-syl21.github.io/WANHAO-Duplicator-9/nl/">
+<link rel="alternate" hreflang="pl" href="https://le-syl21.github.io/WANHAO-Duplicator-9/pl/">
+<link rel="alternate" hreflang="tr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/tr/">
+<link rel="alternate" hreflang="ru" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ru/">
+<link rel="alternate" hreflang="ar" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ar/">
+<link rel="alternate" hreflang="hi" href="https://le-syl21.github.io/WANHAO-Duplicator-9/hi/">
+<link rel="alternate" hreflang="zh-Hans" href="https://le-syl21.github.io/WANHAO-Duplicator-9/zh/">
+<link rel="alternate" hreflang="ja" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ja/">
+<link rel="alternate" hreflang="ko" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ko/">
+<link rel="alternate" hreflang="id" href="https://le-syl21.github.io/WANHAO-Duplicator-9/id/">
+<link rel="alternate" hreflang="x-default" href="https://le-syl21.github.io/WANHAO-Duplicator-9/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Firmware Wanhao Duplicator 9 (D9 MK1, MK2, MK3) – Marlin 2.1">
+<meta property="og:description" content="Aktualny firmware Marlin dla każdej drukarki Wanhao Duplicator 9 (D9/300, D9/400, D9/500; MK1, MK2, MK3), pliki ekranu, oryginalny firmware i instrukcje Wanhao oraz sposób ich wgrania.">
+<meta property="og:url" content="https://le-syl21.github.io/WANHAO-Duplicator-9/pl/">
+<meta property="og:image" content="https://le-syl21.github.io/WANHAO-Duplicator-9/img/og.jpg">
+<meta property="og:locale" content="pl_PL">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖨️</text></svg>">
+<link rel="stylesheet" href="../style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "Wanhao Duplicator 9 firmware", "url": "https://le-syl21.github.io/WANHAO-Duplicator-9/", "inLanguage": "pl", "description": "Aktualny firmware Marlin dla każdej drukarki Wanhao Duplicator 9 (D9/300, D9/400, D9/500; MK1, MK2, MK3), pliki ekranu, oryginalny firmware i instrukcje Wanhao oraz sposób ich wgrania."}</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="brand" href="../pl/">Wanhao <span>D9</span> firmware</a>
+<nav class="main"><a href="../pl/" aria-current="page">Strona główna</a><a href="../pl/mk1.html">MK1</a><a href="../pl/mk1u2.html">MK1 + zestaw MK2</a><a href="../pl/mk2.html">MK2</a><a href="../pl/mk3.html">MK3</a><a href="../pl/flash.html">Wgrywanie firmware'u</a><a href="../pl/screen.html">Ekran</a><a href="../pl/sensor.html">Czujnik filamentu</a><a href="../pl/quiet.html">Wyciszanie</a></nav>
+<details class="lang"><summary aria-label="Język"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9M12 3c-2.5 2.7-3.8 5.7-3.8 9s1.3 6.3 3.8 9"/></svg><span>Polski</span></summary><ul><li><a href="../" hreflang="en" lang="en">English</a></li><li><a href="../fr/" hreflang="fr" lang="fr">Français</a></li><li><a href="../de/" hreflang="de" lang="de">Deutsch</a></li><li><a href="../es/" hreflang="es" lang="es">Español</a></li><li><a href="../it/" hreflang="it" lang="it">Italiano</a></li><li><a href="../pt/" hreflang="pt" lang="pt">Português</a></li><li><a href="../nl/" hreflang="nl" lang="nl">Nederlands</a></li><li><a href="../pl/" hreflang="pl" lang="pl" aria-current="true">Polski</a></li><li><a href="../tr/" hreflang="tr" lang="tr">Türkçe</a></li><li><a href="../ru/" hreflang="ru" lang="ru">Русский</a></li><li><a href="../ar/" hreflang="ar" lang="ar">العربية</a></li><li><a href="../hi/" hreflang="hi" lang="hi">हिन्दी</a></li><li><a href="../zh/" hreflang="zh-Hans" lang="zh-Hans">中文</a></li><li><a href="../ja/" hreflang="ja" lang="ja">日本語</a></li><li><a href="../ko/" hreflang="ko" lang="ko">한국어</a></li><li><a href="../id/" hreflang="id" lang="id">Bahasa Indonesia</a></li></ul></details>
+</div></header>
+<main><div class="wrap">
+<h1>Firmware do Wanhao Duplicator 9</h1>
+<p class="lead">Strona Wanhao z plikami do pobrania dla Duplicatora 9 już nie istnieje. Wszystko, czego potrzebuje właściciel D9,
+jest teraz tutaj: aktualny firmware Marlin 2.1 dla każdego modelu i rozmiaru, pasujące pliki ekranu dotykowego, oryginalny
+firmware Wanhao, instrukcje Wanhao oraz poradniki wgrywania krok po kroku.</p>
+<p><a class="btn" href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest">Wszystkie pliki do pobrania</a> <a class="btn ghost" href="https://discord.gg/T37DYHmt2j">Zapytaj na Discordzie</a></p>
+
+<h2>Którą wersję D9 mam?</h2>
+<div class="split"><div>
+<ol>
+<li><strong>Szara płaska taśma</strong> biegnąca do głowicy drukującej i <strong>metalowy cylindryczny czujnik</strong>
+obok dyszy, brak bocznych wzmocnień ramy: <a href="../pl/mk1.html">MK1</a>.</li>
+<li>Ta sama maszyna pierwszej generacji z <strong>białym czujnikiem BLTouch</strong> zamiast metalowego:
+MK1 z zestawem modernizacyjnym Wanhao, <a href="../pl/mk1u2.html">MK1 + zestaw MK2</a>.</li>
+<li><strong>Skośne żebra wzmacniające</strong> po obu stronach ramy, <strong>okrągły czarny kabel</strong>
+do głowicy i BLTouch: MK2 albo MK3. Zajrzyj pod stół i znajdź <strong>silnik osi Y</strong>, czyli ten, który
+przesuwa stół: jeśli jest z tyłu, to <a href="../pl/mk2.html">MK2</a>; jeśli z przodu, od strony ekranu dotykowego, to
+<a href="../pl/mk3.html">MK3</a>.</li>
+</ol>
+<p>Liczba po D9 oznacza rozmiar: D9/300, D9/400 lub D9/500.</p>
+</div>
+<figure><img src="../img/d9-mk2.webp" width="600" height="600" alt="Wanhao Duplicator 9 MK2 z bocznymi żebrami wzmacniającymi">
+<figcaption>D9 MK2: boczne żebra, okrągły kabel</figcaption></figure></div>
+
+<div class="cards">
+<div class="card"><h3>D9 MK1</h3><p>Czujnik indukcyjny, taśma. Firmware, Wanhao od V0.15 do V0.164(B), instrukcja.</p><a class="more" href="../pl/mk1.html">Firmware MK1 →</a></div>
+<div class="card"><h3>D9 MK1 + zestaw MK2</h3><p>MK1 zmodernizowana zestawem BLTouch. Firmware i Wanhao V1.1.31.</p><a class="more" href="../pl/mk1u2.html">Firmware do zestawu →</a></div>
+<div class="card"><h3>D9 MK2</h3><p>BLTouch, boczne żebra. Firmware, Wanhao V1.1.2, poradniki.</p><a class="more" href="../pl/mk2.html">Firmware MK2 →</a></div>
+<div class="card"><h3>D9 MK3</h3><p>Silnik Y z przodu, czujnik filamentu. Firmware i Wanhao V1.1.3.</p><a class="more" href="../pl/mk3.html">Firmware MK3 →</a></div>
+</div>
+
+<h2>Co daje ten firmware</h2>
+<ul>
+<li><strong>Marlin 2.1</strong> zbudowany z konfiguracji dla Duplicatora 9 opublikowanych w
+<a href="https://github.com/MarlinFirmware/Configurations/tree/bugfix-2.1.x/config/examples/Wanhao/Duplicator%209">Marlin Configurations</a>,
+z zaproponowanymi tam zmianami: czujnik MK1 odczytywany we właściwą stronę, kierunek osi Y w MK3, wznawianie po zaniku zasilania,
+filtr zakłóceń krańcówek.</li>
+<li><strong>Fabryczne ustawienia Wanhao</strong>, wzięte z firmware'u i kodu źródłowego Wanhao dla każdego modelu: kroki/mm,
+prędkości, przyspieszenia, PID hotendu, offsety czujnika i marginesy sondowania, bazowanie, limity temperatur, jerk i kierunki osi.</li>
+<li><strong>Wznawianie po zaniku zasilania</strong>: podczas druku z karty SD zadanie jest zapisywane przy każdej zmianie warstwy, a po zaniku prądu ekran proponuje wznowienie od tego miejsca.</li>
+<li><strong>Czujniki filamentu</strong>: czujnik końca filamentu na D8, domyślnie włączony w każdym modelu (bez czujnika nic nie robi), oraz BTT Smart Filament Sensor V2.0, który wykrywa też zatory. Zobacz <a href="../pl/sensor.html">Czujnik filamentu</a>.</li>
+<li><strong>Głowica wraca na środek po poziomowaniu stołu</strong>, więc stół nie zasłania już ekranu.</li>
+<li><strong>Nowy interfejs ekranu dotykowego w 16 językach</strong>, <a href="../pl/screen.html">DGUS Reloaded 2.0</a>, ze stroną do ustawiania czujnika filamentu.</li>
+</ul>
+
+<h2>Wgrywanie w trzech krokach</h2>
+<ol>
+<li>Pobierz plik <strong>.hex</strong> dla swojego modelu i rozmiaru z jego strony.</li>
+<li>Wgraj go przez USB za pomocą AVRDUDESS lub avrdude: <a href="../pl/flash.html">poradnik wgrywania</a>.</li>
+<li>Wgraj pliki ekranu dotykowego z karty microSD: <a href="../pl/screen.html">poradnik ekranu</a>.</li>
+</ol>
+<p>Oryginalny firmware Wanhao pozostaje dostępny na stronie każdego modelu, więc maszynę zawsze można przywrócić do stanu fabrycznego.</p>
+</div></main>
+<footer class="site"><div class="wrap">
+<a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9">Kod źródłowy i zgłoszenia na GitHubie</a>
+<a href="https://discord.gg/T37DYHmt2j">Discord</a>
+<span>Firmware na licencji GNU GPL v3. Instrukcje i firmware Wanhao pozostają własnością Wanhao.</span>
+</div></footer>
+</body>
+</html>

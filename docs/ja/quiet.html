@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="ja" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wanhao Duplicator 9 を静かにする：対象になるファンと、NTC サーミスターによるボードファン制御</title>
+<meta name="description" content="Wanhao D9 のどのファンを静かにできるか。ホットエンドファンは残す必要があり、電源ファンはすでに自動で回転を調整しており、ボードファンは外すか NTC サーミスターで制御できます。">
+<link rel="canonical" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ja/quiet.html">
+<link rel="alternate" hreflang="en" href="https://le-syl21.github.io/WANHAO-Duplicator-9/quiet.html">
+<link rel="alternate" hreflang="fr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/fr/quiet.html">
+<link rel="alternate" hreflang="de" href="https://le-syl21.github.io/WANHAO-Duplicator-9/de/quiet.html">
+<link rel="alternate" hreflang="es" href="https://le-syl21.github.io/WANHAO-Duplicator-9/es/quiet.html">
+<link rel="alternate" hreflang="it" href="https://le-syl21.github.io/WANHAO-Duplicator-9/it/quiet.html">
+<link rel="alternate" hreflang="pt" href="https://le-syl21.github.io/WANHAO-Duplicator-9/pt/quiet.html">
+<link rel="alternate" hreflang="nl" href="https://le-syl21.github.io/WANHAO-Duplicator-9/nl/quiet.html">
+<link rel="alternate" hreflang="pl" href="https://le-syl21.github.io/WANHAO-Duplicator-9/pl/quiet.html">
+<link rel="alternate" hreflang="tr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/tr/quiet.html">
+<link rel="alternate" hreflang="ru" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ru/quiet.html">
+<link rel="alternate" hreflang="ar" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ar/quiet.html">
+<link rel="alternate" hreflang="hi" href="https://le-syl21.github.io/WANHAO-Duplicator-9/hi/quiet.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://le-syl21.github.io/WANHAO-Duplicator-9/zh/quiet.html">
+<link rel="alternate" hreflang="ja" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ja/quiet.html">
+<link rel="alternate" hreflang="ko" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ko/quiet.html">
+<link rel="alternate" hreflang="id" href="https://le-syl21.github.io/WANHAO-Duplicator-9/id/quiet.html">
+<link rel="alternate" hreflang="x-default" href="https://le-syl21.github.io/WANHAO-Duplicator-9/quiet.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Wanhao Duplicator 9 を静かにする：対象になるファンと、NTC サーミスターによるボードファン制御">
+<meta property="og:description" content="Wanhao D9 のどのファンを静かにできるか。ホットエンドファンは残す必要があり、電源ファンはすでに自動で回転を調整しており、ボードファンは外すか NTC サーミスターで制御できます。">
+<meta property="og:url" content="https://le-syl21.github.io/WANHAO-Duplicator-9/ja/quiet.html">
+<meta property="og:image" content="https://le-syl21.github.io/WANHAO-Duplicator-9/img/og.jpg">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖨️</text></svg>">
+<link rel="stylesheet" href="../style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Wanhao Duplicator 9 を静かにする：対象になるファンと、NTC サーミスターによるボードファン制御", "description": "Wanhao D9 のどのファンを静かにできるか。ホットエンドファンは残す必要があり、電源ファンはすでに自動で回転を調整しており、ボードファンは外すか NTC サーミスターで制御できます。", "url": "https://le-syl21.github.io/WANHAO-Duplicator-9/ja/quiet.html", "inLanguage": "ja", "about": {"@type": "Product", "name": "Wanhao Duplicator 9", "brand": "Wanhao"}}</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="brand" href="../ja/">Wanhao <span>D9</span> firmware</a>
+<nav class="main"><a href="../ja/">ホーム</a><a href="../ja/mk1.html">MK1</a><a href="../ja/mk1u2.html">MK1 + MK2キット</a><a href="../ja/mk2.html">MK2</a><a href="../ja/mk3.html">MK3</a><a href="../ja/flash.html">書き込みガイド</a><a href="../ja/screen.html">タッチスクリーン</a><a href="../ja/sensor.html">フィラメントセンサー</a><a href="../ja/quiet.html" aria-current="page">静音化</a></nav>
+<details class="lang"><summary aria-label="言語"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9M12 3c-2.5 2.7-3.8 5.7-3.8 9s1.3 6.3 3.8 9"/></svg><span>日本語</span></summary><ul><li><a href="../quiet.html" hreflang="en" lang="en">English</a></li><li><a href="../fr/quiet.html" hreflang="fr" lang="fr">Français</a></li><li><a href="../de/quiet.html" hreflang="de" lang="de">Deutsch</a></li><li><a href="../es/quiet.html" hreflang="es" lang="es">Español</a></li><li><a href="../it/quiet.html" hreflang="it" lang="it">Italiano</a></li><li><a href="../pt/quiet.html" hreflang="pt" lang="pt">Português</a></li><li><a href="../nl/quiet.html" hreflang="nl" lang="nl">Nederlands</a></li><li><a href="../pl/quiet.html" hreflang="pl" lang="pl">Polski</a></li><li><a href="../tr/quiet.html" hreflang="tr" lang="tr">Türkçe</a></li><li><a href="../ru/quiet.html" hreflang="ru" lang="ru">Русский</a></li><li><a href="../ar/quiet.html" hreflang="ar" lang="ar">العربية</a></li><li><a href="../hi/quiet.html" hreflang="hi" lang="hi">हिन्दी</a></li><li><a href="../zh/quiet.html" hreflang="zh-Hans" lang="zh-Hans">中文</a></li><li><a href="../ja/quiet.html" hreflang="ja" lang="ja" aria-current="true">日本語</a></li><li><a href="../ko/quiet.html" hreflang="ko" lang="ko">한국어</a></li><li><a href="../id/quiet.html" hreflang="id" lang="id">Bahasa Indonesia</a></li></ul></details>
+</div></header>
+<main><div class="wrap">
+<h1>Duplicator 9 を静かにする</h1>
+<p class="lead">待機中の D9 の騒音はファンから出ています。どのファンを静かにできるか、その方法を説明します。</p>
+<div class="note">作業はプリンターの<strong>電源プラグを抜いて</strong>行ってください。配線はすべて 230 V 側から離しておいてください。</div>
+
+<h2>ファン</h2>
+<div class="table"><table class="stack"><thead><tr><th>ファン</th><th>制御</th><th>静かにできる？</th></tr></thead><tbody>
+<tr><td><strong>ホットエンドのヒートシンクファン</strong>（プリントヘッド）</td><td>なし：24 V 常時オン</td><td><strong>いいえ</strong>：たいてい一番うるさいファンですが、回転を落とすと熱がホットエンドを伝って上がり、フィラメントが詰まります（heat creep）</td></tr>
+<tr><td><strong>パーツ冷却ファン</strong>（プリントヘッド）</td><td>ファームウェア、D5 ピン（PWM）</td><td>すでに可変：スライサーと <code>M106</code> で設定</td></tr>
+<tr><td><strong>電源ファン</strong></td><td>電源ユニット自身</td><td>対処不要：ここで確認した個体（Chuanglian A-350FAK-24）では、すでに電源の温度に応じて回転します</td></tr>
+<tr><td><strong>ボードファン</strong>（コントロールボックス）</td><td>なし：24 V 常時オン</td><td><strong>はい</strong>、下記参照</td></tr>
+</tbody></table></div>
+<p>Wanhao のファームウェアはボードファンもホットエンドファンも制御しておらず（<code>CONTROLLER_FAN_PIN</code> と
+<code>E0_AUTO_FAN_PIN</code> はどちらも <code>-1</code>）、ボードには空いているスイッチ出力もありません。そのため、この
+2 つは常時オンの「24V OUT」コネクターにつながっており、どのファームウェアでも回転を落とせません。</p>
+
+<h2>ボードファン</h2>
+<p>ここで測定した個体：<strong>HZ-D 4010MS、40 × 10 mm、24 V、最大 0.10 A、スリーブベアリング</strong>。</p>
+<p><strong>多くのオーナーは単純に外しています。</strong>ボードはあまり熱くなりません。コントロールボックスの底、ヒートベッドの下にあり、ベッドの熱はボードから離れて上へ逃げていくからです。外す場合は、最初の何回かの長時間印刷に注意してください。ステッピングモータードライバーが過熱すると一瞬出力が止まり、それはエラーメッセージではなく<strong>レイヤーずれ</strong>として現れます。</p>
+<h3>ファンは残し、ドライバーが温まったときだけ回す</h3>
+<p>パワー用 NTC サーミスター 2 個を直列につなぐと、ファンは 45～50 °C あたりで回り始め、ドライバーが温まるにつれて速くなります。<strong>MF72-400D9</strong>（400 Ω）+ <strong>MF72-200D9</strong>（200 Ω）を熱伝導接着剤でドライバーのヒートシンクに貼り付け、リード線は絶縁します。</p>
+<pre><code>+24V ── MF72-400D9 ── MF72-200D9 ── ファン (+)
+                                    ファン (−) ── 0V</code></pre>
+<ul>
+<li>これは計算によるもので、<strong>まだプリンターではテストしていません</strong>：MF72 の公差は ±20 % で、小型ファンは想定より低い温度で回り始めることがあります。作業台で回り始める温度を確認してください（NTC を小さな袋に入れてお湯に浸け、キッチン温度計で測る）。早すぎる場合は 200 Ω をもう 1 個追加し、遅すぎる場合は 200 Ω を外します。</li>
+<li>NTC は必ずヒートシンクに貼り付けてください：空気中に浮かせたままだと、ファン電流（NTC で最大約 0.6 W）によって数十度も発熱します。</li>
+<li>この方法ではファンが全速に達することはなく（80 °C で約 75 %）、NTC が故障すると開放状態になります。その場合、ファンは完全に止まったままになります。</li>
+</ul>
+<p>出典：<a href="https://www.cantherm.com/wp-content/uploads/2018/08/MF72_AUG_2018.pdf">MF72 データシート</a>。</p>
+</div></main>
+<footer class="site"><div class="wrap">
+<a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9">ソースコードと issue は GitHub で</a>
+<a href="https://discord.gg/T37DYHmt2j">Discord</a>
+<span>ファームウェアは GNU GPL v3 で提供しています。Wanhao のマニュアルとファームウェアの権利は Wanhao に帰属します。</span>
+</div></footer>
+</body>
+</html>

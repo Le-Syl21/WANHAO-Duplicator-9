@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="ko" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wanhao Duplicator 9 (D9) 메인보드 펌웨어 플래싱 방법</title>
+<meta name="description" content="AVRDUDESS나 avrdude로 USB를 통해 Wanhao D9에 Marlin을 플래싱하고, 원점 복귀(homing) 문제를 해결하고, Wanhao 펌웨어로 복구하는 단계별 가이드.">
+<link rel="canonical" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ko/flash.html">
+<link rel="alternate" hreflang="en" href="https://le-syl21.github.io/WANHAO-Duplicator-9/flash.html">
+<link rel="alternate" hreflang="fr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/fr/flash.html">
+<link rel="alternate" hreflang="de" href="https://le-syl21.github.io/WANHAO-Duplicator-9/de/flash.html">
+<link rel="alternate" hreflang="es" href="https://le-syl21.github.io/WANHAO-Duplicator-9/es/flash.html">
+<link rel="alternate" hreflang="it" href="https://le-syl21.github.io/WANHAO-Duplicator-9/it/flash.html">
+<link rel="alternate" hreflang="pt" href="https://le-syl21.github.io/WANHAO-Duplicator-9/pt/flash.html">
+<link rel="alternate" hreflang="nl" href="https://le-syl21.github.io/WANHAO-Duplicator-9/nl/flash.html">
+<link rel="alternate" hreflang="pl" href="https://le-syl21.github.io/WANHAO-Duplicator-9/pl/flash.html">
+<link rel="alternate" hreflang="tr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/tr/flash.html">
+<link rel="alternate" hreflang="ru" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ru/flash.html">
+<link rel="alternate" hreflang="ar" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ar/flash.html">
+<link rel="alternate" hreflang="hi" href="https://le-syl21.github.io/WANHAO-Duplicator-9/hi/flash.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://le-syl21.github.io/WANHAO-Duplicator-9/zh/flash.html">
+<link rel="alternate" hreflang="ja" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ja/flash.html">
+<link rel="alternate" hreflang="ko" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ko/flash.html">
+<link rel="alternate" hreflang="id" href="https://le-syl21.github.io/WANHAO-Duplicator-9/id/flash.html">
+<link rel="alternate" hreflang="x-default" href="https://le-syl21.github.io/WANHAO-Duplicator-9/flash.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Wanhao Duplicator 9 (D9) 메인보드 펌웨어 플래싱 방법">
+<meta property="og:description" content="AVRDUDESS나 avrdude로 USB를 통해 Wanhao D9에 Marlin을 플래싱하고, 원점 복귀(homing) 문제를 해결하고, Wanhao 펌웨어로 복구하는 단계별 가이드.">
+<meta property="og:url" content="https://le-syl21.github.io/WANHAO-Duplicator-9/ko/flash.html">
+<meta property="og:image" content="https://le-syl21.github.io/WANHAO-Duplicator-9/img/og.jpg">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖨️</text></svg>">
+<link rel="stylesheet" href="../style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Wanhao Duplicator 9 (D9) 메인보드 펌웨어 플래싱 방법", "description": "AVRDUDESS나 avrdude로 USB를 통해 Wanhao D9에 Marlin을 플래싱하고, 원점 복귀(homing) 문제를 해결하고, Wanhao 펌웨어로 복구하는 단계별 가이드.", "url": "https://le-syl21.github.io/WANHAO-Duplicator-9/ko/flash.html", "inLanguage": "ko", "about": {"@type": "Product", "name": "Wanhao Duplicator 9", "brand": "Wanhao"}}</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="brand" href="../ko/">Wanhao <span>D9</span> firmware</a>
+<nav class="main"><a href="../ko/">홈</a><a href="../ko/mk1.html">MK1</a><a href="../ko/mk1u2.html">MK1 + MK2 키트</a><a href="../ko/mk2.html">MK2</a><a href="../ko/mk3.html">MK3</a><a href="../ko/flash.html" aria-current="page">플래싱 가이드</a><a href="../ko/screen.html">화면</a><a href="../ko/sensor.html">필라멘트 센서</a><a href="../ko/quiet.html">소음 줄이기</a></nav>
+<details class="lang"><summary aria-label="언어"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9M12 3c-2.5 2.7-3.8 5.7-3.8 9s1.3 6.3 3.8 9"/></svg><span>한국어</span></summary><ul><li><a href="../flash.html" hreflang="en" lang="en">English</a></li><li><a href="../fr/flash.html" hreflang="fr" lang="fr">Français</a></li><li><a href="../de/flash.html" hreflang="de" lang="de">Deutsch</a></li><li><a href="../es/flash.html" hreflang="es" lang="es">Español</a></li><li><a href="../it/flash.html" hreflang="it" lang="it">Italiano</a></li><li><a href="../pt/flash.html" hreflang="pt" lang="pt">Português</a></li><li><a href="../nl/flash.html" hreflang="nl" lang="nl">Nederlands</a></li><li><a href="../pl/flash.html" hreflang="pl" lang="pl">Polski</a></li><li><a href="../tr/flash.html" hreflang="tr" lang="tr">Türkçe</a></li><li><a href="../ru/flash.html" hreflang="ru" lang="ru">Русский</a></li><li><a href="../ar/flash.html" hreflang="ar" lang="ar">العربية</a></li><li><a href="../hi/flash.html" hreflang="hi" lang="hi">हिन्दी</a></li><li><a href="../zh/flash.html" hreflang="zh-Hans" lang="zh-Hans">中文</a></li><li><a href="../ja/flash.html" hreflang="ja" lang="ja">日本語</a></li><li><a href="../ko/flash.html" hreflang="ko" lang="ko" aria-current="true">한국어</a></li><li><a href="../id/flash.html" hreflang="id" lang="id">Bahasa Indonesia</a></li></ul></details>
+</div></header>
+<main><div class="wrap">
+<h1>Duplicator 9 메인보드 플래싱</h1>
+<p class="lead">D9 메인보드는 USB 부트로더가 들어 있는 ATmega2560입니다. 프로그래머도 필요 없고 베이스를 열 필요도 없으며,
+USB 케이블 하나면 됩니다.</p>
+
+<h2>준비물</h2>
+<ul>
+<li>프린터와 컴퓨터를 잇는 USB 케이블, 그리고 <strong>전원이 켜진</strong> 프린터.</li>
+<li><a href="https://github.com/zkemble/AVRDUDESS">AVRDUDESS</a>(Windows, 그래픽 화면, 가장 쉬움) 또는
+<a href="https://github.com/avrdudes/avrdude">avrdude</a>(명령줄, 모든 운영체제).</li>
+<li>내 모델과 크기에 맞는 <strong>.hex</strong> 파일: <a href="../ko/mk1.html">MK1</a>, <a href="../ko/mk1u2.html">MK1 + 키트</a>,
+<a href="../ko/mk2.html">MK2</a>, <a href="../ko/mk3.html">MK3</a>.</li>
+</ul>
+
+<h2>플래싱 전에</h2>
+<div class="note"><code>M503</code>을 보내고 응답을 저장해 두세요. v2.0.3부터는 업데이트해도 프린터에 저장된
+설정이 유지되지만, v2.0.3<strong>으로</strong> 업데이트할 때는 한 번 이 펌웨어의 기본값에서 다시 시작합니다(설정 저장 방식이
+바뀌었기 때문). Wanhao 펌웨어에서 넘어올 때도 마찬가지입니다. 그다음 <code>M851 Z…</code>와
+<code>M500</code>으로 프로브 Z 오프셋을 다시 설정하세요.</div>
+<p>프린터 포트를 점유할 수 있는 프로그램을 모두 닫으세요: Cura, PrusaSlicer, OctoPrint, Pronterface, 시리얼 터미널.</p>
+
+<h2>AVRDUDESS로 플래싱</h2>
+<ol>
+<li>Programmer: <code>wiring</code>. MCU: <code>ATmega2560</code>.</li>
+<li>Port: 프린터의 COM 포트(예: <code>COM3</code>). 보드레이트는 기본값 그대로 두세요.</li>
+<li>Flash: .hex 파일을 고른 뒤 <strong>Program!</strong>을 클릭합니다. 30~60초 정도 걸립니다.</li>
+</ol>
+
+<h2>avrdude로 플래싱</h2>
+<pre><code># Windows
+avrdude -v -p atmega2560 -c wiring -P COM3 -D -U flash:w:D9_MK2_300.hex:i
+
+# Linux / macOS
+avrdude -v -p atmega2560 -c wiring -P /dev/ttyUSB0 -D -U flash:w:D9_MK2_300.hex:i</code></pre>
+<p>포트와 파일 이름을 내 것으로 바꾸세요. <code>wiring</code> 프로토콜이 부트로더 속도를 알아서 맞춥니다.</p>
+
+<h2>첫 부팅</h2>
+<ol>
+<li>USB 케이블을 뽑고, 프린터를 껐다 켠 뒤 케이블을 다시 꽂습니다.</li>
+<li><strong>250000 baud</strong>로 연결하고(Wanhao 펌웨어는 115200을 사용했음) <code>M115</code>를 보냅니다. 응답에 새 펌웨어가 표시됩니다.</li>
+<li>모든 축을 원점 복귀한 뒤 화면에서 또는 <code>G29</code>로 베드 레벨링을 하고, <code>M500</code>으로 저장합니다.</li>
+</ol>
+
+<h2 id="reset">이 펌웨어의 기본 설정으로 되돌리기</h2>
+<p>v2.0.3부터는 펌웨어를 업데이트해도 프린터에 저장된 설정(프로브 Z 오프셋, steps/mm,
+PID, 메시…)이 <strong>유지됩니다</strong>. 따라서 새 릴리스의 기본값이 이미 저장된 값을 대체하지 않습니다. 직접 저장한 값이
+남아 있는 상태에서 v2.0.2 이하에서 업데이트할 때, 다른 펌웨어를 써 본 뒤 프린터가 이상하게 동작할 때, 또는
+깨끗하게 새로 시작하고 싶을 때는 한 번 초기화하세요:</p>
+<ul>
+<li><strong>화면에서:</strong> <em>설정</em> → <em>더보기</em> → <em>초기화</em> → ✓.</li>
+<li><strong>USB로:</strong> <code>M502</code>(이 펌웨어의 기본값 불러오기)를 보낸 다음 <code>M500</code>(저장)을 보냅니다.</li>
+</ul>
+<p>그다음 프로브 Z 오프셋을 다시 설정하고(<code>M851 Z…</code> 후 <code>M500</code>) 베드 레벨링을 하세요.
+<code>M503</code>으로 결과를 확인하세요.</p>
+
+<h2>정전과 필라멘트 센서</h2>
+<ul>
+<li>정전 복구가 켜져 있어 레이어가 바뀔 때마다 작업을 저장합니다. 끄려면 <code>M413 S0</code> 후 <code>M500</code>.</li>
+<li>가열을 시작하자마자 <em>power outage</em>와 함께 출력이 바로 멈춘다면 v2.0.4 이상으로 업데이트하세요. 이전 빌드는 보드의 정전 감지 입력을 감시했는데, 이 입력은 히터가 켜지는 순간 LOW로 읽힙니다.</li>
+<li>필라멘트 소진 감지는 v2.0.8부터 모든 모델에서 기본으로 켜져 있으며, 센서가 없으면 아무 일도 하지 않습니다. 이전 릴리스에서 업데이트했다면 <code>M412 S1</code> 후 <code>M500</code>으로, 또는 화면의 <em>설정</em> → <em>필라멘트</em> → <em>필라멘트 센서</em>에서 켜세요. 배선과 BTT Smart Filament Sensor: <a href="../ko/sensor.html">필라멘트 센서</a>.</li>
+</ul>
+
+<h2>문제 해결</h2>
+<div class="table"><table><thead><tr><th>문제</th><th>해결</th></tr></thead><tbody>
+<tr><td>포트가 사용 중</td><td>프린터 포트를 쓰는 프로그램을 모두 닫으세요.</td></tr>
+<tr><td>장치를 찾을 수 없음</td><td>CH340 USB 드라이버를 설치하고, 다른 케이블이나 USB 포트를 써 보고, 프린터 전원이 켜져 있는지 확인하세요.</td></tr>
+<tr><td>플래싱 후 글자가 깨져 보임</td><td>이 펌웨어는 250000 baud, Wanhao 펌웨어는 115200 baud를 사용하세요.</td></tr>
+<tr><td>화면의 온도가 10배로 표시됨(23.6 °C가 236으로)</td><td>화면에 아직 옛 파일이 남아 있습니다: <a href="../ko/screen.html">DGUS Reloaded 2.0</a>을 플래싱하세요.</td></tr>
+<tr><td>켤 때마다 화면이 영어로 돌아가거나, <em>필라멘트 센서</em> 페이지가 작동하지 않음</td><td>메인보드 펌웨어가 v2.0.9보다 오래되었습니다: 업데이트하세요.</td></tr>
+<tr><td>원점 복귀가 스위치 몇 mm 앞에서 멈추고 <em>Homing Failed</em>가 뜸</td><td>엔드스톱 선의 전기 노이즈입니다. 이 펌웨어는 v2.0.1부터 노이즈를 걸러 냅니다: 업데이트하세요.</td></tr>
+<tr><td>레벨링 중 노즐이 베드 클립에 부딪힘</td><td>v2.0.2 이상으로 업데이트하세요. Wanhao 펌웨어처럼 첫 프로빙 열이 가장자리에서 10 mm 안쪽에 있습니다.</td></tr>
+<tr><td>베드가 Y 스위치에서 멀어지는 방향으로 움직임</td><td>내 모델의 펌웨어를 받았는지 확인하세요. Y 모터는 MK1, MK1 + 키트, MK2에서는 뒤쪽, MK3에서는 앞쪽에 있습니다.</td></tr>
+</tbody></table></div>
+
+<h2>Wanhao 펌웨어로 되돌리기</h2>
+<p>각 모델 페이지에 Wanhao 순정 메인보드 펌웨어와 화면 펌웨어 링크가 있습니다. 같은 방법으로 플래싱하면 됩니다. Wanhao
+메인보드 펌웨어에는 같은 세대의 Wanhao 화면 펌웨어가 필요합니다.</p>
+<p>질문: <a href="https://discord.gg/T37DYHmt2j">Discord</a> 또는 <a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/issues">GitHub 이슈</a>.</p>
+</div></main>
+<footer class="site"><div class="wrap">
+<a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9">GitHub의 소스와 이슈</a>
+<a href="https://discord.gg/T37DYHmt2j">Discord</a>
+<span>펌웨어는 GNU GPL v3 라이선스입니다. Wanhao의 매뉴얼과 펌웨어의 권리는 Wanhao에 있습니다.</span>
+</div></footer>
+</body>
+</html>

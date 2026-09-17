@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>البرنامج الثابت (firmware) لطابعة Wanhao Duplicator 9 (D9 MK1, MK2, MK3) – Marlin 2.1</title>
+<meta name="description" content="برنامج ثابت Marlin محدَّث لكل طرازات Wanhao Duplicator 9 (D9/300 وD9/400 وD9/500؛ MK1 وMK2 وMK3)، مع ملفات الشاشة والبرامج الثابتة الأصلية من Wanhao وأدلتها، وشرح طريقة تثبيتها.">
+<meta name="google-site-verification" content="TqbXre6qrm9jaoj6tFwRRiI2vuQilAZLm6kUJA-etmo">
+<link rel="canonical" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ar/">
+<link rel="alternate" hreflang="en" href="https://le-syl21.github.io/WANHAO-Duplicator-9/">
+<link rel="alternate" hreflang="fr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/fr/">
+<link rel="alternate" hreflang="de" href="https://le-syl21.github.io/WANHAO-Duplicator-9/de/">
+<link rel="alternate" hreflang="es" href="https://le-syl21.github.io/WANHAO-Duplicator-9/es/">
+<link rel="alternate" hreflang="it" href="https://le-syl21.github.io/WANHAO-Duplicator-9/it/">
+<link rel="alternate" hreflang="pt" href="https://le-syl21.github.io/WANHAO-Duplicator-9/pt/">
+<link rel="alternate" hreflang="nl" href="https://le-syl21.github.io/WANHAO-Duplicator-9/nl/">
+<link rel="alternate" hreflang="pl" href="https://le-syl21.github.io/WANHAO-Duplicator-9/pl/">
+<link rel="alternate" hreflang="tr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/tr/">
+<link rel="alternate" hreflang="ru" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ru/">
+<link rel="alternate" hreflang="ar" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ar/">
+<link rel="alternate" hreflang="hi" href="https://le-syl21.github.io/WANHAO-Duplicator-9/hi/">
+<link rel="alternate" hreflang="zh-Hans" href="https://le-syl21.github.io/WANHAO-Duplicator-9/zh/">
+<link rel="alternate" hreflang="ja" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ja/">
+<link rel="alternate" hreflang="ko" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ko/">
+<link rel="alternate" hreflang="id" href="https://le-syl21.github.io/WANHAO-Duplicator-9/id/">
+<link rel="alternate" hreflang="x-default" href="https://le-syl21.github.io/WANHAO-Duplicator-9/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="البرنامج الثابت (firmware) لطابعة Wanhao Duplicator 9 (D9 MK1, MK2, MK3) – Marlin 2.1">
+<meta property="og:description" content="برنامج ثابت Marlin محدَّث لكل طرازات Wanhao Duplicator 9 (D9/300 وD9/400 وD9/500؛ MK1 وMK2 وMK3)، مع ملفات الشاشة والبرامج الثابتة الأصلية من Wanhao وأدلتها، وشرح طريقة تثبيتها.">
+<meta property="og:url" content="https://le-syl21.github.io/WANHAO-Duplicator-9/ar/">
+<meta property="og:image" content="https://le-syl21.github.io/WANHAO-Duplicator-9/img/og.jpg">
+<meta property="og:locale" content="ar_AR">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖨️</text></svg>">
+<link rel="stylesheet" href="../style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "Wanhao Duplicator 9 firmware", "url": "https://le-syl21.github.io/WANHAO-Duplicator-9/", "inLanguage": "ar", "description": "برنامج ثابت Marlin محدَّث لكل طرازات Wanhao Duplicator 9 (D9/300 وD9/400 وD9/500؛ MK1 وMK2 وMK3)، مع ملفات الشاشة والبرامج الثابتة الأصلية من Wanhao وأدلتها، وشرح طريقة تثبيتها."}</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="brand" href="../ar/">Wanhao <span>D9</span> firmware</a>
+<nav class="main"><a href="../ar/" aria-current="page">الرئيسية</a><a href="../ar/mk1.html">MK1</a><a href="../ar/mk1u2.html">MK1 + طقم MK2</a><a href="../ar/mk2.html">MK2</a><a href="../ar/mk3.html">MK3</a><a href="../ar/flash.html">دليل التثبيت</a><a href="../ar/screen.html">الشاشة</a><a href="../ar/sensor.html">حساس الخيط</a><a href="../ar/quiet.html">تقليل الضجيج</a></nav>
+<details class="lang"><summary aria-label="اللغة"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9M12 3c-2.5 2.7-3.8 5.7-3.8 9s1.3 6.3 3.8 9"/></svg><span>العربية</span></summary><ul><li><a href="../" hreflang="en" lang="en">English</a></li><li><a href="../fr/" hreflang="fr" lang="fr">Français</a></li><li><a href="../de/" hreflang="de" lang="de">Deutsch</a></li><li><a href="../es/" hreflang="es" lang="es">Español</a></li><li><a href="../it/" hreflang="it" lang="it">Italiano</a></li><li><a href="../pt/" hreflang="pt" lang="pt">Português</a></li><li><a href="../nl/" hreflang="nl" lang="nl">Nederlands</a></li><li><a href="../pl/" hreflang="pl" lang="pl">Polski</a></li><li><a href="../tr/" hreflang="tr" lang="tr">Türkçe</a></li><li><a href="../ru/" hreflang="ru" lang="ru">Русский</a></li><li><a href="../ar/" hreflang="ar" lang="ar" aria-current="true">العربية</a></li><li><a href="../hi/" hreflang="hi" lang="hi">हिन्दी</a></li><li><a href="../zh/" hreflang="zh-Hans" lang="zh-Hans">中文</a></li><li><a href="../ja/" hreflang="ja" lang="ja">日本語</a></li><li><a href="../ko/" hreflang="ko" lang="ko">한국어</a></li><li><a href="../id/" hreflang="id" lang="id">Bahasa Indonesia</a></li></ul></details>
+</div></header>
+<main><div class="wrap">
+<h1>البرنامج الثابت لطابعة Wanhao Duplicator 9</h1>
+<p class="lead">اختفى موقع التنزيل الذي خصّصته Wanhao لطابعة Duplicator 9. تجد هنا بدلًا منه كل ما يحتاجه مالك D9:
+برنامج Marlin 2.1 الثابت الحالي لكل طراز ومقاس، وملفات الشاشة اللمسية المطابقة له، والبرامج الثابتة الأصلية من Wanhao،
+وأدلة Wanhao، وشروحات تثبيت خطوة بخطوة.</p>
+<p><a class="btn" href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest">كل التنزيلات</a> <a class="btn ghost" href="https://discord.gg/T37DYHmt2j">اسأل على Discord</a></p>
+
+<h2>ما طراز D9 الذي أملكه؟</h2>
+<div class="split"><div>
+<ol>
+<li><strong>كابل شريطي رمادي مسطّح</strong> يصل إلى رأس الطباعة، و<strong>مجس معدني أسطواني</strong>
+بجانب الفوهة، ولا توجد دعامات جانبية على الإطار: <a href="../ar/mk1.html">MK1</a>.</li>
+<li>الآلة نفسها من الجيل الأول ولكن مع <strong>مجس BLTouch أبيض</strong> بدل المجس المعدني:
+إنها MK1 مركّب عليها طقم الترقية من Wanhao، <a href="../ar/mk1u2.html">MK1 + طقم MK2</a>.</li>
+<li><strong>دعامات تقوية مائلة</strong> على جانبي الإطار، و<strong>كابل أسود دائري</strong>
+إلى الرأس، ومجس BLTouch: إنها MK2 أو MK3. انظر تحت السرير إلى <strong>محرك Y</strong>، وهو الذي
+يحرّك السرير: إن كان في الخلف فهي <a href="../ar/mk2.html">MK2</a>؛ وإن كان في الأمام، من جهة الشاشة اللمسية، فهي
+<a href="../ar/mk3.html">MK3</a>.</li>
+</ol>
+<p>الرقم بعد D9 هو المقاس: D9/300 أو D9/400 أو D9/500.</p>
+</div>
+<figure><img src="../img/d9-mk2.webp" width="600" height="600" alt="طابعة Wanhao Duplicator 9 MK2 بدعامات التقوية الجانبية">
+<figcaption>D9 MK2: دعامات جانبية، كابل دائري</figcaption></figure></div>
+
+<div class="cards">
+<div class="card"><h3>D9 MK1</h3><p>مجس حثّي، كابل شريطي. البرنامج الثابت، وبرامج Wanhao من V0.15 إلى V0.164(B)، والدليل.</p><a class="more" href="../ar/mk1.html">البرنامج الثابت لـ MK1 ←</a></div>
+<div class="card"><h3>D9 MK1 + طقم MK2</h3><p>MK1 مُرقّاة بطقم BLTouch. البرنامج الثابت وبرنامج Wanhao V1.1.31.</p><a class="more" href="../ar/mk1u2.html">البرنامج الثابت للطقم ←</a></div>
+<div class="card"><h3>D9 MK2</h3><p>BLTouch، دعامات جانبية. البرنامج الثابت، وبرنامج Wanhao V1.1.2، والأدلة.</p><a class="more" href="../ar/mk2.html">البرنامج الثابت لـ MK2 ←</a></div>
+<div class="card"><h3>D9 MK3</h3><p>محرك Y في الأمام، حساس الخيط. البرنامج الثابت وبرنامج Wanhao V1.1.3.</p><a class="more" href="../ar/mk3.html">البرنامج الثابت لـ MK3 ←</a></div>
+</div>
+
+<h2>ما الذي تضيفه هذه البرامج الثابتة</h2>
+<ul>
+<li><strong>Marlin 2.1</strong> مبني من إعدادات Duplicator 9 المنشورة في
+<a href="https://github.com/MarlinFirmware/Configurations/tree/bugfix-2.1.x/config/examples/Wanhao/Duplicator%209">Marlin Configurations</a>،
+مع التعديلات المقترحة هناك: قراءة مجس MK1 بالاتجاه الصحيح، واتجاه Y في MK3، والاستئناف بعد انقطاع الكهرباء،
+ومرشّح التشويش لمفاتيح نهاية المسار.</li>
+<li><strong>إعدادات المصنع من Wanhao</strong>، مأخوذة من البرنامج الثابت والكود المصدري من Wanhao لكل طراز: الخطوات/مم،
+والسرعات، والتسارعات، وPID لرأس التسخين، وإزاحات المجس وهوامش القياس، والعودة إلى نقطة الأصل، والحدود الحرارية، وjerk، واتجاهات المحاور.</li>
+<li><strong>الاستئناف بعد انقطاع الكهرباء</strong>: أثناء الطباعة من بطاقة SD تُحفظ المهمة عند كل تغيير للطبقة، وبعد الانقطاع تعرض الشاشة متابعة الطباعة من تلك النقطة.</li>
+<li><strong>حساسات الخيط</strong>: مفتاح نفاد الخيط على D8، مفعّل افتراضيًا في كل الطرازات (ولا أثر له إن لم يكن موجودًا)، وحساس BTT Smart Filament Sensor V2.0 الذي يكتشف الانسداد أيضًا. راجع <a href="../ar/sensor.html">حساس الخيط</a>.</li>
+<li><strong>يعود الرأس إلى المنتصف بعد تسوية السرير</strong>، فلا يحجب السرير الشاشة بعد الآن.</li>
+<li><strong>واجهة جديدة للشاشة اللمسية بـ 16 لغة</strong>، <a href="../ar/screen.html">DGUS Reloaded 2.0</a>، مع صفحة لضبط حساس الخيط.</li>
+</ul>
+
+<h2>التثبيت في ثلاث خطوات</h2>
+<ol>
+<li>نزّل ملف <strong>.hex</strong> الخاص بطرازك ومقاسك من صفحته.</li>
+<li>ثبّته عبر USB باستخدام AVRDUDESS أو avrdude: <a href="../ar/flash.html">دليل التثبيت</a>.</li>
+<li>ثبّت برنامج الشاشة اللمسية من بطاقة microSD: <a href="../ar/screen.html">دليل الشاشة</a>.</li>
+</ol>
+<p>تبقى البرامج الثابتة الأصلية من Wanhao متاحة في صفحة كل طراز، لذا يمكن دائمًا إعادة الآلة إلى حالتها عند خروجها من المصنع.</p>
+</div></main>
+<footer class="site"><div class="wrap">
+<a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9">المصدر والبلاغات على GitHub</a>
+<a href="https://discord.gg/T37DYHmt2j">Discord</a>
+<span>البرنامج الثابت مرخّص بموجب GNU GPL v3. تبقى أدلة Wanhao وبرامجها الثابتة ملكًا لـ Wanhao.</span>
+</div></footer>
+</body>
+</html>

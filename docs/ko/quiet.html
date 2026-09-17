@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ko" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wanhao Duplicator 9 소음 줄이기: 어떤 팬을, 그리고 NTC 서미스터로 보드 팬 제어하기</title>
+<meta name="description" content="Wanhao D9의 어떤 팬을 조용하게 만들 수 있는지: 핫엔드 팬은 그대로 둬야 하고, 파워 서플라이 팬은 이미 스스로 조절하며, 보드 팬은 뽑거나 NTC 서미스터로 돌릴 수 있습니다.">
+<link rel="canonical" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ko/quiet.html">
+<link rel="alternate" hreflang="en" href="https://le-syl21.github.io/WANHAO-Duplicator-9/quiet.html">
+<link rel="alternate" hreflang="fr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/fr/quiet.html">
+<link rel="alternate" hreflang="de" href="https://le-syl21.github.io/WANHAO-Duplicator-9/de/quiet.html">
+<link rel="alternate" hreflang="es" href="https://le-syl21.github.io/WANHAO-Duplicator-9/es/quiet.html">
+<link rel="alternate" hreflang="it" href="https://le-syl21.github.io/WANHAO-Duplicator-9/it/quiet.html">
+<link rel="alternate" hreflang="pt" href="https://le-syl21.github.io/WANHAO-Duplicator-9/pt/quiet.html">
+<link rel="alternate" hreflang="nl" href="https://le-syl21.github.io/WANHAO-Duplicator-9/nl/quiet.html">
+<link rel="alternate" hreflang="pl" href="https://le-syl21.github.io/WANHAO-Duplicator-9/pl/quiet.html">
+<link rel="alternate" hreflang="tr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/tr/quiet.html">
+<link rel="alternate" hreflang="ru" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ru/quiet.html">
+<link rel="alternate" hreflang="ar" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ar/quiet.html">
+<link rel="alternate" hreflang="hi" href="https://le-syl21.github.io/WANHAO-Duplicator-9/hi/quiet.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://le-syl21.github.io/WANHAO-Duplicator-9/zh/quiet.html">
+<link rel="alternate" hreflang="ja" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ja/quiet.html">
+<link rel="alternate" hreflang="ko" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ko/quiet.html">
+<link rel="alternate" hreflang="id" href="https://le-syl21.github.io/WANHAO-Duplicator-9/id/quiet.html">
+<link rel="alternate" hreflang="x-default" href="https://le-syl21.github.io/WANHAO-Duplicator-9/quiet.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Wanhao Duplicator 9 소음 줄이기: 어떤 팬을, 그리고 NTC 서미스터로 보드 팬 제어하기">
+<meta property="og:description" content="Wanhao D9의 어떤 팬을 조용하게 만들 수 있는지: 핫엔드 팬은 그대로 둬야 하고, 파워 서플라이 팬은 이미 스스로 조절하며, 보드 팬은 뽑거나 NTC 서미스터로 돌릴 수 있습니다.">
+<meta property="og:url" content="https://le-syl21.github.io/WANHAO-Duplicator-9/ko/quiet.html">
+<meta property="og:image" content="https://le-syl21.github.io/WANHAO-Duplicator-9/img/og.jpg">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖨️</text></svg>">
+<link rel="stylesheet" href="../style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Wanhao Duplicator 9 소음 줄이기: 어떤 팬을, 그리고 NTC 서미스터로 보드 팬 제어하기", "description": "Wanhao D9의 어떤 팬을 조용하게 만들 수 있는지: 핫엔드 팬은 그대로 둬야 하고, 파워 서플라이 팬은 이미 스스로 조절하며, 보드 팬은 뽑거나 NTC 서미스터로 돌릴 수 있습니다.", "url": "https://le-syl21.github.io/WANHAO-Duplicator-9/ko/quiet.html", "inLanguage": "ko", "about": {"@type": "Product", "name": "Wanhao Duplicator 9", "brand": "Wanhao"}}</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="brand" href="../ko/">Wanhao <span>D9</span> firmware</a>
+<nav class="main"><a href="../ko/">홈</a><a href="../ko/mk1.html">MK1</a><a href="../ko/mk1u2.html">MK1 + MK2 키트</a><a href="../ko/mk2.html">MK2</a><a href="../ko/mk3.html">MK3</a><a href="../ko/flash.html">플래싱 가이드</a><a href="../ko/screen.html">화면</a><a href="../ko/sensor.html">필라멘트 센서</a><a href="../ko/quiet.html" aria-current="page">소음 줄이기</a></nav>
+<details class="lang"><summary aria-label="언어"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9M12 3c-2.5 2.7-3.8 5.7-3.8 9s1.3 6.3 3.8 9"/></svg><span>한국어</span></summary><ul><li><a href="../quiet.html" hreflang="en" lang="en">English</a></li><li><a href="../fr/quiet.html" hreflang="fr" lang="fr">Français</a></li><li><a href="../de/quiet.html" hreflang="de" lang="de">Deutsch</a></li><li><a href="../es/quiet.html" hreflang="es" lang="es">Español</a></li><li><a href="../it/quiet.html" hreflang="it" lang="it">Italiano</a></li><li><a href="../pt/quiet.html" hreflang="pt" lang="pt">Português</a></li><li><a href="../nl/quiet.html" hreflang="nl" lang="nl">Nederlands</a></li><li><a href="../pl/quiet.html" hreflang="pl" lang="pl">Polski</a></li><li><a href="../tr/quiet.html" hreflang="tr" lang="tr">Türkçe</a></li><li><a href="../ru/quiet.html" hreflang="ru" lang="ru">Русский</a></li><li><a href="../ar/quiet.html" hreflang="ar" lang="ar">العربية</a></li><li><a href="../hi/quiet.html" hreflang="hi" lang="hi">हिन्दी</a></li><li><a href="../zh/quiet.html" hreflang="zh-Hans" lang="zh-Hans">中文</a></li><li><a href="../ja/quiet.html" hreflang="ja" lang="ja">日本語</a></li><li><a href="../ko/quiet.html" hreflang="ko" lang="ko" aria-current="true">한국어</a></li><li><a href="../id/quiet.html" hreflang="id" lang="id">Bahasa Indonesia</a></li></ul></details>
+</div></header>
+<main><div class="wrap">
+<h1>Duplicator 9 소음 줄이기</h1>
+<p class="lead">대기 중인 D9의 소음은 팬에서 나옵니다. 어떤 팬을 조용하게 만들 수 있는지, 그리고 그 방법을 소개합니다.</p>
+<div class="note">프린터 <strong>전원 플러그를 뽑은 상태</strong>에서 작업하세요. 모든 전선을 230 V 쪽에서 멀리 두세요.</div>
+
+<h2>팬 종류</h2>
+<div class="table"><table class="stack"><thead><tr><th>팬</th><th>제어 주체</th><th>조용하게 만들 수 있나요?</th></tr></thead><tbody>
+<tr><td><strong>핫엔드 방열판 팬</strong>(프린트 헤드)</td><td>없음: 24 V 상시 작동</td><td><strong>아니요</strong>: 보통 가장 시끄럽지만, 속도를 줄이면 열이 핫엔드 위로 올라가 필라멘트가 막힙니다(heat creep)</td></tr>
+<tr><td><strong>출력물 냉각 팬</strong>(프린트 헤드)</td><td>펌웨어, 핀 D5(PWM)</td><td>이미 속도 조절됨: 슬라이서와 <code>M106</code>으로 설정</td></tr>
+<tr><td><strong>파워 서플라이 팬</strong></td><td>파워 서플라이 자체</td><td>할 일 없음: 여기서 확인한 제품(Chuanglian A-350FAK-24)은 이미 파워 서플라이 온도에 따라 작동합니다</td></tr>
+<tr><td><strong>보드 팬</strong>(컨트롤 박스)</td><td>없음: 24 V 상시 작동</td><td><strong>예</strong>, 아래 참고</td></tr>
+</tbody></table></div>
+<p>Wanhao 펌웨어는 보드 팬도 핫엔드 팬도 제어하지 않으며(<code>CONTROLLER_FAN_PIN</code>과
+<code>E0_AUTO_FAN_PIN</code>이 모두 <code>-1</code>), 보드에는 남는 스위칭 출력이 없습니다. 그래서 이 두 팬은
+상시 전원인 "24V OUT" 커넥터에 연결되어 있고, 어떤 펌웨어로도 속도를 줄일 수 없습니다.</p>
+
+<h2>보드 팬</h2>
+<p>여기서 측정한 제품: <strong>HZ-D 4010MS, 40 × 10 mm, 24 V, 최대 0.10 A, 슬리브 베어링</strong>.</p>
+<p><strong>많은 사용자가 그냥 뽑아 버립니다.</strong> 보드는 별로 뜨거워지지 않습니다. 컨트롤 박스 바닥, 히팅베드
+아래에 있어서 베드의 열이 보드 반대쪽 위로 올라가기 때문입니다. 뽑는다면 처음 몇 번의 긴 출력을 잘 지켜보세요. 과열된
+스테퍼 드라이버는 잠깐 꺼지는데, 이는 오류 메시지가 아니라 <strong>레이어 밀림</strong>으로 나타납니다.</p>
+<h3>남겨 두되, 드라이버가 뜨거울 때만 돌리기</h3>
+<p>전력용 NTC 서미스터 두 개를 직렬로 연결하면 팬이 약 45–50 °C에서 돌기 시작해 드라이버가 뜨거워질수록 빨라집니다.
+<strong>MF72-400D9</strong>(400 Ω) + <strong>MF72-200D9</strong>(200 Ω)를 드라이버 방열판에 열전도
+접착제로 붙이고, 리드선은 절연합니다.</p>
+<pre><code>+24V ── MF72-400D9 ── MF72-200D9 ── 팬 (+)
+                                    팬 (−) ── 0V</code></pre>
+<ul>
+<li>계산으로 얻은 값이며 <strong>아직 프린터에서 테스트하지 않았습니다</strong>. MF72의 허용 오차는 ±20 %이고, 작은 팬은
+예상보다 낮은 온도에서 돌기 시작할 수 있습니다. 작업대에서 시작 온도를 확인하세요(NTC를 작은 봉지에 넣어 뜨거운 물에 담그고
+주방용 온도계로 측정). 너무 일찍 돌기 시작하면 200 Ω을 하나 더 추가하고, 너무 늦게 돌면 200 Ω을 빼세요.</li>
+<li>NTC는 반드시 방열판에 붙여야 합니다. 공기 중에 두면 팬 전류(NTC에서 최대 약 0.6 W)로 인해 온도가
+수십 도나 올라갑니다.</li>
+<li>이 방식으로는 팬이 최고 속도에 도달하지 않으며(80 °C에서 약 75 %), NTC가 고장 나면 회로가 끊어져 팬이 완전히
+멈춥니다.</li>
+</ul>
+<p>출처: <a href="https://www.cantherm.com/wp-content/uploads/2018/08/MF72_AUG_2018.pdf">MF72 데이터시트</a> (영어).</p>
+</div></main>
+<footer class="site"><div class="wrap">
+<a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9">GitHub의 소스와 이슈</a>
+<a href="https://discord.gg/T37DYHmt2j">Discord</a>
+<span>펌웨어는 GNU GPL v3 라이선스입니다. Wanhao의 매뉴얼과 펌웨어의 권리는 Wanhao에 있습니다.</span>
+</div></footer>
+</body>
+</html>
