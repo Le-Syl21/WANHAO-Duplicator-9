@@ -58,7 +58,7 @@ FILAMENTS = {
 PROCESSES = {"Fine": 0.12, "Standard": 0.20, "Draft": 0.28}
 
 
-def start_gcode(bed, nozzle, relative_e, depth):
+def start_gcode(bed, nozzle, relative_e, depth, bltouch):
     """Heat, home, then draw a priming line 15 mm from the left edge, clear of the bed clips."""
     y0, y1 = 20, 20 + min(120, round(depth * 0.4))
     e = round((y1 - y0) * PRIME_LINE_WIDTH * PRIME_LINE_HEIGHT / (3.14159 * (1.75 / 2) ** 2), 1)
@@ -69,6 +69,10 @@ def start_gcode(bed, nozzle, relative_e, depth):
         "M83 ; relative extrusion" if relative_e else "M82 ; absolute extrusion",
         f"M140 S{bed} ; heat the bed",
         "M104 S150 ; warm the nozzle without letting it ooze",
+        "G91 ; a print stopped by hand can leave the nozzle down on the bed",
+        "G1 Z10 F300 ; so raise it before homing: a BLTouch needs 10 mm to deploy",
+        "G90",
+        *(["M280 P0 S160 ; BLTouch: clear an alarm and stow the pin"] if bltouch else []),
         "G28 ; home all axes (this turns bed levelling off)",
         "M420 S1 ; turn the bed mesh saved from the screen back on",
         "G1 Z10 F300",
@@ -135,7 +139,7 @@ def cura(model, size, out):
             "machine_center_is_zero": dv(False),
             "machine_gcode_flavor": dv("RepRap (Marlin/Sprinter)"),
             "machine_start_gcode": dv(start_gcode("{material_bed_temperature_layer_0}",
-                                                  "{material_print_temperature_layer_0}", False, d)),
+                                                  "{material_print_temperature_layer_0}", False, d, model != "MK1")),
             "machine_end_gcode": dv(end_gcode(d)),
             "machine_max_feedrate_x": dv(MAX_FEEDRATE["x"]),
             "machine_max_feedrate_y": dv(MAX_FEEDRATE["y"]),
@@ -226,7 +230,7 @@ def orca(model, size, out):
         "deretraction_speed": [str(RETRACT_SPEED)], "retraction_minimum_travel": ["1"], "z_hop": ["0"],
         "retract_when_changing_layer": ["1"], "wipe": ["0"],
         "machine_start_gcode": start_gcode("[bed_temperature_initial_layer_single]",
-                                           "[nozzle_temperature_initial_layer]", True, d),
+                                           "[nozzle_temperature_initial_layer]", True, d, model != "MK1"),
         "machine_end_gcode": end_gcode(d),
         "layer_change_gcode": "G92 E0 ; relative extrusion: reset E on each layer",
         "machine_pause_gcode": "M600", "change_filament_gcode": "M600",
