@@ -45,14 +45,30 @@ broches CTRL, BTN, GND et VCC.</p>
 </ul>
 <div class="note">Imprimante <strong>éteinte</strong> pour brancher ou débrancher quoi que ce soit sur la carte.</div>
 
+<h2>Les commandes M412</h2>
+<p>Tout se règle en USB depuis un terminal série (Pronterface, le terminal de votre slicer ou d'OctoPrint, 250000
+bauds). Les paramètres se combinent dans une même commande, par exemple <code>M412 S1 L10</code>.</p>
+<div class="table"><table class="stack"><thead><tr><th>Commande</th><th>Ce qu'elle fait</th></tr></thead><tbody>
+<tr><td><code>M412</code></td><td>Affiche l'état, par exemple <em>Filament runout ON ; Distance 5.00mm ; Motion distance 0.00mm</em>.</td></tr>
+<tr><td><code>M412 S1</code></td><td><strong>Active la détection</strong> : le détecteur de fin de filament, et aussi la détection de bourrage si la longueur de bourrage n'est pas 0.</td></tr>
+<tr><td><code>M412 S0</code></td><td><strong>Désactive toute la détection</strong>, fin de filament et bourrage.</td></tr>
+<tr><td><code>M412 D5</code></td><td>Quand le détecteur ne voit plus de filament, continue d'imprimer <strong>5 mm</strong> avant la pause, pour utiliser le filament restant entre le capteur et la buse. 5 mm par défaut.</td></tr>
+<tr><td><code>M412 L10</code></td><td><strong>Active la détection de bourrage</strong> (capteur BTT uniquement) : pause quand <strong>10 mm</strong> de filament passent dans l'extrudeur sans que la roue du capteur bouge.</td></tr>
+<tr><td><code>M412 L0</code></td><td><strong>Désactive la détection de bourrage</strong> sans toucher au détecteur de fin de filament. C'est le réglage par défaut.</td></tr>
+<tr><td><code>M500</code></td><td>Enregistre les réglages. Sans lui, un changement est perdu à l'extinction.</td></tr>
+<tr><td><code>M119</code></td><td>La ligne <em>filament</em> affiche <code>TRIGGERED</code> avec du filament, <code>open</code> sans.</td></tr>
+</tbody></table></div>
+<p><code>M412 L0</code>, et <code>L</code> utilisé seul, viennent de notre modification de Marlin
+(<a href="https://github.com/MarlinFirmware/Marlin/pull/28585">MarlinFirmware/Marlin#28585</a>), intégrée à ces firmwares. Dans Marlin sans elle, <code>L</code>
+seul est ignoré et <code>L0</code> met tout de suite l'impression en pause pour bourrage.</p>
+
 <h2>Le détecteur de fin de filament Wanhao</h2>
 <p>Il indique au firmware si le filament est là. Quand il manque, l'impression se met en pause 5 mm de filament plus
-loin et l'écran lance un changement de filament.</p>
-<ul>
-<li>L'activer : <code>M412 S1</code> puis <code>M500</code>. Le désactiver : <code>M412 S0</code> puis <code>M500</code>.</li>
-<li>Le vérifier : envoyez <code>M119</code>. La ligne <em>filament</em> affiche <code>TRIGGERED</code> avec du
-filament et <code>open</code> sans.</li>
-</ul>
+loin et l'écran lance un changement de filament. Il est actif par défaut sur la MK3.</p>
+<pre><code>M412 S1
+M500</code></pre>
+<p>La détection de bourrage reste désactivée (<code>L0</code>), puisque ce détecteur ne voit pas le filament avancer.
+Pour le désactiver : <code>M412 S0</code> puis <code>M500</code>.</p>
 
 <h2>BTT Smart Filament Sensor V2.0</h2>
 <p>Ce capteur a deux sorties, que le firmware lit différemment :</p>
@@ -61,9 +77,9 @@ filament et <code>open</code> sans.</li>
 quand il n'y en a plus.</li>
 <li><strong>La sortie mouvement</strong> (vers D9) vient d'une petite roue que le filament fait tourner en passant.
 Tous les quelques millimètres de filament, la sortie bascule entre 0 V et 5 V. Le firmware ne regarde que ces
-changements : si l'extrudeur pousse une longueur donnée de filament sans un seul changement, le filament ne suit pas,
-et l'impression se met en pause. Le détecteur de fin de filament ne peut pas le voir : pendant un bourrage, le filament
-est toujours là.</li>
+changements : si l'extrudeur pousse la longueur de bourrage sans un seul changement, le filament ne suit pas (bobine
+emmêlée, bourrage, filament rongé), et l'impression se met en pause. Le détecteur de fin de filament ne peut pas le
+voir : pendant un bourrage, le filament est toujours là.</li>
 </ul>
 <h3>Branchement</h3>
 <p><strong>5V</strong> sur 5V, <strong>GND</strong> sur GND, le signal de <strong>fin de filament</strong> sur
@@ -72,32 +88,26 @@ du capteur peuvent être différents.</p>
 <h3>L'activer</h3>
 <pre><code>M412 S1 L10
 M500</code></pre>
-<p><code>L10</code> est la longueur de bourrage : l'impression se met en pause quand 10 mm de filament passent dans
-l'extrudeur sans que la roue bouge. Augmentez-la (<code>M412 S1 L15</code> puis <code>M500</code> ; <code>L</code> seul est ignoré) si des impressions se
-mettent en pause sans raison.</p>
+<p>Si des impressions se mettent en pause sans raison, augmentez la longueur de bourrage : <code>M412 L15</code> puis
+<code>M500</code>. Pour ne garder que le détecteur de fin de filament : <code>M412 L0</code> puis <code>M500</code>.</p>
 <h3>Le vérifier</h3>
 <ul>
-<li><code>M412</code> affiche l'état : <em>Filament runout ON ; Distance 5.00mm ; Motion distance 10.00mm</em>.</li>
+<li><code>M412</code> : <em>Filament runout ON ; Distance 5.00mm ; Motion distance 10.00mm</em>.</li>
 <li><code>M119</code> avec du filament : <em>filament: TRIGGERED</em>. Si cette ligne change quand vous poussez le
 filament à la main plutôt que quand vous l'insérez ou le retirez, les deux fils de signal sont inversés : échangez D8
 et D9.</li>
 </ul>
-<div class="note">La prise en charge de ce capteur est nouvelle en v2.0.5 et n'a pas encore été testée avec le capteur.
-Si le détecteur est lu à l'envers (<em>open</em> avec du filament), dites-le sur <a href="https://discord.gg/T37DYHmt2j">Discord</a>.</div>
+<div class="note">La détection de bourrage a été testée sur une MK2 300 sans le capteur (une longueur de 2 mm déclenche,
+<code>L0</code> jamais), mais pas encore avec le capteur BTT lui-même. Si le détecteur est lu à l'envers
+(<em>open</em> avec du filament), dites-le sur <a href="https://discord.gg/T37DYHmt2j">Discord</a>.</div>
 
-<h2>Pourquoi la longueur de bourrage vaut 10 km par défaut</h2>
-<p><code>M412 S1</code> active en même temps le détecteur de fin de filament et la surveillance du mouvement : Marlin
-n'a qu'un seul réglage pour les deux. Sans capteur BTT sur D9, cette broche ne change jamais, ce que le firmware lit
-comme « le filament n'avance pas ». Un simple détecteur de fin de filament mettrait alors des impressions en pause
-pour rien, et la MK3, dont le détecteur est actif par défaut, chaque impression. Le décompte ne repart qu'à
-l'allumage ou après un changement de filament lancé par le firmware (<code>M600</code>), pas à chaque impression, ni
-quand vous chargez une bobine depuis l'écran.</p>
-<p>La longueur de bourrage par défaut est donc de 10 km, environ 30 kg de PLA sans éteindre l'imprimante, ce qui ne se
-déclenche jamais en pratique. <code>M412 S1 L10</code> règle la vraie une fois le capteur BTT branché.</p>
-<p>La v2.0.5 utilisait 100 m, environ un tiers d'une bobine de 1 kg : sur la MK3, ou avec n'importe quel détecteur de
-fin de filament activé, une imprimante restée allumée pouvait se mettre en pause pour rien au-delà. Passez en v2.0.6 :
-les réglages enregistrés avec une longueur de bourrage de 100 m ou plus, et les longueurs à zéro enregistrées par la
-v2.0.4 ou avant, sont remplacés par les valeurs par défaut (5 mm et 10 km) au démarrage.</p>
+<h2>Mise à jour depuis la v2.0.5 ou la v2.0.6</h2>
+<p>Ces versions ne pouvaient pas désactiver la détection de bourrage, elles utilisaient donc une longueur de bourrage
+censée ne jamais être atteinte : 100 m en v2.0.5 (trop court en réalité : environ un tiers de bobine de 1 kg, au-delà
+duquel une imprimante restée allumée pouvait se mettre en pause pour rien) et 10 km en v2.0.6. Au démarrage, la
+v2.0.7 charge ces deux valeurs comme <code>L0</code>. Une vraie longueur réglée pour un capteur BTT, comme
+<code>L10</code>, est conservée. Depuis la v2.0.4 ou avant, la distance de fin de filament de 5 mm est chargée à la
+place du 0 enregistré par ces versions.</p>
 </div></main>
 <footer class="site"><div class="wrap">
 <a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9">Sources et tickets sur GitHub</a>

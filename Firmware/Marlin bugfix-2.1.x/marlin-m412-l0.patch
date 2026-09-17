@@ -1,0 +1,75 @@
+diff --git a/Marlin/src/feature/runout.h b/Marlin/src/feature/runout.h
+index c33980d7e6..6c0a807b9e 100644
+--- a/Marlin/src/feature/runout.h
++++ b/Marlin/src/feature/runout.h
+@@ -425,8 +425,8 @@ class FilamentSensorBase {
+         runout_flags_t runout_flags{0};
+ 
+         #if ENABLED(FILAMENT_SWITCH_AND_MOTION)
+-          // Runout based on filament motion
+-          if (!ignore_motion) {
++          // Runout based on filament motion (a motion distance of 0 turns this off)
++          if (!ignore_motion && motion_distance_mm > 0) {
+             for (uint8_t i = 0; i < NUM_MOTION_SENSORS; ++i) {
+               if (mm_countdown.motion[i] < 0) {
+                 runout_flags.set(i);
+@@ -494,7 +494,7 @@ class FilamentSensorBase {
+ 
+         #if ENABLED(FILAMENT_SWITCH_AND_MOTION)
+           // Apply E distance to motion countdown, reset if flagged
+-          if (!ignore_motion && e < NUM_MOTION_SENSORS) {
++          if (!ignore_motion && motion_distance_mm > 0 && e < NUM_MOTION_SENSORS) {
+             mm_countdown.motion[e] -= mm;
+             if (mm_countdown.motion_reset[e]) filament_motion_present(e); // Reset pending. Try to reset.
+           }
+diff --git a/Marlin/src/gcode/feature/runout/M412.cpp b/Marlin/src/gcode/feature/runout/M412.cpp
+index c517854011..21c1785276 100644
+--- a/Marlin/src/gcode/feature/runout/M412.cpp
++++ b/Marlin/src/gcode/feature/runout/M412.cpp
+@@ -37,25 +37,30 @@
+  *  D<linear> : Extra distance to continue after runout is triggered
+  *
+  * With FILAMENT_SWITCH_AND_MOTION:
+- *  L<linear> : Missing motion length to consider a jam
++ *  L<linear> : Missing motion length to consider a jam. L0 disables jam detection.
+  */
+ void GcodeSuite::M412() {
+   if (parser.seen("RS"
+     TERN_(HAS_FILAMENT_RUNOUT_DISTANCE, "D")
+     TERN_(HOST_ACTION_COMMANDS, "H")
++    TERN_(FILAMENT_SWITCH_AND_MOTION, "L")
+   )) {
+     #if ENABLED(HOST_ACTION_COMMANDS)
+       if (parser.seen('H')) runout.host_handling = parser.value_bool();
+     #endif
+     const bool seenR = parser.seen_test('R'), seenS = parser.seen('S');
+-    if (seenR || seenS) runout.reset();
+     if (seenS) runout.enabled = parser.value_bool();
+     #if HAS_FILAMENT_RUNOUT_DISTANCE
+       if (parser.seenval('D')) runout.set_runout_distance(parser.value_linear_units());
+     #endif
+     #if ENABLED(FILAMENT_SWITCH_AND_MOTION)
+-      if (parser.seenval('L')) runout.set_motion_distance(parser.value_linear_units());
++      const bool seenL = parser.seenval('L');
++      if (seenL) runout.set_motion_distance(parser.value_linear_units());
++    #else
++      constexpr bool seenL = false;
+     #endif
++    // Reset after the new distances are set, so the countdowns start from them
++    if (seenR || seenS || seenL) runout.reset();
+   }
+   else {
+     SERIAL_ECHO_START();
+diff --git a/Marlin/src/lcd/menu/menu_advanced.cpp b/Marlin/src/lcd/menu/menu_advanced.cpp
+index b2533577aa..ec18f72d8f 100644
+--- a/Marlin/src/lcd/menu/menu_advanced.cpp
++++ b/Marlin/src/lcd/menu/menu_advanced.cpp
+@@ -186,7 +186,7 @@ void menu_backlash();
+     #if ENABLED(FILAMENT_SWITCH_AND_MOTION)
+       editable.decimal = runout.motion_distance();
+       auto set_motion_distance = []{ runout.set_motion_distance(editable.decimal); };
+-      EDIT_ITEM_FAST(float31, MSG_MOTION_DISTANCE_MM, &editable.decimal, 0.1, 10, set_motion_distance, true);
++      EDIT_ITEM_FAST(float31, MSG_MOTION_DISTANCE_MM, &editable.decimal, 0, 10, set_motion_distance, true);
+     #endif
+ 
+     END_MENU();

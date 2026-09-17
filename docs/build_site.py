@@ -718,14 +718,30 @@ in that order. The pin names come from a wiring diagram by Wanhao that dustovich
 </ul>
 <div class="note">Printer <strong>switched off</strong> while you plug or unplug anything on the board.</div>
 
+<h2>The M412 commands</h2>
+<p>Everything is set over USB from a serial terminal (Pronterface, the terminal of your slicer or of OctoPrint,
+250000 baud). Parameters can be combined in one command, for example <code>M412 S1 L10</code>.</p>
+<div class="table"><table class="stack"><thead><tr><th>Command</th><th>What it does</th></tr></thead><tbody>
+<tr><td><code>M412</code></td><td>Shows the state, for example <em>Filament runout ON ; Distance 5.00mm ; Motion distance 0.00mm</em>.</td></tr>
+<tr><td><code>M412 S1</code></td><td><strong>Turns detection on</strong>: the runout switch, and jam detection too if the jam length is not 0.</td></tr>
+<tr><td><code>M412 S0</code></td><td><strong>Turns all detection off</strong>, switch and jam.</td></tr>
+<tr><td><code>M412 D5</code></td><td>Once the switch sees no filament, keeps printing <strong>5 mm</strong> before pausing, to use the filament left between the sensor and the nozzle. Default 5 mm.</td></tr>
+<tr><td><code>M412 L10</code></td><td><strong>Turns jam detection on</strong> (BTT sensor only): pauses when <strong>10 mm</strong> of filament go through the extruder without the sensor's wheel moving.</td></tr>
+<tr><td><code>M412 L0</code></td><td><strong>Turns jam detection off</strong> and leaves the runout switch as it is. This is the default.</td></tr>
+<tr><td><code>M500</code></td><td>Saves the settings. Without it, a change is lost when the printer is switched off.</td></tr>
+<tr><td><code>M119</code></td><td>The <em>filament</em> line reads <code>TRIGGERED</code> with filament loaded, <code>open</code> without.</td></tr>
+</tbody></table></div>
+<p><code>M412 L0</code>, and <code>L</code> used on its own, come from our change to Marlin
+(<a href="https://github.com/MarlinFirmware/Marlin/pull/28585">MarlinFirmware/Marlin#28585</a>), built into these firmwares. In Marlin without it, <code>L</code>
+alone is ignored and <code>L0</code> pauses the print as a jam at once.</p>
+
 <h2>Wanhao's runout switch</h2>
 <p>It tells the firmware whether filament is there. When it goes missing, the print pauses after 5 more mm of
-filament and the screen starts a filament change.</p>
-<ul>
-<li>Turn it on: <code>M412 S1</code> then <code>M500</code>. Off: <code>M412 S0</code> then <code>M500</code>.</li>
-<li>Check it: send <code>M119</code>. The <em>filament</em> line reads <code>TRIGGERED</code> with filament loaded and
-<code>open</code> without.</li>
-</ul>
+filament and the screen starts a filament change. It is on by default on the MK3.</p>
+<pre><code>M412 S1
+M500</code></pre>
+<p>Jam detection stays off (<code>L0</code>), since this switch cannot see filament move. To turn the switch off:
+<code>M412 S0</code> then <code>M500</code>.</p>
 
 <h2>BTT Smart Filament Sensor V2.0</h2>
 <p>This sensor has two outputs, and the firmware reads them differently:</p>
@@ -733,8 +749,8 @@ filament and the screen starts a filament change.</p>
 <li><strong>The runout switch</strong> (to D8) is a level: 5 V while filament is there, 0 V once it has gone.</li>
 <li><strong>The motion output</strong> (to D9) comes from a small wheel the filament turns as it passes. Each few
 millimetres of filament, the output flips between 0 V and 5 V. The firmware only watches for those changes: if the
-extruder pushes a set length of filament without a single one, the filament is not following, and the print pauses.
-The runout switch cannot see that: during a jam the filament is still there.</li>
+extruder pushes the jam length of filament without a single one, the filament is not following (tangled spool, jam,
+stripped filament), and the print pauses. The runout switch cannot see that: during a jam the filament is still there.</li>
 </ul>
 <h3>Wiring</h3>
 <p><strong>5V</strong> to 5V, <strong>GND</strong> to GND, the <strong>runout switch</strong> signal to <strong>D8</strong>
@@ -742,28 +758,24 @@ and the <strong>motion</strong> signal to <strong>D9</strong>. The names printed
 <h3>Turning it on</h3>
 <pre><code>M412 S1 L10
 M500</code></pre>
-<p><code>L10</code> is the jam length: the print pauses when 10 mm of filament go through the extruder without the
-wheel moving. Raise it (<code>M412 S1 L15</code> then <code>M500</code>; <code>L</code> alone is ignored) if prints pause without a reason.</p>
+<p>If prints pause without a reason, raise the jam length: <code>M412 L15</code> then <code>M500</code>. To keep only
+the runout switch: <code>M412 L0</code> then <code>M500</code>.</p>
 <h3>Checking it</h3>
 <ul>
-<li><code>M412</code> prints the state: <em>Filament runout ON ; Distance 5.00mm ; Motion distance 10.00mm</em>.</li>
+<li><code>M412</code>: <em>Filament runout ON ; Distance 5.00mm ; Motion distance 10.00mm</em>.</li>
 <li><code>M119</code> with filament loaded: <em>filament: TRIGGERED</em>. If that line changes while you push filament
 through by hand instead of when you insert or remove it, the two signal wires are swapped: swap D8 and D9.</li>
 </ul>
-<div class="note">Support for this sensor is new in v2.0.5 and not tested with the sensor yet. If the switch reads the
-wrong way round (<em>open</em> with filament loaded), tell us on <a href="{DISCORD}">Discord</a>.</div>
+<div class="note">Jam detection was tested on an MK2 300 without the sensor (a 2 mm jam length triggers, <code>L0</code> never
+does), but not yet with the BTT sensor itself. If the switch reads the wrong way round (<em>open</em> with filament
+loaded), tell us on <a href="{DISCORD}">Discord</a>.</div>
 
-<h2>Why the jam length is 10 km by default</h2>
-<p><code>M412 S1</code> turns the runout switch and the motion check on together: Marlin has one setting for both.
-With no BTT sensor on D9, that pin never changes, which the firmware reads as "the filament is not moving". A runout
-switch alone would then pause prints for nothing, and the MK3, whose switch is on by default, on every print. The
-count only starts again when the printer is switched on or after a filament change started by the firmware
-(<code>M600</code>), not at each print, and not when you load a spool from the screen.</p>
-<p>The default jam length is therefore 10 km, about 30 kg of PLA without switching the printer off, which in practice
-never triggers. <code>M412 S1 L10</code> sets the real one once a BTT sensor is wired.</p>
-<p>v2.0.5 used 100 m, about a third of a 1 kg spool: on the MK3, or with any runout switch turned on, a printer left on
-could pause for nothing after that. Update to v2.0.6: settings saved with a jam length of 100 m or more, and the zero
-lengths saved by v2.0.4 or earlier, are replaced by the defaults (5 mm and 10 km) when the printer starts.</p>
+<h2>Updating from v2.0.5 or v2.0.6</h2>
+<p>Those releases had no way to turn jam detection off, so they used a jam length too long to ever be reached: 100 m in
+v2.0.5 (too short in fact: about a third of a 1 kg spool, after which a printer left on could pause for nothing) and
+10 km in v2.0.6. When the printer starts, v2.0.7 loads those two values as <code>L0</code>. A real length you set
+for a BTT sensor, such as <code>L10</code>, is kept. From v2.0.4 or earlier, the 5 mm runout distance is loaded
+instead of the 0 those versions saved.</p>
 """)
         return ("Capteurs de filament de la Wanhao Duplicator 9 : fin de filament et branchement du BTT Smart Filament Sensor",
                 "Où brancher un capteur de filament sur la carte mère Wanhao D9 (D8, D9, GND, 5V), comment câbler un BTT Smart "
@@ -787,14 +799,30 @@ broches CTRL, BTN, GND et VCC.</p>
 </ul>
 <div class="note">Imprimante <strong>éteinte</strong> pour brancher ou débrancher quoi que ce soit sur la carte.</div>
 
+<h2>Les commandes M412</h2>
+<p>Tout se règle en USB depuis un terminal série (Pronterface, le terminal de votre slicer ou d'OctoPrint, 250000
+bauds). Les paramètres se combinent dans une même commande, par exemple <code>M412 S1 L10</code>.</p>
+<div class="table"><table class="stack"><thead><tr><th>Commande</th><th>Ce qu'elle fait</th></tr></thead><tbody>
+<tr><td><code>M412</code></td><td>Affiche l'état, par exemple <em>Filament runout ON ; Distance 5.00mm ; Motion distance 0.00mm</em>.</td></tr>
+<tr><td><code>M412 S1</code></td><td><strong>Active la détection</strong> : le détecteur de fin de filament, et aussi la détection de bourrage si la longueur de bourrage n'est pas 0.</td></tr>
+<tr><td><code>M412 S0</code></td><td><strong>Désactive toute la détection</strong>, fin de filament et bourrage.</td></tr>
+<tr><td><code>M412 D5</code></td><td>Quand le détecteur ne voit plus de filament, continue d'imprimer <strong>5 mm</strong> avant la pause, pour utiliser le filament restant entre le capteur et la buse. 5 mm par défaut.</td></tr>
+<tr><td><code>M412 L10</code></td><td><strong>Active la détection de bourrage</strong> (capteur BTT uniquement) : pause quand <strong>10 mm</strong> de filament passent dans l'extrudeur sans que la roue du capteur bouge.</td></tr>
+<tr><td><code>M412 L0</code></td><td><strong>Désactive la détection de bourrage</strong> sans toucher au détecteur de fin de filament. C'est le réglage par défaut.</td></tr>
+<tr><td><code>M500</code></td><td>Enregistre les réglages. Sans lui, un changement est perdu à l'extinction.</td></tr>
+<tr><td><code>M119</code></td><td>La ligne <em>filament</em> affiche <code>TRIGGERED</code> avec du filament, <code>open</code> sans.</td></tr>
+</tbody></table></div>
+<p><code>M412 L0</code>, et <code>L</code> utilisé seul, viennent de notre modification de Marlin
+(<a href="https://github.com/MarlinFirmware/Marlin/pull/28585">MarlinFirmware/Marlin#28585</a>), intégrée à ces firmwares. Dans Marlin sans elle, <code>L</code>
+seul est ignoré et <code>L0</code> met tout de suite l'impression en pause pour bourrage.</p>
+
 <h2>Le détecteur de fin de filament Wanhao</h2>
 <p>Il indique au firmware si le filament est là. Quand il manque, l'impression se met en pause 5 mm de filament plus
-loin et l'écran lance un changement de filament.</p>
-<ul>
-<li>L'activer : <code>M412 S1</code> puis <code>M500</code>. Le désactiver : <code>M412 S0</code> puis <code>M500</code>.</li>
-<li>Le vérifier : envoyez <code>M119</code>. La ligne <em>filament</em> affiche <code>TRIGGERED</code> avec du
-filament et <code>open</code> sans.</li>
-</ul>
+loin et l'écran lance un changement de filament. Il est actif par défaut sur la MK3.</p>
+<pre><code>M412 S1
+M500</code></pre>
+<p>La détection de bourrage reste désactivée (<code>L0</code>), puisque ce détecteur ne voit pas le filament avancer.
+Pour le désactiver : <code>M412 S0</code> puis <code>M500</code>.</p>
 
 <h2>BTT Smart Filament Sensor V2.0</h2>
 <p>Ce capteur a deux sorties, que le firmware lit différemment :</p>
@@ -803,9 +831,9 @@ filament et <code>open</code> sans.</li>
 quand il n'y en a plus.</li>
 <li><strong>La sortie mouvement</strong> (vers D9) vient d'une petite roue que le filament fait tourner en passant.
 Tous les quelques millimètres de filament, la sortie bascule entre 0 V et 5 V. Le firmware ne regarde que ces
-changements : si l'extrudeur pousse une longueur donnée de filament sans un seul changement, le filament ne suit pas,
-et l'impression se met en pause. Le détecteur de fin de filament ne peut pas le voir : pendant un bourrage, le filament
-est toujours là.</li>
+changements : si l'extrudeur pousse la longueur de bourrage sans un seul changement, le filament ne suit pas (bobine
+emmêlée, bourrage, filament rongé), et l'impression se met en pause. Le détecteur de fin de filament ne peut pas le
+voir : pendant un bourrage, le filament est toujours là.</li>
 </ul>
 <h3>Branchement</h3>
 <p><strong>5V</strong> sur 5V, <strong>GND</strong> sur GND, le signal de <strong>fin de filament</strong> sur
@@ -814,32 +842,26 @@ du capteur peuvent être différents.</p>
 <h3>L'activer</h3>
 <pre><code>M412 S1 L10
 M500</code></pre>
-<p><code>L10</code> est la longueur de bourrage : l'impression se met en pause quand 10 mm de filament passent dans
-l'extrudeur sans que la roue bouge. Augmentez-la (<code>M412 S1 L15</code> puis <code>M500</code> ; <code>L</code> seul est ignoré) si des impressions se
-mettent en pause sans raison.</p>
+<p>Si des impressions se mettent en pause sans raison, augmentez la longueur de bourrage : <code>M412 L15</code> puis
+<code>M500</code>. Pour ne garder que le détecteur de fin de filament : <code>M412 L0</code> puis <code>M500</code>.</p>
 <h3>Le vérifier</h3>
 <ul>
-<li><code>M412</code> affiche l'état : <em>Filament runout ON ; Distance 5.00mm ; Motion distance 10.00mm</em>.</li>
+<li><code>M412</code> : <em>Filament runout ON ; Distance 5.00mm ; Motion distance 10.00mm</em>.</li>
 <li><code>M119</code> avec du filament : <em>filament: TRIGGERED</em>. Si cette ligne change quand vous poussez le
 filament à la main plutôt que quand vous l'insérez ou le retirez, les deux fils de signal sont inversés : échangez D8
 et D9.</li>
 </ul>
-<div class="note">La prise en charge de ce capteur est nouvelle en v2.0.5 et n'a pas encore été testée avec le capteur.
-Si le détecteur est lu à l'envers (<em>open</em> avec du filament), dites-le sur <a href="{DISCORD}">Discord</a>.</div>
+<div class="note">La détection de bourrage a été testée sur une MK2 300 sans le capteur (une longueur de 2 mm déclenche,
+<code>L0</code> jamais), mais pas encore avec le capteur BTT lui-même. Si le détecteur est lu à l'envers
+(<em>open</em> avec du filament), dites-le sur <a href="{DISCORD}">Discord</a>.</div>
 
-<h2>Pourquoi la longueur de bourrage vaut 10 km par défaut</h2>
-<p><code>M412 S1</code> active en même temps le détecteur de fin de filament et la surveillance du mouvement : Marlin
-n'a qu'un seul réglage pour les deux. Sans capteur BTT sur D9, cette broche ne change jamais, ce que le firmware lit
-comme « le filament n'avance pas ». Un simple détecteur de fin de filament mettrait alors des impressions en pause
-pour rien, et la MK3, dont le détecteur est actif par défaut, chaque impression. Le décompte ne repart qu'à
-l'allumage ou après un changement de filament lancé par le firmware (<code>M600</code>), pas à chaque impression, ni
-quand vous chargez une bobine depuis l'écran.</p>
-<p>La longueur de bourrage par défaut est donc de 10 km, environ 30 kg de PLA sans éteindre l'imprimante, ce qui ne se
-déclenche jamais en pratique. <code>M412 S1 L10</code> règle la vraie une fois le capteur BTT branché.</p>
-<p>La v2.0.5 utilisait 100 m, environ un tiers d'une bobine de 1 kg : sur la MK3, ou avec n'importe quel détecteur de
-fin de filament activé, une imprimante restée allumée pouvait se mettre en pause pour rien au-delà. Passez en v2.0.6 :
-les réglages enregistrés avec une longueur de bourrage de 100 m ou plus, et les longueurs à zéro enregistrées par la
-v2.0.4 ou avant, sont remplacés par les valeurs par défaut (5 mm et 10 km) au démarrage.</p>
+<h2>Mise à jour depuis la v2.0.5 ou la v2.0.6</h2>
+<p>Ces versions ne pouvaient pas désactiver la détection de bourrage, elles utilisaient donc une longueur de bourrage
+censée ne jamais être atteinte : 100 m en v2.0.5 (trop court en réalité : environ un tiers de bobine de 1 kg, au-delà
+duquel une imprimante restée allumée pouvait se mettre en pause pour rien) et 10 km en v2.0.6. Au démarrage, la
+v2.0.7 charge ces deux valeurs comme <code>L0</code>. Une vraie longueur réglée pour un capteur BTT, comme
+<code>L10</code>, est conservée. Depuis la v2.0.4 ou avant, la distance de fin de filament de 5 mm est chargée à la
+place du 0 enregistré par ces versions.</p>
 """)
     if page == "quiet":
         if en:

@@ -43,14 +43,30 @@ in that order. The pin names come from a wiring diagram by Wanhao that dustovich
 </ul>
 <div class="note">Printer <strong>switched off</strong> while you plug or unplug anything on the board.</div>
 
+<h2>The M412 commands</h2>
+<p>Everything is set over USB from a serial terminal (Pronterface, the terminal of your slicer or of OctoPrint,
+250000 baud). Parameters can be combined in one command, for example <code>M412 S1 L10</code>.</p>
+<div class="table"><table class="stack"><thead><tr><th>Command</th><th>What it does</th></tr></thead><tbody>
+<tr><td><code>M412</code></td><td>Shows the state, for example <em>Filament runout ON ; Distance 5.00mm ; Motion distance 0.00mm</em>.</td></tr>
+<tr><td><code>M412 S1</code></td><td><strong>Turns detection on</strong>: the runout switch, and jam detection too if the jam length is not 0.</td></tr>
+<tr><td><code>M412 S0</code></td><td><strong>Turns all detection off</strong>, switch and jam.</td></tr>
+<tr><td><code>M412 D5</code></td><td>Once the switch sees no filament, keeps printing <strong>5 mm</strong> before pausing, to use the filament left between the sensor and the nozzle. Default 5 mm.</td></tr>
+<tr><td><code>M412 L10</code></td><td><strong>Turns jam detection on</strong> (BTT sensor only): pauses when <strong>10 mm</strong> of filament go through the extruder without the sensor's wheel moving.</td></tr>
+<tr><td><code>M412 L0</code></td><td><strong>Turns jam detection off</strong> and leaves the runout switch as it is. This is the default.</td></tr>
+<tr><td><code>M500</code></td><td>Saves the settings. Without it, a change is lost when the printer is switched off.</td></tr>
+<tr><td><code>M119</code></td><td>The <em>filament</em> line reads <code>TRIGGERED</code> with filament loaded, <code>open</code> without.</td></tr>
+</tbody></table></div>
+<p><code>M412 L0</code>, and <code>L</code> used on its own, come from our change to Marlin
+(<a href="https://github.com/MarlinFirmware/Marlin/pull/28585">MarlinFirmware/Marlin#28585</a>), built into these firmwares. In Marlin without it, <code>L</code>
+alone is ignored and <code>L0</code> pauses the print as a jam at once.</p>
+
 <h2>Wanhao's runout switch</h2>
 <p>It tells the firmware whether filament is there. When it goes missing, the print pauses after 5 more mm of
-filament and the screen starts a filament change.</p>
-<ul>
-<li>Turn it on: <code>M412 S1</code> then <code>M500</code>. Off: <code>M412 S0</code> then <code>M500</code>.</li>
-<li>Check it: send <code>M119</code>. The <em>filament</em> line reads <code>TRIGGERED</code> with filament loaded and
-<code>open</code> without.</li>
-</ul>
+filament and the screen starts a filament change. It is on by default on the MK3.</p>
+<pre><code>M412 S1
+M500</code></pre>
+<p>Jam detection stays off (<code>L0</code>), since this switch cannot see filament move. To turn the switch off:
+<code>M412 S0</code> then <code>M500</code>.</p>
 
 <h2>BTT Smart Filament Sensor V2.0</h2>
 <p>This sensor has two outputs, and the firmware reads them differently:</p>
@@ -58,8 +74,8 @@ filament and the screen starts a filament change.</p>
 <li><strong>The runout switch</strong> (to D8) is a level: 5 V while filament is there, 0 V once it has gone.</li>
 <li><strong>The motion output</strong> (to D9) comes from a small wheel the filament turns as it passes. Each few
 millimetres of filament, the output flips between 0 V and 5 V. The firmware only watches for those changes: if the
-extruder pushes a set length of filament without a single one, the filament is not following, and the print pauses.
-The runout switch cannot see that: during a jam the filament is still there.</li>
+extruder pushes the jam length of filament without a single one, the filament is not following (tangled spool, jam,
+stripped filament), and the print pauses. The runout switch cannot see that: during a jam the filament is still there.</li>
 </ul>
 <h3>Wiring</h3>
 <p><strong>5V</strong> to 5V, <strong>GND</strong> to GND, the <strong>runout switch</strong> signal to <strong>D8</strong>
@@ -67,28 +83,24 @@ and the <strong>motion</strong> signal to <strong>D9</strong>. The names printed
 <h3>Turning it on</h3>
 <pre><code>M412 S1 L10
 M500</code></pre>
-<p><code>L10</code> is the jam length: the print pauses when 10 mm of filament go through the extruder without the
-wheel moving. Raise it (<code>M412 S1 L15</code> then <code>M500</code>; <code>L</code> alone is ignored) if prints pause without a reason.</p>
+<p>If prints pause without a reason, raise the jam length: <code>M412 L15</code> then <code>M500</code>. To keep only
+the runout switch: <code>M412 L0</code> then <code>M500</code>.</p>
 <h3>Checking it</h3>
 <ul>
-<li><code>M412</code> prints the state: <em>Filament runout ON ; Distance 5.00mm ; Motion distance 10.00mm</em>.</li>
+<li><code>M412</code>: <em>Filament runout ON ; Distance 5.00mm ; Motion distance 10.00mm</em>.</li>
 <li><code>M119</code> with filament loaded: <em>filament: TRIGGERED</em>. If that line changes while you push filament
 through by hand instead of when you insert or remove it, the two signal wires are swapped: swap D8 and D9.</li>
 </ul>
-<div class="note">Support for this sensor is new in v2.0.5 and not tested with the sensor yet. If the switch reads the
-wrong way round (<em>open</em> with filament loaded), tell us on <a href="https://discord.gg/T37DYHmt2j">Discord</a>.</div>
+<div class="note">Jam detection was tested on an MK2 300 without the sensor (a 2 mm jam length triggers, <code>L0</code> never
+does), but not yet with the BTT sensor itself. If the switch reads the wrong way round (<em>open</em> with filament
+loaded), tell us on <a href="https://discord.gg/T37DYHmt2j">Discord</a>.</div>
 
-<h2>Why the jam length is 10 km by default</h2>
-<p><code>M412 S1</code> turns the runout switch and the motion check on together: Marlin has one setting for both.
-With no BTT sensor on D9, that pin never changes, which the firmware reads as "the filament is not moving". A runout
-switch alone would then pause prints for nothing, and the MK3, whose switch is on by default, on every print. The
-count only starts again when the printer is switched on or after a filament change started by the firmware
-(<code>M600</code>), not at each print, and not when you load a spool from the screen.</p>
-<p>The default jam length is therefore 10 km, about 30 kg of PLA without switching the printer off, which in practice
-never triggers. <code>M412 S1 L10</code> sets the real one once a BTT sensor is wired.</p>
-<p>v2.0.5 used 100 m, about a third of a 1 kg spool: on the MK3, or with any runout switch turned on, a printer left on
-could pause for nothing after that. Update to v2.0.6: settings saved with a jam length of 100 m or more, and the zero
-lengths saved by v2.0.4 or earlier, are replaced by the defaults (5 mm and 10 km) when the printer starts.</p>
+<h2>Updating from v2.0.5 or v2.0.6</h2>
+<p>Those releases had no way to turn jam detection off, so they used a jam length too long to ever be reached: 100 m in
+v2.0.5 (too short in fact: about a third of a 1 kg spool, after which a printer left on could pause for nothing) and
+10 km in v2.0.6. When the printer starts, v2.0.7 loads those two values as <code>L0</code>. A real length you set
+for a BTT sensor, such as <code>L10</code>, is kept. From v2.0.4 or earlier, the 5 mm runout distance is loaded
+instead of the 0 those versions saved.</p>
 </div></main>
 <footer class="site"><div class="wrap">
 <a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9">Source and issues on GitHub</a>
