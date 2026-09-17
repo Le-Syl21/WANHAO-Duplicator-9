@@ -1,0 +1,487 @@
+diff --git a/Marlin/src/lcd/extui/dgus_reloaded/DGUSRxHandler.cpp b/Marlin/src/lcd/extui/dgus_reloaded/DGUSRxHandler.cpp
+index 68e1f95b79..c376809caa 100644
+--- a/Marlin/src/lcd/extui/dgus_reloaded/DGUSRxHandler.cpp
++++ b/Marlin/src/lcd/extui/dgus_reloaded/DGUSRxHandler.cpp
+@@ -30,6 +30,10 @@
+ #include "config/DGUS_ScreenID.h"
+ 
+ #include "../ui_api.h"
++
++#if HAS_FILAMENT_SENSOR
++  #include "../../../feature/runout.h"
++#endif
+ #include "../../../core/language.h"
+ #include "../../../module/temperature.h"
+ #include "../../../module/printcounter.h"
+@@ -934,6 +938,64 @@ void DGUSRxHandler::waitContinue(DGUS_VP &vp, void *data_ptr) {
+   screen.triggerFullUpdate();
+ }
+ 
++#if HAS_FILAMENT_SENSOR
++
++  void DGUSRxHandler::filamentSensorToggle(DGUS_VP &vp, void *data_ptr) {
++    UNUSED(vp);
++
++    const DGUS_Data::FilamentSensor sensor = (DGUS_Data::FilamentSensor)((uint8_t*)data_ptr)[1];
++
++    switch (sensor) {
++      default: return;
++      case DGUS_Data::FilamentSensor::RUNOUT:
++        ExtUI::setFilamentRunoutEnabled(!ExtUI::getFilamentRunoutEnabled());
++        break;
++      #if ENABLED(FILAMENT_SWITCH_AND_MOTION)
++        case DGUS_Data::FilamentSensor::JAM:
++          if (runout.motion_distance() > 0) {
++            screen.jam_length = runout.motion_distance();
++            runout.set_motion_distance(0);
++          }
++          else
++            runout.set_motion_distance(screen.jam_length);
++          break;
++      #endif
++    }
++
++    runout.reset();
++    screen.triggerFullUpdate();
++  }
++
++  #if ENABLED(FILAMENT_SWITCH_AND_MOTION)
++    void DGUSRxHandler::filamentSensorJam(DGUS_VP &vp, void *data_ptr) {
++      UNUSED(vp);
++
++      const uint16_t length = BE16_P(data_ptr);
++
++      if (length) screen.jam_length = length;
++      runout.set_motion_distance(length);
++      runout.reset();
++
++      screen.triggerFullUpdate();
++    }
++  #endif
++
++  void DGUSRxHandler::filamentSensorSave(DGUS_VP &vp, void *data_ptr) {
++    UNUSED(vp);
++    UNUSED(data_ptr);
++
++    screen.triggerEEPROMSave();
++  }
++
++#endif // HAS_FILAMENT_SENSOR
++
++void DGUSRxHandler::language(DGUS_VP &vp, void *data_ptr) {
++  UNUSED(vp);
++
++  screen.language = ((uint8_t*)data_ptr)[1];
++  screen.triggerEEPROMSave();
++}
++
+ void DGUSRxHandler::fanSpeed(DGUS_VP &vp, void *data_ptr) {
+   uint8_t speed = ((uint8_t*)data_ptr)[1];
+   switch (vp.addr) {
+diff --git a/Marlin/src/lcd/extui/dgus_reloaded/DGUSRxHandler.h b/Marlin/src/lcd/extui/dgus_reloaded/DGUSRxHandler.h
+index 9143b83554..c5f239f458 100644
+--- a/Marlin/src/lcd/extui/dgus_reloaded/DGUSRxHandler.h
++++ b/Marlin/src/lcd/extui/dgus_reloaded/DGUSRxHandler.h
+@@ -86,6 +86,16 @@ namespace DGUSRxHandler {
+   void waitAbort(DGUS_VP &, void *);
+   void waitContinue(DGUS_VP &, void *);
+ 
++  #if HAS_FILAMENT_SENSOR
++    void filamentSensorToggle(DGUS_VP &, void *);
++    void filamentSensorSave(DGUS_VP &, void *);
++    #if ENABLED(FILAMENT_SWITCH_AND_MOTION)
++      void filamentSensorJam(DGUS_VP &, void *);
++    #endif
++  #endif
++
++  void language(DGUS_VP &, void *);
++
+   void fanSpeed(DGUS_VP &, void *);
+ 
+   void volume(DGUS_VP &, void *);
+diff --git a/Marlin/src/lcd/extui/dgus_reloaded/DGUSScreenHandler.cpp b/Marlin/src/lcd/extui/dgus_reloaded/DGUSScreenHandler.cpp
+index 13d399083b..58307da88d 100644
+--- a/Marlin/src/lcd/extui/dgus_reloaded/DGUSScreenHandler.cpp
++++ b/Marlin/src/lcd/extui/dgus_reloaded/DGUSScreenHandler.cpp
+@@ -26,6 +26,8 @@
+ 
+ #include "DGUSScreenHandler.h"
+ 
++static const char machine_name[] PROGMEM = MACHINE_NAME;
++
+ #include "DGUSDisplay.h"
+ #include "definition/DGUS_ScreenAddrList.h"
+ #include "definition/DGUS_ScreenSetup.h"
+@@ -66,7 +68,14 @@ bool DGUSScreenHandler::wait_continue = false;
+ 
+ bool DGUSScreenHandler::leveling_active = false;
+ 
++uint8_t DGUSScreenHandler::language = 0;
++
++#if ENABLED(FILAMENT_SWITCH_AND_MOTION)
++  uint16_t DGUSScreenHandler::jam_length = DGUS_DEFAULT_JAM_LEN;
++#endif
++
+ millis_t DGUSScreenHandler::status_expire = 0;
++char DGUSScreenHandler::standing_status[] = "";
+ millis_t DGUSScreenHandler::eeprom_save = 0;
+ 
+ void DGUSScreenHandler::init() {
+@@ -135,7 +144,7 @@ void DGUSScreenHandler::loop() {
+   }
+ 
+   if (status_expire > 0 && ELAPSED(ms, status_expire)) {
+-    setStatusMessage(FPSTR(NUL_STR), 0);
++    setStatusMessage(standing_status, 0); // Back to Marlin's own status
+     return;
+   }
+ 
+@@ -191,6 +200,7 @@ void DGUSScreenHandler::storeSettings(char *buff) {
+   data.volume = dgus.getVolume();
+   data.brightness = dgus.getBrightness();
+   data.abl_okay = (ExtUI::getLevelingActive() && ExtUI::getLevelingIsValid());
++  data.language = language;
+ 
+   memcpy(buff, &data, sizeof(data));
+ }
+@@ -204,6 +214,7 @@ void DGUSScreenHandler::loadSettings(const char *buff) {
+ 
+   dgus.setVolume(data.initialized ? data.volume : DGUS_DEFAULT_VOLUME);
+   dgus.setBrightness(data.initialized ? data.brightness : DGUS_DEFAULT_BRIGHTNESS);
++  language = data.initialized ? data.language : 0;
+ 
+   if (data.initialized) {
+     leveling_active = (data.abl_okay && ExtUI::getLevelingIsValid());
+@@ -372,15 +383,26 @@ void DGUSScreenHandler::setMessageLine_P(PGM_P const msg, const uint8_t line) {
+ }
+ 
+ void DGUSScreenHandler::setStatusMessage(const char* msg, const millis_t duration) {
+-  dgus.writeString((uint16_t)DGUS_Addr::MESSAGE_Status, msg, DGUS_STATUS_LEN, false, true);
++  dgus.writeString((uint16_t)DGUS_Addr::MESSAGE_Status, msg, DGUS_STATUS_LEN, true, false, false);
+   status_expire = (duration > 0 ? ExtUI::safe_millis() + duration : 0);
+ }
+ 
+ void DGUSScreenHandler::setStatusMessage(FSTR_P const fmsg, const millis_t duration) {
+-  dgus.writeString((uint16_t)DGUS_Addr::MESSAGE_Status, fmsg, DGUS_STATUS_LEN, false, true);
++  dgus.writeString((uint16_t)DGUS_Addr::MESSAGE_Status, fmsg, DGUS_STATUS_LEN, true, false, false);
+   status_expire = (duration > 0 ? ExtUI::safe_millis() + duration : 0);
+ }
+ 
++// Marlin's own status ("<machine name> Ready.", "Printing...") stays on screen until the next one, and comes
++// back when a screen message expires. The machine name has its own field, so drop it from the message.
++void DGUSScreenHandler::setStandingStatus(const char * const msg) {
++  const char *m = msg;
++  const size_t n = strlen_P(machine_name);
++  if (n && strncmp_P(m, machine_name, n) == 0 && m[n] == ' ') m += n + 1;
++  strncpy(standing_status, m, DGUS_STATUS_LEN);
++  standing_status[DGUS_STATUS_LEN] = '\0';
++  setStatusMessage(standing_status, 0);
++}
++
+ void DGUSScreenHandler::showWaitScreen(const DGUS_ScreenID return_screenID, const bool has_continue/*=false*/) {
+   if (return_screenID != DGUS_ScreenID::WAIT)
+     wait_return_screenID = return_screenID;
+diff --git a/Marlin/src/lcd/extui/dgus_reloaded/DGUSScreenHandler.h b/Marlin/src/lcd/extui/dgus_reloaded/DGUSScreenHandler.h
+index ec7ebc5bed..3de4f03625 100644
+--- a/Marlin/src/lcd/extui/dgus_reloaded/DGUSScreenHandler.h
++++ b/Marlin/src/lcd/extui/dgus_reloaded/DGUSScreenHandler.h
+@@ -75,6 +75,7 @@ public:
+ 
+   static void setStatusMessage(const char* msg, const millis_t duration=DGUS_STATUS_EXPIRATION_MS);
+   static void setStatusMessage(FSTR_P const msg, const millis_t duration=DGUS_STATUS_EXPIRATION_MS);
++  static void setStandingStatus(const char * const msg);
+ 
+   static void showWaitScreen(const DGUS_ScreenID return_screenID, const bool has_continue=false);
+   static void showWaitScreen(FSTR_P const msg, const DGUS_ScreenID return_screenID, const bool has_continue=false);
+@@ -113,6 +114,12 @@ public:
+ 
+   static bool leveling_active;
+ 
++  static uint8_t language;
++
++  #if ENABLED(FILAMENT_SWITCH_AND_MOTION)
++    static uint16_t jam_length;
++  #endif
++
+ private:
+   static const DGUS_Addr* findScreenAddrList(const DGUS_ScreenID screenID);
+   static bool callScreenSetup(const DGUS_ScreenID screenID);
+@@ -130,6 +137,7 @@ private:
+   static DGUS_ScreenID wait_return_screenID;
+ 
+   static millis_t status_expire;
++  static char standing_status[DGUS_STATUS_LEN + 1];
+   static millis_t eeprom_save;
+ 
+   typedef struct {
+@@ -137,6 +145,7 @@ private:
+     uint8_t volume;
+     uint8_t brightness;
+     bool abl_okay;
++    uint8_t language;
+   } eeprom_data_t;
+ };
+ 
+diff --git a/Marlin/src/lcd/extui/dgus_reloaded/DGUSTxHandler.cpp b/Marlin/src/lcd/extui/dgus_reloaded/DGUSTxHandler.cpp
+index d0059f056a..4cfdb52538 100644
+--- a/Marlin/src/lcd/extui/dgus_reloaded/DGUSTxHandler.cpp
++++ b/Marlin/src/lcd/extui/dgus_reloaded/DGUSTxHandler.cpp
+@@ -30,6 +30,10 @@
+ #include "config/DGUS_Data.h"
+ 
+ #include "../ui_api.h"
++
++#if HAS_FILAMENT_SENSOR
++  #include "../../../feature/runout.h"
++#endif
+ #include "../../../module/stepper.h"
+ #include "../../../module/temperature.h"
+ #include "../../../module/printcounter.h"
+@@ -509,6 +513,38 @@ void DGUSTxHandler::waitIcons(DGUS_VP &vp) {
+   dgus.write((uint16_t)vp.addr, Swap16(icons));
+ }
+ 
++#if HAS_FILAMENT_SENSOR
++
++  void DGUSTxHandler::filamentSensorIcons(DGUS_VP &vp) {
++    uint16_t icons = 0;
++
++    if (ExtUI::getFilamentRunoutEnabled())
++      icons |= (uint16_t)DGUS_Data::FilamentSensorIcon::RUNOUT;
++    #if ENABLED(FILAMENT_SWITCH_AND_MOTION)
++      if (runout.motion_distance() > 0)
++        icons |= (uint16_t)DGUS_Data::FilamentSensorIcon::JAM;
++    #endif
++    if (!FILAMENT_IS_OUT())
++      icons |= (uint16_t)DGUS_Data::FilamentSensorIcon::PRESENT;
++
++    dgus.write((uint16_t)vp.addr, Swap16(icons));
++  }
++
++  #if ENABLED(FILAMENT_SWITCH_AND_MOTION)
++    void DGUSTxHandler::filamentSensorJam(DGUS_VP &vp) {
++      if (runout.motion_distance() > 0)
++        screen.jam_length = runout.motion_distance();
++
++      dgus.write((uint16_t)vp.addr, Swap16(screen.jam_length));
++    }
++  #endif
++
++#endif // HAS_FILAMENT_SENSOR
++
++void DGUSTxHandler::language(DGUS_VP &vp) {
++  dgus.write((uint16_t)vp.addr, Swap16((uint16_t)screen.language));
++}
++
+ void DGUSTxHandler::fanSpeed(DGUS_VP &vp) {
+   uint16_t fan_speed;
+ 
+diff --git a/Marlin/src/lcd/extui/dgus_reloaded/DGUSTxHandler.h b/Marlin/src/lcd/extui/dgus_reloaded/DGUSTxHandler.h
+index c82f4c80da..fd5326fc2d 100644
+--- a/Marlin/src/lcd/extui/dgus_reloaded/DGUSTxHandler.h
++++ b/Marlin/src/lcd/extui/dgus_reloaded/DGUSTxHandler.h
+@@ -70,6 +70,15 @@ namespace DGUSTxHandler {
+ 
+   void waitIcons(DGUS_VP &);
+ 
++  #if HAS_FILAMENT_SENSOR
++    void filamentSensorIcons(DGUS_VP &);
++    #if ENABLED(FILAMENT_SWITCH_AND_MOTION)
++      void filamentSensorJam(DGUS_VP &);
++    #endif
++  #endif
++
++  void language(DGUS_VP &);
++
+   void fanSpeed(DGUS_VP &);
+ 
+   void volume(DGUS_VP &);
+diff --git a/Marlin/src/lcd/extui/dgus_reloaded/config/DGUS_Addr.h b/Marlin/src/lcd/extui/dgus_reloaded/config/DGUS_Addr.h
+index ec4962e6b2..9a272a1ba8 100644
+--- a/Marlin/src/lcd/extui/dgus_reloaded/config/DGUS_Addr.h
++++ b/Marlin/src/lcd/extui/dgus_reloaded/config/DGUS_Addr.h
+@@ -96,6 +96,8 @@ enum class DGUS_Addr : uint16_t {
+   POWERLOSS_Resume        = 0x202D, // Popup / Data: DGUS_Data::Popup
+   WAIT_Abort              = 0x202E, // Popup / Data: DGUS_Data::Popup
+   WAIT_Continue           = 0x202F,
++  FILAMENT_SENSOR_Toggle  = 0x2030, // Data: DGUS_Data::FilamentSensor
++  FILAMENT_SENSOR_Save    = 0x2032,
+ 
+   // WRITE-ONLY VARIABLES
+ 
+@@ -157,6 +159,7 @@ enum class DGUS_Addr : uint16_t {
+   INFOS_FilamentUsed      = 0x31A5, // 0x31A5 - 0x31BC
+   WAIT_Icons              = 0x31BD, // Bits: DGUS_Data::WaitIcon
+   STATUS_Icons            = 0x31BE, // Bits: DGUS_Data::StatusIcon
++  FILAMENT_SENSOR_Icons   = 0x31BF, // Bits: DGUS_Data::FilamentSensorIcon
+ 
+   // READ-WRITE VARIABLES
+ 
+@@ -165,6 +168,8 @@ enum class DGUS_Addr : uint16_t {
+   PID_Cycles              = 0x4021, // Type: Integer (16 bits unsigned)
+   VOLUME_Level            = 0x4022, // Type: Integer (16 bits unsigned) / Data: volume as percent (0-100)
+   BRIGHTNESS_Level        = 0x4023, // Type: Integer (16 bits unsigned) / Data: brightness as percent (0-100)
++  LANGUAGE                = 0x4024, // Type: Integer (16 bits unsigned) / Data: index of the screen files' language
++  FILAMENT_SENSOR_Jam     = 0x4025, // Type: Integer (16 bits unsigned) / Data: jam length in mm, 0 turns jam detection off
+ 
+   // SPECIAL CASES
+ 
+diff --git a/Marlin/src/lcd/extui/dgus_reloaded/config/DGUS_Constants.h b/Marlin/src/lcd/extui/dgus_reloaded/config/DGUS_Constants.h
+index 0562b89239..dcd2ec87b3 100644
+--- a/Marlin/src/lcd/extui/dgus_reloaded/config/DGUS_Constants.h
++++ b/Marlin/src/lcd/extui/dgus_reloaded/config/DGUS_Constants.h
+@@ -73,6 +73,10 @@
+   #define DGUS_DEFAULT_FILAMENT_LEN 10
+ #endif
+ 
++#ifndef DGUS_DEFAULT_JAM_LEN
++  #define DGUS_DEFAULT_JAM_LEN 10 // (mm) Jam length restored when jam detection is turned back on
++#endif
++
+ #ifndef DGUS_LEVEL_CENTER_X
+   #define DGUS_LEVEL_CENTER_X ((X_BED_SIZE) / 2)
+ #endif
+diff --git a/Marlin/src/lcd/extui/dgus_reloaded/config/DGUS_Data.h b/Marlin/src/lcd/extui/dgus_reloaded/config/DGUS_Data.h
+index e1c1bf557f..197add0d54 100644
+--- a/Marlin/src/lcd/extui/dgus_reloaded/config/DGUS_Data.h
++++ b/Marlin/src/lcd/extui/dgus_reloaded/config/DGUS_Data.h
+@@ -98,6 +98,11 @@ namespace DGUS_Data {
+     BUTTON2 = 1
+   };
+ 
++  enum class FilamentSensor : uint8_t {
++    RUNOUT = 0,
++    JAM    = 1
++  };
++
+   // TX constants
+ 
+   enum class SDType : uint16_t {
+@@ -117,6 +122,12 @@ namespace DGUS_Data {
+     RESUME = 1U << 1
+   };
+ 
++  enum class FilamentSensorIcon : uint16_t {
++    RUNOUT  = 1U << 0,
++    JAM     = 1U << 1,
++    PRESENT = 1U << 2
++  };
++
+   enum class Status : uint16_t {
+     DISABLED = 0,
+     ENABLED  = 1
+diff --git a/Marlin/src/lcd/extui/dgus_reloaded/config/DGUS_ScreenID.h b/Marlin/src/lcd/extui/dgus_reloaded/config/DGUS_ScreenID.h
+index 546ebb4666..a32b775eff 100644
+--- a/Marlin/src/lcd/extui/dgus_reloaded/config/DGUS_ScreenID.h
++++ b/Marlin/src/lcd/extui/dgus_reloaded/config/DGUS_ScreenID.h
+@@ -45,6 +45,7 @@ enum class DGUS_ScreenID : uint8_t {
+   VOLUME              = 20,
+   BRIGHTNESS          = 21,
+   INFOS               = 22,
++  FILAMENT_SENSOR     = 23,
+   DEBUG               = 240,
+   POWERLOSS           = 248,
+   WAIT                = 249,
+diff --git a/Marlin/src/lcd/extui/dgus_reloaded/definition/DGUS_ScreenAddrList.cpp b/Marlin/src/lcd/extui/dgus_reloaded/definition/DGUS_ScreenAddrList.cpp
+index 32e95f2508..b2d89f7c56 100644
+--- a/Marlin/src/lcd/extui/dgus_reloaded/definition/DGUS_ScreenAddrList.cpp
++++ b/Marlin/src/lcd/extui/dgus_reloaded/definition/DGUS_ScreenAddrList.cpp
+@@ -29,6 +29,8 @@
+ #include "../../ui_api.h"
+ 
+ constexpr DGUS_Addr LIST_HOME[] PROGMEM = {
++  DGUS_Addr::INFOS_Machine,
++  DGUS_Addr::LANGUAGE,
+   DGUS_Addr::TEMP_Current_H0,
+   DGUS_Addr::TEMP_Target_H0,
+   DGUS_Addr::TEMP_Current_Bed,
+@@ -204,6 +206,16 @@ constexpr DGUS_Addr LIST_WAIT[] PROGMEM = {
+   DGUS_Addr::END
+ };
+ 
++#if HAS_FILAMENT_SENSOR
++  constexpr DGUS_Addr LIST_FILAMENT_SENSOR[] PROGMEM = {
++    DGUS_Addr::FILAMENT_SENSOR_Icons,
++    #if ENABLED(FILAMENT_SWITCH_AND_MOTION)
++      DGUS_Addr::FILAMENT_SENSOR_Jam,
++    #endif
++    DGUS_Addr::END
++  };
++#endif
++
+ #define MAP_HELPER(SCREEN, LIST) { .screenID = SCREEN, .addr_list = LIST }
+ 
+ const struct DGUS_ScreenAddrList screen_addr_list_map[] PROGMEM = {
+@@ -231,6 +243,9 @@ const struct DGUS_ScreenAddrList screen_addr_list_map[] PROGMEM = {
+   MAP_HELPER(DGUS_ScreenID::BRIGHTNESS,         LIST_BRIGHTNESS),
+   MAP_HELPER(DGUS_ScreenID::INFOS,              LIST_INFOS),
+   MAP_HELPER(DGUS_ScreenID::WAIT,               LIST_WAIT),
++  #if HAS_FILAMENT_SENSOR
++    MAP_HELPER(DGUS_ScreenID::FILAMENT_SENSOR,  LIST_FILAMENT_SENSOR),
++  #endif
+ 
+   MAP_HELPER((DGUS_ScreenID)0, nullptr)
+ };
+diff --git a/Marlin/src/lcd/extui/dgus_reloaded/definition/DGUS_VPList.cpp b/Marlin/src/lcd/extui/dgus_reloaded/definition/DGUS_VPList.cpp
+index 68a48e47f4..cc16a07017 100644
+--- a/Marlin/src/lcd/extui/dgus_reloaded/definition/DGUS_VPList.cpp
++++ b/Marlin/src/lcd/extui/dgus_reloaded/definition/DGUS_VPList.cpp
+@@ -148,6 +148,11 @@ const struct DGUS_VP vp_list[] PROGMEM = {
+   VP_HELPER_RX(DGUS_Addr::WAIT_Abort, &DGUSRxHandler::waitAbort),
+   VP_HELPER_RX_NODATA(DGUS_Addr::WAIT_Continue, &DGUSRxHandler::waitContinue),
+ 
++  #if HAS_FILAMENT_SENSOR
++    VP_HELPER_RX(DGUS_Addr::FILAMENT_SENSOR_Toggle, &DGUSRxHandler::filamentSensorToggle),
++    VP_HELPER_RX_NODATA(DGUS_Addr::FILAMENT_SENSOR_Save, &DGUSRxHandler::filamentSensorSave),
++  #endif
++
+   // WRITE-ONLY VARIABLES
+ 
+   #if HAS_MEDIA
+@@ -318,6 +323,10 @@ const struct DGUS_VP vp_list[] PROGMEM = {
+ 
+   VP_HELPER_TX(DGUS_Addr::WAIT_Icons, &DGUSTxHandler::waitIcons),
+ 
++  #if HAS_FILAMENT_SENSOR
++    VP_HELPER_TX(DGUS_Addr::FILAMENT_SENSOR_Icons, &DGUSTxHandler::filamentSensorIcons),
++  #endif
++
+   // READ-WRITE VARIABLES
+ 
+   VP_HELPER(DGUS_Addr::FAN0_Speed,
+@@ -355,6 +364,22 @@ const struct DGUS_VP vp_list[] PROGMEM = {
+             &DGUSRxHandler::brightness,
+             &DGUSTxHandler::brightness),
+ 
++  #if ENABLED(FILAMENT_SWITCH_AND_MOTION)
++    VP_HELPER(DGUS_Addr::FILAMENT_SENSOR_Jam,
++              2,
++              VPFLAG_AUTOUPLOAD,
++              nullptr,
++              &DGUSRxHandler::filamentSensorJam,
++              &DGUSTxHandler::filamentSensorJam),
++  #endif
++
++  VP_HELPER(DGUS_Addr::LANGUAGE,
++            2,
++            VPFLAG_AUTOUPLOAD,
++            nullptr,
++            &DGUSRxHandler::language,
++            &DGUSTxHandler::language),
++
+   // SPECIAL CASES
+ 
+   VP_HELPER_TX(DGUS_Addr::STATUS_Percent_Complete, &DGUSTxHandler::percent),
+diff --git a/Marlin/src/lcd/extui/dgus_reloaded/dgus_reloaded_extui.cpp b/Marlin/src/lcd/extui/dgus_reloaded/dgus_reloaded_extui.cpp
+index d969e58c84..4deb2a5990 100644
+--- a/Marlin/src/lcd/extui/dgus_reloaded/dgus_reloaded_extui.cpp
++++ b/Marlin/src/lcd/extui/dgus_reloaded/dgus_reloaded_extui.cpp
+@@ -101,7 +101,7 @@ namespace ExtUI {
+   #endif
+ 
+   void onStatusChanged(const char * const msg) {
+-    screen.setStatusMessage(msg);
++    screen.setStandingStatus(msg);
+   }
+ 
+   void onHomingStart() {}

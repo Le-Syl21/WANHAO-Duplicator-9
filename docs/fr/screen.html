@@ -1,43 +1,54 @@
 <!doctype html>
-<html lang="fr">
+<html lang="fr" dir="ltr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Firmware écran Wanhao Duplicator 9 (DWIN DGUS) – DGUS Reloaded 1.0.3</title>
-<meta name="description" content="Comment flasher l&#x27;écran tactile DWIN de la Wanhao D9 avec DGUS Reloaded 1.0.3 depuis une carte microSD, pour Marlin 2.1, et revenir au firmware d&#x27;écran Wanhao.">
+<title>Firmware écran Wanhao Duplicator 9 (DWIN DGUS) – DGUS Reloaded 2.0 en 16 langues</title>
+<meta name="description" content="Comment flasher l&#x27;écran tactile DWIN de la Wanhao D9 avec DGUS Reloaded 2.0 depuis une carte microSD : nouvelle interface en 16 langues, page capteur de filament, pour Marlin 2.1. Et revenir au firmware d&#x27;écran Wanhao.">
 <link rel="canonical" href="https://le-syl21.github.io/WANHAO-Duplicator-9/fr/screen.html">
 <link rel="alternate" hreflang="en" href="https://le-syl21.github.io/WANHAO-Duplicator-9/screen.html">
 <link rel="alternate" hreflang="fr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/fr/screen.html">
 <link rel="alternate" hreflang="x-default" href="https://le-syl21.github.io/WANHAO-Duplicator-9/screen.html">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Firmware écran Wanhao Duplicator 9 (DWIN DGUS) – DGUS Reloaded 1.0.3">
-<meta property="og:description" content="Comment flasher l&#x27;écran tactile DWIN de la Wanhao D9 avec DGUS Reloaded 1.0.3 depuis une carte microSD, pour Marlin 2.1, et revenir au firmware d&#x27;écran Wanhao.">
+<meta property="og:title" content="Firmware écran Wanhao Duplicator 9 (DWIN DGUS) – DGUS Reloaded 2.0 en 16 langues">
+<meta property="og:description" content="Comment flasher l&#x27;écran tactile DWIN de la Wanhao D9 avec DGUS Reloaded 2.0 depuis une carte microSD : nouvelle interface en 16 langues, page capteur de filament, pour Marlin 2.1. Et revenir au firmware d&#x27;écran Wanhao.">
 <meta property="og:url" content="https://le-syl21.github.io/WANHAO-Duplicator-9/fr/screen.html">
 <meta property="og:image" content="https://le-syl21.github.io/WANHAO-Duplicator-9/img/og.jpg">
 <meta property="og:locale" content="fr_FR">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖨️</text></svg>">
 <link rel="stylesheet" href="../style.css">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Firmware écran Wanhao Duplicator 9 (DWIN DGUS) – DGUS Reloaded 1.0.3", "description": "Comment flasher l'écran tactile DWIN de la Wanhao D9 avec DGUS Reloaded 1.0.3 depuis une carte microSD, pour Marlin 2.1, et revenir au firmware d'écran Wanhao.", "url": "https://le-syl21.github.io/WANHAO-Duplicator-9/fr/screen.html", "inLanguage": "fr", "about": {"@type": "Product", "name": "Wanhao Duplicator 9", "brand": "Wanhao"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Firmware écran Wanhao Duplicator 9 (DWIN DGUS) – DGUS Reloaded 2.0 en 16 langues", "description": "Comment flasher l'écran tactile DWIN de la Wanhao D9 avec DGUS Reloaded 2.0 depuis une carte microSD : nouvelle interface en 16 langues, page capteur de filament, pour Marlin 2.1. Et revenir au firmware d'écran Wanhao.", "url": "https://le-syl21.github.io/WANHAO-Duplicator-9/fr/screen.html", "inLanguage": "fr", "about": {"@type": "Product", "name": "Wanhao Duplicator 9", "brand": "Wanhao"}}</script>
 </head>
 <body>
 <header class="site"><div class="wrap">
 <a class="brand" href="../fr/">Wanhao <span>D9</span> firmware</a>
 <nav class="main"><a href="../fr/">Accueil</a><a href="../fr/mk1.html">MK1</a><a href="../fr/mk1u2.html">MK1 + kit MK2</a><a href="../fr/mk2.html">MK2</a><a href="../fr/mk3.html">MK3</a><a href="../fr/flash.html">Guide de flash</a><a href="../fr/screen.html" aria-current="page">Écran</a><a href="../fr/sensor.html">Capteur filament</a><a href="../fr/quiet.html">Silence</a></nav>
-<a class="lang" href="../screen.html" hreflang="en"><img src="../img/gb.svg" alt="GB" width="21" height="14">English version</a>
+<details class="lang"><summary aria-label="Langue"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9M12 3c-2.5 2.7-3.8 5.7-3.8 9s1.3 6.3 3.8 9"/></svg><span>Français</span></summary><ul><li><a href="../screen.html" hreflang="en" lang="en">English</a></li><li><a href="../fr/screen.html" hreflang="fr" lang="fr" aria-current="true">Français</a></li></ul></details>
 </div></header>
 <main><div class="wrap">
 <h1>Flasher l'écran tactile de la Duplicator 9</h1>
-<p class="lead">Toutes les D9, de la MK1 à la MK3, ont le même écran tactile DWIN T5 (480 × 272). Avec Marlin 2.1,
-il fonctionne avec DGUS Reloaded, flashé depuis une carte microSD.</p>
-<p><a class="btn" href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest/download/DWIN_SET.zip">Télécharger DWIN_SET.zip (DGUS Reloaded 1.0.3)</a></p>
-
-<h2>Pourquoi la version 1.0.3</h2>
-<p>Depuis 2023 (<a href="https://github.com/MarlinFirmware/Marlin/pull/25490">Marlin#25490</a>), Marlin envoie les
-températures avec une décimale et la position Z avec deux. Les fichiers de l'écran doivent suivre : avec l'ancienne
-1.0.2, 23,6 °C s'affiche 236. Le projet DGUS Reloaded d'origine s'est arrêté à la 1.0.2 ; la 1.0.3 est publiée par
-<a href="https://github.com/Neo2003/DGUS-reloaded/releases/tag/1.0.3">Neo2003</a>, l'auteur de ce changement dans
-Marlin. Ce paquet est cette 1.0.3, sans modification, plus les deux fichiers système T5.</p>
+<p class="lead">Toutes les D9, de la MK1 à la MK3, ont le même écran tactile DWIN T5 (480 × 272). Avec ces firmwares,
+il fonctionne avec DGUS Reloaded 2.0, notre nouvelle interface en 16 langues, flashée depuis une carte microSD.</p>
+<p><a class="btn" href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest/download/DWIN_SET.zip">Télécharger DWIN_SET.zip (DGUS Reloaded 2.0)</a></p>
+<div class="split"><div>
+<h2>Ce qu'apporte DGUS Reloaded 2.0</h2>
+<ul>
+<li><strong>16 langues</strong> : English, Français, Deutsch, Español, Italiano, Português, Nederlands, Polski, Türkçe,
+Русский, العربية, हिन्दी, 中文, 日本語, 한국어, Bahasa Indonesia. Touchez le drapeau à côté du nom de l'imprimante sur
+l'accueil pour changer ; l'imprimante retient le choix.</li>
+<li><strong>Une page capteur de filament</strong> : <em>Réglages</em> → <em>Filament</em> → <em>Capteur de filament</em>.
+Voir <a href="../fr/sensor.html#screen">Capteur filament</a>.</li>
+<li><strong>Une ligne d'état qui reste</strong> : le dernier message, <em>Ready</em> par exemple, reste affiché au lieu
+de disparaître au bout de 30 secondes.</li>
+<li><strong>Des jauges de température</strong> pour la buse et le plateau, avec la consigne marquée.</li>
+<li>Un nouveau look pour toutes les pages : thème sombre, boutons plus grands, pictogrammes dans les fenêtres.</li>
+</ul>
+</div><figure><img src="../img/screen/fr-home.png" width="480" height="272" alt="Accueil de DGUS Reloaded 2.0 sur une Wanhao D9 : températures de la buse et du plateau avec jauges, ligne d'état, boutons Imprimer, Température et Réglages">
+<figcaption>L'écran d'accueil</figcaption></figure></div>
+<div class="note">DGUS Reloaded 2.0 demande la <strong>v2.0.9 ou plus récente</strong> sur la carte mère. Avec la v2.0.8 ou
+avant, la langue revient à l'anglais à chaque démarrage et la page capteur de filament ne fonctionne pas :
+<a href="../fr/flash.html">flashez la carte mère</a> d'abord.</div>
 
 <h2>1. Formater la carte microSD</h2>
 <div class="note">FAT32 avec une taille d'unité d'allocation de <strong>4096 octets</strong>. Avec toute autre taille, l'écran ignore la carte.</div>
@@ -60,6 +71,14 @@ normalement, 1 à 3 minutes en tout.</li>
 <li>Éteignez, retirez la carte, refermez le socle.</li>
 </ol>
 <p>La <a href="https://www.youtube.com/watch?v=VGvtMmlBVj8">vidéo de mise à jour de l'écran D9</a> montre où se trouve le lecteur.</p>
+
+<h2>D'où elle vient</h2>
+<p>DGUS Reloaded 2.0 redessine page par page <a href="https://github.com/Neo2003/DGUS-reloaded/releases/tag/1.0.3">DGUS
+Reloaded 1.0.3</a> (de Desuuuu, puis Neo2003). Ses sources, le programme qui génère les fichiers de l'écran et les
+traductions sont sur <a href="https://github.com/Le-Syl21/DGUS-Reloaded-2">GitHub</a>. Un mot faux ou maladroit dans
+votre langue ? Dites-le sur <a href="https://discord.gg/T37DYHmt2j">Discord</a> ou ouvrez un ticket là-bas.</p>
+<p>Pour revenir à DGUS Reloaded 1.0.3, par exemple avec un firmware plus ancien que la v2.0.9, flashez
+<a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/raw/main/Firmware/Marlin%20bugfix-2.1.x/LCD/DWIN_SET_1.0.3.zip">DWIN_SET_1.0.3.zip</a> de la même façon.</p>
 
 <h2>Revenir à l'écran Wanhao</h2>
 <p>Le firmware d'écran Wanhao ne fonctionne qu'avec le firmware de carte mère Wanhao. MK1 : le fichier écran de

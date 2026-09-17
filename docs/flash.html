@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,7 +24,7 @@
 <header class="site"><div class="wrap">
 <a class="brand" href="./">Wanhao <span>D9</span> firmware</a>
 <nav class="main"><a href="./">Home</a><a href="mk1.html">MK1</a><a href="mk1u2.html">MK1 + MK2 kit</a><a href="mk2.html">MK2</a><a href="mk3.html">MK3</a><a href="flash.html" aria-current="page">Flash guide</a><a href="screen.html">Screen</a><a href="sensor.html">Filament sensor</a><a href="quiet.html">Quieter</a></nav>
-<a class="lang" href="fr/flash.html" hreflang="fr"><img src="img/fr.svg" alt="FR" width="21" height="14">Version française</a>
+<details class="lang"><summary aria-label="Language"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9M12 3c-2.5 2.7-3.8 5.7-3.8 9s1.3 6.3 3.8 9"/></svg><span>English</span></summary><ul><li><a href="flash.html" hreflang="en" lang="en" aria-current="true">English</a></li><li><a href="fr/flash.html" hreflang="fr" lang="fr">Français</a></li></ul></details>
 </div></header>
 <main><div class="wrap">
 <h1>Flashing the Duplicator 9 motherboard</h1>
@@ -75,7 +75,7 @@ PID, mesh…). New default values in a release therefore do not replace the ones
 update from v2.0.2 or earlier while keeping values saved by hand, when the printer behaves oddly after trying other
 firmwares, or whenever you want to start clean:</p>
 <ul>
-<li><strong>On the screen:</strong> <em>Settings</em> → <em>More</em> (…) → <em>Reset EEPROM</em> → <em>Yes</em>.</li>
+<li><strong>On the screen:</strong> <em>Settings</em> → <em>More</em> → <em>Reset settings</em> → ✓.</li>
 <li><strong>Over USB:</strong> send <code>M502</code> (load this firmware's defaults) then <code>M500</code> (save them).</li>
 </ul>
 <p>Then set your probe Z offset again (<code>M851 Z…</code> then <code>M500</code>) and run a bed levelling. Check the
@@ -85,7 +85,7 @@ result with <code>M503</code>.</p>
 <ul>
 <li>Power-loss recovery is on: the job is saved on each layer change. Turn it off with <code>M413 S0</code> then <code>M500</code>.</li>
 <li>A print that stops at once with <em>power outage</em> as soon as it heats: update to v2.0.4 or later. Earlier builds watched the board's power-fail input, which reads low as soon as the heaters start.</li>
-<li>Filament runout detection is on by default on every model since v2.0.8, and does nothing without a sensor. After an update from an earlier release, turn it on with <code>M412 S1</code> then <code>M500</code>. Wiring and the BTT Smart Filament Sensor: <a href="sensor.html">Filament sensor</a>.</li>
+<li>Filament runout detection is on by default on every model since v2.0.8, and does nothing without a sensor. After an update from an earlier release, turn it on with <code>M412 S1</code> then <code>M500</code>, or on the screen under <em>Settings</em> → <em>Filament</em> → <em>Filament sensor</em>. Wiring and the BTT Smart Filament Sensor: <a href="sensor.html">Filament sensor</a>.</li>
 </ul>
 
 <h2>Troubleshooting</h2>
@@ -93,7 +93,8 @@ result with <code>M503</code>.</p>
 <tr><td>Port in use</td><td>Close every program using the printer's port.</td></tr>
 <tr><td>Device not found</td><td>Install the CH340 USB driver, try another cable or USB port, check the printer is switched on.</td></tr>
 <tr><td>Unreadable characters after flashing</td><td>Use 250000 baud with these firmwares, 115200 with Wanhao's.</td></tr>
-<tr><td>Temperatures shown ×10 on the screen (236 for 23.6 °C)</td><td>The screen still has old files: flash <a href="screen.html">DGUS Reloaded 1.0.3</a>.</td></tr>
+<tr><td>Temperatures shown ×10 on the screen (236 for 23.6 °C)</td><td>The screen still has old files: flash <a href="screen.html">DGUS Reloaded 2.0</a>.</td></tr>
+<tr><td>The screen goes back to English at each start, or its <em>Filament sensor</em> page does nothing</td><td>The motherboard firmware is older than v2.0.9: update it.</td></tr>
 <tr><td>Homing stops a few millimetres before the switch, then <em>Homing Failed</em></td><td>Electrical noise on the endstop line. These firmwares filter it since v2.0.1: update.</td></tr>
 <tr><td>The nozzle hits a bed clip during levelling</td><td>Update to v2.0.2 or later: the first probing column is 10 mm in from the edge, as on Wanhao's firmware.</td></tr>
 <tr><td>The bed moves away from the Y switch</td><td>Check you took your model's firmware: the Y motor is at the back on the MK1, MK1 + kit and MK2, at the front on the MK3.</td></tr>

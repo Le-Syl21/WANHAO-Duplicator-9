@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,7 +24,7 @@
 <header class="site"><div class="wrap">
 <a class="brand" href="./">Wanhao <span>D9</span> firmware</a>
 <nav class="main"><a href="./">Home</a><a href="mk1.html">MK1</a><a href="mk1u2.html">MK1 + MK2 kit</a><a href="mk2.html">MK2</a><a href="mk3.html">MK3</a><a href="flash.html">Flash guide</a><a href="screen.html">Screen</a><a href="sensor.html" aria-current="page">Filament sensor</a><a href="quiet.html">Quieter</a></nav>
-<a class="lang" href="fr/sensor.html" hreflang="fr"><img src="img/fr.svg" alt="FR" width="21" height="14">Version française</a>
+<details class="lang"><summary aria-label="Language"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9M12 3c-2.5 2.7-3.8 5.7-3.8 9s1.3 6.3 3.8 9"/></svg><span>English</span></summary><ul><li><a href="sensor.html" hreflang="en" lang="en" aria-current="true">English</a></li><li><a href="fr/sensor.html" hreflang="fr" lang="fr">Français</a></li></ul></details>
 </div></header>
 <main><div class="wrap">
 <h1>Filament sensors</h1>
@@ -42,6 +42,21 @@ in that order. The pin names come from a wiring diagram by Wanhao that dustovich
 <li><strong>D9</strong> is not used by Wanhao's firmware: these builds read the BTT sensor's motion signal on it.</li>
 </ul>
 <div class="note">Printer <strong>switched off</strong> while you plug or unplug anything on the board.</div>
+
+<h2 id="screen">On the screen</h2>
+<div class="split"><div>
+<p>With DGUS Reloaded 2.0 on the screen (firmware v2.0.9 or later): <em>Settings</em> → <em>Filament</em> →
+<em>Filament sensor</em>.</p>
+<ul>
+<li><strong>Runout detection</strong> turns all detection on or off, like <code>M412 S1</code> / <code>M412 S0</code>.</li>
+<li><strong>Jam detection</strong> turns jam detection on with the length below, or off (<code>L0</code>).</li>
+<li><strong>Jam length</strong>: − and + change it by 1 mm; tap the number to type it.</li>
+<li>The <strong>Filament</strong> dot is green while the runout switch sees filament, red when it does not.</li>
+<li>Changes apply at once. <strong>Save</strong> stores them, like <code>M500</code>. The back arrow leaves without
+saving: the stored settings come back at the next start.</li>
+</ul>
+</div><figure><img src="img/screen/en-sensor.png" width="480" height="272" alt="Filament sensor page of DGUS Reloaded 2.0: runout and jam detection switches, jam length with minus and plus buttons, filament indicator and Save button">
+<figcaption>Settings → Filament → Filament sensor</figcaption></figure></div>
 
 <h2>The M412 commands</h2>
 <p>Everything is set over USB from a serial terminal (Pronterface, the terminal of your slicer or of OctoPrint,

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="fr">
+<html lang="fr" dir="ltr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,7 +24,7 @@
 <header class="site"><div class="wrap">
 <a class="brand" href="../fr/">Wanhao <span>D9</span> firmware</a>
 <nav class="main"><a href="../fr/">Accueil</a><a href="../fr/mk1.html">MK1</a><a href="../fr/mk1u2.html">MK1 + kit MK2</a><a href="../fr/mk2.html">MK2</a><a href="../fr/mk3.html">MK3</a><a href="../fr/flash.html" aria-current="page">Guide de flash</a><a href="../fr/screen.html">Écran</a><a href="../fr/sensor.html">Capteur filament</a><a href="../fr/quiet.html">Silence</a></nav>
-<a class="lang" href="../flash.html" hreflang="en"><img src="../img/gb.svg" alt="GB" width="21" height="14">English version</a>
+<details class="lang"><summary aria-label="Langue"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9M12 3c-2.5 2.7-3.8 5.7-3.8 9s1.3 6.3 3.8 9"/></svg><span>Français</span></summary><ul><li><a href="../flash.html" hreflang="en" lang="en">English</a></li><li><a href="../fr/flash.html" hreflang="fr" lang="fr" aria-current="true">Français</a></li></ul></details>
 </div></header>
 <main><div class="wrap">
 <h1>Flasher la carte mère de la Duplicator 9</h1>
@@ -76,7 +76,7 @@ enregistrées. Faites une remise à zéro si vous mettez à jour depuis la v2.0.
 sauvegardées à la main, si l'imprimante se comporte bizarrement après avoir essayé d'autres firmwares, ou chaque fois
 que vous voulez repartir de zéro :</p>
 <ul>
-<li><strong>À l'écran :</strong> <em>Settings</em> → <em>More</em> (…) → <em>Reset EEPROM</em> → <em>Yes</em>.</li>
+<li><strong>À l'écran :</strong> <em>Réglages</em> → <em>Plus</em> → <em>Réinitialiser</em> → ✓.</li>
 <li><strong>En USB :</strong> envoyez <code>M502</code> (charge les valeurs par défaut de ce firmware) puis <code>M500</code> (les enregistre).</li>
 </ul>
 <p>Réglez ensuite de nouveau l'offset Z du capteur (<code>M851 Z…</code> puis <code>M500</code>) et lancez un
@@ -86,7 +86,7 @@ nivellement. Vérifiez le résultat avec <code>M503</code>.</p>
 <ul>
 <li>La reprise après coupure est active : l'avancement est enregistré à chaque couche. Pour la désactiver : <code>M413 S0</code> puis <code>M500</code>.</li>
 <li>Une impression qui s'arrête dès la chauffe avec <em>power outage</em> : mettez à jour vers la v2.0.4 ou plus récente. Les versions précédentes surveillaient l'entrée de détection de coupure de la carte, qui passe à l'état bas dès que les chauffes démarrent.</li>
-<li>La détection de fin de filament est active par défaut sur tous les modèles depuis la v2.0.8, et ne fait rien sans capteur. Après une mise à jour depuis une version précédente, activez-la avec <code>M412 S1</code> puis <code>M500</code>. Branchement et BTT Smart Filament Sensor : <a href="../fr/sensor.html">Capteur filament</a>.</li>
+<li>La détection de fin de filament est active par défaut sur tous les modèles depuis la v2.0.8, et ne fait rien sans capteur. Après une mise à jour depuis une version précédente, activez-la avec <code>M412 S1</code> puis <code>M500</code>, ou à l'écran dans <em>Réglages</em> → <em>Filament</em> → <em>Capteur de filament</em>. Branchement et BTT Smart Filament Sensor : <a href="../fr/sensor.html">Capteur filament</a>.</li>
 </ul>
 
 <h2>Dépannage</h2>
@@ -94,7 +94,8 @@ nivellement. Vérifiez le résultat avec <code>M503</code>.</p>
 <tr><td>Port déjà utilisé</td><td>Fermez tous les programmes qui utilisent le port de l'imprimante.</td></tr>
 <tr><td>Périphérique introuvable</td><td>Installez le pilote USB CH340, essayez un autre câble ou port USB, vérifiez que l'imprimante est allumée.</td></tr>
 <tr><td>Caractères illisibles après le flash</td><td>Utilisez 250000 bauds avec ces firmwares, 115200 avec ceux de Wanhao.</td></tr>
-<tr><td>Températures ×10 à l'écran (236 pour 23,6 °C)</td><td>L'écran a encore d'anciens fichiers : flashez <a href="../fr/screen.html">DGUS Reloaded 1.0.3</a>.</td></tr>
+<tr><td>Températures ×10 à l'écran (236 pour 23,6 °C)</td><td>L'écran a encore d'anciens fichiers : flashez <a href="../fr/screen.html">DGUS Reloaded 2.0</a>.</td></tr>
+<tr><td>L'écran revient à l'anglais à chaque démarrage, ou sa page <em>Capteur de filament</em> ne fait rien</td><td>Le firmware de la carte mère est plus ancien que la v2.0.9 : mettez-le à jour.</td></tr>
 <tr><td>Le homing s'arrête quelques millimètres avant le fin de course, puis <em>Homing Failed</em></td><td>Parasite sur la ligne du fin de course. Ces firmwares le filtrent depuis la v2.0.1 : mettez à jour.</td></tr>
 <tr><td>La buse touche une pince du plateau pendant le nivellement</td><td>Mettez à jour vers la v2.0.2 ou plus récente : la première colonne de palpage est à 10 mm du bord, comme dans le firmware Wanhao.</td></tr>
 <tr><td>Le plateau s'éloigne du fin de course Y</td><td>Vérifiez que vous avez pris le firmware de votre modèle : le moteur Y est à l'arrière sur la MK1, la MK1 + kit et la MK2, à l'avant sur la MK3.</td></tr>

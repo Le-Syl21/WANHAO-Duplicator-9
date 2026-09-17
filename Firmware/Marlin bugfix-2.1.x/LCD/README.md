@@ -10,14 +10,14 @@
 **Required Items:**
 - MicroSD card (minimum 1GB, maximum 32GB recommended)
 - Computer with SD card reader
-- DWIN_SET.zip file (provided) - **DGUS Reloaded 1.0.3**
+- DWIN_SET.zip file (provided) - **DGUS Reloaded 2.0**, in 16 languages. `DWIN_SET_1.0.3.zip` is the previous DGUS Reloaded 1.0.3, for firmwares v2.0.8 and earlier.
 - Small screwdriver (for panel disassembly)
 
 **⚠️ Important Note About This Firmware:**
 This DGUS Reloaded firmware package is different from the original Wanhao firmware. It **forces a format of the LCD's internal memory** before flashing, which significantly reduces common flashing issues and improves reliability.
 
-**Why version 1.0.3:**
-Since 2023 ([Marlin#25490](https://github.com/MarlinFirmware/Marlin/pull/25490)), Marlin sends the bed and nozzle temperatures with one decimal and the Z position with two, and some screen addresses changed. The screen files have to match: with the older 1.0.2, temperatures show without their decimal point (23.6 °C appears as 236). The original DGUS Reloaded project stopped at 1.0.2 and is archived; 1.0.3 is published by [Neo2003](https://github.com/Neo2003/DGUS-reloaded/releases/tag/1.0.3), the author of that Marlin change. This package is that 1.0.3, unchanged, plus the two T5 core files (`T5OS_V21_NOACK.BIN`, `T5UID1_V30.BIN`) the previous package already carried.
+**Why version 2.0:**
+DGUS Reloaded 2.0 is our redesign of DGUS Reloaded 1.0.3 ([source](https://github.com/Le-Syl21/DGUS-Reloaded-2)): 16 languages, chosen by tapping the flag on the home screen; a filament sensor page (*Settings* → *Filament* → *Filament sensor*) to turn runout and jam detection on or off and set the jam length; a status line that stays on screen; temperature gauges. It needs these firmwares from **v2.0.9**: with v2.0.8 or earlier, the language goes back to English at each start and the filament sensor page does not work. Like 1.0.3, it shows temperatures with their decimal, as Marlin sends them since 2023 ([Marlin#25490](https://github.com/MarlinFirmware/Marlin/pull/25490)); with the old 1.0.2 files, 23.6 °C appears as 236.
 
 ### Step 1: Format MicroSD Card
 
@@ -149,14 +149,14 @@ This firmware package includes a pre-flash memory format routine that clears the
 **Éléments requis :**
 - Carte MicroSD (minimum 1GB, maximum 32GB recommandé)
 - Ordinateur avec lecteur de carte SD
-- Fichier DWIN_SET.zip (fourni) - **DGUS Reloaded 1.0.3**
+- Fichier DWIN_SET.zip (fourni) - **DGUS Reloaded 2.0**, en 16 langues. `DWIN_SET_1.0.3.zip` est l'ancienne DGUS Reloaded 1.0.3, pour les firmwares v2.0.8 et antérieurs.
 - Petit tournevis (pour démontage du panneau)
 
 **⚠️ Note importante concernant ce firmware :**
 Ce package firmware DGUS Reloaded est différent du firmware Wanhao d'origine. Il **force un formatage de la mémoire interne du LCD** avant le flash, ce qui réduit considérablement les problèmes courants de flashage et améliore la fiabilité.
 
-**Pourquoi la version 1.0.3 :**
-Depuis 2023 ([Marlin#25490](https://github.com/MarlinFirmware/Marlin/pull/25490)), Marlin envoie les températures du plateau et de la buse avec une décimale et la position Z avec deux, et certaines adresses de l'écran ont changé. Les fichiers de l'écran doivent suivre : avec l'ancienne 1.0.2, les températures s'affichent sans la virgule (23,6 °C devient 236). Le projet DGUS Reloaded d'origine s'est arrêté à la 1.0.2 et il est archivé ; la 1.0.3 est publiée par [Neo2003](https://github.com/Neo2003/DGUS-reloaded/releases/tag/1.0.3), l'auteur de ce changement dans Marlin. Ce package est cette 1.0.3, sans modification, plus les deux fichiers système du T5 (`T5OS_V21_NOACK.BIN`, `T5UID1_V30.BIN`) que contenait déjà le package précédent.
+**Pourquoi la version 2.0 :**
+DGUS Reloaded 2.0 est notre refonte de DGUS Reloaded 1.0.3 ([sources](https://github.com/Le-Syl21/DGUS-Reloaded-2)) : 16 langues, choisies en touchant le drapeau de l'accueil ; une page capteur de filament (*Réglages* → *Filament* → *Capteur de filament*) pour activer ou désactiver la détection de fin de filament et de bourrage et régler la longueur de bourrage ; une ligne d'état qui reste affichée ; des jauges de température. Elle demande ces firmwares à partir de la **v2.0.9** : avec la v2.0.8 ou avant, la langue revient à l'anglais à chaque démarrage et la page capteur de filament ne fonctionne pas. Comme la 1.0.3, elle affiche les températures avec leur décimale, telles que Marlin les envoie depuis 2023 ([Marlin#25490](https://github.com/MarlinFirmware/Marlin/pull/25490)) ; avec les anciens fichiers 1.0.2, 23,6 °C devient 236.
 
 ### Étape 1 : Formatage de la Carte MicroSD
 

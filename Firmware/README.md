@@ -16,7 +16,7 @@
 
 ### What's in these builds
 
-Built from Marlin `bugfix-2.1.x` (September 2026) with the Duplicator 9 configurations published in [Marlin Configurations](https://github.com/MarlinFirmware/Configurations/tree/bugfix-2.1.x/config/examples/Wanhao/Duplicator%209). The first six points are changes proposed there and not merged yet; the BTT sensor support exists only in these builds.
+Built from Marlin `bugfix-2.1.x` (September 2026) with the Duplicator 9 configurations published in [Marlin Configurations](https://github.com/MarlinFirmware/Configurations/tree/bugfix-2.1.x/config/examples/Wanhao/Duplicator%209). The first six points are changes proposed there and not merged yet; the BTT sensor support and DGUS Reloaded 2.0 exist only in these builds.
 
 - **Wanhao's factory settings**, taken from Wanhao's firmware and source for each model: steps/mm, speeds and accelerations, hotend PID, probe offsets and probing margins, homing speeds, thermal limits and protection, jerk, park position, preheat values and axis directions. Each model's `Wanhao_factory/extract.md` lists them, with the three that Marlin 2 cannot follow.
 - **MK1:** the inductive probe is now read the right way round (it triggers LOW).
@@ -28,9 +28,9 @@ Built from Marlin `bugfix-2.1.x` (September 2026) with the Duplicator 9 configur
 - **BTT Smart Filament Sensor V2.0** (runout switch + motion, catches jams): its motion signal is read on D9, next to the runout input D8 on the board's sensor plug. Wire it, then `M412 S1 L10` and `M500`. `M412 S1` / `S0` turns detection on or off, `M412 L<mm>` sets the jam length and `M412 L0` turns jam detection off (the default), leaving the runout switch alone. Wiring diagram and every command: [Filament sensor](https://le-syl21.github.io/WANHAO-Duplicator-9/sensor.html). For this, these release builds turn on `FILAMENT_SWITCH_AND_MOTION` with `FIL_MOTION1_PIN 9`, runout detection on by default and a jam length of 0, and carry our Marlin change [MarlinFirmware/Marlin#28585](https://github.com/MarlinFirmware/Marlin/pull/28585) (`marlin-m412-l0.patch` in this folder: `L0` turns jam detection off, `L` works on its own). When settings are loaded, the 0 runout distance saved by v2.0.4 or earlier becomes 5 mm, and the 100 m / 10 km jam lengths saved by v2.0.5 / v2.0.6 become 0.
 - **Wanhao's factory firmwares** are kept in `Wanhao_factory/` inside each model folder, so a machine can be put back as it left the factory. Each has an `extract.md` listing the settings read out of Wanhao's binaries and how they were read.
 - **`M503`** is available to print every setting.
-- **The screen's *Information* page shows your model, size and release**, for example *Wanhao D9 MK2 300* and *2.1.x (v2.0.8)*. `M115` reports the same.
+- **The screen's *Information* page shows your model, size and release**, for example *Wanhao D9 MK2 300* and *2.1.x (v2.0.9)*. `M115` reports the same.
 - **Updates keep your settings** (since v2.0.3). See *Back to this firmware's default settings* below to start from the defaults.
-- **The screen needs DGUS Reloaded 1.0.3** (`LCD/DWIN_SET.zip`). With the older 1.0.2 files, temperatures show without their decimal point (23.6 °C appears as 236).
+- **DGUS Reloaded 2.0 on the screen** (since v2.0.9, `LCD/DWIN_SET.zip`): a new interface in 16 languages, chosen by tapping the flag on the home screen and saved in the printer; a filament sensor page (*Settings* → *Filament* → *Filament sensor*: runout on/off, jam on/off, jam length, *Save*); a status line that stays on screen; temperature gauges. The firmware side is our change `marlin-dgus-reloaded-2.patch` in this folder; the screen is built from [DGUS-Reloaded-2](https://github.com/Le-Syl21/DGUS-Reloaded-2). These firmwares need it: with the older DGUS Reloaded 1.0.3 (`LCD/DWIN_SET_1.0.3.zip`) the new pages are missing, and with 1.0.2, temperatures show without their decimal point (23.6 °C appears as 236).
 
 ### Step 1: Prepare for Flashing
 
@@ -96,7 +96,7 @@ Since v2.0.3, a firmware update **keeps** the settings stored in the printer (pr
 
 How, either way:
 
-- **On the screen:** *Settings* → *More* (…) → *Reset EEPROM* → *Yes*.
+- **On the screen:** *Settings* → *More* → *Reset settings* → ✓.
 - **Over USB:** send `M502` (load this firmware's defaults) then `M500` (save them).
 
 Then set your probe Z offset again (`M851 Z…` then `M500`) and run a bed levelling. Check the result with `M503`.
@@ -129,7 +129,7 @@ Then set your probe Z offset again (`M851 Z…` then `M500`) and run a bed level
 
 ### Contenu de ces firmwares
 
-Compilés depuis Marlin `bugfix-2.1.x` (septembre 2026) avec les configurations Duplicator 9 publiées dans [Marlin Configurations](https://github.com/MarlinFirmware/Configurations/tree/bugfix-2.1.x/config/examples/Wanhao/Duplicator%209). Les six premiers points sont des changements proposés là-bas et pas encore intégrés ; la prise en charge du capteur BTT n'existe que dans ces firmwares.
+Compilés depuis Marlin `bugfix-2.1.x` (septembre 2026) avec les configurations Duplicator 9 publiées dans [Marlin Configurations](https://github.com/MarlinFirmware/Configurations/tree/bugfix-2.1.x/config/examples/Wanhao/Duplicator%209). Les six premiers points sont des changements proposés là-bas et pas encore intégrés ; la prise en charge du capteur BTT et DGUS Reloaded 2.0 n'existent que dans ces firmwares.
 
 - **Les réglages d'usine de Wanhao**, tirés du firmware et des sources Wanhao de chaque modèle : pas/mm, vitesses et accélérations, PID de la buse, offsets et marges de palpage, vitesses de homing, limites et protections thermiques, jerk, position de parking, préchauffes et sens des axes. Le `Wanhao_factory/extract.md` de chaque modèle les liste, avec les trois que Marlin 2 ne peut pas suivre.
 - **MK1 :** la sonde inductive est maintenant lue dans le bon sens (elle se déclenche à l'état bas).
@@ -141,9 +141,9 @@ Compilés depuis Marlin `bugfix-2.1.x` (septembre 2026) avec les configurations 
 - **BTT Smart Filament Sensor V2.0** (fin de filament + mouvement, détecte les bourrages) : son signal de mouvement est lu sur D9, à côté de l'entrée de fin de filament D8 sur la prise capteur de la carte. Branchez-le, puis `M412 S1 L10` et `M500`. `M412 S1` / `S0` active ou désactive la détection, `M412 L<mm>` règle la longueur de bourrage et `M412 L0` désactive la détection de bourrage (réglage par défaut) sans toucher au détecteur de fin de filament. Schéma de branchement et toutes les commandes : [Capteur filament](https://le-syl21.github.io/WANHAO-Duplicator-9/fr/sensor.html). Pour cela, ces firmwares activent `FILAMENT_SWITCH_AND_MOTION` avec `FIL_MOTION1_PIN 9`, la détection de fin de filament active par défaut et une longueur de bourrage de 0, et intègrent notre modification de Marlin [MarlinFirmware/Marlin#28585](https://github.com/MarlinFirmware/Marlin/pull/28585) (`marlin-m412-l0.patch` dans ce dossier : `L0` désactive la détection de bourrage, `L` fonctionne seul). Au chargement des réglages, la distance de fin de filament à 0 enregistrée par la v2.0.4 ou avant devient 5 mm, et les longueurs de bourrage de 100 m / 10 km enregistrées par la v2.0.5 / v2.0.6 deviennent 0.
 - **Les firmwares d'usine de Wanhao** sont conservés dans `Wanhao_factory/`, dans le dossier de chaque modèle, pour pouvoir remettre une machine dans son état d'origine. Chacun a un `extract.md` qui liste les réglages lus dans les binaires de Wanhao et explique comment ils ont été lus.
 - **`M503`** est disponible pour afficher tous les réglages.
-- **La page *Information* de l'écran affiche votre modèle, votre taille et la version**, par exemple *Wanhao D9 MK2 300* et *2.1.x (v2.0.8)*. `M115` indique la même chose.
+- **La page *Informations* de l'écran affiche votre modèle, votre taille et la version**, par exemple *Wanhao D9 MK2 300* et *2.1.x (v2.0.9)*. `M115` indique la même chose.
 - **Les mises à jour conservent vos réglages** (depuis la v2.0.3). Voir *Revenir aux réglages par défaut de ce firmware* plus bas pour repartir des valeurs par défaut.
-- **L'écran doit être en DGUS Reloaded 1.0.3** (`LCD/DWIN_SET.zip`). Avec les anciens fichiers 1.0.2, les températures s'affichent sans la virgule (23,6 °C devient 236).
+- **DGUS Reloaded 2.0 sur l'écran** (depuis la v2.0.9, `LCD/DWIN_SET.zip`) : une nouvelle interface en 16 langues, choisie en touchant le drapeau de l'accueil et enregistrée dans l'imprimante ; une page capteur de filament (*Réglages* → *Filament* → *Capteur de filament* : fin de filament, bourrage, longueur de bourrage, *Enregistrer*) ; une ligne d'état qui reste affichée ; des jauges de température. Côté firmware, c'est notre modification `marlin-dgus-reloaded-2.patch` dans ce dossier ; l'écran est généré par [DGUS-Reloaded-2](https://github.com/Le-Syl21/DGUS-Reloaded-2). Ces firmwares en ont besoin : avec l'ancienne DGUS Reloaded 1.0.3 (`LCD/DWIN_SET_1.0.3.zip`) les nouvelles pages manquent, et avec la 1.0.2 les températures s'affichent sans la virgule (23,6 °C devient 236).
 
 ### Étape 1 : Préparation du Flash
 
@@ -209,7 +209,7 @@ Depuis la v2.0.3, une mise à jour **conserve** les réglages enregistrés dans 
 
 Au choix :
 
-- **À l'écran :** *Settings* → *More* (…) → *Reset EEPROM* → *Yes*.
+- **À l'écran :** *Réglages* → *Plus* → *Réinitialiser* → ✓.
 - **En USB :** envoyez `M502` (charge les valeurs par défaut de ce firmware) puis `M500` (les enregistre).
 
 Réglez ensuite de nouveau l'offset Z de la sonde (`M851 Z…` puis `M500`) et lancez un nivellement. Vérifiez le résultat avec `M503`.

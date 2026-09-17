@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="fr">
+<html lang="fr" dir="ltr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,7 +24,7 @@
 <header class="site"><div class="wrap">
 <a class="brand" href="../fr/">Wanhao <span>D9</span> firmware</a>
 <nav class="main"><a href="../fr/">Accueil</a><a href="../fr/mk1.html">MK1</a><a href="../fr/mk1u2.html">MK1 + kit MK2</a><a href="../fr/mk2.html">MK2</a><a href="../fr/mk3.html">MK3</a><a href="../fr/flash.html">Guide de flash</a><a href="../fr/screen.html">Écran</a><a href="../fr/sensor.html" aria-current="page">Capteur filament</a><a href="../fr/quiet.html">Silence</a></nav>
-<a class="lang" href="../sensor.html" hreflang="en"><img src="../img/gb.svg" alt="GB" width="21" height="14">English version</a>
+<details class="lang"><summary aria-label="Langue"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9M12 3c-2.5 2.7-3.8 5.7-3.8 9s1.3 6.3 3.8 9"/></svg><span>Français</span></summary><ul><li><a href="../sensor.html" hreflang="en" lang="en">English</a></li><li><a href="../fr/sensor.html" hreflang="fr" lang="fr" aria-current="true">Français</a></li></ul></details>
 </div></header>
 <main><div class="wrap">
 <h1>Capteurs de filament</h1>
@@ -44,6 +44,21 @@ broches CTRL, BTN, GND et VCC.</p>
 <li><strong>D9</strong> n'est pas utilisée par le firmware Wanhao : ces firmwares y lisent le signal de mouvement du capteur BTT.</li>
 </ul>
 <div class="note">Imprimante <strong>éteinte</strong> pour brancher ou débrancher quoi que ce soit sur la carte.</div>
+
+<h2 id="screen">À l'écran</h2>
+<div class="split"><div>
+<p>Avec DGUS Reloaded 2.0 sur l'écran (firmware v2.0.9 ou plus récent) : <em>Réglages</em> → <em>Filament</em> →
+<em>Capteur de filament</em>.</p>
+<ul>
+<li><strong>Fin de filament</strong> active ou désactive toute la détection, comme <code>M412 S1</code> / <code>M412 S0</code>.</li>
+<li><strong>Détection de bourrage</strong> active la détection de bourrage avec la longueur réglée dessous, ou la désactive (<code>L0</code>).</li>
+<li><strong>Longueur de bourrage</strong> : − et + la changent de 1 mm ; touchez le nombre pour la saisir.</li>
+<li>Le point <strong>Filament</strong> est vert quand le détecteur voit du filament, rouge sinon.</li>
+<li>Les changements s'appliquent tout de suite. <strong>Enregistrer</strong> les garde, comme <code>M500</code>. La flèche
+de retour sort sans enregistrer : les réglages enregistrés reviennent au prochain démarrage.</li>
+</ul>
+</div><figure><img src="../img/screen/fr-sensor.png" width="480" height="272" alt="Page capteur de filament de DGUS Reloaded 2.0 : interrupteurs fin de filament et bourrage, longueur de bourrage avec boutons moins et plus, témoin de filament et bouton Enregistrer">
+<figcaption>Réglages → Filament → Capteur de filament</figcaption></figure></div>
 
 <h2>Les commandes M412</h2>
 <p>Tout se règle en USB depuis un terminal série (Pronterface, le terminal de votre slicer ou d'OctoPrint, 250000
