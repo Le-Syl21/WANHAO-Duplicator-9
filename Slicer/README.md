@@ -74,7 +74,7 @@ Cura's built-in *Wanhao Duplicator 9* is a different, older profile: 300 only, r
 
 - **UltiMaker Cura 5.13.0:** started without its window, with the definitions in its configuration folder. All 12 printers were added without a single setting in error, and a 3DBenchy was sliced with the MK2 300.
 - **OrcaSlicer 2.4.2:** the 3DBenchy was sliced with all 12 printers, in the three qualities in PLA and in 0.20 mm with PETG, 48 slices without an error. A 3DBenchy was also sliced in PLA, PETG and ABS with both slicers on the MK2 300. For these command-line slices the presets were marked as system presets, because the command line only checks compatibility against system presets. The import through the menu was not tested this way.
-- **Printed:** not yet.
+- **Printed:** both, on a D9 MK2 300 in PLA. The same Benchy took **1 h 14 with OrcaSlicer** and **1 h 22 with Cura**, and OrcaSlicer's walls came out slightly cleaner, so that is the one the site recommends starting with.
 
 ### Changing them
 
@@ -156,7 +156,7 @@ Le profil *Wanhao Duplicator 9* fourni avec Cura est un autre profil, plus ancie
 
 - **UltiMaker Cura 5.13.0 :** lancé sans fenêtre, avec les définitions dans son dossier de configuration. Les 12 imprimantes ont été ajoutées sans aucun réglage en erreur, et un 3DBenchy a été tranché avec la MK2 300.
 - **OrcaSlicer 2.4.2 :** le 3DBenchy a été tranché avec les 12 imprimantes, dans les trois qualités en PLA et en 0,20 mm en PETG, soit 48 tranchages sans erreur. Un 3DBenchy a aussi été tranché en PLA, PETG et ABS avec les deux slicers sur la MK2 300. Pour ces tranchages en ligne de commande, les préréglages ont été marqués comme préréglages système, car la ligne de commande ne vérifie la compatibilité qu'avec des préréglages système. L'import par le menu n'a pas été testé de cette façon.
-- **Imprimés :** pas encore.
+- **Imprimés :** les deux, sur une D9 MK2 300 en PLA. Le même Benchy a pris **1 h 14 avec OrcaSlicer** et **1 h 22 avec Cura**, et les parois d'OrcaSlicer sont un peu plus nettes : c'est celui que le site conseille pour commencer.
 
 ### Les modifier
 
