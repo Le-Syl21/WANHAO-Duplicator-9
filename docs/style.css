@@ -107,6 +107,8 @@ footer.site .wrap { padding-block: 1.4rem; display: flex; flex-wrap: wrap; gap: 
 @media (max-width: 560px) {
   table.dl .volume { display: none; }
   table.dl .btn { white-space: normal; overflow-wrap: anywhere; }
+  table.dl.slicer .btn { white-space: nowrap; overflow-wrap: normal; }
+  table.dl.slicer td, table.dl.slicer th { padding-inline: 0.45rem; }
   td a { overflow-wrap: anywhere; }
   table.stack thead { display: none; }
   table.stack td { display: block; border-bottom: 0; padding-block: 0.2rem; }

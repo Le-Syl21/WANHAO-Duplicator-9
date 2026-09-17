@@ -24,7 +24,7 @@ DISCORD = "https://discord.gg/T37DYHmt2j"
 # Google Search Console ownership check for the URL-prefix property SITE.
 GOOGLE_VERIFICATION = "TqbXre6qrm9jaoj6tFwRRiI2vuQilAZLm6kUJA-etmo"
 # Bump when style.css changes, so browsers do not keep the old one.
-STYLE_VERSION = 2
+STYLE_VERSION = 3
 
 PAGES = ["index", "mk1", "mk1u2", "mk2", "mk3", "flash", "screen", "sensor", "slicer", "quiet"]
 SIZES = [("300", "300 × 300 × 400 mm"), ("400", "400 × 400 × 400 mm"), ("500", "500 × 500 × 500 mm")]
