@@ -30,8 +30,8 @@
 <h1>Capteurs de filament</h1>
 <p class="lead">Depuis la v2.0.5, ces firmwares lisent deux types de capteur : le détecteur de fin de filament Wanhao,
 et le BTT Smart Filament Sensor V2.0, qui remarque aussi quand le filament n'avance plus (bobine emmêlée, bourrage,
-filament rongé). La détection reste désactivée tant que vous ne l'activez pas, sauf le détecteur de fin de filament
-de la MK3.</p>
+filament rongé). <strong>La détection de fin de filament est active par défaut sur tous les modèles</strong>, et la
+détection de bourrage est désactivée.</p>
 
 <h2>La prise capteur</h2>
 <figure><img src="../img/d9-sensor-plug-fr.svg" width="760" height="440" alt="Carte mère Wanhao D9 : la prise capteur 4 broches à gauche de POWER-DET, broches D9, D8, GND et 5V, câblée vers un BTT Smart Filament Sensor V2.0"></figure>
@@ -64,11 +64,18 @@ seul est ignoré et <code>L0</code> met tout de suite l'impression en pause pour
 
 <h2>Le détecteur de fin de filament Wanhao</h2>
 <p>Il indique au firmware si le filament est là. Quand il manque, l'impression se met en pause 5 mm de filament plus
-loin et l'écran lance un changement de filament. Il est actif par défaut sur la MK3.</p>
-<pre><code>M412 S1
-M500</code></pre>
-<p>La détection de bourrage reste désactivée (<code>L0</code>), puisque ce détecteur ne voit pas le filament avancer.
-Pour le désactiver : <code>M412 S0</code> puis <code>M500</code>.</p>
+loin et l'écran lance un changement de filament.</p>
+<p><strong>Il est actif par défaut sur tous les modèles, depuis la v2.0.8.</strong> Sans rien de branché sur D8, la
+résistance de tirage de la carte maintient la broche à 5 V, ce qui se lit « filament présent » : la détection ne se
+déclenche alors jamais, elle peut donc rester active avec ou sans capteur. Branchez un détecteur sur D8 et il
+fonctionne tout de suite.</p>
+<ul>
+<li>La détection de bourrage reste désactivée (<code>L0</code>) : ce détecteur ne voit pas le filament avancer.</li>
+<li>Pour le désactiver : <code>M412 S0</code> puis <code>M500</code>.</li>
+<li>Les réglages enregistrés par une version précédente gardent leur état activé ou désactivé. Pour l'activer :
+<code>M412 S1</code> puis <code>M500</code>, ou revenez aux réglages par défaut (<code>M502</code> puis
+<code>M500</code>, ce qui efface aussi le décalage Z de la sonde et le maillage).</li>
+</ul>
 
 <h2>BTT Smart Filament Sensor V2.0</h2>
 <p>Ce capteur a deux sorties, que le firmware lit différemment :</p>

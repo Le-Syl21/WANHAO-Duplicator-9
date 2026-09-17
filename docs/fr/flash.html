@@ -86,7 +86,7 @@ nivellement. Vérifiez le résultat avec <code>M503</code>.</p>
 <ul>
 <li>La reprise après coupure est active : l'avancement est enregistré à chaque couche. Pour la désactiver : <code>M413 S0</code> puis <code>M500</code>.</li>
 <li>Une impression qui s'arrête dès la chauffe avec <em>power outage</em> : mettez à jour vers la v2.0.4 ou plus récente. Les versions précédentes surveillaient l'entrée de détection de coupure de la carte, qui passe à l'état bas dès que les chauffes démarrent.</li>
-<li>Le capteur de fin de filament n'est actif par défaut que sur la MK3. Une fois un capteur monté sur un autre modèle : <code>M412 S1</code> puis <code>M500</code>. Branchement et BTT Smart Filament Sensor : <a href="../fr/sensor.html">Capteur filament</a>.</li>
+<li>La détection de fin de filament est active par défaut sur tous les modèles depuis la v2.0.8, et ne fait rien sans capteur. Après une mise à jour depuis une version précédente, activez-la avec <code>M412 S1</code> puis <code>M500</code>. Branchement et BTT Smart Filament Sensor : <a href="../fr/sensor.html">Capteur filament</a>.</li>
 </ul>
 
 <h2>Dépannage</h2>

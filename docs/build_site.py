@@ -118,7 +118,7 @@ endstop noise filter.</li>
 <li><strong>Wanhao's factory settings</strong>, taken from Wanhao's own firmware and source for each model: steps/mm,
 speeds, accelerations, hotend PID, probe offsets and probing margins, homing, thermal limits, jerk and axis directions.</li>
 <li><strong>Power-loss recovery</strong>: during an SD print the job is saved on each layer change, and after an outage the screen offers to resume from there.</li>
-<li><strong>Filament sensors</strong>: Wanhao's runout switch, on by default on the MK3, and the BTT Smart Filament Sensor V2.0, which also catches jams. See <a href="{p('sensor')}">Filament sensor</a>.</li>
+<li><strong>Filament sensors</strong>: a runout switch on D8, on by default on every model (no effect without one), and the BTT Smart Filament Sensor V2.0, which also catches jams. See <a href="{p('sensor')}">Filament sensor</a>.</li>
 <li><strong>The head returns to the centre after a bed levelling</strong>, so the bed no longer hides the screen.</li>
 <li><strong>A modern touchscreen interface</strong>, <a href="{p('screen')}">DGUS Reloaded 1.0.3</a>.</li>
 </ul>
@@ -174,7 +174,7 @@ filtre anti-parasites des fins de course.</li>
 <li><strong>Les réglages d'usine de Wanhao</strong>, tirés du firmware et des sources Wanhao de chaque modèle : pas/mm,
 vitesses, accélérations, PID de la buse, décalages et marges de palpage, homing, limites thermiques, jerk et sens des axes.</li>
 <li><strong>Reprise après coupure de courant</strong> : pendant une impression depuis la carte SD, l'avancement est enregistré à chaque couche, et après une coupure l'écran propose de reprendre à partir de là.</li>
-<li><strong>Capteurs de filament</strong> : le détecteur de fin de filament Wanhao, actif par défaut sur la MK3, et le BTT Smart Filament Sensor V2.0, qui détecte aussi les bourrages. Voir <a href="{p('sensor')}">Capteur filament</a>.</li>
+<li><strong>Capteurs de filament</strong> : un détecteur de fin de filament sur D8, actif par défaut sur tous les modèles (sans effet sans détecteur), et le BTT Smart Filament Sensor V2.0, qui détecte aussi les bourrages. Voir <a href="{p('sensor')}">Capteur filament</a>.</li>
 <li><strong>La tête revient au centre après un nivellement</strong> : le plateau ne cache plus l'écran.</li>
 <li><strong>Une interface d'écran moderne</strong>, <a href="{p('screen')}">DGUS Reloaded 1.0.3</a>.</li>
 </ul>
@@ -506,7 +506,7 @@ result with <code>M503</code>.</p>
 <ul>
 <li>Power-loss recovery is on: the job is saved on each layer change. Turn it off with <code>M413 S0</code> then <code>M500</code>.</li>
 <li>A print that stops at once with <em>power outage</em> as soon as it heats: update to v2.0.4 or later. Earlier builds watched the board's power-fail input, which reads low as soon as the heaters start.</li>
-<li>The filament runout sensor is on by default on the MK3 only. Once a sensor is fitted on another model: <code>M412 S1</code> then <code>M500</code>. Wiring and the BTT Smart Filament Sensor: <a href="{p('sensor')}">Filament sensor</a>.</li>
+<li>Filament runout detection is on by default on every model since v2.0.8, and does nothing without a sensor. After an update from an earlier release, turn it on with <code>M412 S1</code> then <code>M500</code>. Wiring and the BTT Smart Filament Sensor: <a href="{p('sensor')}">Filament sensor</a>.</li>
 </ul>
 
 <h2>Troubleshooting</h2>
@@ -588,7 +588,7 @@ nivellement. Vérifiez le résultat avec <code>M503</code>.</p>
 <ul>
 <li>La reprise après coupure est active : l'avancement est enregistré à chaque couche. Pour la désactiver : <code>M413 S0</code> puis <code>M500</code>.</li>
 <li>Une impression qui s'arrête dès la chauffe avec <em>power outage</em> : mettez à jour vers la v2.0.4 ou plus récente. Les versions précédentes surveillaient l'entrée de détection de coupure de la carte, qui passe à l'état bas dès que les chauffes démarrent.</li>
-<li>Le capteur de fin de filament n'est actif par défaut que sur la MK3. Une fois un capteur monté sur un autre modèle : <code>M412 S1</code> puis <code>M500</code>. Branchement et BTT Smart Filament Sensor : <a href="{p('sensor')}">Capteur filament</a>.</li>
+<li>La détection de fin de filament est active par défaut sur tous les modèles depuis la v2.0.8, et ne fait rien sans capteur. Après une mise à jour depuis une version précédente, activez-la avec <code>M412 S1</code> puis <code>M500</code>. Branchement et BTT Smart Filament Sensor : <a href="{p('sensor')}">Capteur filament</a>.</li>
 </ul>
 
 <h2>Dépannage</h2>
@@ -705,7 +705,7 @@ la version correspondante sur la <a href="{p('mk1')}">page MK1</a>. MK1 + kit, M
 <h1>Filament sensors</h1>
 <p class="lead">From v2.0.5 these firmwares read two kinds of sensor: Wanhao's runout switch, and the
 BTT Smart Filament Sensor V2.0, which also notices when the filament stops moving (tangled spool, jam, stripped
-filament). Detection is off until you turn it on, except for the runout switch on the MK3.</p>
+filament). <strong>Runout detection is on by default on every model</strong>, and jam detection is off.</p>
 
 <h2>The sensor plug</h2>
 <figure><img src="{img}d9-sensor-plug-en.svg" width="760" height="440" alt="Wanhao D9 main board: the 4-pin sensor plug left of POWER-DET, pins D9, D8, GND and 5V, wired to a BTT Smart Filament Sensor V2.0"></figure>
@@ -737,11 +737,17 @@ alone is ignored and <code>L0</code> pauses the print as a jam at once.</p>
 
 <h2>Wanhao's runout switch</h2>
 <p>It tells the firmware whether filament is there. When it goes missing, the print pauses after 5 more mm of
-filament and the screen starts a filament change. It is on by default on the MK3.</p>
-<pre><code>M412 S1
-M500</code></pre>
-<p>Jam detection stays off (<code>L0</code>), since this switch cannot see filament move. To turn the switch off:
-<code>M412 S0</code> then <code>M500</code>.</p>
+filament and the screen starts a filament change.</p>
+<p><strong>It is on by default on every model, since v2.0.8.</strong> With nothing plugged into D8, the board's
+pull-up holds the pin at 5 V, which reads as "filament present": detection then never triggers, so it can stay on
+whether or not a sensor is fitted. Plug a runout switch into D8 and it works straight away.</p>
+<ul>
+<li>Jam detection stays off (<code>L0</code>): this switch cannot see filament move.</li>
+<li>To turn the switch off: <code>M412 S0</code> then <code>M500</code>.</li>
+<li>Settings saved by an earlier release keep their on/off state. To turn it on: <code>M412 S1</code> then
+<code>M500</code>, or reset to the defaults (<code>M502</code> then <code>M500</code>, which also clears your probe Z
+offset and mesh).</li>
+</ul>
 
 <h2>BTT Smart Filament Sensor V2.0</h2>
 <p>This sensor has two outputs, and the firmware reads them differently:</p>
@@ -784,8 +790,8 @@ instead of the 0 those versions saved.</p>
 <h1>Capteurs de filament</h1>
 <p class="lead">Depuis la v2.0.5, ces firmwares lisent deux types de capteur : le détecteur de fin de filament Wanhao,
 et le BTT Smart Filament Sensor V2.0, qui remarque aussi quand le filament n'avance plus (bobine emmêlée, bourrage,
-filament rongé). La détection reste désactivée tant que vous ne l'activez pas, sauf le détecteur de fin de filament
-de la MK3.</p>
+filament rongé). <strong>La détection de fin de filament est active par défaut sur tous les modèles</strong>, et la
+détection de bourrage est désactivée.</p>
 
 <h2>La prise capteur</h2>
 <figure><img src="{img}d9-sensor-plug-fr.svg" width="760" height="440" alt="Carte mère Wanhao D9 : la prise capteur 4 broches à gauche de POWER-DET, broches D9, D8, GND et 5V, câblée vers un BTT Smart Filament Sensor V2.0"></figure>
@@ -818,11 +824,18 @@ seul est ignoré et <code>L0</code> met tout de suite l'impression en pause pour
 
 <h2>Le détecteur de fin de filament Wanhao</h2>
 <p>Il indique au firmware si le filament est là. Quand il manque, l'impression se met en pause 5 mm de filament plus
-loin et l'écran lance un changement de filament. Il est actif par défaut sur la MK3.</p>
-<pre><code>M412 S1
-M500</code></pre>
-<p>La détection de bourrage reste désactivée (<code>L0</code>), puisque ce détecteur ne voit pas le filament avancer.
-Pour le désactiver : <code>M412 S0</code> puis <code>M500</code>.</p>
+loin et l'écran lance un changement de filament.</p>
+<p><strong>Il est actif par défaut sur tous les modèles, depuis la v2.0.8.</strong> Sans rien de branché sur D8, la
+résistance de tirage de la carte maintient la broche à 5 V, ce qui se lit « filament présent » : la détection ne se
+déclenche alors jamais, elle peut donc rester active avec ou sans capteur. Branchez un détecteur sur D8 et il
+fonctionne tout de suite.</p>
+<ul>
+<li>La détection de bourrage reste désactivée (<code>L0</code>) : ce détecteur ne voit pas le filament avancer.</li>
+<li>Pour le désactiver : <code>M412 S0</code> puis <code>M500</code>.</li>
+<li>Les réglages enregistrés par une version précédente gardent leur état activé ou désactivé. Pour l'activer :
+<code>M412 S1</code> puis <code>M500</code>, ou revenez aux réglages par défaut (<code>M502</code> puis
+<code>M500</code>, ce qui efface aussi le décalage Z de la sonde et le maillage).</li>
+</ul>
 
 <h2>BTT Smart Filament Sensor V2.0</h2>
 <p>Ce capteur a deux sorties, que le firmware lit différemment :</p>

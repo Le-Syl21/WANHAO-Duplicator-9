@@ -85,7 +85,7 @@ result with <code>M503</code>.</p>
 <ul>
 <li>Power-loss recovery is on: the job is saved on each layer change. Turn it off with <code>M413 S0</code> then <code>M500</code>.</li>
 <li>A print that stops at once with <em>power outage</em> as soon as it heats: update to v2.0.4 or later. Earlier builds watched the board's power-fail input, which reads low as soon as the heaters start.</li>
-<li>The filament runout sensor is on by default on the MK3 only. Once a sensor is fitted on another model: <code>M412 S1</code> then <code>M500</code>. Wiring and the BTT Smart Filament Sensor: <a href="sensor.html">Filament sensor</a>.</li>
+<li>Filament runout detection is on by default on every model since v2.0.8, and does nothing without a sensor. After an update from an earlier release, turn it on with <code>M412 S1</code> then <code>M500</code>. Wiring and the BTT Smart Filament Sensor: <a href="sensor.html">Filament sensor</a>.</li>
 </ul>
 
 <h2>Troubleshooting</h2>

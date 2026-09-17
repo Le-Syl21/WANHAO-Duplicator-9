@@ -30,7 +30,7 @@
 <h1>Filament sensors</h1>
 <p class="lead">From v2.0.5 these firmwares read two kinds of sensor: Wanhao's runout switch, and the
 BTT Smart Filament Sensor V2.0, which also notices when the filament stops moving (tangled spool, jam, stripped
-filament). Detection is off until you turn it on, except for the runout switch on the MK3.</p>
+filament). <strong>Runout detection is on by default on every model</strong>, and jam detection is off.</p>
 
 <h2>The sensor plug</h2>
 <figure><img src="img/d9-sensor-plug-en.svg" width="760" height="440" alt="Wanhao D9 main board: the 4-pin sensor plug left of POWER-DET, pins D9, D8, GND and 5V, wired to a BTT Smart Filament Sensor V2.0"></figure>
@@ -62,11 +62,17 @@ alone is ignored and <code>L0</code> pauses the print as a jam at once.</p>
 
 <h2>Wanhao's runout switch</h2>
 <p>It tells the firmware whether filament is there. When it goes missing, the print pauses after 5 more mm of
-filament and the screen starts a filament change. It is on by default on the MK3.</p>
-<pre><code>M412 S1
-M500</code></pre>
-<p>Jam detection stays off (<code>L0</code>), since this switch cannot see filament move. To turn the switch off:
-<code>M412 S0</code> then <code>M500</code>.</p>
+filament and the screen starts a filament change.</p>
+<p><strong>It is on by default on every model, since v2.0.8.</strong> With nothing plugged into D8, the board's
+pull-up holds the pin at 5 V, which reads as "filament present": detection then never triggers, so it can stay on
+whether or not a sensor is fitted. Plug a runout switch into D8 and it works straight away.</p>
+<ul>
+<li>Jam detection stays off (<code>L0</code>): this switch cannot see filament move.</li>
+<li>To turn the switch off: <code>M412 S0</code> then <code>M500</code>.</li>
+<li>Settings saved by an earlier release keep their on/off state. To turn it on: <code>M412 S1</code> then
+<code>M500</code>, or reset to the defaults (<code>M502</code> then <code>M500</code>, which also clears your probe Z
+offset and mesh).</li>
+</ul>
 
 <h2>BTT Smart Filament Sensor V2.0</h2>
 <p>This sensor has two outputs, and the firmware reads them differently:</p>
