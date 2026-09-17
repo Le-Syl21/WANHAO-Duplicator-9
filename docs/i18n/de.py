@@ -507,13 +507,15 @@ von allein gespeichert.</p>
 M500
 G28         ; erneut referenzieren, damit er übernommen wird
 M420 S0     ; das Netz während der Messung ignorieren
+M211 S0     ; erlaubt, unter Z0 zu fahren: die Software-Endschalter halten die Düse dort an
 G1 Z0 F300  ; die Düse fährt auf die Null, die die Firmware annimmt</code></pre>
 <p>Schiebe ein Blatt Papier unter die Düse und senke dann in kleinen Schritten mit <code>G91</code> und
 <code>G1 Z-0.05 F60</code> ab, immer wieder, bis das Papier gerade eben schleift. Lies den Wert mit <code>M114</code>
 ab: Er ist negativ, zum Beispiel −1,30. Dann:</p>
 <pre><code>G90
 M851 Z-1.30 ; dein Wert
-M500</code></pre>
+M500
+M211 S1     ; die Software-Endschalter wieder einschalten, sie schützen das Bett</code></pre>
 
 <h3>4. Das Bett abtasten</h3>
 <p>Am Display: <em>Einstellungen</em> → <em>Nivellierung</em> → <em>Automatisch</em> → <em>Abtasten</em>. Der Drucker
@@ -539,6 +541,14 @@ Einstellung zu prüfen, ohne etwas zu installieren:</p>
 </ul>
 <p>Jeweils etwa anderthalb Stunden und 4 m Filament. Für ein anderes Modell oder eine andere Größe slice den
 <a href="https://github.com/CreativeTools/3DBenchy">3DBenchy</a> selbst mit deinem Profil.</p>
+<div class="cards">
+<figure><img src="{img}benchy-orca.webp" width="760" height="621" alt="3DBenchy gedruckt mit dem OrcaSlicer-Profil auf einer Wanhao D9 MK2 300"><figcaption>OrcaSlicer, 1 h 14 min</figcaption></figure>
+<figure><img src="{img}benchy-cura.webp" width="760" height="685" alt="3DBenchy gedruckt mit dem Cura-Profil auf einer Wanhao D9 MK2 300"><figcaption>Cura, 1 h 22 min</figcaption></figure>
+</div>
+<p><strong>Womit du anfängst:</strong> auf einer D9 MK2 300 in PLA brauchte derselbe Benchy <strong>1 h 14 min
+mit OrcaSlicer</strong> und <strong>1 h 22 min mit Cura</strong>, und die Wände von OrcaSlicer kamen etwas sauberer
+heraus. Beide sind gut; OrcaSlicer ist der, mit dem wir anfangen würden, und seine Kalibrierwerkzeuge (Durchfluss,
+Pressure Advance, Temperaturtürme) helfen, sobald du mehr willst.</p>
 <div class="note">Die D9 ist offen: ABS braucht mindestens einen Raum ohne Zugluft, und seine Betttemperatur ist auf
 das heruntergesetzt, was dein Modell verträgt (80 °C bei einer MK3 500).</div>
 

@@ -31,7 +31,7 @@
 <meta property="og:locale" content="hi_IN">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖨️</text></svg>">
-<link rel="stylesheet" href="../style.css?v=3">
+<link rel="stylesheet" href="../style.css?v=4">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Wanhao Duplicator 9 के लिए Cura और OrcaSlicer प्रोफ़ाइल, और Z ऑफ़सेट सेट करना", "description": "हर Wanhao D9 के लिए तैयार UltiMaker Cura और OrcaSlicer प्रोफ़ाइल, PLA, PETG और ABS के साथ; प्रोब का Z ऑफ़सेट कैसे सेट करें, बेड प्रोबिंग कैसे चलाएँ और टेस्ट 3DBenchy कैसे प्रिंट करें।", "url": "https://le-syl21.github.io/WANHAO-Duplicator-9/hi/slicer.html", "inLanguage": "hi", "about": {"@type": "Product", "name": "Wanhao Duplicator 9", "brand": "Wanhao"}}</script>
 </head>
 <body>
@@ -83,13 +83,15 @@ non-networked printer</em> → <em>Wanhao</em> → अपना मॉडल। 
 M500
 G28         ; दोबारा होम करो ताकि यह लागू हो
 M420 S0     ; मापते समय मेश को छोड़ दो
+M211 S0     ; Z0 से नीचे जाने दो: सॉफ़्ट लिमिट नोज़ल को वहीं रोक देती हैं
 G1 Z0 F300  ; नोज़ल वहाँ तक उतरता है जिसे फ़र्मवेयर ज़ीरो मानता है</code></pre>
 <p>नोज़ल के नीचे कागज़ की एक शीट सरकाएँ, फिर <code>G91</code> और उसके बाद <code>G1 Z-0.05 F60</code> से बार-बार छोटे
 कदमों में नीचे लाएँ, जब तक कागज़ बस हल्का-सा रगड़ने न लगे। <code>M114</code> से वैल्यू पढ़ें: यह ऋणात्मक होती है, जैसे
 −1.30। फिर:</p>
 <pre><code>G90
 M851 Z-1.30 ; आपकी वैल्यू
-M500</code></pre>
+M500
+M211 S1     ; सॉफ़्ट लिमिट वापस लगा दो, वे बेड की रक्षा करती हैं</code></pre>
 
 <h3>4. बेड प्रोब करें</h3>
 <p>स्क्रीन पर: <em>सेटिंग्स</em> → <em>लेवलिंग</em> → <em>स्वचालित</em> → <em>प्रोब</em>। प्रिंटर 25 पॉइंट मापता है और
@@ -114,6 +116,14 @@ M500</code></pre>
 </ul>
 <p>हर एक में लगभग डेढ़ घंटा और 4 m फिलामेंट लगता है। किसी और मॉडल या साइज़ के लिए
 <a href="https://github.com/CreativeTools/3DBenchy">3DBenchy</a> को अपनी प्रोफ़ाइल से खुद स्लाइस करें।</p>
+<div class="cards">
+<figure><img src="../img/benchy-orca.webp" width="760" height="621" alt="Wanhao D9 MK2 300 पर OrcaSlicer प्रोफ़ाइल से प्रिंट किया गया 3DBenchy"><figcaption>OrcaSlicer, 1 घंटा 14 मिनट</figcaption></figure>
+<figure><img src="../img/benchy-cura.webp" width="760" height="685" alt="Wanhao D9 MK2 300 पर Cura प्रोफ़ाइल से प्रिंट किया गया 3DBenchy"><figcaption>Cura, 1 घंटा 22 मिनट</figcaption></figure>
+</div>
+<p><strong>शुरुआत किससे करें:</strong> D9 MK2 300 पर PLA में वही Benchy <strong>OrcaSlicer से 1 घंटा 14 मिनट</strong>
+और <strong>Cura से 1 घंटा 22 मिनट</strong> में छपा, और OrcaSlicer की दीवारें थोड़ी ज़्यादा साफ़ निकलीं। दोनों अच्छे
+हैं; हम शुरुआत OrcaSlicer से करेंगे, और आगे और बेहतर करना हो तो इसके कैलिब्रेशन टूल (फ़्लो, pressure advance,
+टेम्परेचर टावर) काम आते हैं।</p>
 <div class="note">D9 खुली मशीन है: ABS के लिए कम से कम ऐसा कमरा चाहिए जिसमें हवा का झोंका न आए, और इसका बेड तापमान उतना
 ही रखा गया है जितना आपका मॉडल सह सकता है (MK3 500 पर 80 °C)।</div>
 

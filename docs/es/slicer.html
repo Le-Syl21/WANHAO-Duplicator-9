@@ -31,7 +31,7 @@
 <meta property="og:locale" content="es_ES">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖨️</text></svg>">
-<link rel="stylesheet" href="../style.css?v=3">
+<link rel="stylesheet" href="../style.css?v=4">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Perfiles de Cura y OrcaSlicer para la Wanhao Duplicator 9, y ajuste del offset Z", "description": "Perfiles UltiMaker Cura y OrcaSlicer listos para usar para todas las Wanhao D9, PLA, PETG y ABS, cómo ajustar el offset Z de la sonda, lanzar un palpado de la cama e imprimir un 3DBenchy de prueba.", "url": "https://le-syl21.github.io/WANHAO-Duplicator-9/es/slicer.html", "inLanguage": "es", "about": {"@type": "Product", "name": "Wanhao Duplicator 9", "brand": "Wanhao"}}</script>
 </head>
 <body>
@@ -83,13 +83,15 @@ una superficie rugosa y aplastada donde se ve la boquilla escarbando. El valor s
 M500
 G28         ; vuelve a hacer el origen para que se tenga en cuenta
 M420 S0     ; ignora la malla durante la medición
+M211 S0     ; permite bajar por debajo de Z0: los finales de carrera por software paran ahí la boquilla
 G1 Z0 F300  ; la boquilla baja al cero que cree el firmware</code></pre>
 <p>Deslice una hoja de papel bajo la boquilla y luego baje a pasos pequeños con <code>G91</code> y
 <code>G1 Z-0.05 F60</code>, una y otra vez, hasta que la hoja apenas empiece a rozar. Lea el valor con
 <code>M114</code>: es negativo, por ejemplo −1,30. Después:</p>
 <pre><code>G90
 M851 Z-1.30 ; su valor
-M500</code></pre>
+M500
+M211 S1     ; vuelve a poner los finales de carrera por software, protegen la cama</code></pre>
 
 <h3>4. Palpe la cama</h3>
 <p>En la pantalla: <em>Ajustes</em> → <em>Nivelación</em> → <em>Automático</em> → <em>Palpar</em>. La impresora mide
@@ -114,6 +116,14 @@ sin instalar nada:</p>
 </ul>
 <p>Alrededor de una hora y media y 4 m de filamento cada uno. Para otro modelo u otro tamaño, lamine usted mismo el
 <a href="https://github.com/CreativeTools/3DBenchy">3DBenchy</a> con su perfil.</p>
+<div class="cards">
+<figure><img src="../img/benchy-orca.webp" width="760" height="621" alt="3DBenchy impreso con el perfil OrcaSlicer en una Wanhao D9 MK2 300"><figcaption>OrcaSlicer, 1 h 14</figcaption></figure>
+<figure><img src="../img/benchy-cura.webp" width="760" height="685" alt="3DBenchy impreso con el perfil Cura en una Wanhao D9 MK2 300"><figcaption>Cura, 1 h 22</figcaption></figure>
+</div>
+<p><strong>Por cuál empezar:</strong> en una D9 MK2 300 en PLA, el mismo Benchy tardó <strong>1 h 14 con
+OrcaSlicer</strong> y <strong>1 h 22 con Cura</strong>, y las paredes de OrcaSlicer salieron algo más limpias. Los
+dos son buenos; OrcaSlicer es por el que nosotros empezaríamos, y sus herramientas de calibración (flujo, pressure
+advance, torres de temperatura) sirven en cuanto quiera ir más lejos.</p>
 <div class="note">La D9 es abierta: el ABS pide como mínimo una habitación sin corrientes de aire, y su temperatura de
 cama se rebaja a lo que acepte su modelo (80 °C en una MK3 500).</div>
 

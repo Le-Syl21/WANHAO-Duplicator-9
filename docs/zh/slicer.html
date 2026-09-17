@@ -31,7 +31,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖨️</text></svg>">
-<link rel="stylesheet" href="../style.css?v=3">
+<link rel="stylesheet" href="../style.css?v=4">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Wanhao Duplicator 9 的 Cura 和 OrcaSlicer 配置，以及 Z 偏移的设置方法", "description": "适用于所有 Wanhao D9 的现成 UltiMaker Cura 和 OrcaSlicer 配置，涵盖 PLA、PETG 和 ABS，以及如何设置探针的 Z 偏移、探测热床和打印一个测试用 3DBenchy。", "url": "https://le-syl21.github.io/WANHAO-Duplicator-9/zh/slicer.html", "inLanguage": "zh-Hans", "about": {"@type": "Product", "name": "Wanhao Duplicator 9", "brand": "Wanhao"}}</script>
 </head>
 <body>
@@ -73,11 +73,13 @@
 M500
 G28         ; 重新归零，让它生效
 M420 S0     ; 测量时忽略网格
+M211 S0     ; 允许下降到 Z0 以下：软件限位会把喷嘴挡在那里
 G1 Z0 F300  ; 喷嘴下降到固件认为的零点</code></pre>
 <p>把一张纸塞到喷嘴下面，然后用 <code>G91</code> 再配合 <code>G1 Z-0.05 F60</code> 一小步一小步地往下调，反复进行，直到纸刚好开始有阻力。用 <code>M114</code> 读出数值：它是负数，例如 −1.30。然后：</p>
 <pre><code>G90
 M851 Z-1.30 ; 你的数值
-M500</code></pre>
+M500
+M211 S1     ; 恢复软件限位，它们保护着热床</code></pre>
 
 <h3>4. 探测热床</h3>
 <p>在屏幕上：<em>设置</em> → <em>调平</em> → <em>自动</em> → <em>探测</em>。打印机会测量 25 个点并<strong>自动保存网格</strong>（它会执行 <code>G29</code> 然后 <code>M500</code>）。需要几分钟。通过 USB：<code>G29</code> 然后 <code>M500</code>。</p>
@@ -97,6 +99,11 @@ M500</code></pre>
 </ul>
 <p>每个大约需要一个半小时和 4 m 耗材。换别的型号或尺寸时，请用你自己的配置来切片
 <a href="https://github.com/CreativeTools/3DBenchy">3DBenchy</a>。</p>
+<div class="cards">
+<figure><img src="../img/benchy-orca.webp" width="760" height="621" alt="用 OrcaSlicer 配置在 Wanhao D9 MK2 300 上打印的 3DBenchy"><figcaption>OrcaSlicer，1 小时 14 分</figcaption></figure>
+<figure><img src="../img/benchy-cura.webp" width="760" height="685" alt="用 Cura 配置在 Wanhao D9 MK2 300 上打印的 3DBenchy"><figcaption>Cura，1 小时 22 分</figcaption></figure>
+</div>
+<p><strong>先从哪一个开始：</strong>在一台 D9 MK2 300 上用 PLA 打印，同一个 Benchy 在 <strong>OrcaSlicer 里用了 1 小时 14 分</strong>，在 <strong>Cura 里用了 1 小时 22 分</strong>，而且 OrcaSlicer 打出来的外壁略微更干净一些。两款都很好；我们会从 OrcaSlicer 开始，等你想更进一步时，它的校准工具（流量、pressure advance、温度塔）就派得上用场。</p>
 <div class="note">D9 是开放式的：打印 ABS 至少需要一个没有穿堂风的房间，而它的热床温度会被降到你的型号所能接受的数值（MK3 500 上为 80 °C）。</div>
 
 <h2>配置里有什么</h2>

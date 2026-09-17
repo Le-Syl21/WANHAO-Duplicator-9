@@ -501,13 +501,15 @@ i zgnieciona, a dyszę widać, jak ryje. Wartość zapisuje się sama.</p>
 M500
 G28         ; bazuj ponownie, żeby został uwzględniony
 M420 S0     ; zignoruj siatkę na czas pomiaru
+M211 S0     ; pozwól zejść poniżej Z0: blokady programowe zatrzymują tam dyszę
 G1 Z0 F300  ; dysza zjeżdża do zera, w które wierzy firmware</code></pre>
 <p>Wsuń pod dyszę kartkę papieru, a potem schodź małymi krokami: <code>G91</code>, a potem
 <code>G1 Z-0.05 F60</code>, raz za razem, aż kartka zacznie ledwo ocierać. Odczytaj wartość poleceniem
 <code>M114</code>: jest ujemna, na przykład −1,30. Następnie:</p>
 <pre><code>G90
 M851 Z-1.30 ; Twoja wartość
-M500</code></pre>
+M500
+M211 S1     ; przywróć blokady programowe, chronią stół</code></pre>
 
 <h3>4. Zsonduj stół</h3>
 <p>Na ekranie: <em>Ustawienia</em> → <em>Poziomowanie</em> → <em>Automatyczne</em> → <em>Sonduj</em>. Drukarka mierzy
@@ -532,6 +534,14 @@ bez instalowania czegokolwiek:</p>
 </ul>
 <p>Każdy to około półtorej godziny i 4 m filamentu. Dla innego modelu lub rozmiaru potnij
 <a href="https://github.com/CreativeTools/3DBenchy">3DBenchy</a> samodzielnie swoim profilem.</p>
+<div class="cards">
+<figure><img src="{img}benchy-orca.webp" width="760" height="621" alt="3DBenchy wydrukowany z profilem OrcaSlicer na Wanhao D9 MK2 300"><figcaption>OrcaSlicer, 1 h 14</figcaption></figure>
+<figure><img src="{img}benchy-cura.webp" width="760" height="685" alt="3DBenchy wydrukowany z profilem Cura na Wanhao D9 MK2 300"><figcaption>Cura, 1 h 22</figcaption></figure>
+</div>
+<p><strong>Od którego zacząć:</strong> na D9 MK2 300 w PLA ten sam Benchy zajął <strong>1 h 14 z OrcaSlicerem</strong>
+i <strong>1 h 22 z Curą</strong>, a ścianki z OrcaSlicera wyszły odrobinę czystsze. Oba są dobre; my zaczęlibyśmy od
+OrcaSlicera, a jego narzędzia do kalibracji (przepływ, pressure advance, wieże temperaturowe) przydają się, gdy
+chcesz pójść dalej.</p>
 <div class="note">D9 jest otwarta: ABS wymaga co najmniej pomieszczenia bez przeciągów, a jego temperatura stołu jest
 obniżona do tego, co wytrzymuje Twój model (80 °C na MK3 500).</div>
 

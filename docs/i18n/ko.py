@@ -499,13 +499,15 @@ v2.0.6은 10 km였습니다. v2.0.7은 프린터가 시작될 때 이 두 값을
 M500
 G28         ; 반영되도록 다시 원점으로 보냅니다
 M420 S0     ; 재는 동안 메시를 무시합니다
+M211 S0     ; Z0 아래로 내려갈 수 있게 합니다. 소프트웨어 리밋이 노즐을 거기서 막습니다
 G1 Z0 F300  ; 펌웨어가 0이라고 여기는 높이까지 노즐이 내려옵니다</code></pre>
 <p>노즐 밑으로 종이 한 장을 밀어 넣고, <code>G91</code> 다음 <code>G1 Z-0.05 F60</code>을 여러 번 써서 조금씩
 내리다가, 종이가 겨우 끌리기 시작하면 멈추세요. <code>M114</code>로 값을 읽습니다. 음수이며, 예를 들면 −1.30입니다.
 그다음:</p>
 <pre><code>G90
 M851 Z-1.30 ; 여러분의 값
-M500</code></pre>
+M500
+M211 S1     ; 소프트웨어 리밋을 되돌립니다. 베드를 지켜 줍니다</code></pre>
 
 <h3>4. 베드를 프로빙하세요</h3>
 <p>화면에서: <em>설정</em> → <em>레벨링</em> → <em>자동</em> → <em>프로브</em>. 프린터가 25점을 재고
@@ -530,6 +532,14 @@ USB로는: <code>G29</code> 다음 <code>M500</code>.</p>
 </ul>
 <p>각각 한 시간 반쯤 걸리고 필라멘트 4 m를 씁니다. 다른 모델이나 다른 크기라면
 <a href="https://github.com/CreativeTools/3DBenchy">3DBenchy</a>를 자기 프로파일로 직접 슬라이싱하세요.</p>
+<div class="cards">
+<figure><img src="{img}benchy-orca.webp" width="760" height="621" alt="Wanhao D9 MK2 300에서 OrcaSlicer 프로파일로 출력한 3DBenchy"><figcaption>OrcaSlicer, 1시간 14분</figcaption></figure>
+<figure><img src="{img}benchy-cura.webp" width="760" height="685" alt="Wanhao D9 MK2 300에서 Cura 프로파일로 출력한 3DBenchy"><figcaption>Cura, 1시간 22분</figcaption></figure>
+</div>
+<p><strong>무엇부터 시작할까:</strong> D9 MK2 300에서 PLA로 같은 Benchy를 뽑아 보니 <strong>OrcaSlicer는 1시간 14분</strong>,
+<strong>Cura는 1시간 22분</strong>이 걸렸고, 벽면은 OrcaSlicer 쪽이 조금 더 깔끔했습니다. 둘 다 좋지만 저희라면
+OrcaSlicer로 시작하겠습니다. 더 파고들고 싶어지면 이 슬라이서의 캘리브레이션 도구(플로우, pressure advance,
+온도 타워)가 도움이 됩니다.</p>
 <div class="note">D9는 개방형입니다: ABS는 적어도 바람이 들지 않는 방이 필요하고, 베드 온도는 자기 모델이 견디는
 값까지 낮춰 두었습니다(MK3 500은 80 °C).</div>
 

@@ -499,13 +499,15 @@ ezik olur, nozulun kazıdığı görülür. Değer kendiliğinden kaydedilir.</p
 M500
 G28         ; hesaba katılması için yeniden sıfırla
 M420 S0     ; ölçüm sırasında ağı yok say
+M211 S0     ; Z0 altına inmeye izin ver: nozulu orada yazılım sınırları durdurur
 G1 Z0 F300  ; nozul, firmware'in sıfır sandığı yere iner</code></pre>
 <p>Nozulun altına bir kâğıt sürün, sonra <code>G91</code> ve ardından <code>G1 Z-0.05 F60</code> ile küçük adımlarla,
 kâğıt ancak sürtmeye başlayana kadar tekrar tekrar indirin. Değeri <code>M114</code> ile okuyun: negatiftir, örneğin
 −1,30. Sonra:</p>
 <pre><code>G90
 M851 Z-1.30 ; sizin değeriniz
-M500</code></pre>
+M500
+M211 S1     ; yazılım sınırlarını geri koy, tablayı onlar korur</code></pre>
 
 <h3>4. Tablayı ölçün</h3>
 <p>Ekranda: <em>Ayarlar</em> → <em>Tabla ayarı</em> → <em>Otomatik</em> → <em>Ölç</em>. Yazıcı 25 nokta ölçer ve
@@ -530,6 +532,14 @@ hazır dilimlenmiş bir 3DBenchy:</p>
 </ul>
 <p>Her biri yaklaşık bir buçuk saat ve 4 m filament. Başka bir model ya da boyut için
 <a href="https://github.com/CreativeTools/3DBenchy">3DBenchy</a>'yi kendi profilinizle kendiniz dilimleyin.</p>
+<div class="cards">
+<figure><img src="{img}benchy-orca.webp" width="760" height="621" alt="Wanhao D9 MK2 300'de OrcaSlicer profiliyle basılmış 3DBenchy"><figcaption>OrcaSlicer, 1 h 14</figcaption></figure>
+<figure><img src="{img}benchy-cura.webp" width="760" height="685" alt="Wanhao D9 MK2 300'de Cura profiliyle basılmış 3DBenchy"><figcaption>Cura, 1 h 22</figcaption></figure>
+</div>
+<p><strong>Hangisiyle başlamalı:</strong> PLA ile bir D9 MK2 300'de aynı Benchy <strong>OrcaSlicer ile 1 h 14</strong>,
+<strong>Cura ile 1 h 22</strong> sürdü ve OrcaSlicer'ın duvarları biraz daha temiz çıktı. İkisi de iyi; biz
+OrcaSlicer ile başlardık, ayrıca kalibrasyon araçları (akış, pressure advance, sıcaklık kuleleri) daha fazlasını
+istediğinizde işinize yarar.</p>
 <div class="note">D9 açık bir yazıcıdır: ABS en azından hava akımı olmayan bir oda ister ve tabla sıcaklığı,
 modelinizin kabul ettiği değere düşürülür (MK3 500'de 80 °C).</div>
 

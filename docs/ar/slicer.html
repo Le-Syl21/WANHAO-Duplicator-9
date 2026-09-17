@@ -31,7 +31,7 @@
 <meta property="og:locale" content="ar_AR">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖨️</text></svg>">
-<link rel="stylesheet" href="../style.css?v=3">
+<link rel="stylesheet" href="../style.css?v=4">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "ملفات تعريف Cura وOrcaSlicer لطابعة Wanhao Duplicator 9، وضبط إزاحة Z", "description": "ملفات تعريف جاهزة لبرنامجي UltiMaker Cura وOrcaSlicer لكل طرازات Wanhao D9، مع PLA وPETG وABS، وكيف تضبط إزاحة Z للمجس، وتقيس السرير، وتطبع نموذج 3DBenchy للاختبار.", "url": "https://le-syl21.github.io/WANHAO-Duplicator-9/ar/slicer.html", "inLanguage": "ar", "about": {"@type": "Product", "name": "Wanhao Duplicator 9", "brand": "Wanhao"}}</script>
 </head>
 <body>
@@ -83,12 +83,14 @@
 M500
 G28         ; home again so it is taken into account
 M420 S0     ; ignore the mesh while measuring
+M211 S0     ; allow going below Z0: the soft limits stop the nozzle there
 G1 Z0 F300  ; the nozzle comes down to what the firmware thinks is zero</code></pre>
 <p>مرّر ورقة تحت الفوهة، ثم انزل بخطوات صغيرة باستخدام <code>G91</code> ثم <code>G1 Z-0.05 F60</code>، مرة بعد
 مرة، حتى تبدأ الورقة بالاحتكاك بالكاد. اقرأ القيمة بالأمر <code>M114</code>: هي سالبة، مثلًا −1.30. ثم:</p>
 <pre><code>G90
 M851 Z-1.30 ; your value
-M500</code></pre>
+M500
+M211 S1     ; put the soft limits back, they protect the bed</code></pre>
 
 <h3>4. قِس السرير</h3>
 <p>من الشاشة: <em>الإعدادات</em> ← <em>تسوية السرير</em> ← <em>تلقائي</em> ← <em>قياس</em>. تقيس الطابعة 25 نقطة
@@ -113,6 +115,13 @@ M500</code></pre>
 </ul>
 <p>يستغرق كل واحد نحو ساعة ونصف ويستهلك 4 أمتار من الخيط. لطراز آخر أو مقاس آخر، قطّع
 <a href="https://github.com/CreativeTools/3DBenchy">3DBenchy</a> بنفسك بملف التعريف الخاص بك.</p>
+<div class="cards">
+<figure><img src="../img/benchy-orca.webp" width="760" height="621" alt="نموذج 3DBenchy مطبوع بملف تعريف OrcaSlicer على طابعة Wanhao D9 MK2 300"><figcaption>OrcaSlicer، ساعة و14 دقيقة</figcaption></figure>
+<figure><img src="../img/benchy-cura.webp" width="760" height="685" alt="نموذج 3DBenchy مطبوع بملف تعريف Cura على طابعة Wanhao D9 MK2 300"><figcaption>Cura، ساعة و22 دقيقة</figcaption></figure>
+</div>
+<p><strong>بأيّهما تبدأ:</strong> على طابعة D9 MK2 300 وبخيط PLA، استغرق النموذج Benchy نفسه <strong>ساعة و14 دقيقة مع
+OrcaSlicer</strong> و<strong>ساعة و22 دقيقة مع Cura</strong>، وخرجت جدران OrcaSlicer أنظف قليلًا. كلاهما جيد، ونحن
+نبدأ بـOrcaSlicer، كما تنفع أدوات المعايرة فيه (التدفق، pressure advance، أبراج الحرارة) متى أردت الذهاب أبعد.</p>
 <div class="note">الـD9 مفتوحة: يحتاج ABS على الأقل إلى غرفة بلا تيارات هواء، وحرارة سريره مخفَّضة إلى ما يقبله
 طرازك (80 °C على MK3 500).</div>
 

@@ -31,7 +31,7 @@
 <meta property="og:locale" content="fr_FR">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖨️</text></svg>">
-<link rel="stylesheet" href="../style.css?v=3">
+<link rel="stylesheet" href="../style.css?v=4">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Profils Cura et OrcaSlicer pour la Wanhao Duplicator 9, et réglage du décalage Z", "description": "Profils UltiMaker Cura et OrcaSlicer prêts à l'emploi pour toutes les Wanhao D9, PLA, PETG et ABS, comment régler le décalage Z de la sonde, lancer un palpage et imprimer un 3DBenchy de test.", "url": "https://le-syl21.github.io/WANHAO-Duplicator-9/fr/slicer.html", "inLanguage": "fr", "about": {"@type": "Product", "name": "Wanhao Duplicator 9", "brand": "Wanhao"}}</script>
 </head>
 <body>
@@ -83,13 +83,15 @@ séparées ; trop bas, la surface devient rugueuse et on voit la buse creuser. L
 M500
 G28         ; refaire l'origine pour qu'il soit pris en compte
 M420 S0     ; ignore le maillage pendant la mesure
+M211 S0     ; autorise à descendre sous Z0 : les butées logicielles bloquent là
 G1 Z0 F300  ; la buse descend au zéro que croit le firmware</code></pre>
 <p>Glissez une feuille de papier sous la buse, puis descendez par petits pas avec <code>G91</code> puis
 <code>G1 Z-0.05 F60</code>, encore et encore, jusqu'à ce que la feuille commence tout juste à frotter. Lisez la valeur
 avec <code>M114</code> : elle est négative, par exemple −1,30. Ensuite :</p>
 <pre><code>G90
 M851 Z-1.30 ; votre valeur
-M500</code></pre>
+M500
+M211 S1     ; remet les butées logicielles, elles protègent le plateau</code></pre>
 
 <h3>4. Palpez le plateau</h3>
 <p>À l'écran : <em>Réglages</em> → <em>Nivellement</em> → <em>Automatique</em> → <em>Palper</em>. L'imprimante mesure
@@ -115,6 +117,14 @@ sans rien installer :</p>
 </ul>
 <p>Environ une heure et demie et 4 m de filament chacun. Pour un autre modèle ou une autre taille, tranchez le
 <a href="https://github.com/CreativeTools/3DBenchy">3DBenchy</a> vous-même avec votre profil.</p>
+<div class="cards">
+<figure><img src="../img/benchy-orca.webp" width="760" height="621" alt="3DBenchy imprimé avec le profil OrcaSlicer sur une Wanhao D9 MK2 300"><figcaption>OrcaSlicer, 1 h 14</figcaption></figure>
+<figure><img src="../img/benchy-cura.webp" width="760" height="685" alt="3DBenchy imprimé avec le profil Cura sur une Wanhao D9 MK2 300"><figcaption>Cura, 1 h 22</figcaption></figure>
+</div>
+<p><strong>Par lequel commencer :</strong> sur une D9 MK2 300 en PLA, le même Benchy a pris <strong>1 h 14 avec
+OrcaSlicer</strong> et <strong>1 h 22 avec Cura</strong>, et les parois d'OrcaSlicer sont ressorties un peu plus
+nettes. Les deux sont bons ; OrcaSlicer est celui que nous conseillons pour commencer, et ses outils de calibration
+(débit, pressure advance, tours de température) servent dès qu'on veut aller plus loin.</p>
 <div class="note">La D9 est ouverte : l'ABS demande au minimum une pièce sans courant d'air, et sa température de
 plateau est ramenée à ce qu'accepte votre modèle (80 °C sur une MK3 500).</div>
 

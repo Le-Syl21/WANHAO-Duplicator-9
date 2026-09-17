@@ -501,13 +501,15 @@ deixa uma superfície áspera e esmagada, com o bico cavando. O valor é salvo s
 M500
 G28         ; refaz a origem para que ele seja levado em conta
 M420 S0     ; ignora a malha durante a medição
+M211 S0     ; permite descer abaixo de Z0: os limites por software param o bico ali
 G1 Z0 F300  ; o bico desce até o zero que o firmware acha que existe</code></pre>
 <p>Passe uma folha de papel embaixo do bico e desça em passos pequenos com <code>G91</code> e depois
 <code>G1 Z-0.05 F60</code>, várias vezes, até a folha começar a raspar de leve. Leia o valor com <code>M114</code>: ele
 é negativo, por exemplo −1,30. Em seguida:</p>
 <pre><code>G90
 M851 Z-1.30 ; o seu valor
-M500</code></pre>
+M500
+M211 S1     ; religa os limites por software, eles protegem a mesa</code></pre>
 
 <h3>4. Sonde a mesa</h3>
 <p>Na tela: <em>Configurações</em> → <em>Nivelamento</em> → <em>Automático</em> → <em>Sondar</em>. A impressora mede
@@ -532,6 +534,14 @@ sem instalar nada:</p>
 </ul>
 <p>Cerca de uma hora e meia e 4 m de filamento cada um. Para outro modelo ou outro tamanho, fatie você mesmo o
 <a href="https://github.com/CreativeTools/3DBenchy">3DBenchy</a> com o seu perfil.</p>
+<div class="cards">
+<figure><img src="{img}benchy-orca.webp" width="760" height="621" alt="3DBenchy impresso com o perfil OrcaSlicer em uma Wanhao D9 MK2 300"><figcaption>OrcaSlicer, 1 h 14</figcaption></figure>
+<figure><img src="{img}benchy-cura.webp" width="760" height="685" alt="3DBenchy impresso com o perfil Cura em uma Wanhao D9 MK2 300"><figcaption>Cura, 1 h 22</figcaption></figure>
+</div>
+<p><strong>Por qual começar:</strong> em uma D9 MK2 300 em PLA, o mesmo Benchy levou <strong>1 h 14 com
+OrcaSlicer</strong> e <strong>1 h 22 com Cura</strong>, e as paredes do OrcaSlicer saíram um pouco mais limpas. Os
+dois são bons; o OrcaSlicer é por onde nós começaríamos, e as ferramentas de calibração dele (fluxo, pressure
+advance, torres de temperatura) ajudam assim que você quiser ir além.</p>
 <div class="note">A D9 é aberta: o ABS pede no mínimo um cômodo sem corrente de ar, e a temperatura de mesa dele é
 reduzida ao que o seu modelo aceita (80 °C numa MK3 500).</div>
 

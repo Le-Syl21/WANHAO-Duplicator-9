@@ -31,7 +31,7 @@
 <meta property="og:locale" content="ru_RU">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖨️</text></svg>">
-<link rel="stylesheet" href="../style.css?v=3">
+<link rel="stylesheet" href="../style.css?v=4">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Профили Cura и OrcaSlicer для Wanhao Duplicator 9 и настройка смещения Z", "description": "Готовые профили UltiMaker Cura и OrcaSlicer для всех Wanhao D9, PLA, PETG и ABS, как настроить смещение Z зонда, запустить зондирование стола и напечатать тестовый 3DBenchy.", "url": "https://le-syl21.github.io/WANHAO-Duplicator-9/ru/slicer.html", "inLanguage": "ru", "about": {"@type": "Product", "name": "Wanhao Duplicator 9", "brand": "Wanhao"}}</script>
 </head>
 <body>
@@ -84,13 +84,15 @@
 M500
 G28         ; снова выйти в ноль, чтобы оно учлось
 M420 S0     ; не учитывать сетку во время измерения
+M211 S0     ; разрешить уйти ниже Z0: там сопло останавливают программные ограничители
 G1 Z0 F300  ; сопло опускается в ноль, каким его считает прошивка</code></pre>
 <p>Просуньте под сопло лист бумаги, затем опускайте маленькими шагами командами <code>G91</code> и
 <code>G1 Z-0.05 F60</code>, раз за разом, пока бумага не начнёт едва задевать сопло. Прочитайте значение командой
 <code>M114</code>: оно отрицательное, например −1,30. Затем:</p>
 <pre><code>G90
 M851 Z-1.30 ; ваше значение
-M500</code></pre>
+M500
+M211 S1     ; вернуть программные ограничители, они берегут стол</code></pre>
 
 <h3>4. Прозондируйте стол</h3>
 <p>На экране: <em>Настройки</em> → <em>Выравнивание</em> → <em>Автоматически</em> → <em>Зонд</em>. Принтер измеряет
@@ -116,6 +118,14 @@ M500</code></pre>
 </ul>
 <p>Примерно полтора часа и 4 м филамента на каждый. Для другой модели или другого размера нарежьте
 <a href="https://github.com/CreativeTools/3DBenchy">3DBenchy</a> сами со своим профилем.</p>
+<div class="cards">
+<figure><img src="../img/benchy-orca.webp" width="760" height="621" alt="3DBenchy, напечатанный с профилем OrcaSlicer на Wanhao D9 MK2 300"><figcaption>OrcaSlicer, 1 ч 14 мин</figcaption></figure>
+<figure><img src="../img/benchy-cura.webp" width="760" height="685" alt="3DBenchy, напечатанный с профилем Cura на Wanhao D9 MK2 300"><figcaption>Cura, 1 ч 22 мин</figcaption></figure>
+</div>
+<p><strong>С чего начать:</strong> на D9 MK2 300 с PLA тот же Benchy занял <strong>1 ч 14 мин в
+OrcaSlicer</strong> и <strong>1 ч 22 мин в Cura</strong>, и стенки у OrcaSlicer вышли чуть чище. Оба хороши; мы бы
+начали с OrcaSlicer, а его инструменты калибровки (поток, pressure advance, температурные башни) пригодятся, как
+только захочется большего.</p>
 <div class="note">D9 открытая: для ABS нужна как минимум комната без сквозняков, а его температура стола снижена до
 того, что выдерживает ваша модель (80 °C на MK3 500).</div>
 

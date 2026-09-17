@@ -429,11 +429,13 @@ Cura を起動し直して、<em>設定</em> → <em>プリンター</em> → <e
 M500
 G28         ; 反映させるためにもう一度原点復帰
 M420 S0     ; 測定中はメッシュを無視する
+M211 S0     ; Z0 より下げられるようにする。ソフトリミットがノズルをそこで止めている
 G1 Z0 F300  ; ファームウェアがゼロだと思っている高さまでノズルを下げる</code></pre>
 <p>ノズルの下に紙を 1 枚すべり込ませ、<code>G91</code> のあと <code>G1 Z-0.05 F60</code> を何度も繰り返して少しずつ下げ、紙がやっと擦れるところまで来たら止めます。値は <code>M114</code> で読み取ります。値は負の数で、たとえば −1.30 です。そのあと：</p>
 <pre><code>G90
 M851 Z-1.30 ; あなたの値
-M500</code></pre>
+M500
+M211 S1     ; ソフトリミットを戻す。ベッドを守ってくれる</code></pre>
 
 <h3>4. ベッドをプロービングする</h3>
 <p>画面で：<em>設定</em> → <em>レベリング</em> → <em>自動</em> → <em>プローブ</em>。プリンターが 25 点を測定し、<strong>メッシュを自動で保存します</strong>（<code>G29</code> のあと <code>M500</code> を実行します）。数分かかります。USB からは <code>G29</code> のあと <code>M500</code>。</p>
@@ -453,6 +455,11 @@ M500</code></pre>
 </ul>
 <p>どれも 1 時間半ほど、フィラメント 4 m ほどです。ほかの機種やサイズで印刷する場合は、
 <a href="https://github.com/CreativeTools/3DBenchy">3DBenchy</a> をご自分のプロファイルでスライスしてください。</p>
+<div class="cards">
+<figure><img src="{img}benchy-orca.webp" width="760" height="621" alt="Wanhao D9 MK2 300 で OrcaSlicer のプロファイルを使って印刷した 3DBenchy"><figcaption>OrcaSlicer、1 時間 14 分</figcaption></figure>
+<figure><img src="{img}benchy-cura.webp" width="760" height="685" alt="Wanhao D9 MK2 300 で Cura のプロファイルを使って印刷した 3DBenchy"><figcaption>Cura、1 時間 22 分</figcaption></figure>
+</div>
+<p><strong>どちらから始めるか：</strong>D9 MK2 300 で PLA を使うと、同じ Benchy が <strong>OrcaSlicer では 1 時間 14 分</strong>、<strong>Cura では 1 時間 22 分</strong>かかり、壁面は OrcaSlicer のほうがわずかにきれいでした。どちらも良いスライサーですが、私たちなら OrcaSlicer から始めます。もっと追い込みたくなったときは、そのキャリブレーション機能（フロー、pressure advance、温度タワー）が役に立ちます。</p>
 <div class="note">D9 はオープンフレームです。ABS には最低でもすきま風のない部屋が必要で、ベッド温度はお使いの機種が許す値まで下げてあります（MK3 500 では 80 °C）。</div>
 
 <h2>プロファイルの中身</h2>

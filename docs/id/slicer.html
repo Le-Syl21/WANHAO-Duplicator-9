@@ -31,7 +31,7 @@
 <meta property="og:locale" content="id_ID">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖨️</text></svg>">
-<link rel="stylesheet" href="../style.css?v=3">
+<link rel="stylesheet" href="../style.css?v=4">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Profil Cura dan OrcaSlicer untuk Wanhao Duplicator 9, dan cara mengatur Z offset", "description": "Profil UltiMaker Cura dan OrcaSlicer siap pakai untuk semua Wanhao D9, PLA, PETG dan ABS, cara mengatur Z offset probe, menjalankan probing bed dan mencetak 3DBenchy percobaan.", "url": "https://le-syl21.github.io/WANHAO-Duplicator-9/id/slicer.html", "inLanguage": "id", "about": {"@type": "Product", "name": "Wanhao Duplicator 9", "brand": "Wanhao"}}</script>
 </head>
 <body>
@@ -83,13 +83,15 @@ permukaannya kasar dan gepeng, dan terlihat nozzle mengeruk bed. Nilainya tersim
 M500
 G28         ; home lagi supaya ikut diperhitungkan
 M420 S0     ; abaikan mesh selama pengukuran
+M211 S0     ; izinkan turun di bawah Z0: batas lunak yang menahan nozzle di situ
 G1 Z0 F300  ; nozzle turun ke titik yang dianggap nol oleh firmware</code></pre>
 <p>Selipkan selembar kertas di bawah nozzle, lalu turunkan sedikit demi sedikit dengan <code>G91</code> lalu
 <code>G1 Z-0.05 F60</code>, berulang kali, sampai kertasnya baru mulai terasa seret. Baca nilainya dengan
 <code>M114</code>: nilainya negatif, misalnya −1,30. Lalu:</p>
 <pre><code>G90
 M851 Z-1.30 ; nilai Anda
-M500</code></pre>
+M500
+M211 S1     ; pasang lagi batas lunaknya, itu yang melindungi bed</code></pre>
 
 <h3>4. Probing bed</h3>
 <p>Di layar: <em>Pengaturan</em> → <em>Perataan</em> → <em>Otomatis</em> → <em>Probe</em>. Printer mengukur 25 titik
@@ -115,6 +117,14 @@ memeriksa satu setelan tanpa memasang apa pun:</p>
 </ul>
 <p>Masing-masing sekitar satu setengah jam dan 4 m filamen. Untuk model atau ukuran lain, slice sendiri
 <a href="https://github.com/CreativeTools/3DBenchy">3DBenchy</a> dengan profil Anda.</p>
+<div class="cards">
+<figure><img src="../img/benchy-orca.webp" width="760" height="621" alt="3DBenchy yang dicetak dengan profil OrcaSlicer pada Wanhao D9 MK2 300"><figcaption>OrcaSlicer, 1 h 14</figcaption></figure>
+<figure><img src="../img/benchy-cura.webp" width="760" height="685" alt="3DBenchy yang dicetak dengan profil Cura pada Wanhao D9 MK2 300"><figcaption>Cura, 1 h 22</figcaption></figure>
+</div>
+<p><strong>Mulai dari yang mana:</strong> pada D9 MK2 300 dengan PLA, Benchy yang sama memakan <strong>1 h 14 dengan
+OrcaSlicer</strong> dan <strong>1 h 22 dengan Cura</strong>, dan dinding hasil OrcaSlicer keluar sedikit lebih bersih.
+Keduanya bagus; OrcaSlicer yang akan kami pilih untuk memulai, dan perkakas kalibrasinya (flow, pressure advance,
+menara suhu) membantu begitu Anda ingin lebih jauh.</p>
 <div class="note">D9 adalah printer terbuka: ABS setidaknya butuh ruangan tanpa angin, dan suhu bed-nya diturunkan ke
 angka yang diterima model Anda (80 °C di MK3 500).</div>
 

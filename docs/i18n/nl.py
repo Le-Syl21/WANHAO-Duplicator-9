@@ -504,13 +504,15 @@ vanzelf opgeslagen.</p>
 M500
 G28         ; opnieuw homen zodat hij meetelt
 M420 S0     ; negeer het mesh tijdens het meten
+M211 S0     ; sta toe om onder Z0 te gaan: de software-eindstops houden de nozzle daar tegen
 G1 Z0 F300  ; de nozzle zakt naar de nul die de firmware denkt te hebben</code></pre>
 <p>Schuif een velletje papier onder de nozzle en ga daarna met <code>G91</code> en <code>G1 Z-0.05 F60</code> in
 kleine stapjes omlaag, keer op keer, tot het papier nog net stroef loopt. Lees de waarde af met <code>M114</code>:
 hij is negatief, bijvoorbeeld −1,30. Daarna:</p>
 <pre><code>G90
 M851 Z-1.30 ; jouw waarde
-M500</code></pre>
+M500
+M211 S1     ; zet de software-eindstops weer aan, ze beschermen het bed</code></pre>
 
 <h3>4. Meet het bed</h3>
 <p>Op het scherm: <em>Instellingen</em> → <em>Nivelleren</em> → <em>Automatisch</em> → <em>Meten</em>. De printer meet
@@ -536,6 +538,14 @@ te controleren zonder iets te installeren:</p>
 </ul>
 <p>Elk ongeveer anderhalf uur en 4 m filament. Voor een ander model of een ander formaat slice je de
 <a href="https://github.com/CreativeTools/3DBenchy">3DBenchy</a> zelf met jouw profiel.</p>
+<div class="cards">
+<figure><img src="{img}benchy-orca.webp" width="760" height="621" alt="3DBenchy geprint met het OrcaSlicer-profiel op een Wanhao D9 MK2 300"><figcaption>OrcaSlicer, 1 uur 14</figcaption></figure>
+<figure><img src="{img}benchy-cura.webp" width="760" height="685" alt="3DBenchy geprint met het Cura-profiel op een Wanhao D9 MK2 300"><figcaption>Cura, 1 uur 22</figcaption></figure>
+</div>
+<p><strong>Waarmee je begint:</strong> op een D9 MK2 300 in PLA deed dezelfde Benchy er <strong>1 uur 14 met
+OrcaSlicer</strong> en <strong>1 uur 22 met Cura</strong> over, en de wanden van OrcaSlicer kwamen er iets netter
+uit. Allebei zijn ze goed; OrcaSlicer is degene waarmee wij zouden beginnen, en zijn kalibratiegereedschap
+(doorvoer, pressure advance, temperatuurtorens) helpt zodra je meer wilt.</p>
 <div class="note">De D9 is open: ABS vraagt op zijn minst een kamer zonder tocht, en de bedtemperatuur ervan is
 teruggebracht tot wat jouw model aankan (80 °C op een MK3 500).</div>
 

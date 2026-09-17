@@ -501,13 +501,15 @@ basso, la superficie diventa ruvida e schiacciata e si vede l'ugello che scava. 
 M500
 G28         ; rifai l'azzeramento perché venga preso in conto
 M420 S0     ; ignora la mesh durante la misura
+M211 S0     ; permette di scendere sotto Z0: i finecorsa software fermano lì l'ugello
 G1 Z0 F300  ; l'ugello scende allo zero che crede il firmware</code></pre>
 <p>Infila un foglio di carta sotto l'ugello, poi scendi a piccoli passi con <code>G91</code> e poi
 <code>G1 Z-0.05 F60</code>, ancora e ancora, finché il foglio comincia appena a fare attrito. Leggi il valore con
 <code>M114</code>: è negativo, per esempio −1,30. Poi:</p>
 <pre><code>G90
 M851 Z-1.30 ; il tuo valore
-M500</code></pre>
+M500
+M211 S1     ; rimette i finecorsa software, proteggono il piatto</code></pre>
 
 <h3>4. Tasta il piatto</h3>
 <p>Sullo schermo: <em>Impostazioni</em> → <em>Livellamento</em> → <em>Automatico</em> → <em>Tasta</em>. La stampante
@@ -533,6 +535,14 @@ parametro senza installare niente:</p>
 </ul>
 <p>Circa un'ora e mezza e 4 m di filamento ciascuno. Per un altro modello o un'altra taglia, affetta il
 <a href="https://github.com/CreativeTools/3DBenchy">3DBenchy</a> da te con il tuo profilo.</p>
+<div class="cards">
+<figure><img src="{img}benchy-orca.webp" width="760" height="621" alt="3DBenchy stampato con il profilo OrcaSlicer su una Wanhao D9 MK2 300"><figcaption>OrcaSlicer, 1 h 14</figcaption></figure>
+<figure><img src="{img}benchy-cura.webp" width="760" height="685" alt="3DBenchy stampato con il profilo Cura su una Wanhao D9 MK2 300"><figcaption>Cura, 1 h 22</figcaption></figure>
+</div>
+<p><strong>Da quale cominciare:</strong> su una D9 MK2 300 in PLA, lo stesso Benchy ha richiesto <strong>1 h 14 con
+OrcaSlicer</strong> e <strong>1 h 22 con Cura</strong>, e le pareti di OrcaSlicer sono venute un po' più pulite. Sono
+buoni entrambi; OrcaSlicer è quello da cui partiremmo noi, e i suoi strumenti di calibrazione (flusso, pressure
+advance, torri di temperatura) servono appena vuoi andare oltre.</p>
 <div class="note">La D9 è aperta: l'ABS chiede come minimo una stanza senza correnti d'aria, e la sua temperatura di
 piatto è riportata a quello che accetta il tuo modello (80 °C su una MK3 500).</div>
 

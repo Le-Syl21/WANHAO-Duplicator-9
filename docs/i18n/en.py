@@ -505,13 +505,15 @@ surface and shows the nozzle digging in. The value is saved on its own.</p>
 M500
 G28         ; home again so it is taken into account
 M420 S0     ; ignore the mesh while measuring
+M211 S0     ; allow going below Z0: the soft limits stop the nozzle there
 G1 Z0 F300  ; the nozzle comes down to what the firmware thinks is zero</code></pre>
 <p>Slide a sheet of paper under the nozzle, then lower in small steps with <code>G91</code> then
 <code>G1 Z-0.05 F60</code>, over and over, until the paper only just drags. Read the value with <code>M114</code>: it
 is negative, for example −1.30. Then:</p>
 <pre><code>G90
 M851 Z-1.30 ; your value
-M500</code></pre>
+M500
+M211 S1     ; put the soft limits back, they protect the bed</code></pre>
 
 <h3>4. Probe the bed</h3>
 <p>On the screen: <em>Settings</em> → <em>Levelling</em> → <em>Automatic</em> → <em>Probe</em>. The printer measures
@@ -536,6 +538,14 @@ without installing anything:</p>
 </ul>
 <p>About an hour and a half and 4 m of filament each. For another model or size, slice the
 <a href="https://github.com/CreativeTools/3DBenchy">3DBenchy</a> yourself with your profile.</p>
+<div class="cards">
+<figure><img src="{img}benchy-orca.webp" width="760" height="621" alt="3DBenchy printed with the OrcaSlicer profile on a Wanhao D9 MK2 300"><figcaption>OrcaSlicer, 1 h 14</figcaption></figure>
+<figure><img src="{img}benchy-cura.webp" width="760" height="685" alt="3DBenchy printed with the Cura profile on a Wanhao D9 MK2 300"><figcaption>Cura, 1 h 22</figcaption></figure>
+</div>
+<p><strong>Which one to start with:</strong> on a D9 MK2 300 in PLA, the same Benchy took <strong>1 h 14 with
+OrcaSlicer</strong> and <strong>1 h 22 with Cura</strong>, and OrcaSlicer's walls came out slightly cleaner. Both are
+good; OrcaSlicer is the one we would start with, and its calibration tools (flow, pressure advance, temperature
+towers) help once you want more.</p>
 <div class="note">The D9 is open: ABS needs at least a room without draughts, and its bed temperature is brought down to
 what your model accepts (80 °C on an MK3 500).</div>
 
