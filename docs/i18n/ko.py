@@ -4,8 +4,9 @@ META = {"name": "한국어", "locale": "ko_KR", "dir": "ltr"}
 
 UI = {
     "nav": {"index": "홈", "mk1": "MK1", "mk1u2": "MK1 + MK2 키트", "mk2": "MK2", "mk3": "MK3",
-            "flash": "플래싱 가이드", "screen": "화면", "sensor": "필라멘트 센서", "quiet": "소음 줄이기"},
+            "flash": "플래싱 가이드", "screen": "화면", "sensor": "필라멘트 센서", "slicer": "슬라이서", "quiet": "소음 줄이기"},
     "language": "언어",
+    "model": "모델",
     "size": "크기", "volume": "출력 크기", "file": "펌웨어",
     "footer_src": "GitHub의 소스와 이슈", "footer_chat": "Discord",
     "footer_note": "펌웨어는 GNU GPL v3 라이선스입니다. Wanhao의 매뉴얼과 펌웨어의 권리는 Wanhao에 있습니다.",
@@ -449,6 +450,104 @@ M500</code></pre>
 v2.0.6은 10 km였습니다. v2.0.7은 프린터가 시작될 때 이 두 값을 <code>L0</code>으로 불러옵니다. BTT 센서용으로 직접 설정한
 실제 길이(예: <code>L10</code>)는 유지됩니다. v2.0.4 이하에서 업데이트하면, 그 버전들이 저장한 0 대신 5 mm 필라멘트 소진 거리를
 불러옵니다.</p>
+""")
+
+    if page == "slicer":
+        return ("Wanhao Duplicator 9용 Cura와 OrcaSlicer 프로파일, 그리고 Z 오프셋 맞추기",
+                "모든 Wanhao D9를 위한 UltiMaker Cura와 OrcaSlicer 프로파일(PLA, PETG, ABS), 프로브의 Z 오프셋을 "
+                "맞추고 베드를 프로빙하고 테스트용 3DBenchy를 출력하는 방법.",
+                f"""
+<h1>Duplicator 9 슬라이싱하기</h1>
+<p class="lead">열두 대의 프린터마다 하나씩, <strong>UltiMaker Cura</strong>와 <strong>OrcaSlicer</strong>용
+프로파일입니다. 둘 다 무료이고 Windows, macOS, Linux에서 쓸 수 있습니다. 각 프로파일에는 그 프린터 펌웨어의
+출력 크기, 가속도, 최고 베드 온도가 들어 있습니다.</p>
+
+<h2>다운로드</h2>
+{h.slicer}
+<p>이 사이트의 펌웨어, <a href="{p('flash')}">v2.0.9 이상</a>에 맞춰 만들었습니다.</p>
+
+<h2>설치하기</h2>
+<p><strong>OrcaSlicer</strong>: <em>파일</em> → <em>가져오기</em> → <em>설정 가져오기…</em>를 고른 다음
+<code>.orca_printer</code> 파일을 선택하세요. 프린터와 세 가지 품질(0.12, 0.20, 0.28 mm), 그리고 PLA, PETG, ABS
+필라멘트가 프리셋에 나타납니다.</p>
+<p><strong>Cura</strong>: <em>도움말</em> → <em>설정 폴더 표시</em>로 폴더를 연 뒤 Cura를 닫고, 파일의 압축을 그
+폴더에 풀고, Cura를 다시 켠 다음 <em>설정</em> → <em>프린터</em> → <em>프린터 추가…</em> →
+<em>네트워크에 연결되지 않은 프린터 추가</em> → <em>Wanhao</em> → 자기 모델 순으로 고르세요. Cura에 기본으로 들어
+있는 <em>Wanhao Duplicator 9</em>는 더 오래된 프로파일입니다: 300만 있고, 래프트와 서포트가 기본으로 켜져 있습니다.</p>
+
+<h2 id="first-print">첫 출력 전에: Z 오프셋, 그다음 프로빙</h2>
+<p>프로브는 베드보다 조금 위에서 반응하고, 펌웨어는 그 차이가 얼마인지 알아야 합니다. 그것이
+<strong>Z 오프셋</strong>입니다. 너무 높으면 첫 레이어가 붙지 않고, 너무 낮으면 노즐이 베드를 긁습니다. 한 번만
+맞추면 되며, 출력물이 붙느냐 마느냐를 결정하는 단 하나의 설정입니다.</p>
+<div class="note">아래 내용은 모두 슬라이서가 아니라 프린터의 메모리에 저장됩니다. 펌웨어를 업데이트해도 남아
+있습니다(v2.0.3부터).</div>
+
+<h3>1. 먼저 가열하세요</h3>
+<p>뜨거운 노즐은 100분의 몇 mm 더 깁니다. 출력할 때처럼 가열하세요. 화면에서 <em>온도</em> → <em>예열</em> →
+<em>PLA</em>(200 °C와 60 °C)를 누르고 2분쯤 기다립니다.</p>
+
+<h3>2. 축을 원점으로 보내세요</h3>
+<p>화면에서: <em>설정</em> → <em>이동</em> → <em>원점</em>. USB로는: <code>G28</code>.</p>
+
+<h3>3. Z 오프셋을 맞추세요</h3>
+<p><strong>가장 쉬운 방법, 출력하면서.</strong> 출력을 시작하고 <strong>첫 레이어</strong>가 그려지는 동안 화면에서
+<em>조정</em> → <em>Z 오프셋</em>으로 가세요. 선이 그려지는 동안 0.01 mm씩 내려서, 선이 납작해지고 옆 선과 틈 없이
+맞닿을 때까지 맞춥니다. 너무 높으면 선이 둥글게 따로 놀고, 너무 낮으면 표면이 거칠어지면서 노즐이 파고드는 것이
+보입니다. 값은 저절로 저장됩니다.</p>
+<p><strong>종이로, 출력하지 않고.</strong> 출력 온도로 데운 채 USB로:</p>
+<pre><code>M851 Z0     ; 지금 들어 있는 오프셋을 지웁니다
+M500
+G28         ; 반영되도록 다시 원점으로 보냅니다
+M420 S0     ; 재는 동안 메시를 무시합니다
+G1 Z0 F300  ; 펌웨어가 0이라고 여기는 높이까지 노즐이 내려옵니다</code></pre>
+<p>노즐 밑으로 종이 한 장을 밀어 넣고, <code>G91</code> 다음 <code>G1 Z-0.05 F60</code>을 여러 번 써서 조금씩
+내리다가, 종이가 겨우 끌리기 시작하면 멈추세요. <code>M114</code>로 값을 읽습니다. 음수이며, 예를 들면 −1.30입니다.
+그다음:</p>
+<pre><code>G90
+M851 Z-1.30 ; 여러분의 값
+M500</code></pre>
+
+<h3>4. 베드를 프로빙하세요</h3>
+<p>화면에서: <em>설정</em> → <em>레벨링</em> → <em>자동</em> → <em>프로브</em>. 프린터가 25점을 재고
+<strong>메시를 알아서 저장합니다</strong>(<code>G29</code> 다음 <code>M500</code>을 실행합니다). 몇 분 걸립니다.
+USB로는: <code>G29</code> 다음 <code>M500</code>.</p>
+<p>우리 프로파일은 출력할 때마다 프로빙하지 않습니다. 원점 복귀 바로 뒤에 <code>M420 S1</code>로 저장된 메시를 다시
+켤 뿐입니다. 그러니 프린터를 옮겼을 때, 출력면이나 노즐을 바꿨을 때, 또는 베드 한쪽은 첫 레이어가 잘 나오는데 다른
+쪽은 그렇지 않을 때 다시 프로빙하세요.</p>
+
+<h3>5. 확인하세요</h3>
+<p><code>M503</code>은 저장된 값을 보여 줍니다. <code>M851</code> 줄이 Z 오프셋이고, <code>M420 S1</code>은 메시가
+켜져 있다는 뜻입니다. 화면에서는 <em>자동</em> 페이지에 측정한 25점이 보입니다.</p>
+
+<h2>테스트 출력</h2>
+<p>두 슬라이서를 비교하거나 설정을 확인할 때 아무것도 설치하지 않고 바로 쓸 수 있도록,
+<strong>D9 MK2 300</strong>용으로 이미 슬라이싱해 둔 3DBenchy입니다:</p>
+<ul>
+<li>Cura: <a href="{DL}Benchy_Cura_PLA.gcode">PLA</a> · <a href="{DL}Benchy_Cura_PETG.gcode">PETG</a> ·
+<a href="{DL}Benchy_Cura_ABS.gcode">ABS</a></li>
+<li>OrcaSlicer: <a href="{DL}Benchy_Orca_PLA.gcode">PLA</a> · <a href="{DL}Benchy_Orca_PETG.gcode">PETG</a> ·
+<a href="{DL}Benchy_Orca_ABS.gcode">ABS</a></li>
+</ul>
+<p>각각 한 시간 반쯤 걸리고 필라멘트 4 m를 씁니다. 다른 모델이나 다른 크기라면
+<a href="https://github.com/CreativeTools/3DBenchy">3DBenchy</a>를 자기 프로파일로 직접 슬라이싱하세요.</p>
+<div class="note">D9는 개방형입니다: ABS는 적어도 바람이 들지 않는 방이 필요하고, 베드 온도는 자기 모델이 견디는
+값까지 낮춰 두었습니다(MK3 500은 80 °C).</div>
+
+<h2>프로파일에 들어 있는 설정</h2>
+<ul>
+<li><strong>레이어</strong> 0.20 mm, <strong>벽 3줄</strong>, 윗면 4겹과 바닥 3겹, 자이로이드 인필 15 %,
+2줄 스커트, 서포트 없음.</li>
+<li><strong>속도</strong>: 바깥쪽 벽 40 mm/s, 안쪽 60, 인필 70, 첫 레이어 20, 이동 150. Wanhao는 D9의 최고 출력
+속도를 70 mm/s로 밝히고 있습니다.</li>
+<li><strong>리트랙션</strong> 1.5 mm, 25 mm/s: D9는 모두 다이렉트 드라이브 MK10 압출기를 쓰고, 펌웨어가 압출기를
+25 mm/s로 제한합니다.</li>
+<li><strong>온도</strong>: PLA 210 °C 뒤 205, 베드 65 뒤 60. PETG 240 / 80 뒤 235 / 75. ABS 245 / 105 뒤
+245 / 100.</li>
+<li><strong>프라임 라인</strong>은 왼쪽 가장자리에서 15 mm 떨어진, 베드 클립을 비켜난 자리에 그려서 노즐이 깨끗한
+상태로 모델에 도착합니다.</li>
+<li>끝나면 노즐이 올라가고 베드가 앞으로 나옵니다.</li>
+</ul>
+<p>설정 전부와 바꾸는 방법: GitHub의 <a href="{REPO}/tree/main/Slicer">Slicer 폴더</a>.</p>
 """)
 
     if page == "quiet":

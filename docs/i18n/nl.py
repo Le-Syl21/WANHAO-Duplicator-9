@@ -4,8 +4,10 @@ META = {"name": "Nederlands", "locale": "nl_NL", "dir": "ltr"}
 
 UI = {
     "nav": {"index": "Home", "mk1": "MK1", "mk1u2": "MK1 + MK2-kit", "mk2": "MK2", "mk3": "MK3",
-            "flash": "Flashhandleiding", "screen": "Scherm", "sensor": "Filamentsensor", "quiet": "Stiller"},
+            "flash": "Flashhandleiding", "screen": "Scherm", "sensor": "Filamentsensor", "slicer": "Slicer",
+            "quiet": "Stiller"},
     "language": "Taal",
+    "model": "Model",
     "size": "Formaat", "volume": "Bouwvolume", "file": "Firmware",
     "footer_src": "Broncode en issues op GitHub", "footer_chat": "Discord",
     "footer_note": "Firmware onder GNU GPL v3. De handleidingen en firmwares van Wanhao blijven eigendom van Wanhao.",
@@ -452,6 +454,106 @@ v2.0.5 (eigenlijk te kort: ongeveer een derde van een spoel van 1 kg, waarna een
 10 km in v2.0.6. Bij het opstarten van de printer laadt v2.0.7 die twee waarden als <code>L0</code>. Een echte lengte die je
 voor een BTT-sensor hebt ingesteld, zoals <code>L10</code>, blijft behouden. Vanaf v2.0.4 of ouder wordt de afstand van 5 mm voor
 einde filament geladen in plaats van de 0 die die versies opsloegen.</p>
+""")
+
+    if page == "slicer":
+        return ("Cura- en OrcaSlicer-profielen voor de Wanhao Duplicator 9, en de Z-offset instellen",
+                "Kant-en-klare profielen voor UltiMaker Cura en OrcaSlicer voor elke Wanhao D9, PLA, PETG en ABS, hoe "
+                "je de Z-offset van de sensor instelt, het bed laat meten en een 3DBenchy als test print.",
+                f"""
+<h1>Slicen voor de Duplicator 9</h1>
+<p class="lead">Eén profiel voor elk van de twaalf printers, voor <strong>UltiMaker Cura</strong> en
+<strong>OrcaSlicer</strong>, allebei gratis en beschikbaar voor Windows, macOS en Linux. Elk profiel neemt het
+bouwvolume, de versnellingen en de hoogste bedtemperatuur van zijn eigen firmware over.</p>
+
+<h2>Downloaden</h2>
+{h.slicer}
+<p>Ze zijn gemaakt voor de firmware van deze site, <a href="{p('flash')}">v2.0.9 of nieuwer</a>.</p>
+
+<h2>Installeren</h2>
+<p><strong>OrcaSlicer</strong>: <em>Bestand</em> → <em>Importeren</em> → <em>Configuraties importeren…</em>, kies
+daarna het bestand <code>.orca_printer</code>. De printer, zijn drie kwaliteiten (0,12, 0,20 en 0,28 mm) en de
+filamenten PLA, PETG en ABS verschijnen in je presets.</p>
+<p><strong>Cura</strong>: <em>Help</em> → <em>Configuratiemap weergeven</em>, sluit Cura, pak het bestand uit in die
+map, start Cura opnieuw en ga dan naar <em>Instellingen</em> → <em>Printer</em> → <em>Printer toevoegen…</em> →
+<em>Een niet-netwerkprinter toevoegen</em> → <em>Wanhao</em> → jouw model. De <em>Wanhao Duplicator 9</em> die met
+Cura meekomt is een ouder profiel: alleen de 300, met raft en supports standaard aan.</p>
+
+<h2 id="first-print">Voor de eerste print: de Z-offset, daarna een meting</h2>
+<p>De sensor schakelt een stukje boven het bed, en de firmware moet weten hoeveel dat is. Dat is de
+<strong>Z-offset</strong>. Te hoog en de eerste laag hecht niet; te laag en de nozzle schraapt over het bed. Je stelt
+hem één keer in, en het is de instelling die bepaalt of je prints blijven zitten.</p>
+<div class="note">Alles hieronder blijft in het geheugen van de printer, niet in de slicer. Het overleeft een
+firmware-update (sinds v2.0.3).</div>
+
+<h3>1. Eerst opwarmen</h3>
+<p>Een hete nozzle is een paar honderdsten van een millimeter langer. Warm op zoals voor een print — op het scherm
+<em>Temperatuur</em> → <em>Voorverwarmen</em> → <em>PLA</em> (200 °C en 60 °C) — en wacht een paar minuten.</p>
+
+<h3>2. Home de assen</h3>
+<p>Op het scherm: <em>Instellingen</em> → <em>Bewegen</em> → <em>Home</em>. Via USB: <code>G28</code>.</p>
+
+<h3>3. Stel de Z-offset in</h3>
+<p><strong>De makkelijke manier, tijdens het printen.</strong> Start een print en ga tijdens de
+<strong>eerste laag</strong> op het scherm naar <em>Aanpassen</em> → <em>Z-offset</em>. Ga in stapjes van 0,01 mm
+omlaag terwijl de lijn getrokken wordt, tot hij plat is en zijn buurlijn zonder gaatje raakt. Te hoog laat ronde,
+losse draadjes achter; te laag geeft een ruw, platgedrukt oppervlak en je ziet de nozzle graven. De waarde wordt
+vanzelf opgeslagen.</p>
+<p><strong>Met een velletje papier, zonder te printen.</strong> Via USB, op printtemperatuur:</p>
+<pre><code>M851 Z0     ; vergeet de huidige offset
+M500
+G28         ; opnieuw homen zodat hij meetelt
+M420 S0     ; negeer het mesh tijdens het meten
+G1 Z0 F300  ; de nozzle zakt naar de nul die de firmware denkt te hebben</code></pre>
+<p>Schuif een velletje papier onder de nozzle en ga daarna met <code>G91</code> en <code>G1 Z-0.05 F60</code> in
+kleine stapjes omlaag, keer op keer, tot het papier nog net stroef loopt. Lees de waarde af met <code>M114</code>:
+hij is negatief, bijvoorbeeld −1,30. Daarna:</p>
+<pre><code>G90
+M851 Z-1.30 ; jouw waarde
+M500</code></pre>
+
+<h3>4. Meet het bed</h3>
+<p>Op het scherm: <em>Instellingen</em> → <em>Nivelleren</em> → <em>Automatisch</em> → <em>Meten</em>. De printer meet
+25 punten en <strong>slaat het mesh vanzelf op</strong> (hij voert <code>G29</code> en daarna <code>M500</code> uit).
+Reken op een paar minuten. Via USB: <code>G29</code> en daarna <code>M500</code>.</p>
+<p>Onze profielen meten niet voor elke print: ze zetten het opgeslagen mesh weer aan met <code>M420 S1</code>, vlak na
+het homen. Meet dus opnieuw als je de printer verplaatst, het printoppervlak of de nozzle wisselt, of als de eerste
+laag aan de ene kant van het bed goed is en aan de andere kant niet.</p>
+
+<h3>5. Controleren</h3>
+<p><code>M503</code> laat zien wat er is opgeslagen: de regel <code>M851</code> is je Z-offset, en
+<code>M420 S1</code> geeft aan dat het mesh aanstaat. Op het scherm toont de pagina <em>Automatisch</em> de 25 gemeten
+punten.</p>
+
+<h2>Testprints</h2>
+<p>Een 3DBenchy, al gesliced voor een <strong>D9 MK2 300</strong>, om de twee slicers te vergelijken of een instelling
+te controleren zonder iets te installeren:</p>
+<ul>
+<li>Cura: <a href="{DL}Benchy_Cura_PLA.gcode">PLA</a> · <a href="{DL}Benchy_Cura_PETG.gcode">PETG</a> ·
+<a href="{DL}Benchy_Cura_ABS.gcode">ABS</a></li>
+<li>OrcaSlicer: <a href="{DL}Benchy_Orca_PLA.gcode">PLA</a> · <a href="{DL}Benchy_Orca_PETG.gcode">PETG</a> ·
+<a href="{DL}Benchy_Orca_ABS.gcode">ABS</a></li>
+</ul>
+<p>Elk ongeveer anderhalf uur en 4 m filament. Voor een ander model of een ander formaat slice je de
+<a href="https://github.com/CreativeTools/3DBenchy">3DBenchy</a> zelf met jouw profiel.</p>
+<div class="note">De D9 is open: ABS vraagt op zijn minst een kamer zonder tocht, en de bedtemperatuur ervan is
+teruggebracht tot wat jouw model aankan (80 °C op een MK3 500).</div>
+
+<h2>Wat er in de profielen zit</h2>
+<ul>
+<li><strong>Lagen</strong> van 0,20 mm, <strong>3 wanden</strong>, 4 lagen boven en 3 onder, gyroïde vulling van 15 %,
+een skirt van 2 lijnen, geen support.</li>
+<li><strong>Snelheden</strong>: 40 mm/s op de buitenwand, 60 binnenin, 70 voor de vulling, 20 op de eerste laag, 150
+voor verplaatsingen. Wanhao geeft 70 mm/s op als hoogste printsnelheid van de D9.</li>
+<li><strong>Retractie</strong> van 1,5 mm op 25 mm/s: elke D9 heeft een MK10-extruder met directe aandrijving, en de
+firmware begrenst de extruder op 25 mm/s.</li>
+<li><strong>Temperaturen</strong>: PLA 210 °C en daarna 205, bed 65 en daarna 60. PETG 240 / 80 en daarna 235 / 75.
+ABS 245 / 105 en daarna 245 / 100.</li>
+<li><strong>Een aanlooplijn</strong> op 15 mm van de linkerrand, voorbij de klemmen van het bed, zodat de nozzle
+schoon bij het model aankomt.</li>
+<li>Op het eind gaat de nozzle omhoog en komt het bed naar voren.</li>
+</ul>
+<p>Alle instellingen en hoe je ze aanpast: <a href="{REPO}/tree/main/Slicer">map Slicer</a> op GitHub.</p>
 """)
 
     if page == "quiet":

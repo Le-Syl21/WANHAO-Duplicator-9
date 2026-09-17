@@ -4,8 +4,9 @@ META = {"name": "Français", "locale": "fr_FR", "dir": "ltr"}
 
 UI = {
     "nav": {"index": "Accueil", "mk1": "MK1", "mk1u2": "MK1 + kit MK2", "mk2": "MK2", "mk3": "MK3",
-            "flash": "Guide de flash", "screen": "Écran", "sensor": "Capteur filament", "quiet": "Silence"},
+            "flash": "Guide de flash", "screen": "Écran", "sensor": "Capteur filament", "slicer": "Slicer", "quiet": "Silence"},
     "language": "Langue",
+    "model": "Modèle",
     "size": "Taille", "volume": "Volume d'impression", "file": "Firmware",
     "footer_src": "Sources et tickets sur GitHub", "footer_chat": "Discord",
     "footer_note": "Firmware sous GNU GPL v3. Les manuels et firmwares Wanhao restent la propriété de Wanhao.",
@@ -461,6 +462,105 @@ duquel une imprimante restée allumée pouvait se mettre en pause pour rien) et 
 v2.0.7 charge ces deux valeurs comme <code>L0</code>. Une vraie longueur réglée pour un capteur BTT, comme
 <code>L10</code>, est conservée. Depuis la v2.0.4 ou avant, la distance de fin de filament de 5 mm est chargée à la
 place du 0 enregistré par ces versions.</p>
+""")
+
+    if page == "slicer":
+        return ("Profils Cura et OrcaSlicer pour la Wanhao Duplicator 9, et réglage du décalage Z",
+                "Profils UltiMaker Cura et OrcaSlicer prêts à l'emploi pour toutes les Wanhao D9, PLA, PETG et ABS, "
+                "comment régler le décalage Z de la sonde, lancer un palpage et imprimer un 3DBenchy de test.",
+                f"""
+<h1>Trancher pour la Duplicator 9</h1>
+<p class="lead">Un profil pour chacune des douze imprimantes, pour <strong>UltiMaker Cura</strong> et
+<strong>OrcaSlicer</strong>, tous deux gratuits et disponibles sous Windows, macOS et Linux. Chacun reprend le volume
+d'impression, les accélérations et la température de plateau maximale de son propre firmware.</p>
+
+<h2>Téléchargement</h2>
+{h.slicer}
+<p>Ils sont faits pour le firmware de ce site, <a href="{p('flash')}">v2.0.9 ou plus récent</a>.</p>
+
+<h2>Les installer</h2>
+<p><strong>OrcaSlicer</strong> : <em>Fichier</em> → <em>Importer</em> → <em>Importer des configurations…</em>, puis
+choisissez le fichier <code>.orca_printer</code>. L'imprimante, ses trois qualités (0,12, 0,20 et 0,28 mm) et les
+filaments PLA, PETG et ABS apparaissent dans vos préréglages.</p>
+<p><strong>Cura</strong> : <em>Aide</em> → <em>Afficher le dossier de configuration</em>, fermez Cura, décompressez le
+fichier dans ce dossier, relancez Cura, puis <em>Paramètres</em> → <em>Imprimante</em> → <em>Ajouter une imprimante…</em>
+→ <em>Ajouter une imprimante hors réseau</em> → <em>Wanhao</em> → votre modèle. La <em>Wanhao Duplicator 9</em> fournie
+avec Cura est un profil plus ancien : 300 uniquement, radeau et supports activés par défaut.</p>
+
+<h2 id="first-print">Avant la première impression : le décalage Z, puis un palpage</h2>
+<p>La sonde se déclenche un peu au-dessus du plateau, et le firmware doit savoir de combien. C'est le
+<strong>décalage Z</strong>. Trop haut, la première couche n'accroche pas ; trop bas, la buse racle le plateau. Il se
+règle une fois, et c'est le réglage qui décide si vos impressions tiennent ou non.</p>
+<div class="note">Tout ce qui suit est conservé dans la mémoire de l'imprimante, pas dans le slicer. Cela survit à une
+mise à jour du firmware (depuis la v2.0.3).</div>
+
+<h3>1. Chauffez d'abord</h3>
+<p>Une buse chaude est plus longue de quelques centièmes de millimètre. Chauffez comme pour une impression : à l'écran,
+<em>Température</em> → <em>Préchauffe</em> → <em>PLA</em> (200 °C et 60 °C), et attendez deux minutes.</p>
+
+<h3>2. Faites l'origine des axes</h3>
+<p>À l'écran : <em>Réglages</em> → <em>Déplacer</em> → <em>Origine</em>. En USB : <code>G28</code>.</p>
+
+<h3>3. Réglez le décalage Z</h3>
+<p><strong>Le plus simple, en imprimant.</strong> Lancez une impression et, pendant la <strong>première couche</strong>,
+allez dans <em>Ajuster</em> → <em>Décalage Z</em> à l'écran. Descendez par pas de 0,01 mm pendant que la ligne se trace,
+jusqu'à ce qu'elle soit plate et touche sa voisine sans laisser de vide. Trop haut, les lignes restent rondes et
+séparées ; trop bas, la surface devient rugueuse et on voit la buse creuser. La valeur est enregistrée toute seule.</p>
+<p><strong>À la feuille de papier, sans imprimer.</strong> En USB, à température d'impression :</p>
+<pre><code>M851 Z0     ; oublie le décalage actuel
+M500
+G28         ; refaire l'origine pour qu'il soit pris en compte
+M420 S0     ; ignore le maillage pendant la mesure
+G1 Z0 F300  ; la buse descend au zéro que croit le firmware</code></pre>
+<p>Glissez une feuille de papier sous la buse, puis descendez par petits pas avec <code>G91</code> puis
+<code>G1 Z-0.05 F60</code>, encore et encore, jusqu'à ce que la feuille commence tout juste à frotter. Lisez la valeur
+avec <code>M114</code> : elle est négative, par exemple −1,30. Ensuite :</p>
+<pre><code>G90
+M851 Z-1.30 ; votre valeur
+M500</code></pre>
+
+<h3>4. Palpez le plateau</h3>
+<p>À l'écran : <em>Réglages</em> → <em>Nivellement</em> → <em>Automatique</em> → <em>Palper</em>. L'imprimante mesure
+25 points et <strong>enregistre le maillage toute seule</strong> (elle lance <code>G29</code> puis <code>M500</code>).
+Comptez quelques minutes. En USB : <code>G29</code> puis <code>M500</code>.</p>
+<p>Nos profils ne palpent pas avant chaque impression : ils réactivent le maillage enregistré avec <code>M420 S1</code>,
+juste après l'origine. Refaites donc un palpage quand vous déplacez l'imprimante, changez de surface ou de buse, ou
+quand la première couche est bonne d'un côté du plateau et pas de l'autre.</p>
+
+<h3>5. Vérifiez</h3>
+<p><code>M503</code> affiche ce qui est enregistré : la ligne <code>M851</code> est votre décalage Z, et
+<code>M420 S1</code> indique que le maillage est actif. À l'écran, la page <em>Automatique</em> montre les 25 points
+mesurés.</p>
+
+<h2>Impressions de test</h2>
+<p>Un 3DBenchy déjà tranché pour une <strong>D9 MK2 300</strong>, pour comparer les deux slicers ou vérifier un réglage
+sans rien installer :</p>
+<ul>
+<li>Cura : <a href="{DL}Benchy_Cura_PLA.gcode">PLA</a> · <a href="{DL}Benchy_Cura_PETG.gcode">PETG</a> ·
+<a href="{DL}Benchy_Cura_ABS.gcode">ABS</a></li>
+<li>OrcaSlicer : <a href="{DL}Benchy_Orca_PLA.gcode">PLA</a> · <a href="{DL}Benchy_Orca_PETG.gcode">PETG</a> ·
+<a href="{DL}Benchy_Orca_ABS.gcode">ABS</a></li>
+</ul>
+<p>Environ une heure et demie et 4 m de filament chacun. Pour un autre modèle ou une autre taille, tranchez le
+<a href="https://github.com/CreativeTools/3DBenchy">3DBenchy</a> vous-même avec votre profil.</p>
+<div class="note">La D9 est ouverte : l'ABS demande au minimum une pièce sans courant d'air, et sa température de
+plateau est ramenée à ce qu'accepte votre modèle (80 °C sur une MK3 500).</div>
+
+<h2>Ce que contiennent les profils</h2>
+<ul>
+<li><strong>Couches</strong> de 0,20 mm, <strong>3 parois</strong>, 4 couches pleines dessus et 3 dessous, remplissage
+gyroïde à 15 %, une jupe de 2 tours, pas de supports.</li>
+<li><strong>Vitesses</strong> : 40 mm/s sur la paroi extérieure, 60 à l'intérieur, 70 pour le remplissage, 20 sur la
+première couche, 150 en déplacement. Wanhao donne 70 mm/s comme vitesse d'impression maximale de la D9.</li>
+<li><strong>Rétraction</strong> de 1,5 mm à 25 mm/s : toutes les D9 ont un extrudeur MK10 en direct, et le firmware
+limite l'extrudeur à 25 mm/s.</li>
+<li><strong>Températures</strong> : PLA 210 °C puis 205, plateau 65 puis 60. PETG 240 / 80 puis 235 / 75. ABS
+245 / 105 puis 245 / 100.</li>
+<li><strong>Une ligne d'amorçage</strong> à 15 mm du bord gauche, au-delà des pinces du plateau : la buse arrive propre
+sur la pièce.</li>
+<li>À la fin, la buse monte et le plateau vient à l'avant.</li>
+</ul>
+<p>Tous les réglages et comment les modifier : <a href="{REPO}/tree/main/Slicer">dossier Slicer</a> sur GitHub.</p>
 """)
 
     if page == "quiet":

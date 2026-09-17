@@ -4,8 +4,10 @@ META = {"name": "Bahasa Indonesia", "locale": "id_ID", "dir": "ltr"}
 
 UI = {
     "nav": {"index": "Beranda", "mk1": "MK1", "mk1u2": "MK1 + kit MK2", "mk2": "MK2", "mk3": "MK3",
-            "flash": "Panduan flash", "screen": "Layar", "sensor": "Sensor filamen", "quiet": "Lebih senyap"},
+            "flash": "Panduan flash", "screen": "Layar", "sensor": "Sensor filamen", "slicer": "Slicer",
+            "quiet": "Lebih senyap"},
     "language": "Bahasa",
+    "model": "Model",
     "size": "Ukuran", "volume": "Volume cetak", "file": "Firmware",
     "footer_src": "Kode sumber dan issue di GitHub", "footer_chat": "Discord",
     "footer_note": "Firmware berlisensi GNU GPL v3. Manual dan firmware Wanhao tetap milik Wanhao.",
@@ -450,6 +452,105 @@ v2.0.5 (sebenarnya terlalu pendek: sekitar sepertiga spool 1 kg, setelah itu pri
 10 km di v2.0.6. Saat printer dinyalakan, v2.0.7 memuat kedua nilai itu sebagai <code>L0</code>. Panjang sungguhan yang Anda atur
 untuk sensor BTT, seperti <code>L10</code>, tetap dipertahankan. Dari v2.0.4 atau yang lebih lama, jarak filamen habis 5 mm dimuat
 sebagai ganti nilai 0 yang disimpan versi-versi tersebut.</p>
+""")
+
+    if page == "slicer":
+        return ("Profil Cura dan OrcaSlicer untuk Wanhao Duplicator 9, dan cara mengatur Z offset",
+                "Profil UltiMaker Cura dan OrcaSlicer siap pakai untuk semua Wanhao D9, PLA, PETG dan ABS, cara "
+                "mengatur Z offset probe, menjalankan probing bed dan mencetak 3DBenchy percobaan.",
+                f"""
+<h1>Slicing untuk Duplicator 9</h1>
+<p class="lead">Satu profil untuk masing-masing dari dua belas printer, untuk <strong>UltiMaker Cura</strong> dan
+<strong>OrcaSlicer</strong>, keduanya gratis dan tersedia di Windows, macOS dan Linux. Masing-masing sudah memuat
+volume cetak, akselerasi dan suhu bed tertinggi dari firmware-nya sendiri.</p>
+
+<h2>Unduhan</h2>
+{h.slicer}
+<p>Profil ini dibuat untuk firmware di situs ini, <a href="{p('flash')}">v2.0.9 atau yang lebih baru</a>.</p>
+
+<h2>Cara memasangnya</h2>
+<p><strong>OrcaSlicer</strong>: <em>File</em> → <em>Import</em> → <em>Import Configs…</em>, lalu pilih file
+<code>.orca_printer</code>. Printer, tiga kualitasnya (0,12 / 0,20 / 0,28 mm) dan filamen PLA, PETG dan ABS akan
+muncul di preset Anda.</p>
+<p><strong>Cura</strong>: <em>Help</em> → <em>Show Configuration Folder</em>, tutup Cura, ekstrak file itu ke dalam
+folder tersebut, jalankan Cura lagi, lalu <em>Settings</em> → <em>Printer</em> → <em>Add Printer…</em> → <em>Add a
+non-networked printer</em> → <em>Wanhao</em> → model Anda. <em>Wanhao Duplicator 9</em> bawaan Cura adalah profil lama:
+hanya ukuran 300, dengan raft dan support aktif secara default.</p>
+
+<h2 id="first-print">Sebelum cetakan pertama: Z offset, lalu probing</h2>
+<p>Probe memicu sedikit di atas bed, dan firmware harus tahu berapa selisihnya. Itulah <strong>Z offset</strong>.
+Terlalu tinggi, layer pertama tidak menempel; terlalu rendah, nozzle menggores bed. Diatur sekali saja, dan inilah
+setelan yang menentukan cetakan Anda menempel atau tidak.</p>
+<div class="note">Semua yang ada di bawah ini tersimpan di memori printer, bukan di slicer. Nilainya bertahan setelah
+update firmware (sejak v2.0.3).</div>
+
+<h3>1. Panaskan dulu</h3>
+<p>Nozzle yang panas beberapa perseratus milimeter lebih panjang. Panaskan seperti saat mencetak: di layar,
+<em>Suhu</em> → <em>Panaskan</em> → <em>PLA</em> (200 °C dan 60 °C), lalu tunggu dua menit.</p>
+
+<h3>2. Home-kan sumbunya</h3>
+<p>Di layar: <em>Pengaturan</em> → <em>Gerak</em> → <em>Home</em>. Lewat USB: <code>G28</code>.</p>
+
+<h3>3. Atur Z offset</h3>
+<p><strong>Cara termudah, sambil mencetak.</strong> Mulai satu cetakan, dan selama <strong>layer pertama</strong> buka
+<em>Sesuaikan</em> → <em>Offset Z</em> di layar. Turunkan per 0,01 mm selagi garisnya ditarik, sampai garisnya rata dan
+menempel pada garis sebelahnya tanpa celah. Terlalu tinggi, garisnya tetap bulat dan terpisah; terlalu rendah,
+permukaannya kasar dan gepeng, dan terlihat nozzle mengeruk bed. Nilainya tersimpan dengan sendirinya.</p>
+<p><strong>Cara kertas, tanpa mencetak.</strong> Lewat USB, pada suhu cetak:</p>
+<pre><code>M851 Z0     ; lupakan offset yang sekarang
+M500
+G28         ; home lagi supaya ikut diperhitungkan
+M420 S0     ; abaikan mesh selama pengukuran
+G1 Z0 F300  ; nozzle turun ke titik yang dianggap nol oleh firmware</code></pre>
+<p>Selipkan selembar kertas di bawah nozzle, lalu turunkan sedikit demi sedikit dengan <code>G91</code> lalu
+<code>G1 Z-0.05 F60</code>, berulang kali, sampai kertasnya baru mulai terasa seret. Baca nilainya dengan
+<code>M114</code>: nilainya negatif, misalnya −1,30. Lalu:</p>
+<pre><code>G90
+M851 Z-1.30 ; nilai Anda
+M500</code></pre>
+
+<h3>4. Probing bed</h3>
+<p>Di layar: <em>Pengaturan</em> → <em>Perataan</em> → <em>Otomatis</em> → <em>Probe</em>. Printer mengukur 25 titik
+dan <strong>menyimpan mesh-nya sendiri</strong> (menjalankan <code>G29</code> lalu <code>M500</code>). Butuh beberapa
+menit. Lewat USB: <code>G29</code> lalu <code>M500</code>.</p>
+<p>Profil kami tidak melakukan probing sebelum setiap cetakan: profilnya menyalakan kembali mesh yang tersimpan dengan
+<code>M420 S1</code>, tepat setelah homing. Jadi lakukan probing lagi kalau printer dipindahkan, kalau permukaan atau
+nozzle diganti, atau kalau layer pertama bagus di satu sisi bed tetapi tidak di sisi lainnya.</p>
+
+<h3>5. Periksa</h3>
+<p><code>M503</code> menampilkan apa yang tersimpan: baris <code>M851</code> adalah Z offset Anda, dan
+<code>M420 S1</code> menunjukkan mesh-nya aktif. Di layar, halaman <em>Otomatis</em> menampilkan 25 titik yang
+terukur.</p>
+
+<h2>Cetakan percobaan</h2>
+<p>Sebuah 3DBenchy yang sudah di-slice untuk <strong>D9 MK2 300</strong>, untuk membandingkan kedua slicer atau
+memeriksa satu setelan tanpa memasang apa pun:</p>
+<ul>
+<li>Cura: <a href="{DL}Benchy_Cura_PLA.gcode">PLA</a> · <a href="{DL}Benchy_Cura_PETG.gcode">PETG</a> ·
+<a href="{DL}Benchy_Cura_ABS.gcode">ABS</a></li>
+<li>OrcaSlicer: <a href="{DL}Benchy_Orca_PLA.gcode">PLA</a> · <a href="{DL}Benchy_Orca_PETG.gcode">PETG</a> ·
+<a href="{DL}Benchy_Orca_ABS.gcode">ABS</a></li>
+</ul>
+<p>Masing-masing sekitar satu setengah jam dan 4 m filamen. Untuk model atau ukuran lain, slice sendiri
+<a href="https://github.com/CreativeTools/3DBenchy">3DBenchy</a> dengan profil Anda.</p>
+<div class="note">D9 adalah printer terbuka: ABS setidaknya butuh ruangan tanpa angin, dan suhu bed-nya diturunkan ke
+angka yang diterima model Anda (80 °C di MK3 500).</div>
+
+<h2>Isi profilnya</h2>
+<ul>
+<li><strong>Layer</strong> 0,20 mm, <strong>3 dinding</strong>, 4 layer atas dan 3 layer bawah, infill gyroid 15 %,
+skirt 2 garis, tanpa support.</li>
+<li><strong>Kecepatan</strong>: 40 mm/s di dinding luar, 60 di dalam, 70 untuk infill, 20 di layer pertama, 150 untuk
+travel. Wanhao menyebut 70 mm/s sebagai kecepatan cetak tertinggi D9.</li>
+<li><strong>Retraksi</strong> 1,5 mm pada 25 mm/s: semua D9 memakai ekstruder MK10 direct drive, dan firmware
+membatasi ekstruder di 25 mm/s.</li>
+<li><strong>Suhu</strong>: PLA 210 °C lalu 205, bed 65 lalu 60. PETG 240 / 80 lalu 235 / 75. ABS 245 / 105 lalu
+245 / 100.</li>
+<li><strong>Garis priming</strong> 15 mm dari tepi kiri, di luar klip bed, supaya nozzle sampai ke model dalam keadaan
+bersih.</li>
+<li>Di akhir cetakan, nozzle naik dan bed maju ke depan.</li>
+</ul>
+<p>Semua setelan dan cara mengubahnya: <a href="{REPO}/tree/main/Slicer">folder Slicer</a> di GitHub.</p>
 """)
 
     if page == "quiet":

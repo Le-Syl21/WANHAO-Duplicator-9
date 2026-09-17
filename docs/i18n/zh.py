@@ -4,8 +4,9 @@ META = {"name": "中文", "locale": "zh_CN", "dir": "ltr"}
 
 UI = {
     "nav": {"index": "首页", "mk1": "MK1", "mk1u2": "MK1 + MK2 套件", "mk2": "MK2", "mk3": "MK3",
-            "flash": "刷写指南", "screen": "触摸屏", "sensor": "耗材传感器", "quiet": "降噪"},
+            "flash": "刷写指南", "screen": "触摸屏", "sensor": "耗材传感器", "slicer": "切片", "quiet": "降噪"},
     "language": "语言",
+    "model": "型号",
     "size": "尺寸", "volume": "打印尺寸", "file": "固件",
     "footer_src": "GitHub 上的源代码和 issue", "footer_chat": "Discord",
     "footer_note": "固件采用 GNU GPL v3 许可。Wanhao 的说明书和固件版权仍归 Wanhao 所有。",
@@ -389,6 +390,81 @@ M500</code></pre>
 <h2>从 v2.0.5 或 v2.0.6 更新</h2>
 <p>这两个版本无法关闭堵料检测，因此使用了一个长到永远达不到的堵料长度：v2.0.5 中为 100 m
 （实际上太短了：约为 1 kg 料盘的三分之一，超过之后，一直开着的打印机可能会无故暂停），v2.0.6 中为 10 km。打印机启动时，v2.0.7 会把这两个值载入为 <code>L0</code>。你为 BTT 传感器设置的实际长度（如 <code>L10</code>）会被保留。从 v2.0.4 或更早版本更新时，会载入 5 mm 的断料距离，而不是这些版本保存的 0。</p>
+""")
+
+    if page == "slicer":
+        return ("Wanhao Duplicator 9 的 Cura 和 OrcaSlicer 配置，以及 Z 偏移的设置方法",
+                "适用于所有 Wanhao D9 的现成 UltiMaker Cura 和 OrcaSlicer 配置，涵盖 PLA、PETG 和 ABS，"
+                "以及如何设置探针的 Z 偏移、探测热床和打印一个测试用 3DBenchy。",
+                f"""
+<h1>为 Duplicator 9 切片</h1>
+<p class="lead">十二台打印机各有一套配置，分别用于 <strong>UltiMaker Cura</strong> 和
+<strong>OrcaSlicer</strong>，两者都免费，并且支持 Windows、macOS 和 Linux。每一套都带有对应固件自己的打印尺寸、加速度和最高热床温度。</p>
+
+<h2>下载</h2>
+{h.slicer}
+<p>它们是为本站的固件制作的，<a href="{p('flash')}">v2.0.9 或更高版本</a>。</p>
+
+<h2>安装方法</h2>
+<p><strong>OrcaSlicer</strong>：<em>文件</em> → <em>导入</em> → <em>导入配置…</em>，然后选择
+<code>.orca_printer</code> 文件。这台打印机、它的三种质量（0.12、0.20 和 0.28 mm）以及 PLA、PETG 和 ABS 耗材就会出现在你的预设中。</p>
+<p><strong>Cura</strong>：<em>帮助</em> → <em>显示配置文件夹</em>，关闭 Cura，把文件解压到该文件夹，再启动 Cura，然后 <em>设置</em> → <em>打印机</em> → <em>添加打印机…</em> → <em>添加非联网打印机</em> →
+<em>Wanhao</em> → 你的型号。Cura 自带的 <em>Wanhao Duplicator 9</em> 是一个较旧的配置：只有 300，而且默认开启了 raft 和支撑。</p>
+
+<h2 id="first-print">第一次打印之前：先设 Z 偏移，再探测一次</h2>
+<p>探针会在略高于热床的位置触发，固件必须知道高出多少。这就是 <strong>Z 偏移</strong>。太高，第一层粘不住；太低，喷嘴会刮到热床。它只需设置一次，而且正是这个设置决定了打印件粘不粘得住。</p>
+<div class="note">下面这些内容都保存在打印机的存储器里，而不是切片软件里。固件更新之后依然保留（从 v2.0.3 起）。</div>
+
+<h3>1. 先加热</h3>
+<p>热的喷嘴会伸长几百分之一毫米。像打印时那样加热——在屏幕上：<em>温度</em> → <em>预热</em> → <em>PLA</em>（200 °C 和 60 °C），然后等上两分钟。</p>
+
+<h3>2. 让各轴归零</h3>
+<p>在屏幕上：<em>设置</em> → <em>移动</em> → <em>归零</em>。通过 USB：<code>G28</code>。</p>
+
+<h3>3. 设置 Z 偏移</h3>
+<p><strong>最简单的办法：边打印边调。</strong>开始一次打印，在打印<strong>第一层</strong>时进入屏幕上的
+<em>调整</em> → <em>Z 偏移</em>。一边看着线条被挤出，一边以 0.01 mm 为步长往下调，直到线条变平、和旁边的线条紧挨着不留缝隙。太高时线条是圆的、彼此分开；太低时表面粗糙、被压扁，还能看到喷嘴在刮。数值会自动保存。</p>
+<p><strong>用纸片的办法，不用打印。</strong>通过 USB，在打印温度下：</p>
+<pre><code>M851 Z0     ; 忘掉当前的偏移
+M500
+G28         ; 重新归零，让它生效
+M420 S0     ; 测量时忽略网格
+G1 Z0 F300  ; 喷嘴下降到固件认为的零点</code></pre>
+<p>把一张纸塞到喷嘴下面，然后用 <code>G91</code> 再配合 <code>G1 Z-0.05 F60</code> 一小步一小步地往下调，反复进行，直到纸刚好开始有阻力。用 <code>M114</code> 读出数值：它是负数，例如 −1.30。然后：</p>
+<pre><code>G90
+M851 Z-1.30 ; 你的数值
+M500</code></pre>
+
+<h3>4. 探测热床</h3>
+<p>在屏幕上：<em>设置</em> → <em>调平</em> → <em>自动</em> → <em>探测</em>。打印机会测量 25 个点并<strong>自动保存网格</strong>（它会执行 <code>G29</code> 然后 <code>M500</code>）。需要几分钟。通过 USB：<code>G29</code> 然后 <code>M500</code>。</p>
+<p>我们的配置不会在每次打印前探测：它们在归零之后立即用 <code>M420 S1</code> 重新启用已保存的网格。所以当你搬动打印机、更换打印表面或喷嘴，或者第一层在热床一侧好、另一侧不好时，请重新探测一次。</p>
+
+<h3>5. 检查</h3>
+<p><code>M503</code> 会列出已保存的内容：<code>M851</code> 那一行就是你的 Z 偏移，<code>M420 S1</code>
+表示网格已启用。在屏幕上，<em>自动</em> 页面会显示测得的 25 个点。</p>
+
+<h2>测试打印</h2>
+<p>一个已经为 <strong>D9 MK2 300</strong> 切好片的 3DBenchy，可以用来比较两款切片软件，或者不安装任何东西就检查某个设置：</p>
+<ul>
+<li>Cura：<a href="{DL}Benchy_Cura_PLA.gcode">PLA</a> · <a href="{DL}Benchy_Cura_PETG.gcode">PETG</a> ·
+<a href="{DL}Benchy_Cura_ABS.gcode">ABS</a></li>
+<li>OrcaSlicer：<a href="{DL}Benchy_Orca_PLA.gcode">PLA</a> · <a href="{DL}Benchy_Orca_PETG.gcode">PETG</a> ·
+<a href="{DL}Benchy_Orca_ABS.gcode">ABS</a></li>
+</ul>
+<p>每个大约需要一个半小时和 4 m 耗材。换别的型号或尺寸时，请用你自己的配置来切片
+<a href="https://github.com/CreativeTools/3DBenchy">3DBenchy</a>。</p>
+<div class="note">D9 是开放式的：打印 ABS 至少需要一个没有穿堂风的房间，而它的热床温度会被降到你的型号所能接受的数值（MK3 500 上为 80 °C）。</div>
+
+<h2>配置里有什么</h2>
+<ul>
+<li><strong>层高</strong> 0.20 mm，<strong>3 层墙</strong>，顶部 4 层、底部 3 层，15 % 的螺旋二十四面体（gyroid）填充，2 圈裙边，不加支撑。</li>
+<li><strong>速度</strong>：外墙 40 mm/s，内墙 60，填充 70，第一层 20，空驶 150。Wanhao 给出的 D9 最高打印速度是 70 mm/s。</li>
+<li><strong>回抽</strong> 1.5 mm，速度 25 mm/s：所有 D9 都是 MK10 近程直驱挤出机，而固件把挤出机限制在 25 mm/s。</li>
+<li><strong>温度</strong>：PLA 210 °C 然后 205，热床 65 然后 60。PETG 240 / 80 然后 235 / 75。ABS 245 / 105 然后 245 / 100。</li>
+<li><strong>一条起始擦料线</strong>，距左边缘 15 mm，避开热床夹子，让喷嘴干干净净地开始打印模型。</li>
+<li>打印结束时，喷嘴升起，热床移到前面。</li>
+</ul>
+<p>全部设置以及修改方法：GitHub 上的 <a href="{REPO}/tree/main/Slicer">Slicer 文件夹</a>。</p>
 """)
 
     if page == "quiet":

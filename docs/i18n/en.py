@@ -9,8 +9,9 @@ META = {"name": "English", "locale": "en_GB", "dir": "ltr"}
 
 UI = {
     "nav": {"index": "Home", "mk1": "MK1", "mk1u2": "MK1 + MK2 kit", "mk2": "MK2", "mk3": "MK3",
-            "flash": "Flash guide", "screen": "Screen", "sensor": "Filament sensor", "quiet": "Quieter"},
+            "flash": "Flash guide", "screen": "Screen", "sensor": "Filament sensor", "slicer": "Slicer", "quiet": "Quieter"},
     "language": "Language",
+    "model": "Model",
     "size": "Size", "volume": "Build volume", "file": "Firmware",
     "footer_src": "Source and issues on GitHub", "footer_chat": "Discord",
     "footer_note": "Firmware under GNU GPL v3. Wanhao's manuals and firmwares remain Wanhao's.",
@@ -455,6 +456,104 @@ v2.0.5 (too short in fact: about a third of a 1 kg spool, after which a printer 
 10 km in v2.0.6. When the printer starts, v2.0.7 loads those two values as <code>L0</code>. A real length you set
 for a BTT sensor, such as <code>L10</code>, is kept. From v2.0.4 or earlier, the 5 mm runout distance is loaded
 instead of the 0 those versions saved.</p>
+""")
+
+    if page == "slicer":
+        return ("Cura and OrcaSlicer profiles for the Wanhao Duplicator 9, and how to set the Z offset",
+                "Ready-made UltiMaker Cura and OrcaSlicer profiles for every Wanhao D9, PLA, PETG and ABS, how to set "
+                "the probe Z offset, run a bed probing and print a test 3DBenchy.",
+                f"""
+<h1>Slicing for the Duplicator 9</h1>
+<p class="lead">A profile for each of the twelve printers, for <strong>UltiMaker Cura</strong> and
+<strong>OrcaSlicer</strong>, both free and available on Windows, macOS and Linux. Each one carries the build volume,
+the accelerations and the highest bed temperature of its own firmware.</p>
+
+<h2>Download</h2>
+{h.slicer}
+<p>They are made for the firmware of this site, <a href="{p('flash')}">v2.0.9 or later</a>.</p>
+
+<h2>Install them</h2>
+<p><strong>OrcaSlicer</strong>: <em>File</em> → <em>Import</em> → <em>Import Configs…</em>, then choose the
+<code>.orca_printer</code> file. The printer, its three qualities (0.12, 0.20 and 0.28 mm) and the PLA, PETG and ABS
+filaments appear in your presets.</p>
+<p><strong>Cura</strong>: <em>Help</em> → <em>Show Configuration Folder</em>, close Cura, unzip the file into that
+folder, start Cura again, then <em>Settings</em> → <em>Printer</em> → <em>Add Printer…</em> → <em>Add a non-networked
+printer</em> → <em>Wanhao</em> → your model. The <em>Wanhao Duplicator 9</em> that comes with Cura is an older profile:
+300 only, raft and supports on by default.</p>
+
+<h2 id="first-print">Before the first print: the Z offset, then a probing</h2>
+<p>The probe triggers a little above the bed, and the firmware has to know by how much. That is the
+<strong>Z offset</strong>. Too high and the first layer does not stick; too low and the nozzle scrapes the bed. It is
+set once, and it is the one setting that decides whether prints stick.</p>
+<div class="note">Everything below is kept in the printer's memory, not in the slicer. It stays after a firmware
+update (since v2.0.3).</div>
+
+<h3>1. Heat first</h3>
+<p>A hot nozzle is a few hundredths of a millimetre longer. Heat as for a print — on the screen, <em>Temperature</em> →
+<em>Preheat</em> → <em>PLA</em> (200 °C and 60 °C), and wait a couple of minutes.</p>
+
+<h3>2. Home the axes</h3>
+<p>On the screen: <em>Settings</em> → <em>Move</em> → <em>Home</em>. Over USB: <code>G28</code>.</p>
+
+<h3>3. Set the Z offset</h3>
+<p><strong>The simple way, while printing.</strong> Start a print, and during the <strong>first layer</strong> go to
+<em>Adjust</em> → <em>Z offset</em> on the screen. Lower in 0.01 mm steps while the line is being drawn, until it is
+flat and touches its neighbour with no gap. Too high leaves round, separate strings; too low leaves a rough, squashed
+surface and shows the nozzle digging in. The value is saved on its own.</p>
+<p><strong>The paper way, without printing.</strong> Over USB, at printing temperature:</p>
+<pre><code>M851 Z0     ; forget the current offset
+M500
+G28         ; home again so it is taken into account
+M420 S0     ; ignore the mesh while measuring
+G1 Z0 F300  ; the nozzle comes down to what the firmware thinks is zero</code></pre>
+<p>Slide a sheet of paper under the nozzle, then lower in small steps with <code>G91</code> then
+<code>G1 Z-0.05 F60</code>, over and over, until the paper only just drags. Read the value with <code>M114</code>: it
+is negative, for example −1.30. Then:</p>
+<pre><code>G90
+M851 Z-1.30 ; your value
+M500</code></pre>
+
+<h3>4. Probe the bed</h3>
+<p>On the screen: <em>Settings</em> → <em>Levelling</em> → <em>Automatic</em> → <em>Probe</em>. The printer measures
+25 points and <strong>saves the mesh by itself</strong> (it runs <code>G29</code> then <code>M500</code>). It takes a
+few minutes. Over USB: <code>G29</code> then <code>M500</code>.</p>
+<p>Our profiles do not probe before each print: they turn the saved mesh back on with <code>M420 S1</code>, right after
+the homing. So probe again when you move the printer, change the surface or the nozzle, or when the first layer is good
+on one side of the bed and not on the other.</p>
+
+<h3>5. Check</h3>
+<p><code>M503</code> lists what is stored: the <code>M851</code> line is your Z offset, and <code>M420 S1</code> shows
+the mesh is on. On the screen, the <em>Automatic</em> page shows the 25 measured points.</p>
+
+<h2>Test prints</h2>
+<p>A 3DBenchy, already sliced for a <strong>D9 MK2 300</strong>, to compare the two slicers or to check a setting
+without installing anything:</p>
+<ul>
+<li>Cura: <a href="{DL}Benchy_Cura_PLA.gcode">PLA</a> · <a href="{DL}Benchy_Cura_PETG.gcode">PETG</a> ·
+<a href="{DL}Benchy_Cura_ABS.gcode">ABS</a></li>
+<li>OrcaSlicer: <a href="{DL}Benchy_Orca_PLA.gcode">PLA</a> · <a href="{DL}Benchy_Orca_PETG.gcode">PETG</a> ·
+<a href="{DL}Benchy_Orca_ABS.gcode">ABS</a></li>
+</ul>
+<p>About an hour and a half and 4 m of filament each. For another model or size, slice the
+<a href="https://github.com/CreativeTools/3DBenchy">3DBenchy</a> yourself with your profile.</p>
+<div class="note">The D9 is open: ABS needs at least a room without draughts, and its bed temperature is brought down to
+what your model accepts (80 °C on an MK3 500).</div>
+
+<h2>What is in the profiles</h2>
+<ul>
+<li><strong>Layers</strong> 0.20 mm, <strong>3 walls</strong>, 4 top and 3 bottom layers, gyroid infill at 15 %, a
+2-line skirt, no support.</li>
+<li><strong>Speeds</strong>: 40 mm/s on the outer wall, 60 inside, 70 for infill, 20 on the first layer, 150 for
+travel. Wanhao gives 70 mm/s as the D9's top printing speed.</li>
+<li><strong>Retraction</strong> 1.5 mm at 25 mm/s: every D9 has a direct-drive MK10 extruder, and the firmware limits
+the extruder to 25 mm/s.</li>
+<li><strong>Temperatures</strong>: PLA 210 °C then 205, bed 65 then 60. PETG 240 / 80 then 235 / 75. ABS 245 / 105
+then 245 / 100.</li>
+<li><strong>A priming line</strong> 15 mm from the left edge, clear of the bed clips, so the nozzle arrives clean on
+the model.</li>
+<li>At the end, the nozzle rises and the bed comes to the front.</li>
+</ul>
+<p>Every setting and how to change them: <a href="{REPO}/tree/main/Slicer">Slicer folder</a> on GitHub.</p>
 """)
 
     if page == "quiet":

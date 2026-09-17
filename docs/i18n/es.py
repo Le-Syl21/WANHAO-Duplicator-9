@@ -4,8 +4,9 @@ META = {"name": "Español", "locale": "es_ES", "dir": "ltr"}
 
 UI = {
     "nav": {"index": "Inicio", "mk1": "MK1", "mk1u2": "MK1 + kit MK2", "mk2": "MK2", "mk3": "MK3",
-            "flash": "Guía de flasheo", "screen": "Pantalla", "sensor": "Sensor de filamento", "quiet": "Menos ruido"},
+            "flash": "Guía de flasheo", "screen": "Pantalla", "sensor": "Sensor de filamento", "slicer": "Slicer", "quiet": "Menos ruido"},
     "language": "Idioma",
+    "model": "Modelo",
     "size": "Tamaño", "volume": "Volumen de impresión", "file": "Firmware",
     "footer_src": "Código fuente e issues en GitHub", "footer_chat": "Discord",
     "footer_note": "Firmware bajo licencia GNU GPL v3. Los manuales y firmwares de Wanhao siguen siendo de Wanhao.",
@@ -451,6 +452,104 @@ la v2.0.5 (en realidad demasiado corta: más o menos un tercio de una bobina de 
 10 km en la v2.0.6. Al arrancar la impresora, la v2.0.7 carga esos dos valores como <code>L0</code>. Una longitud real que haya ajustado
 para un sensor BTT, como <code>L10</code>, se conserva. Desde la v2.0.4 o anterior, se carga la distancia de fin de filamento de 5 mm
 en lugar del 0 que guardaban esas versiones.</p>
+""")
+
+    if page == "slicer":
+        return ("Perfiles de Cura y OrcaSlicer para la Wanhao Duplicator 9, y ajuste del offset Z",
+                "Perfiles UltiMaker Cura y OrcaSlicer listos para usar para todas las Wanhao D9, PLA, PETG y ABS, cómo "
+                "ajustar el offset Z de la sonda, lanzar un palpado de la cama e imprimir un 3DBenchy de prueba.",
+                f"""
+<h1>Laminar para la Duplicator 9</h1>
+<p class="lead">Un perfil para cada una de las doce impresoras, para <strong>UltiMaker Cura</strong> y
+<strong>OrcaSlicer</strong>, los dos gratuitos y disponibles en Windows, macOS y Linux. Cada uno lleva el volumen de
+impresión, las aceleraciones y la temperatura de cama máxima de su propio firmware.</p>
+
+<h2>Descarga</h2>
+{h.slicer}
+<p>Están hechos para el firmware de este sitio, <a href="{p('flash')}">v2.0.9 o posterior</a>.</p>
+
+<h2>Instalarlos</h2>
+<p><strong>OrcaSlicer</strong>: <em>Archivo</em> → <em>Importar</em> → <em>Importar configuraciones…</em>, y luego elija
+el archivo <code>.orca_printer</code>. La impresora, sus tres calidades (0,12, 0,20 y 0,28 mm) y los filamentos PLA,
+PETG y ABS aparecen en sus preajustes.</p>
+<p><strong>Cura</strong>: <em>Ayuda</em> → <em>Mostrar carpeta de configuración</em>, cierre Cura, descomprima el
+archivo en esa carpeta, vuelva a abrir Cura y luego <em>Ajustes</em> → <em>Impresora</em> → <em>Añadir impresora…</em>
+→ <em>Añadir una impresora no conectada en red</em> → <em>Wanhao</em> → su modelo. La <em>Wanhao Duplicator 9</em> que
+viene con Cura es un perfil más antiguo: solo la 300, con balsa y soportes activados por defecto.</p>
+
+<h2 id="first-print">Antes de la primera impresión: el offset Z, y luego un palpado</h2>
+<p>La sonda se dispara un poco por encima de la cama, y el firmware tiene que saber cuánto. Eso es el
+<strong>offset Z</strong>. Demasiado alto, la primera capa no agarra; demasiado bajo, la boquilla raya la cama. Se
+ajusta una sola vez, y es el ajuste que decide si sus impresiones se pegan o no.</p>
+<div class="note">Todo lo que sigue se guarda en la memoria de la impresora, no en el slicer. Sobrevive a una
+actualización del firmware (desde la v2.0.3).</div>
+
+<h3>1. Caliente primero</h3>
+<p>Una boquilla caliente es unas centésimas de milímetro más larga. Caliente como para imprimir: en la pantalla,
+<em>Temperatura</em> → <em>Precalentar</em> → <em>PLA</em> (200 °C y 60 °C), y espere un par de minutos.</p>
+
+<h3>2. Haga el origen de los ejes</h3>
+<p>En la pantalla: <em>Ajustes</em> → <em>Mover</em> → <em>Origen</em>. Por USB: <code>G28</code>.</p>
+
+<h3>3. Ajuste el offset Z</h3>
+<p><strong>Lo más sencillo, imprimiendo.</strong> Lance una impresión y, durante la <strong>primera capa</strong>, vaya
+a <em>Ajustar</em> → <em>Offset Z</em> en la pantalla. Baje de 0,01 en 0,01 mm mientras se traza la línea, hasta que
+quede plana y toque a su vecina sin dejar hueco. Demasiado alto deja cordones redondos y separados; demasiado bajo deja
+una superficie rugosa y aplastada donde se ve la boquilla escarbando. El valor se guarda solo.</p>
+<p><strong>Con una hoja de papel, sin imprimir.</strong> Por USB, a temperatura de impresión:</p>
+<pre><code>M851 Z0     ; olvida el offset actual
+M500
+G28         ; vuelve a hacer el origen para que se tenga en cuenta
+M420 S0     ; ignora la malla durante la medición
+G1 Z0 F300  ; la boquilla baja al cero que cree el firmware</code></pre>
+<p>Deslice una hoja de papel bajo la boquilla y luego baje a pasos pequeños con <code>G91</code> y
+<code>G1 Z-0.05 F60</code>, una y otra vez, hasta que la hoja apenas empiece a rozar. Lea el valor con
+<code>M114</code>: es negativo, por ejemplo −1,30. Después:</p>
+<pre><code>G90
+M851 Z-1.30 ; su valor
+M500</code></pre>
+
+<h3>4. Palpe la cama</h3>
+<p>En la pantalla: <em>Ajustes</em> → <em>Nivelación</em> → <em>Automático</em> → <em>Palpar</em>. La impresora mide
+25 puntos y <strong>guarda la malla ella sola</strong> (lanza <code>G29</code> y luego <code>M500</code>). Cuente unos
+minutos. Por USB: <code>G29</code> y luego <code>M500</code>.</p>
+<p>Nuestros perfiles no palpan antes de cada impresión: reactivan la malla guardada con <code>M420 S1</code>, justo
+después del origen. Así que vuelva a palpar cuando mueva la impresora, cambie de superficie o de boquilla, o cuando la
+primera capa salga bien en un lado de la cama y no en el otro.</p>
+
+<h3>5. Compruebe</h3>
+<p><code>M503</code> muestra lo que hay guardado: la línea <code>M851</code> es su offset Z, y <code>M420 S1</code>
+indica que la malla está activa. En la pantalla, la página <em>Automático</em> muestra los 25 puntos medidos.</p>
+
+<h2>Impresiones de prueba</h2>
+<p>Un 3DBenchy ya laminado para una <strong>D9 MK2 300</strong>, para comparar los dos slicers o comprobar un ajuste
+sin instalar nada:</p>
+<ul>
+<li>Cura: <a href="{DL}Benchy_Cura_PLA.gcode">PLA</a> · <a href="{DL}Benchy_Cura_PETG.gcode">PETG</a> ·
+<a href="{DL}Benchy_Cura_ABS.gcode">ABS</a></li>
+<li>OrcaSlicer: <a href="{DL}Benchy_Orca_PLA.gcode">PLA</a> · <a href="{DL}Benchy_Orca_PETG.gcode">PETG</a> ·
+<a href="{DL}Benchy_Orca_ABS.gcode">ABS</a></li>
+</ul>
+<p>Alrededor de una hora y media y 4 m de filamento cada uno. Para otro modelo u otro tamaño, lamine usted mismo el
+<a href="https://github.com/CreativeTools/3DBenchy">3DBenchy</a> con su perfil.</p>
+<div class="note">La D9 es abierta: el ABS pide como mínimo una habitación sin corrientes de aire, y su temperatura de
+cama se rebaja a lo que acepte su modelo (80 °C en una MK3 500).</div>
+
+<h2>Qué contienen los perfiles</h2>
+<ul>
+<li><strong>Capas</strong> de 0,20 mm, <strong>3 paredes</strong>, 4 capas sólidas arriba y 3 abajo, relleno giroide
+al 15 %, una falda de 2 líneas, sin soportes.</li>
+<li><strong>Velocidades</strong>: 40 mm/s en la pared exterior, 60 dentro, 70 para el relleno, 20 en la primera capa,
+150 en desplazamiento. Wanhao da 70 mm/s como velocidad de impresión máxima de la D9.</li>
+<li><strong>Retracción</strong> de 1,5 mm a 25 mm/s: todas las D9 llevan un extrusor MK10 de tracción directa, y el
+firmware limita el extrusor a 25 mm/s.</li>
+<li><strong>Temperaturas</strong>: PLA 210 °C y luego 205, cama 65 y luego 60. PETG 240 / 80 y luego 235 / 75. ABS
+245 / 105 y luego 245 / 100.</li>
+<li><strong>Una línea de cebado</strong> a 15 mm del borde izquierdo, más allá de las pinzas de la cama: la boquilla
+llega limpia a la pieza.</li>
+<li>Al final, la boquilla sube y la cama viene hacia delante.</li>
+</ul>
+<p>Todos los ajustes y cómo cambiarlos: <a href="{REPO}/tree/main/Slicer">carpeta Slicer</a> en GitHub.</p>
 """)
 
     if page == "quiet":

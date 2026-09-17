@@ -24,7 +24,7 @@ DISCORD = "https://discord.gg/T37DYHmt2j"
 # Google Search Console ownership check for the URL-prefix property SITE.
 GOOGLE_VERIFICATION = "TqbXre6qrm9jaoj6tFwRRiI2vuQilAZLm6kUJA-etmo"
 
-PAGES = ["index", "mk1", "mk1u2", "mk2", "mk3", "flash", "screen", "sensor", "quiet"]
+PAGES = ["index", "mk1", "mk1u2", "mk2", "mk3", "flash", "screen", "sensor", "slicer", "quiet"]
 SIZES = [("300", "300 × 300 × 400 mm"), ("400", "400 × 400 × 400 mm"), ("500", "500 × 500 × 500 mm")]
 # Same languages, same order as the touchscreen. hreflang uses the script for Chinese.
 LANGS = ["en", "fr", "de", "es", "it", "pt", "nl", "pl", "tr", "ru", "ar", "hi", "zh", "ja", "ko", "id"]
@@ -60,6 +60,24 @@ def downloads(model, lang):
             + "".join(rows) + "</tbody></table></div>")
 
 
+MODELS = ["MK1", "MK1u2", "MK2", "MK3"]
+
+
+def slicer_table(lang):
+    """One row per printer: the Cura profile and the OrcaSlicer bundle of the latest release."""
+    u = LANG[lang].UI
+    rows = []
+    for model in MODELS:
+        for size, _volume in SIZES:
+            rows.append(
+                f'<tr><td><strong>{u["nav"][model.lower()]}</strong></td>'
+                f'<td>D9/{size}</td>'
+                f'<td><a class="btn" href="{DL}D9_{model}_{size}_Cura.zip">Cura</a></td>'
+                f'<td><a class="btn" href="{DL}D9_{model}_{size}.orca_printer">OrcaSlicer</a></td></tr>')
+    return (f'<div class="table"><table class="dl"><thead><tr><th>{u["model"]}</th><th>{u["size"]}</th>'
+            f'<th>Cura</th><th>OrcaSlicer</th></tr></thead><tbody>' + "".join(rows) + "</tbody></table></div>")
+
+
 def factory_rows(model, files):
     return "".join(
         f'<tr><td>D9/{s}</td><td><a href="{RAW}{model}/Wanhao_factory/{f}">{f}</a></td>'
@@ -87,7 +105,7 @@ ROWS = {
 
 def content(page, lang):
     h = SimpleNamespace(p=lambda name: href(name, lang, lang), img=("" if lang == "en" else "../") + "img/",
-                        dl=lambda m: downloads(m, lang), rows=ROWS.get(page, ""),
+                        dl=lambda m: downloads(m, lang), rows=ROWS.get(page, ""), slicer=slicer_table(lang),
                         REPO=REPO, RAW=RAW, FW=FW, DL=DL, DISCORD=DISCORD)
     return LANG[lang].content(page, h)
 

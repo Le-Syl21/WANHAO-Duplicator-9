@@ -4,8 +4,10 @@ META = {"name": "Deutsch", "locale": "de_DE", "dir": "ltr"}
 
 UI = {
     "nav": {"index": "Start", "mk1": "MK1", "mk1u2": "MK1 + MK2-Kit", "mk2": "MK2", "mk3": "MK3",
-            "flash": "Flash-Anleitung", "screen": "Display", "sensor": "Filamentsensor", "quiet": "Leiser"},
+            "flash": "Flash-Anleitung", "screen": "Display", "sensor": "Filamentsensor", "slicer": "Slicer",
+            "quiet": "Leiser"},
     "language": "Sprache",
+    "model": "Modell",
     "size": "Größe", "volume": "Bauraum", "file": "Firmware",
     "footer_src": "Quellcode und Issues auf GitHub", "footer_chat": "Discord",
     "footer_note": "Firmware unter GNU GPL v3. Die Handbücher und Firmwares von Wanhao bleiben Eigentum von Wanhao.",
@@ -455,6 +457,106 @@ v2.0.5 (tatsächlich zu kurz: etwa ein Drittel einer 1-kg-Spule, danach konnte e
 10 km in v2.0.6. Beim Start des Druckers lädt v2.0.7 diese beiden Werte als <code>L0</code>. Eine echte Länge, die du
 für einen BTT-Sensor eingestellt hast, etwa <code>L10</code>, bleibt erhalten. Von v2.0.4 oder älter wird die Filamentende-Distanz
 von 5 mm geladen statt der 0, die diese Versionen gespeichert haben.</p>
+""")
+
+    if page == "slicer":
+        return ("Cura- und OrcaSlicer-Profile für die Wanhao Duplicator 9 und das Einstellen des Z-Offsets",
+                "Fertige Profile für UltiMaker Cura und OrcaSlicer für jede Wanhao D9, PLA, PETG und ABS, wie du den "
+                "Z-Offset des Sensors einstellst, eine Bettabtastung startest und einen Test-3DBenchy druckst.",
+                f"""
+<h1>Slicen für die Duplicator 9</h1>
+<p class="lead">Ein Profil für jeden der zwölf Drucker, für <strong>UltiMaker Cura</strong> und
+<strong>OrcaSlicer</strong>, beide kostenlos und für Windows, macOS und Linux erhältlich. Jedes enthält den Bauraum,
+die Beschleunigungen und die höchste Betttemperatur der jeweils eigenen Firmware.</p>
+
+<h2>Download</h2>
+{h.slicer}
+<p>Sie sind für die Firmware dieser Seite gemacht, <a href="{p('flash')}">v2.0.9 oder neuer</a>.</p>
+
+<h2>Installieren</h2>
+<p><strong>OrcaSlicer</strong>: <em>Datei</em> → <em>Importieren</em> → <em>Konfigurationen importieren…</em>, dann die
+Datei <code>.orca_printer</code> auswählen. Der Drucker, seine drei Qualitäten (0,12, 0,20 und 0,28 mm) und die
+Filamente PLA, PETG und ABS erscheinen in deinen Voreinstellungen.</p>
+<p><strong>Cura</strong>: <em>Hilfe</em> → <em>Konfigurationsordner anzeigen</em>, Cura schließen, die Datei in diesen
+Ordner entpacken, Cura neu starten, dann <em>Einstellungen</em> → <em>Drucker</em> → <em>Drucker hinzufügen…</em> →
+<em>Einen nicht vernetzten Drucker hinzufügen</em> → <em>Wanhao</em> → dein Modell. Die mit Cura mitgelieferte
+<em>Wanhao Duplicator 9</em> ist ein älteres Profil: nur 300, Raft und Stützen standardmäßig an.</p>
+
+<h2 id="first-print">Vor dem ersten Druck: der Z-Offset, dann eine Abtastung</h2>
+<p>Der Sensor löst ein Stück über dem Druckbett aus, und die Firmware muss wissen, um wie viel. Das ist der
+<strong>Z-Offset</strong>. Zu hoch, und die erste Schicht haftet nicht; zu tief, und die Düse schabt über das Bett. Er
+wird einmal eingestellt, und er ist die eine Einstellung, die darüber entscheidet, ob deine Drucke halten.</p>
+<div class="note">Alles Folgende bleibt im Speicher des Druckers, nicht im Slicer. Es übersteht ein Firmware-Update
+(seit v2.0.3).</div>
+
+<h3>1. Zuerst aufheizen</h3>
+<p>Eine heiße Düse ist ein paar hundertstel Millimeter länger. Heize wie für einen Druck auf — am Display
+<em>Temperatur</em> → <em>Vorheizen</em> → <em>PLA</em> (200 °C und 60 °C) — und warte ein paar Minuten.</p>
+
+<h3>2. Die Achsen referenzieren</h3>
+<p>Am Display: <em>Einstellungen</em> → <em>Bewegen</em> → <em>Referenz</em>. Per USB: <code>G28</code>.</p>
+
+<h3>3. Den Z-Offset einstellen</h3>
+<p><strong>Der einfache Weg, im laufenden Druck.</strong> Starte einen Druck und gehe während der
+<strong>ersten Schicht</strong> am Display auf <em>Anpassen</em> → <em>Z-Versatz</em>. Senke in Schritten von 0,01 mm
+ab, während die Linie gezogen wird, bis sie flach ist und ihre Nachbarin ohne Lücke berührt. Zu hoch lässt runde,
+getrennte Fäden stehen; zu tief ergibt eine raue, gequetschte Fläche, und man sieht die Düse graben. Der Wert wird
+von allein gespeichert.</p>
+<p><strong>Mit einem Blatt Papier, ohne zu drucken.</strong> Per USB, bei Drucktemperatur:</p>
+<pre><code>M851 Z0     ; den aktuellen Offset vergessen
+M500
+G28         ; erneut referenzieren, damit er übernommen wird
+M420 S0     ; das Netz während der Messung ignorieren
+G1 Z0 F300  ; die Düse fährt auf die Null, die die Firmware annimmt</code></pre>
+<p>Schiebe ein Blatt Papier unter die Düse und senke dann in kleinen Schritten mit <code>G91</code> und
+<code>G1 Z-0.05 F60</code> ab, immer wieder, bis das Papier gerade eben schleift. Lies den Wert mit <code>M114</code>
+ab: Er ist negativ, zum Beispiel −1,30. Dann:</p>
+<pre><code>G90
+M851 Z-1.30 ; dein Wert
+M500</code></pre>
+
+<h3>4. Das Bett abtasten</h3>
+<p>Am Display: <em>Einstellungen</em> → <em>Nivellierung</em> → <em>Automatisch</em> → <em>Abtasten</em>. Der Drucker
+misst 25 Punkte und <strong>speichert das Netz von allein</strong> (er führt <code>G29</code> und dann
+<code>M500</code> aus). Das dauert ein paar Minuten. Per USB: <code>G29</code> und dann <code>M500</code>.</p>
+<p>Unsere Profile tasten nicht vor jedem Druck ab: Sie schalten das gespeicherte Netz mit <code>M420 S1</code> gleich
+nach dem Referenzieren wieder ein. Taste also neu ab, wenn du den Drucker umstellst, die Oberfläche oder die Düse
+wechselst, oder wenn die erste Schicht auf der einen Seite des Betts gut ist und auf der anderen nicht.</p>
+
+<h3>5. Prüfen</h3>
+<p><code>M503</code> listet auf, was gespeichert ist: Die Zeile <code>M851</code> ist dein Z-Offset, und
+<code>M420 S1</code> zeigt, dass das Netz aktiv ist. Am Display zeigt die Seite <em>Automatisch</em> die 25 gemessenen
+Punkte.</p>
+
+<h2>Testdrucke</h2>
+<p>Ein 3DBenchy, schon für eine <strong>D9 MK2 300</strong> gesliced, um die beiden Slicer zu vergleichen oder eine
+Einstellung zu prüfen, ohne etwas zu installieren:</p>
+<ul>
+<li>Cura: <a href="{DL}Benchy_Cura_PLA.gcode">PLA</a> · <a href="{DL}Benchy_Cura_PETG.gcode">PETG</a> ·
+<a href="{DL}Benchy_Cura_ABS.gcode">ABS</a></li>
+<li>OrcaSlicer: <a href="{DL}Benchy_Orca_PLA.gcode">PLA</a> · <a href="{DL}Benchy_Orca_PETG.gcode">PETG</a> ·
+<a href="{DL}Benchy_Orca_ABS.gcode">ABS</a></li>
+</ul>
+<p>Jeweils etwa anderthalb Stunden und 4 m Filament. Für ein anderes Modell oder eine andere Größe slice den
+<a href="https://github.com/CreativeTools/3DBenchy">3DBenchy</a> selbst mit deinem Profil.</p>
+<div class="note">Die D9 ist offen: ABS braucht mindestens einen Raum ohne Zugluft, und seine Betttemperatur ist auf
+das heruntergesetzt, was dein Modell verträgt (80 °C bei einer MK3 500).</div>
+
+<h2>Was in den Profilen steckt</h2>
+<ul>
+<li><strong>Schichten</strong> von 0,20 mm, <strong>3 Wände</strong>, 4 Deckschichten und 3 Bodenschichten, gyroides
+Infill mit 15 %, ein Skirt mit 2 Linien, keine Stützen.</li>
+<li><strong>Geschwindigkeiten</strong>: 40 mm/s an der Außenwand, 60 innen, 70 für das Infill, 20 auf der ersten
+Schicht, 150 für Leerfahrten. Wanhao gibt 70 mm/s als höchste Druckgeschwindigkeit der D9 an.</li>
+<li><strong>Retraktion</strong> von 1,5 mm bei 25 mm/s: Jede D9 hat einen MK10-Direktextruder, und die Firmware
+begrenzt den Extruder auf 25 mm/s.</li>
+<li><strong>Temperaturen</strong>: PLA 210 °C, dann 205, Bett 65, dann 60. PETG 240 / 80, dann 235 / 75. ABS 245 / 105,
+dann 245 / 100.</li>
+<li><strong>Eine Anfahrlinie</strong> 15 mm vom linken Rand, außerhalb der Bettklammern, damit die Düse sauber am
+Modell ankommt.</li>
+<li>Am Ende fährt die Düse hoch und das Bett nach vorn.</li>
+</ul>
+<p>Alle Einstellungen und wie du sie änderst: <a href="{REPO}/tree/main/Slicer">Ordner Slicer</a> auf GitHub.</p>
 """)
 
     if page == "quiet":

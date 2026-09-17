@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="nl" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cura- en OrcaSlicer-profielen voor de Wanhao Duplicator 9, en de Z-offset instellen</title>
+<meta name="description" content="Kant-en-klare profielen voor UltiMaker Cura en OrcaSlicer voor elke Wanhao D9, PLA, PETG en ABS, hoe je de Z-offset van de sensor instelt, het bed laat meten en een 3DBenchy als test print.">
+<link rel="canonical" href="https://le-syl21.github.io/WANHAO-Duplicator-9/nl/slicer.html">
+<link rel="alternate" hreflang="en" href="https://le-syl21.github.io/WANHAO-Duplicator-9/slicer.html">
+<link rel="alternate" hreflang="fr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/fr/slicer.html">
+<link rel="alternate" hreflang="de" href="https://le-syl21.github.io/WANHAO-Duplicator-9/de/slicer.html">
+<link rel="alternate" hreflang="es" href="https://le-syl21.github.io/WANHAO-Duplicator-9/es/slicer.html">
+<link rel="alternate" hreflang="it" href="https://le-syl21.github.io/WANHAO-Duplicator-9/it/slicer.html">
+<link rel="alternate" hreflang="pt" href="https://le-syl21.github.io/WANHAO-Duplicator-9/pt/slicer.html">
+<link rel="alternate" hreflang="nl" href="https://le-syl21.github.io/WANHAO-Duplicator-9/nl/slicer.html">
+<link rel="alternate" hreflang="pl" href="https://le-syl21.github.io/WANHAO-Duplicator-9/pl/slicer.html">
+<link rel="alternate" hreflang="tr" href="https://le-syl21.github.io/WANHAO-Duplicator-9/tr/slicer.html">
+<link rel="alternate" hreflang="ru" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ru/slicer.html">
+<link rel="alternate" hreflang="ar" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ar/slicer.html">
+<link rel="alternate" hreflang="hi" href="https://le-syl21.github.io/WANHAO-Duplicator-9/hi/slicer.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://le-syl21.github.io/WANHAO-Duplicator-9/zh/slicer.html">
+<link rel="alternate" hreflang="ja" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ja/slicer.html">
+<link rel="alternate" hreflang="ko" href="https://le-syl21.github.io/WANHAO-Duplicator-9/ko/slicer.html">
+<link rel="alternate" hreflang="id" href="https://le-syl21.github.io/WANHAO-Duplicator-9/id/slicer.html">
+<link rel="alternate" hreflang="x-default" href="https://le-syl21.github.io/WANHAO-Duplicator-9/slicer.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Cura- en OrcaSlicer-profielen voor de Wanhao Duplicator 9, en de Z-offset instellen">
+<meta property="og:description" content="Kant-en-klare profielen voor UltiMaker Cura en OrcaSlicer voor elke Wanhao D9, PLA, PETG en ABS, hoe je de Z-offset van de sensor instelt, het bed laat meten en een 3DBenchy als test print.">
+<meta property="og:url" content="https://le-syl21.github.io/WANHAO-Duplicator-9/nl/slicer.html">
+<meta property="og:image" content="https://le-syl21.github.io/WANHAO-Duplicator-9/img/og.jpg">
+<meta property="og:locale" content="nl_NL">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖨️</text></svg>">
+<link rel="stylesheet" href="../style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Cura- en OrcaSlicer-profielen voor de Wanhao Duplicator 9, en de Z-offset instellen", "description": "Kant-en-klare profielen voor UltiMaker Cura en OrcaSlicer voor elke Wanhao D9, PLA, PETG en ABS, hoe je de Z-offset van de sensor instelt, het bed laat meten en een 3DBenchy als test print.", "url": "https://le-syl21.github.io/WANHAO-Duplicator-9/nl/slicer.html", "inLanguage": "nl", "about": {"@type": "Product", "name": "Wanhao Duplicator 9", "brand": "Wanhao"}}</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="brand" href="../nl/">Wanhao <span>D9</span> firmware</a>
+<nav class="main"><a href="../nl/">Home</a><a href="../nl/mk1.html">MK1</a><a href="../nl/mk1u2.html">MK1 + MK2-kit</a><a href="../nl/mk2.html">MK2</a><a href="../nl/mk3.html">MK3</a><a href="../nl/flash.html">Flashhandleiding</a><a href="../nl/screen.html">Scherm</a><a href="../nl/sensor.html">Filamentsensor</a><a href="../nl/slicer.html" aria-current="page">Slicer</a><a href="../nl/quiet.html">Stiller</a></nav>
+<details class="lang"><summary aria-label="Taal"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9M12 3c-2.5 2.7-3.8 5.7-3.8 9s1.3 6.3 3.8 9"/></svg><span>Nederlands</span></summary><ul><li><a href="../slicer.html" hreflang="en" lang="en">English</a></li><li><a href="../fr/slicer.html" hreflang="fr" lang="fr">Français</a></li><li><a href="../de/slicer.html" hreflang="de" lang="de">Deutsch</a></li><li><a href="../es/slicer.html" hreflang="es" lang="es">Español</a></li><li><a href="../it/slicer.html" hreflang="it" lang="it">Italiano</a></li><li><a href="../pt/slicer.html" hreflang="pt" lang="pt">Português</a></li><li><a href="../nl/slicer.html" hreflang="nl" lang="nl" aria-current="true">Nederlands</a></li><li><a href="../pl/slicer.html" hreflang="pl" lang="pl">Polski</a></li><li><a href="../tr/slicer.html" hreflang="tr" lang="tr">Türkçe</a></li><li><a href="../ru/slicer.html" hreflang="ru" lang="ru">Русский</a></li><li><a href="../ar/slicer.html" hreflang="ar" lang="ar">العربية</a></li><li><a href="../hi/slicer.html" hreflang="hi" lang="hi">हिन्दी</a></li><li><a href="../zh/slicer.html" hreflang="zh-Hans" lang="zh-Hans">中文</a></li><li><a href="../ja/slicer.html" hreflang="ja" lang="ja">日本語</a></li><li><a href="../ko/slicer.html" hreflang="ko" lang="ko">한국어</a></li><li><a href="../id/slicer.html" hreflang="id" lang="id">Bahasa Indonesia</a></li></ul></details>
+</div></header>
+<main><div class="wrap">
+<h1>Slicen voor de Duplicator 9</h1>
+<p class="lead">Eén profiel voor elk van de twaalf printers, voor <strong>UltiMaker Cura</strong> en
+<strong>OrcaSlicer</strong>, allebei gratis en beschikbaar voor Windows, macOS en Linux. Elk profiel neemt het
+bouwvolume, de versnellingen en de hoogste bedtemperatuur van zijn eigen firmware over.</p>
+
+<h2>Downloaden</h2>
+<div class="table"><table class="dl"><thead><tr><th>Model</th><th>Formaat</th><th>Cura</th><th>OrcaSlicer</th></tr></thead><tbody><tr><td><strong>MK1</strong></td><td>D9/300</td><td><a class="btn" href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest/download/D9_MK1_300_Cura.zip">Cura</a></td><td><a class="btn" href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest/download/D9_MK1_300.orca_printer">OrcaSlicer</a></td></tr><tr><td><strong>MK1</strong></td><td>D9/400</td><td><a class="btn" href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest/download/D9_MK1_400_Cura.zip">Cura</a></td><td><a class="btn" href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest/download/D9_MK1_400.orca_printer">OrcaSlicer</a></td></tr><tr><td><strong>MK1</strong></td><td>D9/500</td><td><a class="btn" href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest/download/D9_MK1_500_Cura.zip">Cura</a></td><td><a class="btn" href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest/download/D9_MK1_500.orca_printer">OrcaSlicer</a></td></tr><tr><td><strong>MK1 + MK2-kit</strong></td><td>D9/300</td><td><a class="btn" href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest/download/D9_MK1u2_300_Cura.zip">Cura</a></td><td><a class="btn" href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest/download/D9_MK1u2_300.orca_printer">OrcaSlicer</a></td></tr><tr><td><strong>MK1 + MK2-kit</strong></td><td>D9/400</td><td><a class="btn" href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest/download/D9_MK1u2_400_Cura.zip">Cura</a></td><td><a class="btn" href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest/download/D9_MK1u2_400.orca_printer">OrcaSlicer</a></td></tr><tr><td><strong>MK1 + MK2-kit</strong></td><td>D9/500</td><td><a class="btn" href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest/download/D9_MK1u2_500_Cura.zip">Cura</a></td><td><a class="btn" href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest/download/D9_MK1u2_500.orca_printer">OrcaSlicer</a></td></tr><tr><td><strong>MK2</strong></td><td>D9/300</td><td><a class="btn" href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest/download/D9_MK2_300_Cura.zip">Cura</a></td><td><a class="btn" href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest/download/D9_MK2_300.orca_printer">OrcaSlicer</a></td></tr><tr><td><strong>MK2</strong></td><td>D9/400</td><td><a class="btn" href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest/download/D9_MK2_400_Cura.zip">Cura</a></td><td><a class="btn" href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest/download/D9_MK2_400.orca_printer">OrcaSlicer</a></td></tr><tr><td><strong>MK2</strong></td><td>D9/500</td><td><a class="btn" href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest/download/D9_MK2_500_Cura.zip">Cura</a></td><td><a class="btn" href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest/download/D9_MK2_500.orca_printer">OrcaSlicer</a></td></tr><tr><td><strong>MK3</strong></td><td>D9/300</td><td><a class="btn" href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest/download/D9_MK3_300_Cura.zip">Cura</a></td><td><a class="btn" href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest/download/D9_MK3_300.orca_printer">OrcaSlicer</a></td></tr><tr><td><strong>MK3</strong></td><td>D9/400</td><td><a class="btn" href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest/download/D9_MK3_400_Cura.zip">Cura</a></td><td><a class="btn" href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest/download/D9_MK3_400.orca_printer">OrcaSlicer</a></td></tr><tr><td><strong>MK3</strong></td><td>D9/500</td><td><a class="btn" href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest/download/D9_MK3_500_Cura.zip">Cura</a></td><td><a class="btn" href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest/download/D9_MK3_500.orca_printer">OrcaSlicer</a></td></tr></tbody></table></div>
+<p>Ze zijn gemaakt voor de firmware van deze site, <a href="../nl/flash.html">v2.0.9 of nieuwer</a>.</p>
+
+<h2>Installeren</h2>
+<p><strong>OrcaSlicer</strong>: <em>Bestand</em> → <em>Importeren</em> → <em>Configuraties importeren…</em>, kies
+daarna het bestand <code>.orca_printer</code>. De printer, zijn drie kwaliteiten (0,12, 0,20 en 0,28 mm) en de
+filamenten PLA, PETG en ABS verschijnen in je presets.</p>
+<p><strong>Cura</strong>: <em>Help</em> → <em>Configuratiemap weergeven</em>, sluit Cura, pak het bestand uit in die
+map, start Cura opnieuw en ga dan naar <em>Instellingen</em> → <em>Printer</em> → <em>Printer toevoegen…</em> →
+<em>Een niet-netwerkprinter toevoegen</em> → <em>Wanhao</em> → jouw model. De <em>Wanhao Duplicator 9</em> die met
+Cura meekomt is een ouder profiel: alleen de 300, met raft en supports standaard aan.</p>
+
+<h2 id="first-print">Voor de eerste print: de Z-offset, daarna een meting</h2>
+<p>De sensor schakelt een stukje boven het bed, en de firmware moet weten hoeveel dat is. Dat is de
+<strong>Z-offset</strong>. Te hoog en de eerste laag hecht niet; te laag en de nozzle schraapt over het bed. Je stelt
+hem één keer in, en het is de instelling die bepaalt of je prints blijven zitten.</p>
+<div class="note">Alles hieronder blijft in het geheugen van de printer, niet in de slicer. Het overleeft een
+firmware-update (sinds v2.0.3).</div>
+
+<h3>1. Eerst opwarmen</h3>
+<p>Een hete nozzle is een paar honderdsten van een millimeter langer. Warm op zoals voor een print — op het scherm
+<em>Temperatuur</em> → <em>Voorverwarmen</em> → <em>PLA</em> (200 °C en 60 °C) — en wacht een paar minuten.</p>
+
+<h3>2. Home de assen</h3>
+<p>Op het scherm: <em>Instellingen</em> → <em>Bewegen</em> → <em>Home</em>. Via USB: <code>G28</code>.</p>
+
+<h3>3. Stel de Z-offset in</h3>
+<p><strong>De makkelijke manier, tijdens het printen.</strong> Start een print en ga tijdens de
+<strong>eerste laag</strong> op het scherm naar <em>Aanpassen</em> → <em>Z-offset</em>. Ga in stapjes van 0,01 mm
+omlaag terwijl de lijn getrokken wordt, tot hij plat is en zijn buurlijn zonder gaatje raakt. Te hoog laat ronde,
+losse draadjes achter; te laag geeft een ruw, platgedrukt oppervlak en je ziet de nozzle graven. De waarde wordt
+vanzelf opgeslagen.</p>
+<p><strong>Met een velletje papier, zonder te printen.</strong> Via USB, op printtemperatuur:</p>
+<pre><code>M851 Z0     ; vergeet de huidige offset
+M500
+G28         ; opnieuw homen zodat hij meetelt
+M420 S0     ; negeer het mesh tijdens het meten
+G1 Z0 F300  ; de nozzle zakt naar de nul die de firmware denkt te hebben</code></pre>
+<p>Schuif een velletje papier onder de nozzle en ga daarna met <code>G91</code> en <code>G1 Z-0.05 F60</code> in
+kleine stapjes omlaag, keer op keer, tot het papier nog net stroef loopt. Lees de waarde af met <code>M114</code>:
+hij is negatief, bijvoorbeeld −1,30. Daarna:</p>
+<pre><code>G90
+M851 Z-1.30 ; jouw waarde
+M500</code></pre>
+
+<h3>4. Meet het bed</h3>
+<p>Op het scherm: <em>Instellingen</em> → <em>Nivelleren</em> → <em>Automatisch</em> → <em>Meten</em>. De printer meet
+25 punten en <strong>slaat het mesh vanzelf op</strong> (hij voert <code>G29</code> en daarna <code>M500</code> uit).
+Reken op een paar minuten. Via USB: <code>G29</code> en daarna <code>M500</code>.</p>
+<p>Onze profielen meten niet voor elke print: ze zetten het opgeslagen mesh weer aan met <code>M420 S1</code>, vlak na
+het homen. Meet dus opnieuw als je de printer verplaatst, het printoppervlak of de nozzle wisselt, of als de eerste
+laag aan de ene kant van het bed goed is en aan de andere kant niet.</p>
+
+<h3>5. Controleren</h3>
+<p><code>M503</code> laat zien wat er is opgeslagen: de regel <code>M851</code> is je Z-offset, en
+<code>M420 S1</code> geeft aan dat het mesh aanstaat. Op het scherm toont de pagina <em>Automatisch</em> de 25 gemeten
+punten.</p>
+
+<h2>Testprints</h2>
+<p>Een 3DBenchy, al gesliced voor een <strong>D9 MK2 300</strong>, om de twee slicers te vergelijken of een instelling
+te controleren zonder iets te installeren:</p>
+<ul>
+<li>Cura: <a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest/download/Benchy_Cura_PLA.gcode">PLA</a> · <a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest/download/Benchy_Cura_PETG.gcode">PETG</a> ·
+<a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest/download/Benchy_Cura_ABS.gcode">ABS</a></li>
+<li>OrcaSlicer: <a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest/download/Benchy_Orca_PLA.gcode">PLA</a> · <a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest/download/Benchy_Orca_PETG.gcode">PETG</a> ·
+<a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest/download/Benchy_Orca_ABS.gcode">ABS</a></li>
+</ul>
+<p>Elk ongeveer anderhalf uur en 4 m filament. Voor een ander model of een ander formaat slice je de
+<a href="https://github.com/CreativeTools/3DBenchy">3DBenchy</a> zelf met jouw profiel.</p>
+<div class="note">De D9 is open: ABS vraagt op zijn minst een kamer zonder tocht, en de bedtemperatuur ervan is
+teruggebracht tot wat jouw model aankan (80 °C op een MK3 500).</div>
+
+<h2>Wat er in de profielen zit</h2>
+<ul>
+<li><strong>Lagen</strong> van 0,20 mm, <strong>3 wanden</strong>, 4 lagen boven en 3 onder, gyroïde vulling van 15 %,
+een skirt van 2 lijnen, geen support.</li>
+<li><strong>Snelheden</strong>: 40 mm/s op de buitenwand, 60 binnenin, 70 voor de vulling, 20 op de eerste laag, 150
+voor verplaatsingen. Wanhao geeft 70 mm/s op als hoogste printsnelheid van de D9.</li>
+<li><strong>Retractie</strong> van 1,5 mm op 25 mm/s: elke D9 heeft een MK10-extruder met directe aandrijving, en de
+firmware begrenst de extruder op 25 mm/s.</li>
+<li><strong>Temperaturen</strong>: PLA 210 °C en daarna 205, bed 65 en daarna 60. PETG 240 / 80 en daarna 235 / 75.
+ABS 245 / 105 en daarna 245 / 100.</li>
+<li><strong>Een aanlooplijn</strong> op 15 mm van de linkerrand, voorbij de klemmen van het bed, zodat de nozzle
+schoon bij het model aankomt.</li>
+<li>Op het eind gaat de nozzle omhoog en komt het bed naar voren.</li>
+</ul>
+<p>Alle instellingen en hoe je ze aanpast: <a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/tree/main/Slicer">map Slicer</a> op GitHub.</p>
+</div></main>
+<footer class="site"><div class="wrap">
+<a href="https://github.com/Le-Syl21/WANHAO-Duplicator-9">Broncode en issues op GitHub</a>
+<a href="https://discord.gg/T37DYHmt2j">Discord</a>
+<span>Firmware onder GNU GPL v3. De handleidingen en firmwares van Wanhao blijven eigendom van Wanhao.</span>
+</div></footer>
+</body>
+</html>

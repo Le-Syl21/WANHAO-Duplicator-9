@@ -4,8 +4,10 @@ META = {"name": "Italiano", "locale": "it_IT", "dir": "ltr"}
 
 UI = {
     "nav": {"index": "Home", "mk1": "MK1", "mk1u2": "MK1 + kit MK2", "mk2": "MK2", "mk3": "MK3",
-            "flash": "Guida al flash", "screen": "Schermo", "sensor": "Sensore filamento", "quiet": "Silenziosità"},
+            "flash": "Guida al flash", "screen": "Schermo", "sensor": "Sensore filamento", "slicer": "Slicer",
+            "quiet": "Silenziosità"},
     "language": "Lingua",
+    "model": "Modello",
     "size": "Dimensione", "volume": "Volume di stampa", "file": "Firmware",
     "footer_src": "Sorgenti e segnalazioni su GitHub", "footer_chat": "Discord",
     "footer_note": "Firmware sotto licenza GNU GPL v3. I manuali e i firmware Wanhao restano di proprietà di Wanhao.",
@@ -450,6 +452,105 @@ v2.0.5 (in realtà troppo poco: circa un terzo di una bobina da 1 kg, dopo di ch
 10 km nella v2.0.6. All'avvio della stampante, la v2.0.7 carica questi due valori come <code>L0</code>. Una lunghezza reale impostata
 per un sensore BTT, come <code>L10</code>, viene mantenuta. Dalla v2.0.4 o precedenti, viene caricata la distanza di fine filamento di 5 mm
 al posto dello 0 salvato da quelle versioni.</p>
+""")
+
+    if page == "slicer":
+        return ("Profili Cura e OrcaSlicer per la Wanhao Duplicator 9, e regolazione dell'offset Z",
+                "Profili UltiMaker Cura e OrcaSlicer pronti all'uso per tutte le Wanhao D9, PLA, PETG e ABS, come "
+                "regolare l'offset Z della sonda, lanciare una tastatura del piatto e stampare un 3DBenchy di prova.",
+                f"""
+<h1>Slicing per la Duplicator 9</h1>
+<p class="lead">Un profilo per ognuna delle dodici stampanti, per <strong>UltiMaker Cura</strong> e
+<strong>OrcaSlicer</strong>, entrambi gratuiti e disponibili su Windows, macOS e Linux. Ognuno riprende il volume di
+stampa, le accelerazioni e la temperatura massima del piatto del proprio firmware.</p>
+
+<h2>Download</h2>
+{h.slicer}
+<p>Sono fatti per il firmware di questo sito, <a href="{p('flash')}">v2.0.9 o successivo</a>.</p>
+
+<h2>Installarli</h2>
+<p><strong>OrcaSlicer</strong>: <em>File</em> → <em>Importa</em> → <em>Importa configurazioni…</em>, poi scegli il file
+<code>.orca_printer</code>. La stampante, le sue tre qualità (0,12, 0,20 e 0,28 mm) e i filamenti PLA, PETG e ABS
+compaiono tra i tuoi preset.</p>
+<p><strong>Cura</strong>: <em>Guida</em> → <em>Mostra cartella di configurazione</em>, chiudi Cura, scompatta il file in
+quella cartella, riavvia Cura, poi <em>Impostazioni</em> → <em>Stampante</em> → <em>Aggiungi stampante…</em> →
+<em>Aggiungi una stampante non in rete</em> → <em>Wanhao</em> → il tuo modello. La <em>Wanhao Duplicator 9</em> fornita
+con Cura è un profilo più vecchio: solo la 300, con raft e supporti attivi di default.</p>
+
+<h2 id="first-print">Prima della prima stampa: l'offset Z, poi una tastatura</h2>
+<p>La sonda scatta un po' sopra il piatto, e il firmware deve sapere di quanto. È l'<strong>offset Z</strong>. Troppo in
+alto, il primo strato non aderisce; troppo in basso, l'ugello raschia il piatto. Si regola una volta sola, ed è il
+parametro che decide se le tue stampe tengono o no.</p>
+<div class="note">Tutto quello che segue resta nella memoria della stampante, non nello slicer. Sopravvive a un
+aggiornamento del firmware (dalla v2.0.3).</div>
+
+<h3>1. Scalda prima di tutto</h3>
+<p>Un ugello caldo è più lungo di qualche centesimo di millimetro. Scalda come per una stampa: sullo schermo,
+<em>Temperatura</em> → <em>Preriscaldo</em> → <em>PLA</em> (200 °C e 60 °C), e aspetta un paio di minuti.</p>
+
+<h3>2. Azzera gli assi</h3>
+<p>Sullo schermo: <em>Impostazioni</em> → <em>Muovi</em> → <em>Home</em>. Via USB: <code>G28</code>.</p>
+
+<h3>3. Regola l'offset Z</h3>
+<p><strong>Il modo più semplice, stampando.</strong> Avvia una stampa e, durante il <strong>primo strato</strong>, vai
+in <em>Regola</em> → <em>Offset Z</em> sullo schermo. Scendi a passi di 0,01 mm mentre la linea viene tracciata, finché
+non è piatta e tocca la vicina senza lasciare vuoti. Troppo in alto, restano cordoncini tondi e separati; troppo in
+basso, la superficie diventa ruvida e schiacciata e si vede l'ugello che scava. Il valore viene salvato da solo.</p>
+<p><strong>Con il foglio di carta, senza stampare.</strong> Via USB, a temperatura di stampa:</p>
+<pre><code>M851 Z0     ; dimentica l'offset attuale
+M500
+G28         ; rifai l'azzeramento perché venga preso in conto
+M420 S0     ; ignora la mesh durante la misura
+G1 Z0 F300  ; l'ugello scende allo zero che crede il firmware</code></pre>
+<p>Infila un foglio di carta sotto l'ugello, poi scendi a piccoli passi con <code>G91</code> e poi
+<code>G1 Z-0.05 F60</code>, ancora e ancora, finché il foglio comincia appena a fare attrito. Leggi il valore con
+<code>M114</code>: è negativo, per esempio −1,30. Poi:</p>
+<pre><code>G90
+M851 Z-1.30 ; il tuo valore
+M500</code></pre>
+
+<h3>4. Tasta il piatto</h3>
+<p>Sullo schermo: <em>Impostazioni</em> → <em>Livellamento</em> → <em>Automatico</em> → <em>Tasta</em>. La stampante
+misura 25 punti e <strong>salva la mesh da sola</strong> (esegue <code>G29</code> e poi <code>M500</code>). Conta
+qualche minuto. Via USB: <code>G29</code> e poi <code>M500</code>.</p>
+<p>I nostri profili non tastano prima di ogni stampa: riattivano la mesh salvata con <code>M420 S1</code>, subito dopo
+l'azzeramento. Rifai quindi una tastatura quando sposti la stampante, cambi la superficie o l'ugello, oppure quando il
+primo strato è buono da un lato del piatto e non dall'altro.</p>
+
+<h3>5. Verifica</h3>
+<p><code>M503</code> elenca quello che è memorizzato: la riga <code>M851</code> è il tuo offset Z, e
+<code>M420 S1</code> indica che la mesh è attiva. Sullo schermo, la pagina <em>Automatico</em> mostra i 25 punti
+misurati.</p>
+
+<h2>Stampe di prova</h2>
+<p>Un 3DBenchy già affettato per una <strong>D9 MK2 300</strong>, per confrontare i due slicer o per verificare un
+parametro senza installare niente:</p>
+<ul>
+<li>Cura: <a href="{DL}Benchy_Cura_PLA.gcode">PLA</a> · <a href="{DL}Benchy_Cura_PETG.gcode">PETG</a> ·
+<a href="{DL}Benchy_Cura_ABS.gcode">ABS</a></li>
+<li>OrcaSlicer: <a href="{DL}Benchy_Orca_PLA.gcode">PLA</a> · <a href="{DL}Benchy_Orca_PETG.gcode">PETG</a> ·
+<a href="{DL}Benchy_Orca_ABS.gcode">ABS</a></li>
+</ul>
+<p>Circa un'ora e mezza e 4 m di filamento ciascuno. Per un altro modello o un'altra taglia, affetta il
+<a href="https://github.com/CreativeTools/3DBenchy">3DBenchy</a> da te con il tuo profilo.</p>
+<div class="note">La D9 è aperta: l'ABS chiede come minimo una stanza senza correnti d'aria, e la sua temperatura di
+piatto è riportata a quello che accetta il tuo modello (80 °C su una MK3 500).</div>
+
+<h2>Cosa contengono i profili</h2>
+<ul>
+<li><strong>Strati</strong> da 0,20 mm, <strong>3 pareti</strong>, 4 strati pieni sopra e 3 sotto, riempimento giroide
+al 15 %, uno skirt di 2 giri, niente supporti.</li>
+<li><strong>Velocità</strong>: 40 mm/s sulla parete esterna, 60 all'interno, 70 per il riempimento, 20 sul primo
+strato, 150 negli spostamenti. Wanhao indica 70 mm/s come velocità di stampa massima della D9.</li>
+<li><strong>Retrazione</strong> di 1,5 mm a 25 mm/s: tutte le D9 hanno un estrusore MK10 diretto, e il firmware limita
+l'estrusore a 25 mm/s.</li>
+<li><strong>Temperature</strong>: PLA 210 °C poi 205, piatto 65 poi 60. PETG 240 / 80 poi 235 / 75. ABS 245 / 105 poi
+245 / 100.</li>
+<li><strong>Una linea di innesco</strong> a 15 mm dal bordo sinistro, oltre le clip del piatto: l'ugello arriva pulito
+sul pezzo.</li>
+<li>Alla fine, l'ugello sale e il piatto viene in avanti.</li>
+</ul>
+<p>Tutti i parametri e come modificarli: <a href="{REPO}/tree/main/Slicer">cartella Slicer</a> su GitHub.</p>
 """)
 
     if page == "quiet":

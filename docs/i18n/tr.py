@@ -4,8 +4,10 @@ META = {"name": "Türkçe", "locale": "tr_TR", "dir": "ltr"}
 
 UI = {
     "nav": {"index": "Ana sayfa", "mk1": "MK1", "mk1u2": "MK1 + MK2 kiti", "mk2": "MK2", "mk3": "MK3",
-            "flash": "Yükleme rehberi", "screen": "Ekran", "sensor": "Filament sensörü", "quiet": "Sessizleştirme"},
+            "flash": "Yükleme rehberi", "screen": "Ekran", "sensor": "Filament sensörü", "slicer": "Dilimleyici",
+            "quiet": "Sessizleştirme"},
     "language": "Dil",
+    "model": "Model",
     "size": "Boyut", "volume": "Baskı hacmi", "file": "Firmware",
     "footer_src": "Kaynak kod ve sorun kayıtları GitHub'da", "footer_chat": "Discord",
     "footer_note": "Firmware GNU GPL v3 lisanslıdır. Wanhao'nun kılavuzları ve firmware'leri Wanhao'ya aittir.",
@@ -448,6 +450,104 @@ uzunluğu kullanıyorlardı: v2.0.5'te 100 m (aslında fazla kısa: 1 kg'lık bi
 sonra açık bırakılmış bir yazıcı boş yere duraklayabiliyordu) ve v2.0.6'da 10 km. Yazıcı açılırken v2.0.7 bu iki değeri
 <code>L0</code> olarak yükler. BTT sensörü için ayarladığınız gerçek bir uzunluk, örneğin <code>L10</code>, korunur. v2.0.4
 veya daha eski bir sürümden gelindiğinde, bu sürümlerin kaydettiği 0 yerine 5 mm'lik filament bitti mesafesi yüklenir.</p>
+""")
+
+    if page == "slicer":
+        return ("Wanhao Duplicator 9 için Cura ve OrcaSlicer profilleri ve Z ofseti ayarı",
+                "Her Wanhao D9 için hazır UltiMaker Cura ve OrcaSlicer profilleri, PLA, PETG ve ABS, probun Z ofseti "
+                "nasıl ayarlanır, tabla nasıl ölçülür ve test için 3DBenchy nasıl basılır.",
+                f"""
+<h1>Duplicator 9 için dilimleme</h1>
+<p class="lead">On iki yazıcının her biri için bir profil, <strong>UltiMaker Cura</strong> ve
+<strong>OrcaSlicer</strong> için; ikisi de ücretsiz ve Windows, macOS ve Linux'ta çalışıyor. Her profil kendi
+firmware'inin baskı hacmini, ivmelerini ve en yüksek tabla sıcaklığını içerir.</p>
+
+<h2>İndirme</h2>
+{h.slicer}
+<p>Bu sitedeki firmware için hazırlandılar: <a href="{p('flash')}">v2.0.9 veya daha yeni</a>.</p>
+
+<h2>Kurulum</h2>
+<p><strong>OrcaSlicer</strong>: <em>Dosya</em> → <em>İçe aktar</em> → <em>Yapılandırmaları içe aktar…</em>, ardından
+<code>.orca_printer</code> dosyasını seçin. Yazıcı, üç kalitesi (0,12 / 0,20 / 0,28 mm) ve PLA, PETG ve ABS
+filamentleri ön ayarlarınızın arasında görünür.</p>
+<p><strong>Cura</strong>: <em>Yardım</em> → <em>Yapılandırma klasörünü göster</em>, Cura'yı kapatın, dosyayı bu klasörün
+içine açın, Cura'yı yeniden başlatın, sonra <em>Ayarlar</em> → <em>Yazıcı</em> → <em>Yazıcı ekle…</em> → <em>Ağa bağlı
+olmayan bir yazıcı ekle</em> → <em>Wanhao</em> → modeliniz. Cura ile birlikte gelen <em>Wanhao Duplicator 9</em> daha
+eski bir profildir: yalnızca 300 boyutu, radye ve destekler varsayılan olarak açık.</p>
+
+<h2 id="first-print">İlk baskıdan önce: Z ofseti, sonra bir ölçüm</h2>
+<p>Prob tablanın biraz üstünde tetiklenir ve firmware'in bunun ne kadar olduğunu bilmesi gerekir. İşte bu
+<strong>Z ofsetidir</strong>. Çok yüksek olursa ilk katman tutmaz; çok alçak olursa nozul tablayı çizer. Bir kez
+ayarlanır ve baskılarınızın yapışıp yapışmayacağına karar veren ayar odur.</p>
+<div class="note">Aşağıdakilerin tamamı dilimleyicide değil, yazıcının belleğinde saklanır. Firmware güncellemesinden
+sonra da orada kalır (v2.0.3'ten beri).</div>
+
+<h3>1. Önce ısıtın</h3>
+<p>Sıcak bir nozul, birkaç yüzde milimetre daha uzundur. Baskıdaki gibi ısıtın: ekranda <em>Sıcaklık</em> →
+<em>Ön ısıtma</em> → <em>PLA</em> (200 °C ve 60 °C) ve birkaç dakika bekleyin.</p>
+
+<h3>2. Eksenleri sıfırlayın</h3>
+<p>Ekranda: <em>Ayarlar</em> → <em>Hareket</em> → <em>Sıfırla</em>. USB üzerinden: <code>G28</code>.</p>
+
+<h3>3. Z ofsetini ayarlayın</h3>
+<p><strong>En kolayı, baskı sırasında.</strong> Bir baskı başlatın ve <strong>ilk katman</strong> basılırken ekranda
+<em>Ayarla</em> → <em>Z ofseti</em> sayfasına gidin. Çizgi çizilirken 0,01 mm'lik adımlarla indirin; çizgi yassılaşıp
+komşusuna boşluk bırakmadan değene kadar. Çok yüksekse çizgiler yuvarlak ve ayrı kalır; çok alçaksa yüzey pürüzlü ve
+ezik olur, nozulun kazıdığı görülür. Değer kendiliğinden kaydedilir.</p>
+<p><strong>Kâğıt yöntemi, baskı yapmadan.</strong> USB üzerinden, baskı sıcaklığında:</p>
+<pre><code>M851 Z0     ; mevcut ofseti unut
+M500
+G28         ; hesaba katılması için yeniden sıfırla
+M420 S0     ; ölçüm sırasında ağı yok say
+G1 Z0 F300  ; nozul, firmware'in sıfır sandığı yere iner</code></pre>
+<p>Nozulun altına bir kâğıt sürün, sonra <code>G91</code> ve ardından <code>G1 Z-0.05 F60</code> ile küçük adımlarla,
+kâğıt ancak sürtmeye başlayana kadar tekrar tekrar indirin. Değeri <code>M114</code> ile okuyun: negatiftir, örneğin
+−1,30. Sonra:</p>
+<pre><code>G90
+M851 Z-1.30 ; sizin değeriniz
+M500</code></pre>
+
+<h3>4. Tablayı ölçün</h3>
+<p>Ekranda: <em>Ayarlar</em> → <em>Tabla ayarı</em> → <em>Otomatik</em> → <em>Ölç</em>. Yazıcı 25 nokta ölçer ve
+<strong>ağı kendisi kaydeder</strong> (<code>G29</code> ve ardından <code>M500</code> çalıştırır). Birkaç dakika sürer.
+USB üzerinden: <code>G29</code> sonra <code>M500</code>.</p>
+<p>Profillerimiz her baskıdan önce ölçüm yapmaz: sıfırlamanın hemen ardından <code>M420 S1</code> ile kayıtlı ağı geri
+açarlar. Bu yüzden yazıcıyı yerinden oynattığınızda, yüzeyi ya da nozulu değiştirdiğinizde veya ilk katman tablanın bir
+tarafında iyi, öbür tarafında kötü olduğunda yeniden ölçüm yapın.</p>
+
+<h3>5. Kontrol edin</h3>
+<p><code>M503</code> kayıtlı olanları listeler: <code>M851</code> satırı sizin Z ofsetinizdir, <code>M420 S1</code> ise
+ağın açık olduğunu gösterir. Ekranda <em>Otomatik</em> sayfası ölçülen 25 noktayı gösterir.</p>
+
+<h2>Test baskıları</h2>
+<p>İki dilimleyiciyi karşılaştırmak ya da hiçbir şey kurmadan bir ayarı denemek için, <strong>D9 MK2 300</strong> için
+hazır dilimlenmiş bir 3DBenchy:</p>
+<ul>
+<li>Cura: <a href="{DL}Benchy_Cura_PLA.gcode">PLA</a> · <a href="{DL}Benchy_Cura_PETG.gcode">PETG</a> ·
+<a href="{DL}Benchy_Cura_ABS.gcode">ABS</a></li>
+<li>OrcaSlicer: <a href="{DL}Benchy_Orca_PLA.gcode">PLA</a> · <a href="{DL}Benchy_Orca_PETG.gcode">PETG</a> ·
+<a href="{DL}Benchy_Orca_ABS.gcode">ABS</a></li>
+</ul>
+<p>Her biri yaklaşık bir buçuk saat ve 4 m filament. Başka bir model ya da boyut için
+<a href="https://github.com/CreativeTools/3DBenchy">3DBenchy</a>'yi kendi profilinizle kendiniz dilimleyin.</p>
+<div class="note">D9 açık bir yazıcıdır: ABS en azından hava akımı olmayan bir oda ister ve tabla sıcaklığı,
+modelinizin kabul ettiği değere düşürülür (MK3 500'de 80 °C).</div>
+
+<h2>Profillerin içinde ne var</h2>
+<ul>
+<li><strong>Katmanlar</strong> 0,20 mm, <strong>3 duvar</strong>, üstte 4, altta 3 dolu katman, %15 gyroid dolgu,
+2 hatlık etek, destek yok.</li>
+<li><strong>Hızlar</strong>: dış duvarda 40 mm/s, içeride 60, dolguda 70, ilk katmanda 20, boş harekette 150. Wanhao,
+D9'un en yüksek baskı hızını 70 mm/s olarak veriyor.</li>
+<li><strong>Geri çekme</strong> 25 mm/s'de 1,5 mm: her D9'da doğrudan tahrikli MK10 ekstrüder vardır ve firmware
+ekstrüderi 25 mm/s ile sınırlar.</li>
+<li><strong>Sıcaklıklar</strong>: PLA 210 °C sonra 205, tabla 65 sonra 60. PETG 240 / 80 sonra 235 / 75. ABS 245 / 105
+sonra 245 / 100.</li>
+<li><strong>Bir hazırlık çizgisi</strong>, sol kenardan 15 mm içeride ve tabla klipslerinin dışında: nozul parçaya
+temiz gelir.</li>
+<li>Sonunda nozul yükselir ve tabla öne gelir.</li>
+</ul>
+<p>Tüm ayarlar ve nasıl değiştirilecekleri: GitHub'da <a href="{REPO}/tree/main/Slicer">Slicer klasörü</a>.</p>
 """)
 
     if page == "quiet":

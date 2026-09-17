@@ -13,7 +13,7 @@ from types import SimpleNamespace
 
 sys.dont_write_bytecode = True
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-PAGES = ["index", "mk1", "mk1u2", "mk2", "mk3", "flash", "screen", "sensor", "quiet"]
+PAGES = ["index", "mk1", "mk1u2", "mk2", "mk3", "flash", "screen", "sensor", "slicer", "quiet"]
 BLOCKS = {"h1", "h2", "h3", "p", "ul", "ol", "li", "table", "thead", "tbody", "tr", "th", "td", "pre", "figure",
           "figcaption", "div", "img"}
 
@@ -52,6 +52,7 @@ def shape(body):
 
 def fixture(lang):
     return SimpleNamespace(p=lambda n: f"PAGE:{n}", img="IMG/", dl=lambda m: f"<div>DL:{m}</div>", rows="<tr><td>ROWS</td></tr>",
+                           slicer="<div>SLICER</div>",
                            REPO="REPO", RAW="RAW/", FW="FW/", DL="DL/", DISCORD="DISCORD")
 
 

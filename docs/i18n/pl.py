@@ -4,8 +4,10 @@ META = {"name": "Polski", "locale": "pl_PL", "dir": "ltr"}
 
 UI = {
     "nav": {"index": "Strona główna", "mk1": "MK1", "mk1u2": "MK1 + zestaw MK2", "mk2": "MK2", "mk3": "MK3",
-            "flash": "Wgrywanie firmware'u", "screen": "Ekran", "sensor": "Czujnik filamentu", "quiet": "Wyciszanie"},
+            "flash": "Wgrywanie firmware'u", "screen": "Ekran", "sensor": "Czujnik filamentu", "slicer": "Slicer",
+            "quiet": "Wyciszanie"},
     "language": "Język",
+    "model": "Model",
     "size": "Rozmiar", "volume": "Pole robocze", "file": "Firmware",
     "footer_src": "Kod źródłowy i zgłoszenia na GitHubie", "footer_chat": "Discord",
     "footer_note": "Firmware na licencji GNU GPL v3. Instrukcje i firmware Wanhao pozostają własnością Wanhao.",
@@ -450,6 +452,104 @@ v2.0.5 (w praktyce za mało: około jednej trzeciej szpuli 1 kg, po czym pozosta
 10 km w v2.0.6. Przy uruchomieniu drukarki v2.0.7 wczytuje te dwie wartości jako <code>L0</code>. Rzeczywista długość ustawiona
 dla czujnika BTT, taka jak <code>L10</code>, zostaje zachowana. Przy aktualizacji z v2.0.4 lub starszej wczytywana jest odległość końca filamentu 5 mm
 zamiast 0 zapisanego przez tamte wersje.</p>
+""")
+
+    if page == "slicer":
+        return ("Profile Cura i OrcaSlicer do Wanhao Duplicator 9 oraz ustawianie offsetu Z",
+                "Gotowe profile UltiMaker Cura i OrcaSlicer do każdej Wanhao D9, PLA, PETG i ABS, jak ustawić offset Z "
+                "czujnika, zrobić sondowanie stołu i wydrukować testowego 3DBenchy.",
+                f"""
+<h1>Slicing dla Duplicator 9</h1>
+<p class="lead">Jeden profil na każdą z dwunastu drukarek, do <strong>UltiMaker Cura</strong> i
+<strong>OrcaSlicer</strong> — oba darmowe i dostępne na Windows, macOS i Linux. Każdy ma pole robocze, przyspieszenia
+i najwyższą temperaturę stołu z firmware'u swojej drukarki.</p>
+
+<h2>Pobieranie</h2>
+{h.slicer}
+<p>Są przygotowane pod firmware z tej strony, <a href="{p('flash')}">v2.0.9 lub nowszy</a>.</p>
+
+<h2>Instalacja</h2>
+<p><strong>OrcaSlicer</strong>: <em>Plik</em> → <em>Importuj</em> → <em>Importuj konfiguracje…</em>, a potem wskaż plik
+<code>.orca_printer</code>. Drukarka, jej trzy jakości (0,12, 0,20 i 0,28 mm) oraz filamenty PLA, PETG i ABS pojawią
+się w Twoich profilach.</p>
+<p><strong>Cura</strong>: <em>Pomoc</em> → <em>Pokaż folder konfiguracji</em>, zamknij Curę, rozpakuj plik do tego
+folderu, uruchom Curę ponownie, a potem <em>Ustawienia</em> → <em>Drukarka</em> → <em>Dodaj drukarkę…</em> →
+<em>Dodaj drukarkę niesieciową</em> → <em>Wanhao</em> → Twój model. <em>Wanhao Duplicator 9</em> dostarczana razem
+z Curą to starszy profil: tylko 300, z raftem i podporami włączonymi domyślnie.</p>
+
+<h2 id="first-print">Przed pierwszym wydrukiem: offset Z, a potem sondowanie</h2>
+<p>Czujnik wyzwala się trochę nad stołem i firmware musi wiedzieć, o ile. To właśnie <strong>offset Z</strong>. Za
+wysoko — pierwsza warstwa nie trzyma; za nisko — dysza szoruje po stole. Ustawia się go raz i to on decyduje, czy
+wydruki się trzymają.</p>
+<div class="note">Wszystko poniżej zapisuje się w pamięci drukarki, a nie w slicerze. Przetrwa aktualizację firmware'u
+(od v2.0.3).</div>
+
+<h3>1. Najpierw rozgrzej</h3>
+<p>Gorąca dysza jest o kilka setnych milimetra dłuższa. Rozgrzej drukarkę jak do wydruku: na ekranie
+<em>Temperatura</em> → <em>Podgrzej</em> → <em>PLA</em> (200 °C i 60 °C) i odczekaj dwie minuty.</p>
+
+<h3>2. Wykonaj bazowanie osi</h3>
+<p>Na ekranie: <em>Ustawienia</em> → <em>Ruch</em> → <em>Bazowanie</em>. Przez USB: <code>G28</code>.</p>
+
+<h3>3. Ustaw offset Z</h3>
+<p><strong>Najprościej, w trakcie druku.</strong> Zacznij wydruk i podczas <strong>pierwszej warstwy</strong> wejdź na
+ekranie w <em>Dostosuj</em> → <em>Offset Z</em>. Schodź co 0,01 mm, gdy linia jest rysowana, aż będzie płaska i dotknie
+sąsiedniej bez szczeliny. Za wysoko — zostają okrągłe, osobne nitki; za nisko — powierzchnia robi się szorstka
+i zgnieciona, a dyszę widać, jak ryje. Wartość zapisuje się sama.</p>
+<p><strong>Na kartkę papieru, bez drukowania.</strong> Przez USB, w temperaturze druku:</p>
+<pre><code>M851 Z0     ; zapomnij bieżący offset
+M500
+G28         ; bazuj ponownie, żeby został uwzględniony
+M420 S0     ; zignoruj siatkę na czas pomiaru
+G1 Z0 F300  ; dysza zjeżdża do zera, w które wierzy firmware</code></pre>
+<p>Wsuń pod dyszę kartkę papieru, a potem schodź małymi krokami: <code>G91</code>, a potem
+<code>G1 Z-0.05 F60</code>, raz za razem, aż kartka zacznie ledwo ocierać. Odczytaj wartość poleceniem
+<code>M114</code>: jest ujemna, na przykład −1,30. Następnie:</p>
+<pre><code>G90
+M851 Z-1.30 ; Twoja wartość
+M500</code></pre>
+
+<h3>4. Zsonduj stół</h3>
+<p>Na ekranie: <em>Ustawienia</em> → <em>Poziomowanie</em> → <em>Automatyczne</em> → <em>Sonduj</em>. Drukarka mierzy
+25 punktów i <strong>sama zapisuje siatkę</strong> (wykonuje <code>G29</code>, a potem <code>M500</code>). Zajmuje to
+kilka minut. Przez USB: <code>G29</code>, a potem <code>M500</code>.</p>
+<p>Nasze profile nie sondują przed każdym wydrukiem: włączają zapisaną siatkę poleceniem <code>M420 S1</code>, zaraz
+po bazowaniu. Powtórz więc sondowanie, gdy przestawisz drukarkę, zmienisz powierzchnię albo dyszę, albo gdy pierwsza
+warstwa wychodzi dobrze z jednej strony stołu, a z drugiej nie.</p>
+
+<h3>5. Sprawdź</h3>
+<p><code>M503</code> wypisuje to, co jest zapisane: linia <code>M851</code> to Twój offset Z, a <code>M420 S1</code>
+pokazuje, że siatka jest włączona. Na ekranie strona <em>Automatyczne</em> pokazuje 25 zmierzonych punktów.</p>
+
+<h2>Wydruki testowe</h2>
+<p>3DBenchy, już pocięty dla <strong>D9 MK2 300</strong>, żeby porównać oba slicery albo sprawdzić jakieś ustawienie
+bez instalowania czegokolwiek:</p>
+<ul>
+<li>Cura: <a href="{DL}Benchy_Cura_PLA.gcode">PLA</a> · <a href="{DL}Benchy_Cura_PETG.gcode">PETG</a> ·
+<a href="{DL}Benchy_Cura_ABS.gcode">ABS</a></li>
+<li>OrcaSlicer: <a href="{DL}Benchy_Orca_PLA.gcode">PLA</a> · <a href="{DL}Benchy_Orca_PETG.gcode">PETG</a> ·
+<a href="{DL}Benchy_Orca_ABS.gcode">ABS</a></li>
+</ul>
+<p>Każdy to około półtorej godziny i 4 m filamentu. Dla innego modelu lub rozmiaru potnij
+<a href="https://github.com/CreativeTools/3DBenchy">3DBenchy</a> samodzielnie swoim profilem.</p>
+<div class="note">D9 jest otwarta: ABS wymaga co najmniej pomieszczenia bez przeciągów, a jego temperatura stołu jest
+obniżona do tego, co wytrzymuje Twój model (80 °C na MK3 500).</div>
+
+<h2>Co jest w profilach</h2>
+<ul>
+<li><strong>Warstwy</strong> 0,20 mm, <strong>3 ściany</strong>, 4 warstwy pełne na górze i 3 na dole, wypełnienie
+gyroid 15 %, skirt z 2 linii, bez podpór.</li>
+<li><strong>Prędkości</strong>: 40 mm/s na ścianie zewnętrznej, 60 w środku, 70 dla wypełnienia, 20 na pierwszej
+warstwie, 150 przy przelotach. Wanhao podaje 70 mm/s jako maksymalną prędkość druku D9.</li>
+<li><strong>Retrakcja</strong> 1,5 mm przy 25 mm/s: każda D9 ma ekstruder MK10 w układzie direct drive, a firmware
+ogranicza ekstruder do 25 mm/s.</li>
+<li><strong>Temperatury</strong>: PLA 210 °C, potem 205, stół 65, potem 60. PETG 240 / 80, potem 235 / 75. ABS
+245 / 105, potem 245 / 100.</li>
+<li><strong>Linia zagruntowania</strong> 15 mm od lewej krawędzi, poza klipsami stołu, żeby dysza dojechała czysta do
+modelu.</li>
+<li>Na koniec dysza unosi się, a stół wyjeżdża do przodu.</li>
+</ul>
+<p>Wszystkie ustawienia i jak je zmienić: <a href="{REPO}/tree/main/Slicer">folder Slicer</a> na GitHubie.</p>
 """)
 
     if page == "quiet":
