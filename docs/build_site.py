@@ -23,6 +23,8 @@ DL = REPO + "/releases/latest/download/"
 DISCORD = "https://discord.gg/T37DYHmt2j"
 # Google Search Console ownership check for the URL-prefix property SITE.
 GOOGLE_VERIFICATION = "TqbXre6qrm9jaoj6tFwRRiI2vuQilAZLm6kUJA-etmo"
+# Bump when style.css changes, so browsers do not keep the old one.
+STYLE_VERSION = 2
 
 PAGES = ["index", "mk1", "mk1u2", "mk2", "mk3", "flash", "screen", "sensor", "slicer", "quiet"]
 SIZES = [("300", "300 × 300 × 400 mm"), ("400", "400 × 400 × 400 mm"), ("500", "500 × 500 × 500 mm")]
@@ -53,9 +55,9 @@ def downloads(model, lang):
     for size, volume in SIZES:
         std = f"D9_{model}_{size}.hex"
         rows.append(
-            f'<tr><td><strong>D9/{size}</strong></td><td>{volume}</td>'
+            f'<tr><td><strong>D9/{size}</strong></td><td class="volume">{volume}</td>'
             f'<td><a class="btn" href="{DL}{std}">{std}</a></td></tr>')
-    return (f'<div class="table"><table class="dl"><thead><tr><th>{u["size"]}</th><th>{u["volume"]}</th>'
+    return (f'<div class="table"><table class="dl"><thead><tr><th>{u["size"]}</th><th class="volume">{u["volume"]}</th>'
             f'<th>{u["file"]}</th></tr></thead><tbody>'
             + "".join(rows) + "</tbody></table></div>")
 
@@ -216,7 +218,7 @@ def render(page, lang):
 <meta property="og:locale" content="{m.META['locale']}">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖨️</text></svg>">
-<link rel="stylesheet" href="{up}style.css">
+<link rel="stylesheet" href="{up}style.css?v={STYLE_VERSION}">
 <script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>
 </head>
 <body>

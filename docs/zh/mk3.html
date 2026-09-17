@@ -31,7 +31,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖨️</text></svg>">
-<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="../style.css?v=2">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Wanhao Duplicator 9 MK3 固件（D9/300、D9/400、D9/500）– Marlin 2.1", "description": "适用于 Wanhao D9 MK3（Y 轴电机在前、带耗材传感器）的 Marlin 2.1 固件，以及 Wanhao 原厂 V1.1.3 固件。", "url": "https://le-syl21.github.io/WANHAO-Duplicator-9/zh/mk3.html", "inLanguage": "zh-Hans", "about": {"@type": "Product", "name": "Wanhao Duplicator 9", "brand": "Wanhao"}}</script>
 </head>
 <body>
@@ -46,7 +46,7 @@
 <p>电机换位后 Y 轴方向随之反转：Wanhao 自己的 V1.1.3 固件反转了 Y 轴，这些固件也一样。断料传感器默认开启。Wanhao 没有公布 MK3 的探针偏移，因此这些固件沿用 MK2 的数值。</p>
 
 <h2>下载</h2>
-<div class="table"><table class="dl"><thead><tr><th>尺寸</th><th>打印尺寸</th><th>固件</th></tr></thead><tbody><tr><td><strong>D9/300</strong></td><td>300 × 300 × 400 mm</td><td><a class="btn" href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest/download/D9_MK3_300.hex">D9_MK3_300.hex</a></td></tr><tr><td><strong>D9/400</strong></td><td>400 × 400 × 400 mm</td><td><a class="btn" href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest/download/D9_MK3_400.hex">D9_MK3_400.hex</a></td></tr><tr><td><strong>D9/500</strong></td><td>500 × 500 × 500 mm</td><td><a class="btn" href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest/download/D9_MK3_500.hex">D9_MK3_500.hex</a></td></tr></tbody></table></div>
+<div class="table"><table class="dl"><thead><tr><th>尺寸</th><th class="volume">打印尺寸</th><th>固件</th></tr></thead><tbody><tr><td><strong>D9/300</strong></td><td class="volume">300 × 300 × 400 mm</td><td><a class="btn" href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest/download/D9_MK3_300.hex">D9_MK3_300.hex</a></td></tr><tr><td><strong>D9/400</strong></td><td class="volume">400 × 400 × 400 mm</td><td><a class="btn" href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest/download/D9_MK3_400.hex">D9_MK3_400.hex</a></td></tr><tr><td><strong>D9/500</strong></td><td class="volume">500 × 500 × 500 mm</td><td><a class="btn" href="https://github.com/Le-Syl21/WANHAO-Duplicator-9/releases/latest/download/D9_MK3_500.hex">D9_MK3_500.hex</a></td></tr></tbody></table></div>
 <p>选择与你的尺寸对应的文件，然后用
 <a href="../zh/screen.html">DGUS Reloaded</a> 刷写触摸屏。</p>
 <div class="note">如果耗材传感器随机中断打印，请发送 <code>M412 S0</code>，再发送
