@@ -532,6 +532,13 @@ hazır dilimlenmiş bir 3DBenchy:</p>
 </ul>
 <p>Her biri yaklaşık bir buçuk saat ve 4 m filament. Başka bir model ya da boyut için
 <a href="https://github.com/CreativeTools/3DBenchy">3DBenchy</a>'yi kendi profilinizle kendiniz dilimleyin.</p>
+<h3>Hepsi bir arada test</h3>
+<p>Çıkıntı çubukları, bir köprü, stringing kuleleri, tolerans delikleri ve bir incelik ölçeği; hepsi 65 mm'lik tek bir
+parçada, yaklaşık 2 h 30. Bu, <strong>majda107</strong> tarafından hazırlanan
+<a href="https://www.thingiverse.com/thing:2656594">All In One 3D printer test</a> (CC BY 4.0); <strong>her yazıcı</strong>
+ve iki dilimleyici için, üç malzemede dilimlendi. <a href="{REPO}/releases/latest">En son sürümdeki</a> dosyaların adı
+<code>Test_D9_&lt;model&gt;_&lt;size&gt;_&lt;slicer&gt;_&lt;material&gt;.gcode</code> biçimindedir, örneğin
+<code>Test_D9_MK2_300_Orca_PLA.gcode</code>.</p>
 <div class="cards">
 <figure><img src="{img}benchy-orca.webp" width="760" height="621" alt="Wanhao D9 MK2 300'de OrcaSlicer profiliyle basılmış 3DBenchy"><figcaption>OrcaSlicer, 1 h 14</figcaption></figure>
 <figure><img src="{img}benchy-cura.webp" width="760" height="685" alt="Wanhao D9 MK2 300'de Cura profiliyle basılmış 3DBenchy"><figcaption>Cura, 1 h 22</figcaption></figure>

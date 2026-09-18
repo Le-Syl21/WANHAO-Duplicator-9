@@ -538,6 +538,13 @@ te controleren zonder iets te installeren:</p>
 </ul>
 <p>Elk ongeveer anderhalf uur en 4 m filament. Voor een ander model of een ander formaat slice je de
 <a href="https://github.com/CreativeTools/3DBenchy">3DBenchy</a> zelf met jouw profiel.</p>
+<h3>De alles-in-één test</h3>
+<p>Overhangbalken, een brug, stringingtorens, tolerantiegaten en een fijnheidsschaal in één stuk van 65 mm, ongeveer
+2 uur 30. Het is de <a href="https://www.thingiverse.com/thing:2656594">All In One 3D printer test</a> van
+<strong>majda107</strong> (CC BY 4.0), gesliced voor <strong>elke printer</strong> en beide slicers, in de drie
+materialen. De bestanden van de <a href="{REPO}/releases/latest">nieuwste release</a> heten
+<code>Test_D9_&lt;model&gt;_&lt;size&gt;_&lt;slicer&gt;_&lt;material&gt;.gcode</code>, bijvoorbeeld
+<code>Test_D9_MK2_300_Orca_PLA.gcode</code>.</p>
 <div class="cards">
 <figure><img src="{img}benchy-orca.webp" width="760" height="621" alt="3DBenchy geprint met het OrcaSlicer-profiel op een Wanhao D9 MK2 300"><figcaption>OrcaSlicer, 1 uur 14</figcaption></figure>
 <figure><img src="{img}benchy-cura.webp" width="760" height="685" alt="3DBenchy geprint met het Cura-profiel op een Wanhao D9 MK2 300"><figcaption>Cura, 1 uur 22</figcaption></figure>

@@ -538,6 +538,13 @@ without installing anything:</p>
 </ul>
 <p>About an hour and a half and 4 m of filament each. For another model or size, slice the
 <a href="https://github.com/CreativeTools/3DBenchy">3DBenchy</a> yourself with your profile.</p>
+<h3>The all-in-one test</h3>
+<p>Overhang bars, a bridge, stringing towers, tolerance holes and a fineness scale in one 65 mm piece, about 2 h 30.
+It is the <a href="https://www.thingiverse.com/thing:2656594">All In One 3D printer test</a> by <strong>majda107</strong>
+(CC BY 4.0), sliced for <strong>every printer</strong> and both slicers, in the three materials. The files of the
+<a href="{REPO}/releases/latest">latest release</a> are named
+<code>Test_D9_&lt;model&gt;_&lt;size&gt;_&lt;slicer&gt;_&lt;material&gt;.gcode</code>, for example
+<code>Test_D9_MK2_300_Orca_PLA.gcode</code>.</p>
 <div class="cards">
 <figure><img src="{img}benchy-orca.webp" width="760" height="621" alt="3DBenchy printed with the OrcaSlicer profile on a Wanhao D9 MK2 300"><figcaption>OrcaSlicer, 1 h 14</figcaption></figure>
 <figure><img src="{img}benchy-cura.webp" width="760" height="685" alt="3DBenchy printed with the Cura profile on a Wanhao D9 MK2 300"><figcaption>Cura, 1 h 22</figcaption></figure>

@@ -534,6 +534,13 @@ sin instalar nada:</p>
 </ul>
 <p>Alrededor de una hora y media y 4 m de filamento cada uno. Para otro modelo u otro tamaño, lamine usted mismo el
 <a href="https://github.com/CreativeTools/3DBenchy">3DBenchy</a> con su perfil.</p>
+<h3>La prueba todo en uno</h3>
+<p>Barras en voladizo, un puente, torres de stringing, agujeros de tolerancia y una escala de finura en una pieza de
+65 mm, unas 2 h 30. Es el <a href="https://www.thingiverse.com/thing:2656594">All In One 3D printer test</a> de
+<strong>majda107</strong> (CC BY 4.0), laminado para <strong>todas las impresoras</strong> y los dos slicers, en los
+tres materiales. Los archivos de la <a href="{REPO}/releases/latest">última versión</a> se llaman
+<code>Test_D9_&lt;model&gt;_&lt;size&gt;_&lt;slicer&gt;_&lt;material&gt;.gcode</code>, por ejemplo
+<code>Test_D9_MK2_300_Orca_PLA.gcode</code>.</p>
 <div class="cards">
 <figure><img src="{img}benchy-orca.webp" width="760" height="621" alt="3DBenchy impreso con el perfil OrcaSlicer en una Wanhao D9 MK2 300"><figcaption>OrcaSlicer, 1 h 14</figcaption></figure>
 <figure><img src="{img}benchy-cura.webp" width="760" height="685" alt="3DBenchy impreso con el perfil Cura en una Wanhao D9 MK2 300"><figcaption>Cura, 1 h 22</figcaption></figure>
