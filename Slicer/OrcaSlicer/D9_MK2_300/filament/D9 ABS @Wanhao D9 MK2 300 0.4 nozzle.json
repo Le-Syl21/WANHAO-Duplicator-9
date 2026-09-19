@@ -7,9 +7,8 @@
     "filament_settings_id": [
         "D9 ABS @Wanhao D9 MK2 300 0.4 nozzle"
     ],
-    "compatible_printers": [
-        "Wanhao D9 MK2 300 0.4 nozzle"
-    ],
+    "compatible_printers": [],
+    "compatible_printers_condition": "printer_notes=~/.*PRINTER_MODEL_WANHAO_D9_MK2_300.*/",
     "filament_diameter": [
         "1.75"
     ],

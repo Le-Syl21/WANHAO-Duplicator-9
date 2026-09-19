@@ -7,9 +7,8 @@
     "filament_settings_id": [
         "D9 PLA @Wanhao D9 MK2 500 0.4 nozzle"
     ],
-    "compatible_printers": [
-        "Wanhao D9 MK2 500 0.4 nozzle"
-    ],
+    "compatible_printers": [],
+    "compatible_printers_condition": "printer_notes=~/.*PRINTER_MODEL_WANHAO_D9_MK2_500.*/",
     "filament_diameter": [
         "1.75"
     ],

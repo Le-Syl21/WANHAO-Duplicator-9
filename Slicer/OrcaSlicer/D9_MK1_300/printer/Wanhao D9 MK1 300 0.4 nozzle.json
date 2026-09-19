@@ -7,7 +7,7 @@
     "printer_settings_id": "Wanhao D9 MK1 300 0.4 nozzle",
     "printer_technology": "FFF",
     "printer_variant": "0.4",
-    "printer_notes": "Wanhao Duplicator 9 MK1 300, firmware https://github.com/Le-Syl21/WANHAO-Duplicator-9",
+    "printer_notes": "Wanhao Duplicator 9 MK1 300, firmware https://github.com/Le-Syl21/WANHAO-Duplicator-9\nPRINTER_MODEL_WANHAO_D9_MK1_300",
     "gcode_flavor": "marlin2",
     "use_relative_e_distances": "1",
     "emit_machine_limits_to_gcode": "0",

@@ -208,12 +208,16 @@ def cura(model, size, out):
 def orca(model, size, out):
     m, (w, d, h) = MODELS[model], SIZES[size]
     printer = f"Wanhao D9 {model} {size} 0.4 nozzle"
+    # Qualities and filaments find their printer by this marker in its notes, not by its name: OrcaSlicer 2.4 renames
+    # a printer imported from a bundle ("local/<bundle id>/<name>"), and a name match then hid them all.
+    marker = f"PRINTER_MODEL_WANHAO_D9_{model}_{size}"
+    compatible = {"compatible_printers": [], "compatible_printers_condition": f"printer_notes=~/.*{marker}.*/"}
     two = lambda v: [str(v), str(v)]  # noqa: E731  normal and silent mode
     presets = []
     presets.append(("printer", printer, {
         "type": "machine", "name": printer, "from": "User", "inherits": "", "version": VERSION,
         "printer_settings_id": printer, "printer_technology": "FFF", "printer_variant": "0.4",
-        "printer_notes": "Wanhao Duplicator 9 " + model + " " + size + ", firmware https://github.com/Le-Syl21/WANHAO-Duplicator-9",
+        "printer_notes": f"Wanhao Duplicator 9 {model} {size}, firmware https://github.com/Le-Syl21/WANHAO-Duplicator-9\n{marker}",
         "gcode_flavor": "marlin2", "use_relative_e_distances": "1", "emit_machine_limits_to_gcode": "0",
         "printable_area": ["0x0", f"{w}x0", f"{w}x{d}", f"0x{d}"], "printable_height": str(h),
         "nozzle_diameter": ["0.4"], "max_layer_height": ["0.32"], "min_layer_height": ["0.08"],
@@ -241,7 +245,7 @@ def orca(model, size, out):
         name = f"{layer:.2f}mm {label} @{printer}"
         presets.append(("process", name, {
             "type": "process", "name": name, "from": "User", "inherits": "", "version": VERSION,
-            "print_settings_id": name, "compatible_printers": [printer],
+            "print_settings_id": name, **compatible,
             "layer_height": f"{layer:.2f}", "initial_layer_print_height": "0.2",
             "wall_loops": "3", "top_shell_layers": str(max(4, round(0.8 / layer))),
             "bottom_shell_layers": str(max(3, round(0.6 / layer))),
@@ -267,7 +271,7 @@ def orca(model, size, out):
         bed, bed_first = min(f["bed"], bed_max), min(f["bed_first"], bed_max)
         presets.append(("filament", name, {
             "type": "filament", "name": name, "from": "User", "inherits": "", "version": VERSION,
-            "filament_settings_id": [name], "compatible_printers": [printer], "filament_diameter": ["1.75"],
+            "filament_settings_id": [name], **compatible, "filament_diameter": ["1.75"],
             "filament_type": [label], "filament_vendor": ["Generic"], "filament_density": plate(f["density"]),
             "filament_cost": plate(f["cost"]), "filament_flow_ratio": plate(f["flow"]),
             "filament_max_volumetric_speed": plate(f["max_volumetric"]),
