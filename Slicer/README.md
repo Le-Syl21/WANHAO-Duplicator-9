@@ -60,7 +60,7 @@ At the end the heaters and the fan turn off, the nozzle rises 10 mm and the bed 
 
 ### Installing
 
-**OrcaSlicer:** *File* → *Import* → *Import Configs…*, then choose `D9_<model>_<size>.orca_printer` from the release. The printer, its three qualities and the PLA, PETG and ABS filaments appear under *User presets*.
+**OrcaSlicer:** *File* → *Import* → *Import Configs…*, then choose `D9_<model>_<size>.orca_printer` from the release. The printer, its three qualities and the PLA, PETG and ABS filaments appear under *User presets*. Bundles downloaded before 19 September 2026 only brought the printer into OrcaSlicer 2.4: delete it and import the current one. The D9 is also proposed to OrcaSlicer itself ([OrcaSlicer#15773](https://github.com/OrcaSlicer/OrcaSlicer/pull/15773)), so that it shows up in the printer wizard with nothing to import.
 
 **UltiMaker Cura:**
 
@@ -142,7 +142,7 @@ La buse remonte de 10 mm avant le homing : une impression arrêtée à la main p
 
 ### Installer
 
-**OrcaSlicer :** *Fichier* → *Importer* → *Importer des configurations…*, puis choisissez `D9_<modèle>_<taille>.orca_printer` dans la release. L'imprimante, ses trois qualités et les filaments PLA, PETG et ABS apparaissent dans les *préréglages utilisateur*.
+**OrcaSlicer :** *Fichier* → *Importer* → *Importer des configurations…*, puis choisissez `D9_<modèle>_<taille>.orca_printer` dans la release. L'imprimante, ses trois qualités et les filaments PLA, PETG et ABS apparaissent dans les *préréglages utilisateur*. Les bundles téléchargés avant le 19 septembre 2026 n'apportaient que l'imprimante dans OrcaSlicer 2.4 : supprimez-la et importez la version actuelle. La D9 est aussi proposée à OrcaSlicer lui-même ([OrcaSlicer#15773](https://github.com/OrcaSlicer/OrcaSlicer/pull/15773)), pour qu'elle apparaisse dans l'assistant de choix d'imprimante sans rien importer.
 
 **UltiMaker Cura :**
 
