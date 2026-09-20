@@ -508,6 +508,7 @@ G1 Z0 F300  ; 펌웨어가 0이라고 여기는 높이까지 노즐이 내려옵
 M851 Z-1.30 ; 여러분의 값
 M500
 M211 S1     ; 소프트웨어 리밋을 되돌립니다. 베드를 지켜 줍니다</code></pre>
+<p>v2.1.0부터는 <code>M211</code> 두 줄을 생략해도 됩니다. 펌웨어가 이미 노즐을 0보다 3 mm 아래까지 내릴 수 있게 합니다.</p>
 
 <h3>4. 베드를 프로빙하세요</h3>
 <p>화면에서: <em>설정</em> → <em>레벨링</em> → <em>자동</em> → <em>프로브</em>. 프린터가 25점을 재고
@@ -542,6 +543,7 @@ USB로는: <code>G29</code> 다음 <code>M500</code>.</p>
 <div class="cards">
 <figure><img src="{img}benchy-orca.webp" width="760" height="621" alt="Wanhao D9 MK2 300에서 OrcaSlicer 프로파일로 출력한 3DBenchy"><figcaption>OrcaSlicer, 1시간 14분</figcaption></figure>
 <figure><img src="{img}benchy-cura.webp" width="760" height="685" alt="Wanhao D9 MK2 300에서 Cura 프로파일로 출력한 3DBenchy"><figcaption>Cura, 1시간 22분</figcaption></figure>
+<figure><img src="{img}benchy-petg-dustovich.webp" width="760" height="594" alt="dustovich 님이 Wanhao D9에서 PETG로 출력한 3DBenchy"><figcaption>PETG · dustovich</figcaption></figure>
 </div>
 <p><strong>무엇부터 시작할까:</strong> D9 MK2 300에서 PLA로 같은 Benchy를 뽑아 보니 <strong>OrcaSlicer는 1시간 14분</strong>,
 <strong>Cura는 1시간 22분</strong>이 걸렸고, 벽면은 OrcaSlicer 쪽이 조금 더 깔끔했습니다. 둘 다 좋지만 저희라면

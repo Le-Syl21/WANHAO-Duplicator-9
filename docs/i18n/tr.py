@@ -508,6 +508,7 @@ kâğıt ancak sürtmeye başlayana kadar tekrar tekrar indirin. Değeri <code>M
 M851 Z-1.30 ; sizin değeriniz
 M500
 M211 S1     ; yazılım sınırlarını geri koy, tablayı onlar korur</code></pre>
+<p>v2.1.0 ve sonrasında iki <code>M211</code> satırını atlayabilirsiniz: yazılım nozülün sıfırın 3 mm altına inmesine zaten izin verir.</p>
 
 <h3>4. Tablayı ölçün</h3>
 <p>Ekranda: <em>Ayarlar</em> → <em>Tabla ayarı</em> → <em>Otomatik</em> → <em>Ölç</em>. Yazıcı 25 nokta ölçer ve
@@ -542,6 +543,7 @@ ve iki dilimleyici için, üç malzemede dilimlendi. <a href="{REPO}/releases/la
 <div class="cards">
 <figure><img src="{img}benchy-orca.webp" width="760" height="621" alt="Wanhao D9 MK2 300'de OrcaSlicer profiliyle basılmış 3DBenchy"><figcaption>OrcaSlicer, 1 h 14</figcaption></figure>
 <figure><img src="{img}benchy-cura.webp" width="760" height="685" alt="Wanhao D9 MK2 300'de Cura profiliyle basılmış 3DBenchy"><figcaption>Cura, 1 h 22</figcaption></figure>
+<figure><img src="{img}benchy-petg-dustovich.webp" width="760" height="594" alt="dustovich tarafından Wanhao D9'da PETG ile basılmış 3DBenchy"><figcaption>PETG · dustovich</figcaption></figure>
 </div>
 <p><strong>Hangisiyle başlamalı:</strong> PLA ile bir D9 MK2 300'de aynı Benchy <strong>OrcaSlicer ile 1 h 14</strong>,
 <strong>Cura ile 1 h 22</strong> sürdü ve OrcaSlicer'ın duvarları biraz daha temiz çıktı. İkisi de iyi; biz

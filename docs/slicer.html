@@ -92,6 +92,7 @@ is negative, for example −1.30. Then:</p>
 M851 Z-1.30 ; your value
 M500
 M211 S1     ; put the soft limits back, they protect the bed</code></pre>
+<p>With v2.1.0 or later you can leave out the two <code>M211</code> lines: the firmware already lets the nozzle go 3 mm below zero.</p>
 
 <h3>4. Probe the bed</h3>
 <p>On the screen: <em>Settings</em> → <em>Levelling</em> → <em>Automatic</em> → <em>Probe</em>. The printer measures
@@ -126,6 +127,7 @@ It is the <a href="https://www.thingiverse.com/thing:2656594">All In One 3D prin
 <div class="cards">
 <figure><img src="img/benchy-orca.webp" width="760" height="621" alt="3DBenchy printed with the OrcaSlicer profile on a Wanhao D9 MK2 300"><figcaption>OrcaSlicer, 1 h 14</figcaption></figure>
 <figure><img src="img/benchy-cura.webp" width="760" height="685" alt="3DBenchy printed with the Cura profile on a Wanhao D9 MK2 300"><figcaption>Cura, 1 h 22</figcaption></figure>
+<figure><img src="img/benchy-petg-dustovich.webp" width="760" height="594" alt="3DBenchy printed in PETG on a Wanhao D9, by dustovich"><figcaption>PETG · dustovich</figcaption></figure>
 </div>
 <p><strong>Which one to start with:</strong> on a D9 MK2 300 in PLA, the same Benchy took <strong>1 h 14 with
 OrcaSlicer</strong> and <strong>1 h 22 with Cura</strong>, and OrcaSlicer's walls came out slightly cleaner. Both are

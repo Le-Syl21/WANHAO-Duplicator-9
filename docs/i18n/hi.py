@@ -509,6 +509,7 @@ G1 Z0 F300  ; नोज़ल वहाँ तक उतरता है जि�
 M851 Z-1.30 ; आपकी वैल्यू
 M500
 M211 S1     ; सॉफ़्ट लिमिट वापस लगा दो, वे बेड की रक्षा करती हैं</code></pre>
+<p>v2.1.0 या नए फ़र्मवेयर में <code>M211</code> की दोनों पंक्तियाँ छोड़ी जा सकती हैं: फ़र्मवेयर पहले से नोज़ल को शून्य से 3 मिमी नीचे जाने देता है।</p>
 
 <h3>4. बेड प्रोब करें</h3>
 <p>स्क्रीन पर: <em>सेटिंग्स</em> → <em>लेवलिंग</em> → <em>स्वचालित</em> → <em>प्रोब</em>। प्रिंटर 25 पॉइंट मापता है और
@@ -544,6 +545,7 @@ M211 S1     ; सॉफ़्ट लिमिट वापस लगा दो, 
 <div class="cards">
 <figure><img src="{img}benchy-orca.webp" width="760" height="621" alt="Wanhao D9 MK2 300 पर OrcaSlicer प्रोफ़ाइल से प्रिंट किया गया 3DBenchy"><figcaption>OrcaSlicer, 1 घंटा 14 मिनट</figcaption></figure>
 <figure><img src="{img}benchy-cura.webp" width="760" height="685" alt="Wanhao D9 MK2 300 पर Cura प्रोफ़ाइल से प्रिंट किया गया 3DBenchy"><figcaption>Cura, 1 घंटा 22 मिनट</figcaption></figure>
+<figure><img src="{img}benchy-petg-dustovich.webp" width="760" height="594" alt="dustovich द्वारा Wanhao D9 पर PETG से प्रिंट किया गया 3DBenchy"><figcaption>PETG · dustovich</figcaption></figure>
 </div>
 <p><strong>शुरुआत किससे करें:</strong> D9 MK2 300 पर PLA में वही Benchy <strong>OrcaSlicer से 1 घंटा 14 मिनट</strong>
 और <strong>Cura से 1 घंटा 22 मिनट</strong> में छपा, और OrcaSlicer की दीवारें थोड़ी ज़्यादा साफ़ निकलीं। दोनों अच्छे

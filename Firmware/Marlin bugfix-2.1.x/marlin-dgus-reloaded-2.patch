@@ -100,14 +100,28 @@ index 9143b83554..c5f239f458 100644
  
    void volume(DGUS_VP &, void *);
 diff --git a/Marlin/src/lcd/extui/dgus_reloaded/DGUSScreenHandler.cpp b/Marlin/src/lcd/extui/dgus_reloaded/DGUSScreenHandler.cpp
-index 13d399083b..8f4a2d9180 100644
+index 13d399083b..df3c23660e 100644
 --- a/Marlin/src/lcd/extui/dgus_reloaded/DGUSScreenHandler.cpp
 +++ b/Marlin/src/lcd/extui/dgus_reloaded/DGUSScreenHandler.cpp
-@@ -66,7 +66,14 @@ bool DGUSScreenHandler::wait_continue = false;
+@@ -26,6 +26,10 @@
+ 
+ #include "DGUSScreenHandler.h"
+ 
++#if HAS_MEDIA
++  #include "../../../sd/cardreader.h"
++#endif
++
+ #include "DGUSDisplay.h"
+ #include "definition/DGUS_ScreenAddrList.h"
+ #include "definition/DGUS_ScreenSetup.h"
+@@ -66,7 +70,17 @@ bool DGUSScreenHandler::wait_continue = false;
  
  bool DGUSScreenHandler::leveling_active = false;
  
 +uint8_t DGUSScreenHandler::language = 0;
++
++char DGUSScreenHandler::job_name[] = "";
++bool DGUSScreenHandler::job_from_media = false;
 +
 +#if ENABLED(FILAMENT_SWITCH_AND_MOTION)
 +  uint16_t DGUSScreenHandler::jam_length = DGUS_DEFAULT_JAM_LEN;
@@ -118,7 +132,7 @@ index 13d399083b..8f4a2d9180 100644
  millis_t DGUSScreenHandler::eeprom_save = 0;
  
  void DGUSScreenHandler::init() {
-@@ -135,7 +142,7 @@ void DGUSScreenHandler::loop() {
+@@ -135,7 +149,7 @@ void DGUSScreenHandler::loop() {
    }
  
    if (status_expire > 0 && ELAPSED(ms, status_expire)) {
@@ -127,7 +141,7 @@ index 13d399083b..8f4a2d9180 100644
      return;
    }
  
-@@ -191,6 +198,7 @@ void DGUSScreenHandler::storeSettings(char *buff) {
+@@ -191,6 +205,7 @@ void DGUSScreenHandler::storeSettings(char *buff) {
    data.volume = dgus.getVolume();
    data.brightness = dgus.getBrightness();
    data.abl_okay = (ExtUI::getLevelingActive() && ExtUI::getLevelingIsValid());
@@ -135,7 +149,7 @@ index 13d399083b..8f4a2d9180 100644
  
    memcpy(buff, &data, sizeof(data));
  }
-@@ -204,6 +212,7 @@ void DGUSScreenHandler::loadSettings(const char *buff) {
+@@ -204,6 +219,7 @@ void DGUSScreenHandler::loadSettings(const char *buff) {
  
    dgus.setVolume(data.initialized ? data.volume : DGUS_DEFAULT_VOLUME);
    dgus.setBrightness(data.initialized ? data.brightness : DGUS_DEFAULT_BRIGHTNESS);
@@ -143,7 +157,30 @@ index 13d399083b..8f4a2d9180 100644
  
    if (data.initialized) {
      leveling_active = (data.abl_okay && ExtUI::getLevelingIsValid());
-@@ -372,15 +381,28 @@ void DGUSScreenHandler::setMessageLine_P(PGM_P const msg, const uint8_t line) {
+@@ -252,6 +268,22 @@ void DGUSScreenHandler::meshUpdate(const int8_t xpos, const int8_t ypos) {
+ }
+ 
+ void DGUSScreenHandler::printTimerStarted() {
++  // Remember what is printed, so the finished screen can still show it: the file name without its extension
++  // (the screen font is ASCII only), or "USB" for a job sent by a host.
++  #if HAS_MEDIA
++    job_from_media = ExtUI::isPrintingFromMedia();
++    if (job_from_media) {
++      const char *name = card.longest_filename();
++      const char * const dot = strrchr(name, '.');
++      uint8_t len = 0;
++      for (; *name && name != dot && len < DGUS_FILENAME_LEN; ++name)
++        job_name[len++] = (*name >= ' ' && *name <= '~') ? *name : '?';
++      job_name[len] = '\0';
++    }
++    else
++  #endif
++      strcpy_P(job_name, PSTR("USB"));
++
+   triggerScreenChange(DGUS_ScreenID::PRINT_STATUS);
+ }
+ 
+@@ -372,15 +404,28 @@ void DGUSScreenHandler::setMessageLine_P(PGM_P const msg, const uint8_t line) {
  }
  
  void DGUSScreenHandler::setStatusMessage(const char* msg, const millis_t duration) {
@@ -175,7 +212,7 @@ index 13d399083b..8f4a2d9180 100644
    if (return_screenID != DGUS_ScreenID::WAIT)
      wait_return_screenID = return_screenID;
 diff --git a/Marlin/src/lcd/extui/dgus_reloaded/DGUSScreenHandler.h b/Marlin/src/lcd/extui/dgus_reloaded/DGUSScreenHandler.h
-index ec7ebc5bed..3de4f03625 100644
+index ec7ebc5bed..11aeedb9a4 100644
 --- a/Marlin/src/lcd/extui/dgus_reloaded/DGUSScreenHandler.h
 +++ b/Marlin/src/lcd/extui/dgus_reloaded/DGUSScreenHandler.h
 @@ -75,6 +75,7 @@ public:
@@ -186,11 +223,14 @@ index ec7ebc5bed..3de4f03625 100644
  
    static void showWaitScreen(const DGUS_ScreenID return_screenID, const bool has_continue=false);
    static void showWaitScreen(FSTR_P const msg, const DGUS_ScreenID return_screenID, const bool has_continue=false);
-@@ -113,6 +114,12 @@ public:
+@@ -113,6 +114,15 @@ public:
  
    static bool leveling_active;
  
 +  static uint8_t language;
++
++  static char job_name[DGUS_FILENAME_LEN + 1];
++  static bool job_from_media;
 +
 +  #if ENABLED(FILAMENT_SWITCH_AND_MOTION)
 +    static uint16_t jam_length;
@@ -199,7 +239,7 @@ index ec7ebc5bed..3de4f03625 100644
  private:
    static const DGUS_Addr* findScreenAddrList(const DGUS_ScreenID screenID);
    static bool callScreenSetup(const DGUS_ScreenID screenID);
-@@ -130,6 +137,7 @@ private:
+@@ -130,6 +140,7 @@ private:
    static DGUS_ScreenID wait_return_screenID;
  
    static millis_t status_expire;
@@ -207,7 +247,7 @@ index ec7ebc5bed..3de4f03625 100644
    static millis_t eeprom_save;
  
    typedef struct {
-@@ -137,6 +145,7 @@ private:
+@@ -137,6 +148,7 @@ private:
      uint8_t volume;
      uint8_t brightness;
      bool abl_okay;
@@ -216,7 +256,7 @@ index ec7ebc5bed..3de4f03625 100644
  };
  
 diff --git a/Marlin/src/lcd/extui/dgus_reloaded/DGUSTxHandler.cpp b/Marlin/src/lcd/extui/dgus_reloaded/DGUSTxHandler.cpp
-index d0059f056a..4cfdb52538 100644
+index d0059f056a..3e617ccb0e 100644
 --- a/Marlin/src/lcd/extui/dgus_reloaded/DGUSTxHandler.cpp
 +++ b/Marlin/src/lcd/extui/dgus_reloaded/DGUSTxHandler.cpp
 @@ -30,6 +30,10 @@
@@ -230,7 +270,17 @@ index d0059f056a..4cfdb52538 100644
  #include "../../../module/stepper.h"
  #include "../../../module/temperature.h"
  #include "../../../module/printcounter.h"
-@@ -509,6 +513,38 @@ void DGUSTxHandler::waitIcons(DGUS_VP &vp) {
+@@ -189,6 +193,9 @@ void DGUSTxHandler::percent(DGUS_VP &vp) {
+ void DGUSTxHandler::statusIcons(DGUS_VP &vp) {
+   uint16_t icons = 0;
+ 
++  if (screen.job_from_media)
++    icons |= (uint16_t)DGUS_Data::StatusIcon::MEDIA;
++
+   if (ExtUI::isPrinting()) {
+     icons |= (uint16_t)DGUS_Data::StatusIcon::PAUSE;
+ 
+@@ -509,6 +516,38 @@ void DGUSTxHandler::waitIcons(DGUS_VP &vp) {
    dgus.write((uint16_t)vp.addr, Swap16(icons));
  }
  
@@ -290,7 +340,7 @@ index c82f4c80da..fd5326fc2d 100644
  
    void volume(DGUS_VP &);
 diff --git a/Marlin/src/lcd/extui/dgus_reloaded/config/DGUS_Addr.h b/Marlin/src/lcd/extui/dgus_reloaded/config/DGUS_Addr.h
-index ec4962e6b2..9a272a1ba8 100644
+index ec4962e6b2..2e00143001 100644
 --- a/Marlin/src/lcd/extui/dgus_reloaded/config/DGUS_Addr.h
 +++ b/Marlin/src/lcd/extui/dgus_reloaded/config/DGUS_Addr.h
 @@ -96,6 +96,8 @@ enum class DGUS_Addr : uint16_t {
@@ -302,15 +352,16 @@ index ec4962e6b2..9a272a1ba8 100644
  
    // WRITE-ONLY VARIABLES
  
-@@ -157,6 +159,7 @@ enum class DGUS_Addr : uint16_t {
+@@ -157,6 +159,8 @@ enum class DGUS_Addr : uint16_t {
    INFOS_FilamentUsed      = 0x31A5, // 0x31A5 - 0x31BC
    WAIT_Icons              = 0x31BD, // Bits: DGUS_Data::WaitIcon
    STATUS_Icons            = 0x31BE, // Bits: DGUS_Data::StatusIcon
 +  FILAMENT_SENSOR_Icons   = 0x31BF, // Bits: DGUS_Data::FilamentSensorIcon
++  STATUS_JobName          = 0x31C0, // 0x31C0 - 0x31DF
  
    // READ-WRITE VARIABLES
  
-@@ -165,6 +168,8 @@ enum class DGUS_Addr : uint16_t {
+@@ -165,6 +169,8 @@ enum class DGUS_Addr : uint16_t {
    PID_Cycles              = 0x4021, // Type: Integer (16 bits unsigned)
    VOLUME_Level            = 0x4022, // Type: Integer (16 bits unsigned) / Data: volume as percent (0-100)
    BRIGHTNESS_Level        = 0x4023, // Type: Integer (16 bits unsigned) / Data: brightness as percent (0-100)
@@ -335,7 +386,7 @@ index 0562b89239..dcd2ec87b3 100644
    #define DGUS_LEVEL_CENTER_X ((X_BED_SIZE) / 2)
  #endif
 diff --git a/Marlin/src/lcd/extui/dgus_reloaded/config/DGUS_Data.h b/Marlin/src/lcd/extui/dgus_reloaded/config/DGUS_Data.h
-index e1c1bf557f..197add0d54 100644
+index e1c1bf557f..e3892931bb 100644
 --- a/Marlin/src/lcd/extui/dgus_reloaded/config/DGUS_Data.h
 +++ b/Marlin/src/lcd/extui/dgus_reloaded/config/DGUS_Data.h
 @@ -98,6 +98,11 @@ namespace DGUS_Data {
@@ -350,19 +401,22 @@ index e1c1bf557f..197add0d54 100644
    // TX constants
  
    enum class SDType : uint16_t {
-@@ -117,6 +122,12 @@ namespace DGUS_Data {
-     RESUME = 1U << 1
-   };
+@@ -114,7 +119,14 @@ namespace DGUS_Data {
  
+   enum class StatusIcon : uint16_t {
+     PAUSE  = 1U << 0,
+-    RESUME = 1U << 1
++    RESUME = 1U << 1,
++    MEDIA  = 1U << 2  // The job is printed from the SD card, not sent by a host
++  };
++
 +  enum class FilamentSensorIcon : uint16_t {
 +    RUNOUT  = 1U << 0,
 +    JAM     = 1U << 1,
 +    PRESENT = 1U << 2
-+  };
-+
+   };
+ 
    enum class Status : uint16_t {
-     DISABLED = 0,
-     ENABLED  = 1
 diff --git a/Marlin/src/lcd/extui/dgus_reloaded/config/DGUS_ScreenID.h b/Marlin/src/lcd/extui/dgus_reloaded/config/DGUS_ScreenID.h
 index 546ebb4666..a32b775eff 100644
 --- a/Marlin/src/lcd/extui/dgus_reloaded/config/DGUS_ScreenID.h
@@ -376,7 +430,7 @@ index 546ebb4666..a32b775eff 100644
    POWERLOSS           = 248,
    WAIT                = 249,
 diff --git a/Marlin/src/lcd/extui/dgus_reloaded/definition/DGUS_ScreenAddrList.cpp b/Marlin/src/lcd/extui/dgus_reloaded/definition/DGUS_ScreenAddrList.cpp
-index 32e95f2508..b2d89f7c56 100644
+index 32e95f2508..733a54bf23 100644
 --- a/Marlin/src/lcd/extui/dgus_reloaded/definition/DGUS_ScreenAddrList.cpp
 +++ b/Marlin/src/lcd/extui/dgus_reloaded/definition/DGUS_ScreenAddrList.cpp
 @@ -29,6 +29,8 @@
@@ -388,7 +442,24 @@ index 32e95f2508..b2d89f7c56 100644
    DGUS_Addr::TEMP_Current_H0,
    DGUS_Addr::TEMP_Target_H0,
    DGUS_Addr::TEMP_Current_Bed,
-@@ -204,6 +206,16 @@ constexpr DGUS_Addr LIST_WAIT[] PROGMEM = {
+@@ -59,6 +61,7 @@ constexpr DGUS_Addr LIST_PRINT_STATUS[] PROGMEM = {
+   DGUS_Addr::STATUS_Elapsed,
+   DGUS_Addr::STATUS_Percent,
+   DGUS_Addr::STATUS_Icons,
++  DGUS_Addr::STATUS_JobName,
+   DGUS_Addr::END
+ };
+ 
+@@ -80,6 +83,8 @@ constexpr DGUS_Addr LIST_PRINT_FINISHED[] PROGMEM = {
+   DGUS_Addr::STATUS_PositionZ,
+   DGUS_Addr::STATUS_Elapsed,
+   DGUS_Addr::STATUS_Percent_Complete,
++  DGUS_Addr::STATUS_Icons,
++  DGUS_Addr::STATUS_JobName,
+   DGUS_Addr::END
+ };
+ 
+@@ -204,6 +209,16 @@ constexpr DGUS_Addr LIST_WAIT[] PROGMEM = {
    DGUS_Addr::END
  };
  
@@ -405,7 +476,7 @@ index 32e95f2508..b2d89f7c56 100644
  #define MAP_HELPER(SCREEN, LIST) { .screenID = SCREEN, .addr_list = LIST }
  
  const struct DGUS_ScreenAddrList screen_addr_list_map[] PROGMEM = {
-@@ -231,6 +243,9 @@ const struct DGUS_ScreenAddrList screen_addr_list_map[] PROGMEM = {
+@@ -231,6 +246,9 @@ const struct DGUS_ScreenAddrList screen_addr_list_map[] PROGMEM = {
    MAP_HELPER(DGUS_ScreenID::BRIGHTNESS,         LIST_BRIGHTNESS),
    MAP_HELPER(DGUS_ScreenID::INFOS,              LIST_INFOS),
    MAP_HELPER(DGUS_ScreenID::WAIT,               LIST_WAIT),
@@ -416,7 +487,7 @@ index 32e95f2508..b2d89f7c56 100644
    MAP_HELPER((DGUS_ScreenID)0, nullptr)
  };
 diff --git a/Marlin/src/lcd/extui/dgus_reloaded/definition/DGUS_VPList.cpp b/Marlin/src/lcd/extui/dgus_reloaded/definition/DGUS_VPList.cpp
-index 68a48e47f4..cc16a07017 100644
+index 68a48e47f4..b4130ee0b6 100644
 --- a/Marlin/src/lcd/extui/dgus_reloaded/definition/DGUS_VPList.cpp
 +++ b/Marlin/src/lcd/extui/dgus_reloaded/definition/DGUS_VPList.cpp
 @@ -148,6 +148,11 @@ const struct DGUS_VP vp_list[] PROGMEM = {
@@ -431,7 +502,20 @@ index 68a48e47f4..cc16a07017 100644
    // WRITE-ONLY VARIABLES
  
    #if HAS_MEDIA
-@@ -318,6 +323,10 @@ const struct DGUS_VP vp_list[] PROGMEM = {
+@@ -176,6 +181,12 @@ const struct DGUS_VP vp_list[] PROGMEM = {
+   VP_HELPER_TX_AUTO(DGUS_Addr::STATUS_PositionZ,
+                     nullptr,
+                     &DGUSTxHandler::zPosition),
++  VP_HELPER(DGUS_Addr::STATUS_JobName,
++            DGUS_FILENAME_LEN,
++            VPFLAG_NONE,
++            (void*)DGUSScreenHandler::job_name,
++            nullptr,
++            &DGUSTxHandler::extraToString),
+   VP_HELPER(DGUS_Addr::STATUS_Elapsed,
+             DGUS_ELAPSED_LEN,
+             VPFLAG_AUTOUPLOAD,
+@@ -318,6 +329,10 @@ const struct DGUS_VP vp_list[] PROGMEM = {
  
    VP_HELPER_TX(DGUS_Addr::WAIT_Icons, &DGUSTxHandler::waitIcons),
  
@@ -442,7 +526,7 @@ index 68a48e47f4..cc16a07017 100644
    // READ-WRITE VARIABLES
  
    VP_HELPER(DGUS_Addr::FAN0_Speed,
-@@ -355,6 +364,22 @@ const struct DGUS_VP vp_list[] PROGMEM = {
+@@ -355,6 +370,22 @@ const struct DGUS_VP vp_list[] PROGMEM = {
              &DGUSRxHandler::brightness,
              &DGUSTxHandler::brightness),
  

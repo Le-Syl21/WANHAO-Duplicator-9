@@ -436,6 +436,7 @@ G1 Z0 F300  ; ファームウェアがゼロだと思っている高さまでノ
 M851 Z-1.30 ; あなたの値
 M500
 M211 S1     ; ソフトリミットを戻す。ベッドを守ってくれる</code></pre>
+<p>v2.1.0 以降では <code>M211</code> の 2 行は不要です。ファームウェアがノズルをゼロより 3 mm 下まで下げられるようにしています。</p>
 
 <h3>4. ベッドをプロービングする</h3>
 <p>画面で：<em>設定</em> → <em>レベリング</em> → <em>自動</em> → <em>プローブ</em>。プリンターが 25 点を測定し、<strong>メッシュを自動で保存します</strong>（<code>G29</code> のあと <code>M500</code> を実行します）。数分かかります。USB からは <code>G29</code> のあと <code>M500</code>。</p>
@@ -460,6 +461,7 @@ M211 S1     ; ソフトリミットを戻す。ベッドを守ってくれる</c
 <div class="cards">
 <figure><img src="{img}benchy-orca.webp" width="760" height="621" alt="Wanhao D9 MK2 300 で OrcaSlicer のプロファイルを使って印刷した 3DBenchy"><figcaption>OrcaSlicer、1 時間 14 分</figcaption></figure>
 <figure><img src="{img}benchy-cura.webp" width="760" height="685" alt="Wanhao D9 MK2 300 で Cura のプロファイルを使って印刷した 3DBenchy"><figcaption>Cura、1 時間 22 分</figcaption></figure>
+<figure><img src="{img}benchy-petg-dustovich.webp" width="760" height="594" alt="dustovich さんが Wanhao D9 で PETG を使って印刷した 3DBenchy"><figcaption>PETG · dustovich</figcaption></figure>
 </div>
 <p><strong>どちらから始めるか：</strong>D9 MK2 300 で PLA を使うと、同じ Benchy が <strong>OrcaSlicer では 1 時間 14 分</strong>、<strong>Cura では 1 時間 22 分</strong>かかり、壁面は OrcaSlicer のほうがわずかにきれいでした。どちらも良いスライサーですが、私たちなら OrcaSlicer から始めます。もっと追い込みたくなったときは、そのキャリブレーション機能（フロー、pressure advance、温度タワー）が役に立ちます。</p>
 <div class="note">D9 はオープンフレームです。ABS には最低でもすきま風のない部屋が必要で、ベッド温度はお使いの機種が許す値まで下げてあります（MK3 500 では 80 °C）。</div>

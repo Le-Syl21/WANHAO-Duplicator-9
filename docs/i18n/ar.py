@@ -508,6 +508,7 @@ G1 Z0 F300  ; the nozzle comes down to what the firmware thinks is zero</code></
 M851 Z-1.30 ; your value
 M500
 M211 S1     ; put the soft limits back, they protect the bed</code></pre>
+<p>بدءًا من الإصدار v2.1.0 يمكن الاستغناء عن سطرَي <code>M211</code>: فالبرنامج الثابت يسمح أصلًا بنزول الفوهة 3 مم تحت الصفر.</p>
 
 <h3>4. قِس السرير</h3>
 <p>من الشاشة: <em>الإعدادات</em> ← <em>تسوية السرير</em> ← <em>تلقائي</em> ← <em>قياس</em>. تقيس الطابعة 25 نقطة
@@ -542,6 +543,7 @@ M211 S1     ; put the soft limits back, they protect the bed</code></pre>
 <div class="cards">
 <figure><img src="{img}benchy-orca.webp" width="760" height="621" alt="نموذج 3DBenchy مطبوع بملف تعريف OrcaSlicer على طابعة Wanhao D9 MK2 300"><figcaption>OrcaSlicer، ساعة و14 دقيقة</figcaption></figure>
 <figure><img src="{img}benchy-cura.webp" width="760" height="685" alt="نموذج 3DBenchy مطبوع بملف تعريف Cura على طابعة Wanhao D9 MK2 300"><figcaption>Cura، ساعة و22 دقيقة</figcaption></figure>
+<figure><img src="{img}benchy-petg-dustovich.webp" width="760" height="594" alt="نموذج 3DBenchy مطبوع بخيط PETG على طابعة Wanhao D9، من dustovich"><figcaption>PETG · dustovich</figcaption></figure>
 </div>
 <p><strong>بأيّهما تبدأ:</strong> على طابعة D9 MK2 300 وبخيط PLA، استغرق النموذج Benchy نفسه <strong>ساعة و14 دقيقة مع
 OrcaSlicer</strong> و<strong>ساعة و22 دقيقة مع Cura</strong>، وخرجت جدران OrcaSlicer أنظف قليلًا. كلاهما جيد، ونحن

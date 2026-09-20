@@ -436,6 +436,7 @@ G1 Z0 F300  ; 喷嘴下降到固件认为的零点</code></pre>
 M851 Z-1.30 ; 你的数值
 M500
 M211 S1     ; 恢复软件限位，它们保护着热床</code></pre>
+<p>从 v2.1.0 起可以省略两行 <code>M211</code>：固件已允许喷嘴降到零点以下 3 毫米。</p>
 
 <h3>4. 探测热床</h3>
 <p>在屏幕上：<em>设置</em> → <em>调平</em> → <em>自动</em> → <em>探测</em>。打印机会测量 25 个点并<strong>自动保存网格</strong>（它会执行 <code>G29</code> 然后 <code>M500</code>）。需要几分钟。通过 USB：<code>G29</code> 然后 <code>M500</code>。</p>
@@ -460,6 +461,7 @@ M211 S1     ; 恢复软件限位，它们保护着热床</code></pre>
 <div class="cards">
 <figure><img src="{img}benchy-orca.webp" width="760" height="621" alt="用 OrcaSlicer 配置在 Wanhao D9 MK2 300 上打印的 3DBenchy"><figcaption>OrcaSlicer，1 小时 14 分</figcaption></figure>
 <figure><img src="{img}benchy-cura.webp" width="760" height="685" alt="用 Cura 配置在 Wanhao D9 MK2 300 上打印的 3DBenchy"><figcaption>Cura，1 小时 22 分</figcaption></figure>
+<figure><img src="{img}benchy-petg-dustovich.webp" width="760" height="594" alt="由 dustovich 在 Wanhao D9 上用 PETG 打印的 3DBenchy"><figcaption>PETG · dustovich</figcaption></figure>
 </div>
 <p><strong>先从哪一个开始：</strong>在一台 D9 MK2 300 上用 PLA 打印，同一个 Benchy 在 <strong>OrcaSlicer 里用了 1 小时 14 分</strong>，在 <strong>Cura 里用了 1 小时 22 分</strong>，而且 OrcaSlicer 打出来的外壁略微更干净一些。两款都很好；我们会从 OrcaSlicer 开始，等你想更进一步时，它的校准工具（流量、pressure advance、温度塔）就派得上用场。</p>
 <div class="note">D9 是开放式的：打印 ABS 至少需要一个没有穿堂风的房间，而它的热床温度会被降到你的型号所能接受的数值（MK3 500 上为 80 °C）。</div>

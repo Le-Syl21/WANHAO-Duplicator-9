@@ -510,6 +510,7 @@ G1 Z0 F300  ; nozzle turun ke titik yang dianggap nol oleh firmware</code></pre>
 M851 Z-1.30 ; nilai Anda
 M500
 M211 S1     ; pasang lagi batas lunaknya, itu yang melindungi bed</code></pre>
+<p>Mulai v2.1.0, dua baris <code>M211</code> bisa dilewati: firmware sudah mengizinkan nozel turun 3 mm di bawah nol.</p>
 
 <h3>4. Probing bed</h3>
 <p>Di layar: <em>Pengaturan</em> → <em>Perataan</em> → <em>Otomatis</em> → <em>Probe</em>. Printer mengukur 25 titik
@@ -545,6 +546,7 @@ ketiga materialnya. Berkas pada <a href="{REPO}/releases/latest">rilis terbaru</
 <div class="cards">
 <figure><img src="{img}benchy-orca.webp" width="760" height="621" alt="3DBenchy yang dicetak dengan profil OrcaSlicer pada Wanhao D9 MK2 300"><figcaption>OrcaSlicer, 1 h 14</figcaption></figure>
 <figure><img src="{img}benchy-cura.webp" width="760" height="685" alt="3DBenchy yang dicetak dengan profil Cura pada Wanhao D9 MK2 300"><figcaption>Cura, 1 h 22</figcaption></figure>
+<figure><img src="{img}benchy-petg-dustovich.webp" width="760" height="594" alt="3DBenchy dicetak dengan PETG di Wanhao D9, oleh dustovich"><figcaption>PETG · dustovich</figcaption></figure>
 </div>
 <p><strong>Mulai dari yang mana:</strong> pada D9 MK2 300 dengan PLA, Benchy yang sama memakan <strong>1 h 14 dengan
 OrcaSlicer</strong> dan <strong>1 h 22 dengan Cura</strong>, dan dinding hasil OrcaSlicer keluar sedikit lebih bersih.

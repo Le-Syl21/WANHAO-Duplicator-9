@@ -510,6 +510,7 @@ G1 Z0 F300  ; сопло опускается в ноль, каким его с�
 M851 Z-1.30 ; ваше значение
 M500
 M211 S1     ; вернуть программные ограничители, они берегут стол</code></pre>
+<p>Начиная с v2.1.0 две строки <code>M211</code> можно не писать: прошивка уже разрешает соплу опускаться на 3 мм ниже нуля.</p>
 
 <h3>4. Прозондируйте стол</h3>
 <p>На экране: <em>Настройки</em> → <em>Выравнивание</em> → <em>Автоматически</em> → <em>Зонд</em>. Принтер измеряет
@@ -545,6 +546,7 @@ M211 S1     ; вернуть программные ограничители, о
 <div class="cards">
 <figure><img src="{img}benchy-orca.webp" width="760" height="621" alt="3DBenchy, напечатанный с профилем OrcaSlicer на Wanhao D9 MK2 300"><figcaption>OrcaSlicer, 1 ч 14 мин</figcaption></figure>
 <figure><img src="{img}benchy-cura.webp" width="760" height="685" alt="3DBenchy, напечатанный с профилем Cura на Wanhao D9 MK2 300"><figcaption>Cura, 1 ч 22 мин</figcaption></figure>
+<figure><img src="{img}benchy-petg-dustovich.webp" width="760" height="594" alt="3DBenchy, напечатанный из PETG на Wanhao D9, автор dustovich"><figcaption>PETG · dustovich</figcaption></figure>
 </div>
 <p><strong>С чего начать:</strong> на D9 MK2 300 с PLA тот же Benchy занял <strong>1 ч 14 мин в
 OrcaSlicer</strong> и <strong>1 ч 22 мин в Cura</strong>, и стенки у OrcaSlicer вышли чуть чище. Оба хороши; мы бы

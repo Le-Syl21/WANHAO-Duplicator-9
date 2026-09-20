@@ -513,6 +513,7 @@ hij is negatief, bijvoorbeeld −1,30. Daarna:</p>
 M851 Z-1.30 ; jouw waarde
 M500
 M211 S1     ; zet de software-eindstops weer aan, ze beschermen het bed</code></pre>
+<p>Vanaf v2.1.0 kunt u de twee <code>M211</code>-regels weglaten: de firmware laat de nozzle al 3 mm onder nul zakken.</p>
 
 <h3>4. Meet het bed</h3>
 <p>Op het scherm: <em>Instellingen</em> → <em>Nivelleren</em> → <em>Automatisch</em> → <em>Meten</em>. De printer meet
@@ -548,6 +549,7 @@ materialen. De bestanden van de <a href="{REPO}/releases/latest">nieuwste releas
 <div class="cards">
 <figure><img src="{img}benchy-orca.webp" width="760" height="621" alt="3DBenchy geprint met het OrcaSlicer-profiel op een Wanhao D9 MK2 300"><figcaption>OrcaSlicer, 1 uur 14</figcaption></figure>
 <figure><img src="{img}benchy-cura.webp" width="760" height="685" alt="3DBenchy geprint met het Cura-profiel op een Wanhao D9 MK2 300"><figcaption>Cura, 1 uur 22</figcaption></figure>
+<figure><img src="{img}benchy-petg-dustovich.webp" width="760" height="594" alt="3DBenchy geprint in PETG op een Wanhao D9, door dustovich"><figcaption>PETG · dustovich</figcaption></figure>
 </div>
 <p><strong>Waarmee je begint:</strong> op een D9 MK2 300 in PLA deed dezelfde Benchy er <strong>1 uur 14 met
 OrcaSlicer</strong> en <strong>1 uur 22 met Cura</strong> over, en de wanden van OrcaSlicer kwamen er iets netter

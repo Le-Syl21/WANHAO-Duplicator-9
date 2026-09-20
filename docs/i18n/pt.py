@@ -510,6 +510,7 @@ G1 Z0 F300  ; o bico desce até o zero que o firmware acha que existe</code></pr
 M851 Z-1.30 ; o seu valor
 M500
 M211 S1     ; religa os limites por software, eles protegem a mesa</code></pre>
+<p>A partir da v2.1.0 pode omitir as duas linhas <code>M211</code>: o firmware já permite que o bico desça 3 mm abaixo do zero.</p>
 
 <h3>4. Sonde a mesa</h3>
 <p>Na tela: <em>Configurações</em> → <em>Nivelamento</em> → <em>Automático</em> → <em>Sondar</em>. A impressora mede
@@ -544,6 +545,7 @@ três materiais. Os arquivos da <a href="{REPO}/releases/latest">versão mais re
 <div class="cards">
 <figure><img src="{img}benchy-orca.webp" width="760" height="621" alt="3DBenchy impresso com o perfil OrcaSlicer em uma Wanhao D9 MK2 300"><figcaption>OrcaSlicer, 1 h 14</figcaption></figure>
 <figure><img src="{img}benchy-cura.webp" width="760" height="685" alt="3DBenchy impresso com o perfil Cura em uma Wanhao D9 MK2 300"><figcaption>Cura, 1 h 22</figcaption></figure>
+<figure><img src="{img}benchy-petg-dustovich.webp" width="760" height="594" alt="3DBenchy impresso em PETG numa Wanhao D9, por dustovich"><figcaption>PETG · dustovich</figcaption></figure>
 </div>
 <p><strong>Por qual começar:</strong> em uma D9 MK2 300 em PLA, o mesmo Benchy levou <strong>1 h 14 com
 OrcaSlicer</strong> e <strong>1 h 22 com Cura</strong>, e as paredes do OrcaSlicer saíram um pouco mais limpas. Os

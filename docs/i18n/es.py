@@ -510,6 +510,7 @@ G1 Z0 F300  ; la boquilla baja al cero que cree el firmware</code></pre>
 M851 Z-1.30 ; su valor
 M500
 M211 S1     ; vuelve a poner los finales de carrera por software, protegen la cama</code></pre>
+<p>A partir de la v2.1.0 puede omitir las dos líneas <code>M211</code>: el firmware ya permite que la boquilla baje 3 mm por debajo del cero.</p>
 
 <h3>4. Palpe la cama</h3>
 <p>En la pantalla: <em>Ajustes</em> → <em>Nivelación</em> → <em>Automático</em> → <em>Palpar</em>. La impresora mide
@@ -544,6 +545,7 @@ tres materiales. Los archivos de la <a href="{REPO}/releases/latest">última ver
 <div class="cards">
 <figure><img src="{img}benchy-orca.webp" width="760" height="621" alt="3DBenchy impreso con el perfil OrcaSlicer en una Wanhao D9 MK2 300"><figcaption>OrcaSlicer, 1 h 14</figcaption></figure>
 <figure><img src="{img}benchy-cura.webp" width="760" height="685" alt="3DBenchy impreso con el perfil Cura en una Wanhao D9 MK2 300"><figcaption>Cura, 1 h 22</figcaption></figure>
+<figure><img src="{img}benchy-petg-dustovich.webp" width="760" height="594" alt="3DBenchy impreso en PETG en una Wanhao D9, por dustovich"><figcaption>PETG · dustovich</figcaption></figure>
 </div>
 <p><strong>Por cuál empezar:</strong> en una D9 MK2 300 en PLA, el mismo Benchy tardó <strong>1 h 14 con
 OrcaSlicer</strong> y <strong>1 h 22 con Cura</strong>, y las paredes de OrcaSlicer salieron algo más limpias. Los
