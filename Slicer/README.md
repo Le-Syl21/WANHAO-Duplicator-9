@@ -24,6 +24,7 @@ The same settings in both slicers:
 - **Acceleration:** the firmware's own (800 mm/s² printing and 1000 travel; 500 on the MK1). OrcaSlicer sends them with `M204`, Cura leaves them to the firmware.
 - **Filaments (OrcaSlicer):** PLA 210 °C / bed 65 °C on the first layer, then 205 / 60; PETG 240 / 80, then 235 / 75; ABS 245 / 105, then 245 / 100. Wanhao gives the hotend for materials melting at up to 250 °C. A bed temperature above what a model allows is brought down to its limit, so the ABS bed is 80 °C on an MK3 500. ABS also wants an enclosure: the D9 is open. Cura uses its own material library.
 - **Fan:** off on the first layer, then 100 % for PLA, 30 to 50 % for PETG and 10 to 30 % for ABS.
+- **Wanhao's own numbers:** speeds, extrusion multiplier, retraction and first layer come from the Simplify3D profile Wanhao publishes for the D9: 50 mm/s by default (outer walls 50 %, inner walls and solid infill 80 %, first layer 50 %), a 0.90 extrusion multiplier, 2 mm of retraction, two perimeters, and a first layer printed **120 % high and 150 % wide** — squashed and wide, which forgives a bowed bed.
 - **Priming line:** the start G-code draws two 120 mm lines of filament 15 mm from the left edge, clear of the bed clips (160 mm on a 400, 200 mm on a 500), wipes sideways and lifts. The nozzle arrives at the model clean, without the blob it collects while heating.
 
 ### Limits taken from each firmware
@@ -106,6 +107,7 @@ Les mêmes réglages dans les deux slicers :
 - **Accélération :** celles du firmware (800 mm/s² en impression et 1000 en déplacement ; 500 sur la MK1). OrcaSlicer les envoie avec `M204`, Cura les laisse au firmware.
 - **Filaments (OrcaSlicer) :** PLA 210 °C / plateau 65 °C sur la première couche, puis 205 / 60 ; PETG 240 / 80, puis 235 / 75 ; ABS 245 / 105, puis 245 / 100. Wanhao donne la buse pour des matériaux fondant jusqu'à 250 °C. Une température de plateau supérieure à ce qu'accepte un modèle est ramenée à sa limite : le plateau ABS est donc à 80 °C sur une MK3 500. L'ABS demande aussi un caisson : la D9 est ouverte. Cura utilise sa propre bibliothèque de matériaux.
 - **Ventilateur :** coupé sur la première couche, puis 100 % pour le PLA, 30 à 50 % pour le PETG et 10 à 30 % pour l'ABS.
+- **Les valeurs de Wanhao :** vitesses, multiplicateur d'extrusion, rétraction et première couche viennent du profil Simplify3D que Wanhao publie pour la D9 : 50 mm/s par défaut (parois extérieures 50 %, parois intérieures et remplissage plein 80 %, première couche 50 %), un multiplicateur d'extrusion de 0,90, 2 mm de rétraction, deux périmètres, et une première couche **120 % plus haute et 150 % plus large** — écrasée et large, ce qui pardonne un plateau bombé.
 - **Ligne d'amorçage :** le G-code de début trace deux lignes de filament de 120 mm à 15 mm du bord gauche, au-delà des pinces du plateau (160 mm sur une 400, 200 mm sur une 500), essuie la buse sur le côté puis la lève. La buse arrive propre sur la pièce, sans la boule qu'elle accumule pendant la chauffe.
 
 ### Limites reprises de chaque firmware

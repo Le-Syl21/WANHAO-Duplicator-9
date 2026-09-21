@@ -25,7 +25,7 @@
         "20"
     ],
     "filament_flow_ratio": [
-        "0.98"
+        "0.9"
     ],
     "filament_max_volumetric_speed": [
         "12"
@@ -58,7 +58,7 @@
         "1"
     ],
     "nozzle_temperature": [
-        "205"
+        "210"
     ],
     "nozzle_temperature_initial_layer": [
         "210"
@@ -79,19 +79,19 @@
         "60"
     ],
     "cool_plate_temp_initial_layer": [
-        "65"
+        "60"
     ],
     "eng_plate_temp_initial_layer": [
-        "65"
+        "60"
     ],
     "hot_plate_temp_initial_layer": [
-        "65"
+        "60"
     ],
     "textured_plate_temp_initial_layer": [
-        "65"
+        "60"
     ],
     "supertack_plate_temp_initial_layer": [
-        "65"
+        "60"
     ],
     "fan_min_speed": [
         "100"

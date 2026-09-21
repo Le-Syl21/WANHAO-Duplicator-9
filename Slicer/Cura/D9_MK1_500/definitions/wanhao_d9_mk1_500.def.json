@@ -92,7 +92,7 @@
             "maximum_value_warning": "105"
         },
         "retraction_amount": {
-            "default_value": 1.5
+            "default_value": 2.0
         },
         "retraction_speed": {
             "default_value": 25
@@ -104,40 +104,52 @@
             "value": "'noskin'"
         },
         "speed_print": {
-            "default_value": 60
+            "default_value": 50
         },
         "speed_wall_0": {
-            "value": "40"
+            "value": "25"
         },
         "speed_wall_x": {
-            "value": "60"
+            "value": "40"
         },
         "speed_infill": {
-            "value": "70"
+            "value": "50"
         },
         "speed_topbottom": {
             "value": "40"
         },
         "speed_support": {
-            "value": "50"
+            "value": "35"
         },
         "speed_layer_0": {
-            "value": "20"
+            "value": "25"
         },
         "speed_travel": {
-            "value": "150"
+            "value": "100"
         },
         "speed_z_hop": {
             "value": "5"
         },
         "wall_thickness": {
-            "value": "1.2"
+            "value": "0.8"
         },
         "top_thickness": {
-            "value": "0.8"
+            "value": "0.6"
         },
         "bottom_thickness": {
             "value": "0.6"
+        },
+        "material_flow": {
+            "default_value": 90
+        },
+        "line_width": {
+            "default_value": 0.4
+        },
+        "initial_layer_line_width": {
+            "default_value": 150
+        },
+        "infill_overlap": {
+            "default_value": 15
         },
         "infill_sparse_density": {
             "default_value": 15
@@ -152,13 +164,16 @@
             "default_value": false
         },
         "layer_height_0": {
-            "default_value": 0.2
+            "default_value": 0.24
         },
         "adhesion_type": {
             "default_value": "skirt"
         },
         "skirt_line_count": {
             "default_value": 2
+        },
+        "skirt_gap": {
+            "default_value": 4
         },
         "support_enable": {
             "default_value": false

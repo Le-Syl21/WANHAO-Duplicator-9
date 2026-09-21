@@ -24,11 +24,11 @@ SIZES = {"300": (300, 300, 400), "400": (400, 400, 400), "500": (500, 500, 500)}
 MODELS = {
     "MK1": dict(accel_max=500, accel_print=500, accel_travel=500, accel_retract=800,
                 bed_maxtemp={"300": 115, "400": 115, "500": 115}),
-    "MK1u2": dict(accel_max=3000, accel_print=800, accel_travel=1000, accel_retract=800,
+    "MK1u2": dict(accel_max=3000, accel_print=1000, accel_travel=1000, accel_retract=800,
                   bed_maxtemp={"300": 125, "400": 125, "500": 125}),
-    "MK2": dict(accel_max=3000, accel_print=800, accel_travel=1000, accel_retract=800,
+    "MK2": dict(accel_max=3000, accel_print=1000, accel_travel=1000, accel_retract=800,
                 bed_maxtemp={"300": 125, "400": 125, "500": 125}),
-    "MK3": dict(accel_max=3000, accel_print=800, accel_travel=1000, accel_retract=800,
+    "MK3": dict(accel_max=3000, accel_print=1000, accel_travel=1000, accel_retract=800,
                 bed_maxtemp={"300": 105, "400": 105, "500": 90}),
 }
 MAX_FEEDRATE = dict(x=300, y=300, z=5, e=25)
@@ -36,23 +36,29 @@ JERK = dict(xy=10, z=0.4, e=1)
 HOTEND_MAXTEMP = 305
 HOTEND_OVERSHOOT, BED_OVERSHOOT = 15, 10       # Marlin refuses targets above MAXTEMP minus these
 
-RETRACT_LENGTH, RETRACT_SPEED = 1.5, 25
+# Wanhao's own Simplify3D profile asks 1800 mm/min, which the firmware caps at 25 mm/s anyway.
+RETRACT_LENGTH, RETRACT_SPEED = 2.0, 25
 PRIME_LINE_WIDTH, PRIME_LINE_HEIGHT = 0.6, 0.3
-SPEED = dict(print=60, outer_wall=40, inner_wall=60, infill=70, top=40, first_layer=20, travel=150, support=50,
-             bridge=30)
+# Speeds of Wanhao's Simplify3D profile for the D9: 50 mm/s by default, then its percentages —
+# outer walls 50 %, inner walls and solid infill 80 %, first layer 50 %, supports 70 %, bridges 100 %.
+SPEED = dict(print=50, outer_wall=25, inner_wall=40, infill=50, top=40, first_layer=25, travel=100, support=35,
+             bridge=50)
+FIRST_LAYER_HEIGHT_RATIO = 1.2      # Wanhao: 120 %, a squashed first layer that forgives a bowed bed
+FIRST_LAYER_WIDTH = 0.6             # Wanhao: 150 % of the 0.4 mm extrusion width
+EXTRUSION_WIDTH = 0.4               # Wanhao sets it by hand rather than letting the slicer decide
 
 # Filaments for OrcaSlicer (Cura has its own material library). Standalone presets, so they import into any OrcaSlicer
 # version; the material values are those of OrcaSlicer's Generic PLA / PETG.
 FILAMENTS = {
-    "PLA": dict(nozzle=205, nozzle_first=210, bed=60, bed_first=65, fan_min=100, fan_max=100, fan_off_layers=1,
-                density=1.24, cost=20, flow=0.98, max_volumetric=12, range=(190, 240), vitrification=45,
+    "PLA": dict(nozzle=210, nozzle_first=210, bed=60, bed_first=60, fan_min=100, fan_max=100, fan_off_layers=1,
+                density=1.24, cost=20, flow=0.90, max_volumetric=12, range=(190, 240), vitrification=45,
                 slow_layer_time=4, cooling_layer_time=100, overhang_threshold="50%"),
     "PETG": dict(nozzle=235, nozzle_first=240, bed=75, bed_first=80, fan_min=30, fan_max=50, fan_off_layers=3,
-                 density=1.27, cost=30, flow=1, max_volumetric=10, range=(220, 260), vitrification=70,
+                 density=1.27, cost=30, flow=0.90, max_volumetric=10, range=(220, 260), vitrification=70,
                  slow_layer_time=8, cooling_layer_time=20, overhang_threshold="95%"),
     # Wanhao gives the D9's hotend for materials melting at up to 250 °C, so ABS stays at 245.
     "ABS": dict(nozzle=245, nozzle_first=245, bed=100, bed_first=105, fan_min=10, fan_max=30, fan_off_layers=3,
-                density=1.04, cost=20, flow=0.926, max_volumetric=12, range=(230, 250), vitrification=110,
+                density=1.04, cost=20, flow=0.90, max_volumetric=12, range=(230, 250), vitrification=110,
                 slow_layer_time=3, cooling_layer_time=30, overhang_threshold="25%"),
 }
 PROCESSES = {"Fine": 0.12, "Standard": 0.20, "Draft": 0.28}
@@ -178,16 +184,21 @@ def cura(model, size, out):
             "speed_layer_0": {"value": str(SPEED["first_layer"])},
             "speed_travel": {"value": str(SPEED["travel"])},
             "speed_z_hop": {"value": str(MAX_FEEDRATE["z"])},
-            "wall_thickness": {"value": "1.2"},
-            "top_thickness": {"value": "0.8"},
+            "wall_thickness": {"value": "0.8"},
+            "top_thickness": {"value": "0.6"},
             "bottom_thickness": {"value": "0.6"},
+            "material_flow": dv(90),
+            "line_width": dv(EXTRUSION_WIDTH),
+            "initial_layer_line_width": dv(round(FIRST_LAYER_WIDTH / EXTRUSION_WIDTH * 100)),
+            "infill_overlap": dv(15),
             "infill_sparse_density": dv(15),
             "infill_pattern": {"value": "'gyroid'"},
             "acceleration_enabled": dv(False),
             "jerk_enabled": dv(False),
-            "layer_height_0": dv(0.2),
+            "layer_height_0": dv(0.24),
             "adhesion_type": dv("skirt"),
             "skirt_line_count": dv(2),
+            "skirt_gap": dv(4),
             "support_enable": dv(False),
             "cool_fan_full_layer": {"value": "2"},
         },
@@ -252,9 +263,12 @@ def orca(model, size, out):
         presets.append(("process", name, {
             "type": "process", "name": name, "from": "User", "inherits": "", "version": VERSION,
             "print_settings_id": name, **compatible,
-            "layer_height": f"{layer:.2f}", "initial_layer_print_height": "0.2",
-            "wall_loops": "3", "top_shell_layers": str(max(4, round(0.8 / layer))),
-            "bottom_shell_layers": str(max(3, round(0.6 / layer))),
+            "layer_height": f"{layer:.2f}",
+            "initial_layer_print_height": f"{layer * FIRST_LAYER_HEIGHT_RATIO:.2f}",
+            "line_width": str(EXTRUSION_WIDTH), "initial_layer_line_width": str(FIRST_LAYER_WIDTH),
+            "wall_loops": "2", "top_shell_layers": "4" if label == "Fine" else "3",
+            "bottom_shell_layers": "4" if label == "Fine" else "3",
+            "infill_wall_overlap": "15%",
             "sparse_infill_density": "15%", "sparse_infill_pattern": "gyroid",
             "outer_wall_speed": str(SPEED["outer_wall"]), "inner_wall_speed": str(SPEED["inner_wall"]),
             "sparse_infill_speed": str(SPEED["infill"]), "internal_solid_infill_speed": str(SPEED["infill"]),
@@ -266,7 +280,7 @@ def orca(model, size, out):
             "inner_wall_acceleration": str(m["accel_print"]), "top_surface_acceleration": str(m["accel_print"]),
             "sparse_infill_acceleration": str(m["accel_print"]), "initial_layer_acceleration": str(m["accel_print"]), "bridge_acceleration": str(m["accel_print"]),
             "travel_acceleration": str(m["accel_travel"]),
-            "default_jerk": "0", "skirt_loops": "2", "skirt_distance": "5", "brim_type": "no_brim",
+            "default_jerk": "0", "skirt_loops": "2", "skirt_distance": "4", "brim_type": "no_brim",
             "enable_support": "0", "enable_arc_fitting": "0",
         }))
     bed_max = m["bed_maxtemp"][size] - BED_OVERSHOOT
