@@ -76,8 +76,14 @@ def start_gcode(bed, nozzle, relative_e, depth, bltouch):
         "G28 ; home all axes (this turns bed levelling off)",
         "M420 S1 ; turn the bed mesh saved from the screen back on",
         "G1 Z10 F300",
+        # The nozzle climbs to its printing temperature while the bed finishes,
+        # instead of waiting its turn: on a 300 mm bed that saves a minute or
+        # two. It stays at 150 until here, so it neither drools on the bed nor
+        # leaves a blob under the probe while homing. What it oozes during the
+        # last wait is wiped by the priming line below.
+        f"M104 S{nozzle} ; start the nozzle now, the bed is still heating",
         f"M190 S{bed} ; wait for the bed",
-        f"M109 S{nozzle} ; wait for the nozzle",
+        f"M109 S{nozzle} ; and confirm the nozzle",
         "G92 E0",
         f"G1 X15 Y{y0} Z{PRIME_LINE_HEIGHT} F3000 ; start of the priming line",
         f"G1 Y{y1} E{e} F1200 ; draw a line of filament",
