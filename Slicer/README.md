@@ -54,7 +54,7 @@ G1 Y20 E9.0 F1200
 G1 X22 F6000            ; wipe sideways to snap the string
 ```
 
-The nozzle is raised 10 mm before homing: a print stopped by hand can leave it resting on the bed, and the probe would then touch the bed and go into alarm (a BLTouch blinks red). The bed starts heating and the nozzle waits at 150 °C, so it does not ooze, while the printer homes; both reach their printing temperature afterwards. **Run a bed levelling from the screen first** (and save it): the profiles use the saved mesh, they do not probe before each print.
+The nozzle is raised 10 mm before homing: a print stopped by hand can leave it resting on the bed, and the probe would then touch the bed and go into alarm (a BLTouch blinks red). The bed starts heating and the nozzle waits at 150 °C, so it does not ooze, while the printer homes. The nozzle then climbs to its printing temperature **while the bed finishes**, rather than waiting its turn: the two heats overlap, which saves a minute or two on a 300 mm bed. **Run a bed levelling from the screen first** (and save it): the profiles use the saved mesh, they do not probe before each print.
 
 At the end the heaters and the fan turn off, the nozzle rises 10 mm and the bed comes to the front. The X, Y and extruder motors turn off; Z keeps its position.
 
@@ -136,7 +136,7 @@ G1 Y20 E9.0 F1200
 G1 X22 F6000            ; essuyage, casse le fil
 ```
 
-La buse remonte de 10 mm avant le homing : une impression arrêtée à la main peut la laisser posée sur le plateau, et la sonde toucherait alors le plateau et partirait en alarme (un BLTouch clignote rouge). Le plateau commence à chauffer et la buse attend à 150 °C, pour ne pas couler, pendant le homing ; les deux montent ensuite à leur température d'impression. **Faites d'abord un nivellement depuis l'écran** (et enregistrez-le) : les profils utilisent le maillage enregistré, ils ne palpent pas avant chaque impression.
+La buse remonte de 10 mm avant le homing : une impression arrêtée à la main peut la laisser posée sur le plateau, et la sonde toucherait alors le plateau et partirait en alarme (un BLTouch clignote rouge). Le plateau commence à chauffer et la buse attend à 150 °C, pour ne pas couler, pendant le homing. La buse monte ensuite à sa température d'impression **pendant que le plateau termine**, au lieu d'attendre son tour : les deux chauffes se recouvrent, ce qui fait gagner une à deux minutes sur un plateau de 300 mm. **Faites d'abord un nivellement depuis l'écran** (et enregistrez-le) : les profils utilisent le maillage enregistré, ils ne palpent pas avant chaque impression.
 
 À la fin, les chauffes et le ventilateur s'arrêtent, la buse monte de 10 mm et le plateau vient à l'avant. Les moteurs X, Y et de l'extrudeur se coupent ; Z garde sa position.
 
