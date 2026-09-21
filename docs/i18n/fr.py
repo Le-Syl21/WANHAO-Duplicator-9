@@ -520,7 +520,7 @@ avec <code>M114</code> : elle est négative, par exemple −1,30. Ensuite :</p>
 M851 Z-1.30 ; votre valeur
 M500
 M211 S1     ; remet les butées logicielles, elles protègent le plateau</code></pre>
-<p>À partir de la v2.1.0, les deux lignes <code>M211</code> sont inutiles : le firmware autorise déjà la buse à descendre 3 mm sous le zéro.</p>
+<p>À partir de la v2.1.1, les deux lignes <code>M211</code> sont inutiles : le firmware autorise déjà la buse à descendre 3 mm sous le zéro.</p>
 
 <h3>4. Palpez le plateau</h3>
 <p>À l'écran : <em>Réglages</em> → <em>Nivellement</em> → <em>Automatique</em> → <em>Palper</em>. L'imprimante mesure

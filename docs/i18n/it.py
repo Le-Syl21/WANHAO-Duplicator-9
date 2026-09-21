@@ -510,7 +510,7 @@ G1 Z0 F300  ; l'ugello scende allo zero che crede il firmware</code></pre>
 M851 Z-1.30 ; il tuo valore
 M500
 M211 S1     ; rimette i finecorsa software, proteggono il piatto</code></pre>
-<p>Dalla v2.1.0 le due righe <code>M211</code> non servono: il firmware permette già all'ugello di scendere 3 mm sotto lo zero.</p>
+<p>Dalla v2.1.1 le due righe <code>M211</code> non servono: il firmware permette già all'ugello di scendere 3 mm sotto lo zero.</p>
 
 <h3>4. Tasta il piatto</h3>
 <p>Sullo schermo: <em>Impostazioni</em> → <em>Livellamento</em> → <em>Automatico</em> → <em>Tasta</em>. La stampante

@@ -513,7 +513,7 @@ hij is negatief, bijvoorbeeld −1,30. Daarna:</p>
 M851 Z-1.30 ; jouw waarde
 M500
 M211 S1     ; zet de software-eindstops weer aan, ze beschermen het bed</code></pre>
-<p>Vanaf v2.1.0 kunt u de twee <code>M211</code>-regels weglaten: de firmware laat de nozzle al 3 mm onder nul zakken.</p>
+<p>Vanaf v2.1.1 kunt u de twee <code>M211</code>-regels weglaten: de firmware laat de nozzle al 3 mm onder nul zakken.</p>
 
 <h3>4. Meet het bed</h3>
 <p>Op het scherm: <em>Instellingen</em> → <em>Nivelleren</em> → <em>Automatisch</em> → <em>Meten</em>. De printer meet
