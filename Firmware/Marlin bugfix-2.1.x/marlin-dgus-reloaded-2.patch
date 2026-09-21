@@ -1,5 +1,5 @@
 diff --git a/Marlin/src/lcd/extui/dgus_reloaded/DGUSRxHandler.cpp b/Marlin/src/lcd/extui/dgus_reloaded/DGUSRxHandler.cpp
-index 68e1f95b79..c376809caa 100644
+index 68e1f95b79..d1615a2433 100644
 --- a/Marlin/src/lcd/extui/dgus_reloaded/DGUSRxHandler.cpp
 +++ b/Marlin/src/lcd/extui/dgus_reloaded/DGUSRxHandler.cpp
 @@ -30,6 +30,10 @@
@@ -13,7 +13,20 @@ index 68e1f95b79..c376809caa 100644
  #include "../../../core/language.h"
  #include "../../../module/temperature.h"
  #include "../../../module/printcounter.h"
-@@ -934,6 +938,64 @@ void DGUSRxHandler::waitContinue(DGUS_VP &vp, void *data_ptr) {
+@@ -516,7 +520,11 @@ void DGUSRxHandler::disableABL(DGUS_VP &vp, void *data_ptr) {
+     return;
+   }
+ 
+-  ExtUI::setLevelingActive(false);
++  // Nothing to switch on without a mesh; the screen hides the control then,
++  // so this only guards against a stray key.
++  if (!ExtUI::getLevelingIsValid()) return;
++
++  ExtUI::setLevelingActive(!ExtUI::getLevelingActive());
+ 
+   screen.triggerEEPROMSave();
+   screen.triggerFullUpdate();
+@@ -934,6 +942,64 @@ void DGUSRxHandler::waitContinue(DGUS_VP &vp, void *data_ptr) {
    screen.triggerFullUpdate();
  }
  
@@ -256,7 +269,7 @@ index ec7ebc5bed..11aeedb9a4 100644
  };
  
 diff --git a/Marlin/src/lcd/extui/dgus_reloaded/DGUSTxHandler.cpp b/Marlin/src/lcd/extui/dgus_reloaded/DGUSTxHandler.cpp
-index d0059f056a..3e617ccb0e 100644
+index d0059f056a..6a2d647083 100644
 --- a/Marlin/src/lcd/extui/dgus_reloaded/DGUSTxHandler.cpp
 +++ b/Marlin/src/lcd/extui/dgus_reloaded/DGUSTxHandler.cpp
 @@ -30,6 +30,10 @@
@@ -280,7 +293,41 @@ index d0059f056a..3e617ccb0e 100644
    if (ExtUI::isPrinting()) {
      icons |= (uint16_t)DGUS_Data::StatusIcon::PAUSE;
  
-@@ -509,6 +516,38 @@ void DGUSTxHandler::waitIcons(DGUS_VP &vp) {
+@@ -277,20 +284,24 @@ void DGUSTxHandler::stepIcons(DGUS_VP &vp) {
+ void DGUSTxHandler::ablDisableIcon(DGUS_VP &vp) {
+   uint16_t data;
+ 
+-  if (ExtUI::getLevelingActive()) {
+-    data = (uint16_t)DGUS_Data::Status::ENABLED;
+-
+-    dgus.enableControl(DGUS_ScreenID::LEVELING_AUTOMATIC,
+-                               DGUSDisplay::RETURN_KEY_CODE,
+-                               DGUS_Control::DISABLE);
+-  }
+-  else {
+-    data = (uint16_t)DGUS_Data::Status::DISABLED;
++  // Three states, so the screen can show a switch instead of a one-way button:
++  // NO_MESH hides it, the other two follow bed levelling. ENABLED keeps the
++  // value stock DGUS Reloaded screens expect for "levelling on".
++  if (!ExtUI::getLevelingIsValid()) {
++    data = (uint16_t)DGUS_Data::Status::NO_MESH;
+ 
+     dgus.disableControl(DGUS_ScreenID::LEVELING_AUTOMATIC,
+                                 DGUSDisplay::RETURN_KEY_CODE,
+                                 DGUS_Control::DISABLE);
+   }
++  else {
++    data = (uint16_t)(ExtUI::getLevelingActive() ? DGUS_Data::Status::ENABLED
++                                                 : DGUS_Data::Status::DISABLED);
++
++    dgus.enableControl(DGUS_ScreenID::LEVELING_AUTOMATIC,
++                               DGUSDisplay::RETURN_KEY_CODE,
++                               DGUS_Control::DISABLE);
++  }
+ 
+   dgus.write((uint16_t)vp.addr, Swap16(data));
+ }
+@@ -509,6 +520,38 @@ void DGUSTxHandler::waitIcons(DGUS_VP &vp) {
    dgus.write((uint16_t)vp.addr, Swap16(icons));
  }
  
@@ -386,7 +433,7 @@ index 0562b89239..dcd2ec87b3 100644
    #define DGUS_LEVEL_CENTER_X ((X_BED_SIZE) / 2)
  #endif
 diff --git a/Marlin/src/lcd/extui/dgus_reloaded/config/DGUS_Data.h b/Marlin/src/lcd/extui/dgus_reloaded/config/DGUS_Data.h
-index e1c1bf557f..e3892931bb 100644
+index e1c1bf557f..429a10b0fc 100644
 --- a/Marlin/src/lcd/extui/dgus_reloaded/config/DGUS_Data.h
 +++ b/Marlin/src/lcd/extui/dgus_reloaded/config/DGUS_Data.h
 @@ -98,6 +98,11 @@ namespace DGUS_Data {
@@ -401,7 +448,7 @@ index e1c1bf557f..e3892931bb 100644
    // TX constants
  
    enum class SDType : uint16_t {
-@@ -114,7 +119,14 @@ namespace DGUS_Data {
+@@ -114,12 +119,20 @@ namespace DGUS_Data {
  
    enum class StatusIcon : uint16_t {
      PAUSE  = 1U << 0,
@@ -417,6 +464,13 @@ index e1c1bf557f..e3892931bb 100644
    };
  
    enum class Status : uint16_t {
+     DISABLED = 0,
+-    ENABLED  = 1
++    ENABLED  = 1,
++    NO_MESH  = 2  // Bed levelling only: no mesh has been probed yet
+   };
+ 
+   enum class StepIcon : uint16_t {
 diff --git a/Marlin/src/lcd/extui/dgus_reloaded/config/DGUS_ScreenID.h b/Marlin/src/lcd/extui/dgus_reloaded/config/DGUS_ScreenID.h
 index 546ebb4666..a32b775eff 100644
 --- a/Marlin/src/lcd/extui/dgus_reloaded/config/DGUS_ScreenID.h
