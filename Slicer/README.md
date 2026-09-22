@@ -71,6 +71,10 @@ At the end the heaters and the fan turn off, the nozzle rises 10 mm and the bed 
 
 Cura's built-in *Wanhao Duplicator 9* is a different, older profile: 300 only, raft and support on by default, 30 mm/s.
 
+**Simplify3D 5:** *File* → *Import FFF Profile…*, then choose `D9_<model>_<size>.fff` from the release. It starts from the profile Wanhao publishes for the D9, and adds what that one cannot know: the 400 and 500 beds, the BLTouch, the bed ceiling of each model, our start and end G-code, and the saved mesh instead of a `G29` before every print. Simplify3D emits its own heating, so its extruder is set not to wait at startup: the nozzle climbs while the bed finishes, and the start script waits for it with `M109` just before the priming line. Unlike the other two it cannot sit at 150 °C during homing, so it oozes a little more before that line.
+
+Simplify3D has no command line: these twelve profiles are generated from the same figures as the other two, but they have not been sliced automatically. Tell us if one of them misbehaves.
+
 ### How they were tested
 
 - **UltiMaker Cura 5.13.0:** started without its window, with the definitions in its configuration folder. All 12 printers were added without a single setting in error, and a 3DBenchy was sliced with the MK2 300.
@@ -153,6 +157,10 @@ La buse remonte de 10 mm avant le homing : une impression arrêtée à la main p
 3. Lancez Cura, *Paramètres* → *Imprimante* → *Ajouter une imprimante…* → *Ajouter une imprimante hors réseau* → *Wanhao* → *Wanhao D9 <modèle> <taille>*.
 
 Le profil *Wanhao Duplicator 9* fourni avec Cura est un autre profil, plus ancien : 300 uniquement, radeau et supports activés par défaut, 30 mm/s.
+
+**Simplify3D 5 :** *Fichier* → *Importer un profil FFF…*, puis choisissez `D9_<modèle>_<taille>.fff` dans la release. Il part du profil que Wanhao publie pour la D9 et y ajoute ce que celui-ci ne peut pas savoir : les plateaux 400 et 500, le BLTouch, le plafond de température de chaque modèle, notre G-code de début et de fin, et l'usage du maillage enregistré au lieu d'un `G29` avant chaque impression. Simplify3D émet ses propres chauffes : son extrudeur est donc réglé pour ne pas attendre au démarrage, la buse monte pendant que le plateau termine, et le script l'attend avec `M109` juste avant la ligne d'amorçage. Contrairement aux deux autres, il ne peut pas patienter à 150 °C pendant les origines : la buse coule donc un peu plus avant cette ligne.
+
+Simplify3D n'a pas de ligne de commande : ces douze profils sont générés à partir des mêmes valeurs que les deux autres, mais ils n'ont pas été tranchés automatiquement. Signalez-nous tout écart.
 
 ### Comment ils ont été testés
 

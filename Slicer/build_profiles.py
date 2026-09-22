@@ -64,7 +64,7 @@ FILAMENTS = {
 PROCESSES = {"Fine": 0.12, "Standard": 0.20, "Draft": 0.28}
 
 
-def start_gcode(bed, nozzle, relative_e, depth, bltouch):
+def start_gcode(bed, nozzle, relative_e, depth, bltouch, heats=True):
     """Heat, home, then draw a priming line 15 mm from the left edge, clear of the bed clips."""
     y0, y1 = 20, 20 + min(120, round(depth * 0.4))
     e = round((y1 - y0) * PRIME_LINE_WIDTH * PRIME_LINE_HEIGHT / (3.14159 * (1.75 / 2) ** 2), 1)
@@ -73,8 +73,11 @@ def start_gcode(bed, nozzle, relative_e, depth, bltouch):
         "G21 ; millimetres",
         "G90 ; absolute coordinates",
         "M83 ; relative extrusion" if relative_e else "M82 ; absolute extrusion",
-        f"M140 S{bed} ; heat the bed",
-        "M104 S150 ; warm the nozzle without letting it ooze",
+        # Simplify3D emits its own heating from the temperature tab, so it asks for
+        # none here; its extruder controller has "stabilize at startup" turned off,
+        # which is how the two heats overlap there.
+        *([f"M140 S{bed} ; heat the bed",
+           "M104 S150 ; warm the nozzle without letting it ooze"] if heats else []),
         "G91 ; a print stopped by hand can leave the nozzle down on the bed",
         "G1 Z10 F300 ; so raise it before homing: a BLTouch needs 10 mm to deploy",
         "G90",
@@ -87,8 +90,8 @@ def start_gcode(bed, nozzle, relative_e, depth, bltouch):
         # two. It stays at 150 until here, so it neither drools on the bed nor
         # leaves a blob under the probe while homing. What it oozes during the
         # last wait is wiped by the priming line below.
-        f"M104 S{nozzle} ; start the nozzle now, the bed is still heating",
-        f"M190 S{bed} ; wait for the bed",
+        *([f"M104 S{nozzle} ; start the nozzle now, the bed is still heating",
+           f"M190 S{bed} ; wait for the bed"] if heats else []),
         f"M109 S{nozzle} ; and confirm the nozzle",
         "G92 E0",
         f"G1 X15 Y{y0} Z{PRIME_LINE_HEIGHT} F3000 ; start of the priming line",
@@ -321,6 +324,80 @@ def orca(model, size, out):
     return base
 
 
+# ---------------------------------------------------------------- Simplify3D
+
+# Simplify3D has no command line, so these cannot be checked the way the other two
+# are. They start from the profile Wanhao publishes for the D9 (kept here as
+# wanhao-d9-reference.fff) and overwrite what it cannot know: the 400 and 500 beds,
+# the BLTouch, the bed ceilings of each model, and our own start and end G-code.
+S3D_REFERENCE = HERE / "Simplify3D" / "wanhao-d9-reference.fff"
+
+
+def simplify3d(model, size, out):
+    import xml.etree.ElementTree as ET
+
+    m, (w, d, h) = MODELS[model], SIZES[size]
+    tree = ET.parse(S3D_REFERENCE)
+    root = tree.getroot()
+    name = f"Wanhao D9 {model} {size}"
+    root.set("name", name)
+
+    def put(tag, value, parent=None):
+        node = (parent if parent is not None else root).find(tag)
+        if node is None:
+            raise KeyError(f"{tag} missing from the Simplify3D reference profile")
+        node.text = f"{value}"
+
+    pct = lambda part: round(SPEED[part] / SPEED["print"] * 100)  # noqa: E731
+
+    put("buildVolumeX", f"{w:.5f}")
+    put("buildVolumeY", f"{d:.5f}")
+    put("buildVolumeZ", f"{h:.5f}")
+    # Scripts are one line, with "|" where a new line goes.
+    put("startingScript", start_gcode("[bed0_temperature]", "[extruder0_temperature]", False, d,
+                                      model != "MK1", heats=False).replace("\n", "|"))
+    put("endingScript", end_gcode(d).replace("\n", "|"))
+
+    extruder = root.find("extruder")
+    put("extrusionMultiplier", f"{FILAMENTS['PLA']['flow']:.5f}", extruder)
+    put("extrusionWidth", f"{EXTRUSION_WIDTH:.5f}", extruder)
+    put("retractDistance", f"{RETRACT_LENGTH:.5f}", extruder)
+    put("retractSpeed", f"{RETRACT_SPEED * 60:.5f}", extruder)
+    put("retractVerticalLift", "0.00000", extruder)
+
+    put("defaultPrintSpeed", f"{SPEED['print'] * 60:.5f}")
+    put("outerPerimeterSpeedPercentage", pct("outer_wall"))
+    put("innerPerimeterSpeedPercentage", pct("inner_wall"))
+    put("solidInfillSpeedPercentage", pct("top"))
+    put("sparseSupportSpeedPercentage", pct("support"))
+    put("denseSupportSpeedPercentage", pct("support"))
+    put("firstLayerSpeedPercentage", pct("first_layer"))
+    put("firstLayerHeightPercentage", round(FIRST_LAYER_HEIGHT_RATIO * 100))
+    put("firstLayerWidthPercentage", round(FIRST_LAYER_WIDTH / EXTRUSION_WIDTH * 100))
+    put("outlinePerimeters", "2")
+    put("topSolidLayers", "3")
+    put("bottomSolidLayers", "3")
+    put("accelXY", f"{m['accel_print']:.5f}")
+    put("jerkXY", f"{JERK['xy'] * 60:.5f}")
+
+    bed = min(FILAMENTS["PLA"]["bed"], m["bed_maxtemp"][size] - BED_OVERSHOOT)
+    for controller in root.findall("temperatureController"):
+        # temperatureType is a selector, not text: read the option marked selected.
+        kind = controller.find("temperatureType")
+        is_bed = any(o.get("selected") and o.get("value") == "platform" for o in kind.findall("option"))
+        for setpoint in controller.findall(".//temperatureSetpoints/option"):
+            setpoint.set("value", f"1|{bed if is_bed else FILAMENTS['PLA']['nozzle_first']}")
+        if not is_bed:
+            # The nozzle climbs while the bed finishes; our script waits for it with M109.
+            put("stabilizeAtStartup", "0", controller)
+
+    base = out / "Simplify3D"
+    base.mkdir(parents=True, exist_ok=True)
+    path = base / f"D9_{model}_{size}.fff"
+    tree.write(path, encoding="UTF-8", xml_declaration=True)
+    return path
+
+
 def main():
     dist = Path(sys.argv[1]) if len(sys.argv) > 1 else None
     if dist:
@@ -328,8 +405,10 @@ def main():
     for model in MODELS:
         for size in SIZES:
             c, o = cura(model, size, HERE), orca(model, size, HERE)
+            f = simplify3d(model, size, HERE)
             if not dist:
                 continue
+            shutil.copy(f, dist / f.name)
             with zipfile.ZipFile(dist / f"D9_{model}_{size}_Cura.zip", "w", zipfile.ZIP_DEFLATED) as z:
                 for p in sorted(c.rglob("*.json")):
                     z.write(p, p.relative_to(c))
