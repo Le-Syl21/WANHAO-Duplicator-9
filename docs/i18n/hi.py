@@ -454,14 +454,15 @@ v2.0.6 में 10 km। प्रिंटर चालू होने पर
 """)
 
     if page == "slicer":
-        return ("Wanhao Duplicator 9 के लिए Cura और OrcaSlicer प्रोफ़ाइल, और Z ऑफ़सेट सेट करना",
-                "हर Wanhao D9 के लिए तैयार UltiMaker Cura और OrcaSlicer प्रोफ़ाइल, PLA, PETG और ABS के साथ; प्रोब का "
+        return ("Wanhao Duplicator 9 के लिए Cura, OrcaSlicer और Simplify3D प्रोफ़ाइल, और Z ऑफ़सेट सेट करना",
+                "हर Wanhao D9 के लिए तैयार UltiMaker Cura, OrcaSlicer और Simplify3D प्रोफ़ाइल, PLA, PETG और ABS के साथ; प्रोब का "
                 "Z ऑफ़सेट कैसे सेट करें, बेड प्रोबिंग कैसे चलाएँ और टेस्ट 3DBenchy कैसे प्रिंट करें।",
                 f"""
 <h1>Duplicator 9 के लिए स्लाइसिंग</h1>
 <p class="lead">बारहों प्रिंटरों में से हर एक के लिए एक प्रोफ़ाइल, <strong>UltiMaker Cura</strong> और
-<strong>OrcaSlicer</strong> दोनों के लिए — दोनों मुफ़्त हैं और Windows, macOS तथा Linux पर चलते हैं। हर प्रोफ़ाइल में
-उसी प्रिंटर के फ़र्मवेयर वाला बिल्ड वॉल्यूम, वही एक्सेलरेशन और वही अधिकतम बेड तापमान भरा हुआ है।</p>
+<strong>OrcaSlicer</strong> दोनों के लिए — दोनों मुफ़्त हैं और Windows, macOS तथा Linux पर चलते हैं — और अगर आपके पास
+पहले से है तो <strong>Simplify3D</strong> के लिए भी। हर प्रोफ़ाइल में उसी प्रिंटर के फ़र्मवेयर वाला बिल्ड वॉल्यूम, वही
+एक्सेलरेशन और वही अधिकतम बेड तापमान भरा हुआ है।</p>
 
 <h2>डाउनलोड</h2>
 {h.slicer}
@@ -475,6 +476,9 @@ v2.0.6 में 10 km। प्रिंटर चालू होने पर
 अनज़िप करें, Cura फिर से चालू करें, फिर <em>Settings</em> → <em>Printer</em> → <em>Add Printer…</em> → <em>Add a
 non-networked printer</em> → <em>Wanhao</em> → अपना मॉडल। Cura के साथ आने वाली <em>Wanhao Duplicator 9</em> एक पुरानी
 प्रोफ़ाइल है: सिर्फ़ 300, और राफ़्ट व सपोर्ट डिफ़ॉल्ट रूप से चालू।</p>
+<p><strong>Simplify3D</strong> (वर्ज़न 5, सशुल्क): <em>File</em> → <em>Import Printer Profiles…</em>, फिर
+<code>.fff</code> फ़ाइल चुनें। प्रिंटर अपनी तीन क्वालिटी (0.30, 0.20 और 0.10 mm) और PLA, PETG तथा ABS मटीरियल के साथ
+आता है, जो सेटिंग्स के ऊपर वाली <em>Auto-Configure</em> सूचियों में मिलते हैं।</p>
 
 <h2 id="first-print">पहले प्रिंट से पहले: Z ऑफ़सेट, फिर एक प्रोबिंग</h2>
 <p>प्रोब बेड से थोड़ा ऊपर ही ट्रिगर होता है, और फ़र्मवेयर को पता होना चाहिए कि कितना ऊपर। यही

@@ -393,13 +393,13 @@ M500</code></pre>
 """)
 
     if page == "slicer":
-        return ("Wanhao Duplicator 9 的 Cura 和 OrcaSlicer 配置，以及 Z 偏移的设置方法",
-                "适用于所有 Wanhao D9 的现成 UltiMaker Cura 和 OrcaSlicer 配置，涵盖 PLA、PETG 和 ABS，"
+        return ("Wanhao Duplicator 9 的 Cura、OrcaSlicer 和 Simplify3D 配置，以及 Z 偏移的设置方法",
+                "适用于所有 Wanhao D9 的现成 UltiMaker Cura、OrcaSlicer 和 Simplify3D 配置，涵盖 PLA、PETG 和 ABS，"
                 "以及如何设置探针的 Z 偏移、探测热床和打印一个测试用 3DBenchy。",
                 f"""
 <h1>为 Duplicator 9 切片</h1>
 <p class="lead">十二台打印机各有一套配置，分别用于 <strong>UltiMaker Cura</strong> 和
-<strong>OrcaSlicer</strong>，两者都免费，并且支持 Windows、macOS 和 Linux。每一套都带有对应固件自己的打印尺寸、加速度和最高热床温度。</p>
+<strong>OrcaSlicer</strong>，两者都免费，并且支持 Windows、macOS 和 Linux；如果你已经有 <strong>Simplify3D</strong>，也有对应的配置。每一套都带有对应固件自己的打印尺寸、加速度和最高热床温度。</p>
 
 <h2>下载</h2>
 {h.slicer}
@@ -410,6 +410,9 @@ M500</code></pre>
 <code>.orca_printer</code> 文件。这台打印机、它的三种质量（0.12、0.20 和 0.28 mm）以及 PLA、PETG 和 ABS 耗材就会出现在你的预设中。</p>
 <p><strong>Cura</strong>：<em>帮助</em> → <em>显示配置文件夹</em>，关闭 Cura，把文件解压到该文件夹，再启动 Cura，然后 <em>设置</em> → <em>打印机</em> → <em>添加打印机…</em> → <em>添加非联网打印机</em> →
 <em>Wanhao</em> → 你的型号。Cura 自带的 <em>Wanhao Duplicator 9</em> 是一个较旧的配置：只有 300，而且默认开启了 raft 和支撑。</p>
+<p><strong>Simplify3D</strong>（第 5 版，付费）：<em>File</em> → <em>Import Printer Profiles…</em>，然后选择
+<code>.fff</code> 文件。这台打印机会连同三种质量（0.30、0.20 和 0.10 mm）以及 PLA、PETG 和 ABS 材料一起加入，位于设置上方的
+<em>Auto-Configure</em> 列表中。</p>
 
 <h2 id="first-print">第一次打印之前：先设 Z 偏移，再探测一次</h2>
 <p>探针会在略高于热床的位置触发，固件必须知道高出多少。这就是 <strong>Z 偏移</strong>。太高，第一层粘不住；太低，喷嘴会刮到热床。它只需设置一次，而且正是这个设置决定了打印件粘不粘得住。</p>

@@ -455,14 +455,15 @@ en lugar del 0 que guardaban esas versiones.</p>
 """)
 
     if page == "slicer":
-        return ("Perfiles de Cura y OrcaSlicer para la Wanhao Duplicator 9, y ajuste del offset Z",
-                "Perfiles UltiMaker Cura y OrcaSlicer listos para usar para todas las Wanhao D9, PLA, PETG y ABS, cómo "
+        return ("Perfiles de Cura, OrcaSlicer y Simplify3D para la Wanhao Duplicator 9, y ajuste del offset Z",
+                "Perfiles UltiMaker Cura, OrcaSlicer y Simplify3D listos para usar para todas las Wanhao D9, PLA, PETG y ABS, cómo "
                 "ajustar el offset Z de la sonda, lanzar un palpado de la cama e imprimir un 3DBenchy de prueba.",
                 f"""
 <h1>Laminar para la Duplicator 9</h1>
 <p class="lead">Un perfil para cada una de las doce impresoras, para <strong>UltiMaker Cura</strong> y
-<strong>OrcaSlicer</strong>, los dos gratuitos y disponibles en Windows, macOS y Linux. Cada uno lleva el volumen de
-impresión, las aceleraciones y la temperatura de cama máxima de su propio firmware.</p>
+<strong>OrcaSlicer</strong>, los dos gratuitos y disponibles en Windows, macOS y Linux, y para
+<strong>Simplify3D</strong> si ya lo tiene. Cada uno lleva el volumen de impresión, las aceleraciones y la temperatura
+de cama máxima de su propio firmware.</p>
 
 <h2>Descarga</h2>
 {h.slicer}
@@ -476,6 +477,9 @@ PETG y ABS aparecen en sus preajustes.</p>
 archivo en esa carpeta, vuelva a abrir Cura y luego <em>Ajustes</em> → <em>Impresora</em> → <em>Añadir impresora…</em>
 → <em>Añadir una impresora no conectada en red</em> → <em>Wanhao</em> → su modelo. La <em>Wanhao Duplicator 9</em> que
 viene con Cura es un perfil más antiguo: solo la 300, con balsa y soportes activados por defecto.</p>
+<p><strong>Simplify3D</strong> (versión 5, de pago): <em>File</em> → <em>Import Printer Profiles…</em>, y
+luego elija el archivo <code>.fff</code>. La impresora llega con sus tres calidades (0,30, 0,20 y 0,10 mm) y los
+materiales PLA, PETG y ABS, en las listas <em>Auto-Configure</em> que están encima de los ajustes.</p>
 
 <h2 id="first-print">Antes de la primera impresión: el offset Z, y luego un palpado</h2>
 <p>La sonda se dispara un poco por encima de la cama, y el firmware tiene que saber cuánto. Eso es el

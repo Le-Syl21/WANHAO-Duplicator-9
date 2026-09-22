@@ -454,14 +454,14 @@ v2.0.5 (وهو في الواقع قصير جدًا: نحو ثلث بكرة وز�
 """)
 
     if page == "slicer":
-        return ("ملفات تعريف Cura وOrcaSlicer لطابعة Wanhao Duplicator 9، وضبط إزاحة Z",
-                "ملفات تعريف جاهزة لبرنامجي UltiMaker Cura وOrcaSlicer لكل طرازات Wanhao D9، مع PLA وPETG وABS، "
+        return ("ملفات تعريف Cura وOrcaSlicer وSimplify3D لطابعة Wanhao Duplicator 9، وضبط إزاحة Z",
+                "ملفات تعريف جاهزة لبرامج UltiMaker Cura وOrcaSlicer وSimplify3D لكل طرازات Wanhao D9، مع PLA وPETG وABS، "
                 "وكيف تضبط إزاحة Z للمجس، وتقيس السرير، وتطبع نموذج 3DBenchy للاختبار.",
                 f"""
 <h1>تقطيع النماذج لطابعة Duplicator 9</h1>
 <p class="lead">ملف تعريف لكل واحدة من الطابعات الاثنتي عشرة، لبرنامجي <strong>UltiMaker Cura</strong> و
-<strong>OrcaSlicer</strong>، وكلاهما مجاني ومتوفر على Windows وmacOS وLinux. يحمل كل ملف حجم الطباعة والتسارعات
-وأقصى حرارة سرير في البرنامج الثابت الخاص به.</p>
+<strong>OrcaSlicer</strong>، وكلاهما مجاني ومتوفر على Windows وmacOS وLinux، ولبرنامج <strong>Simplify3D</strong> إن
+كان لديك أصلًا. يحمل كل ملف حجم الطباعة والتسارعات وأقصى حرارة سرير في البرنامج الثابت الخاص به.</p>
 
 <h2>التنزيل</h2>
 {h.slicer}
@@ -475,6 +475,9 @@ v2.0.5 (وهو في الواقع قصير جدًا: نحو ثلث بكرة وز�
 المجلد، وأعد تشغيل Cura، ثم <em>Settings</em> ← <em>Printer</em> ← <em>Add Printer…</em> ←
 <em>Add a non-networked printer</em> ← <em>Wanhao</em> ← طرازك. أما <em>Wanhao Duplicator 9</em> التي تأتي مع Cura
 فهي ملف تعريف أقدم: 300 فقط، مع تفعيل الطوف والدعامات افتراضيًا.</p>
+<p><strong>Simplify3D</strong> (الإصدار 5، مدفوع): <em>File</em> ← <em>Import Printer Profiles…</em>، ثم
+اختر ملف <code>.fff</code>. تصل الطابعة ومعها جوداتها الثلاث (0.30 و0.20 و0.10 مم) ومواد PLA وPETG وABS، ضمن قوائم
+<em>Auto-Configure</em> أعلى الإعدادات.</p>
 
 <h2 id="first-print">قبل أول طباعة: إزاحة Z، ثم قياس السرير</h2>
 <p>ينطلق المجس على ارتفاع بسيط فوق السرير، وعلى البرنامج الثابت أن يعرف مقدار هذا الفارق. هذه هي

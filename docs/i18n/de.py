@@ -460,14 +460,15 @@ von 5 mm geladen statt der 0, die diese Versionen gespeichert haben.</p>
 """)
 
     if page == "slicer":
-        return ("Cura- und OrcaSlicer-Profile für die Wanhao Duplicator 9 und das Einstellen des Z-Offsets",
-                "Fertige Profile für UltiMaker Cura und OrcaSlicer für jede Wanhao D9, PLA, PETG und ABS, wie du den "
+        return ("Cura-, OrcaSlicer- und Simplify3D-Profile für die Wanhao Duplicator 9 und das Einstellen des Z-Offsets",
+                "Fertige Profile für UltiMaker Cura, OrcaSlicer und Simplify3D für jede Wanhao D9, PLA, PETG und ABS, wie du den "
                 "Z-Offset des Sensors einstellst, eine Bettabtastung startest und einen Test-3DBenchy druckst.",
                 f"""
 <h1>Slicen für die Duplicator 9</h1>
 <p class="lead">Ein Profil für jeden der zwölf Drucker, für <strong>UltiMaker Cura</strong> und
-<strong>OrcaSlicer</strong>, beide kostenlos und für Windows, macOS und Linux erhältlich. Jedes enthält den Bauraum,
-die Beschleunigungen und die höchste Betttemperatur der jeweils eigenen Firmware.</p>
+<strong>OrcaSlicer</strong>, beide kostenlos und für Windows, macOS und Linux erhältlich, und für
+<strong>Simplify3D</strong>, falls du es schon hast. Jedes enthält den Bauraum, die Beschleunigungen und die höchste
+Betttemperatur der jeweils eigenen Firmware.</p>
 
 <h2>Download</h2>
 {h.slicer}
@@ -481,6 +482,10 @@ Filamente PLA, PETG und ABS erscheinen in deinen Voreinstellungen.</p>
 Ordner entpacken, Cura neu starten, dann <em>Einstellungen</em> → <em>Drucker</em> → <em>Drucker hinzufügen…</em> →
 <em>Einen nicht vernetzten Drucker hinzufügen</em> → <em>Wanhao</em> → dein Modell. Die mit Cura mitgelieferte
 <em>Wanhao Duplicator 9</em> ist ein älteres Profil: nur 300, Raft und Stützen standardmäßig an.</p>
+<p><strong>Simplify3D</strong> (Version 5, kostenpflichtig): <em>File</em> →
+<em>Import Printer Profiles…</em>, dann die Datei <code>.fff</code> auswählen. Der Drucker kommt mit seinen drei
+Qualitäten (0,30, 0,20 und 0,10 mm) und den Materialien PLA, PETG und ABS, in den <em>Auto-Configure</em>-Listen über
+den Einstellungen.</p>
 
 <h2 id="first-print">Vor dem ersten Druck: der Z-Offset, dann eine Abtastung</h2>
 <p>Der Sensor löst ein Stück über dem Druckbett aus, und die Firmware muss wissen, um wie viel. Das ist der

@@ -455,14 +455,15 @@ zamiast 0 zapisanego przez tamte wersje.</p>
 """)
 
     if page == "slicer":
-        return ("Profile Cura i OrcaSlicer do Wanhao Duplicator 9 oraz ustawianie offsetu Z",
-                "Gotowe profile UltiMaker Cura i OrcaSlicer do każdej Wanhao D9, PLA, PETG i ABS, jak ustawić offset Z "
+        return ("Profile Cura, OrcaSlicer i Simplify3D do Wanhao Duplicator 9 oraz ustawianie offsetu Z",
+                "Gotowe profile UltiMaker Cura, OrcaSlicer i Simplify3D do każdej Wanhao D9, PLA, PETG i ABS, jak ustawić offset Z "
                 "czujnika, zrobić sondowanie stołu i wydrukować testowego 3DBenchy.",
                 f"""
 <h1>Slicing dla Duplicator 9</h1>
 <p class="lead">Jeden profil na każdą z dwunastu drukarek, do <strong>UltiMaker Cura</strong> i
-<strong>OrcaSlicer</strong> — oba darmowe i dostępne na Windows, macOS i Linux. Każdy ma pole robocze, przyspieszenia
-i najwyższą temperaturę stołu z firmware'u swojej drukarki.</p>
+<strong>OrcaSlicer</strong> — oba darmowe i dostępne na Windows, macOS i Linux — oraz do
+<strong>Simplify3D</strong>, jeśli już go masz. Każdy ma pole robocze, przyspieszenia i najwyższą temperaturę stołu
+z firmware'u swojej drukarki.</p>
 
 <h2>Pobieranie</h2>
 {h.slicer}
@@ -476,6 +477,9 @@ się w Twoich profilach.</p>
 folderu, uruchom Curę ponownie, a potem <em>Ustawienia</em> → <em>Drukarka</em> → <em>Dodaj drukarkę…</em> →
 <em>Dodaj drukarkę niesieciową</em> → <em>Wanhao</em> → Twój model. <em>Wanhao Duplicator 9</em> dostarczana razem
 z Curą to starszy profil: tylko 300, z raftem i podporami włączonymi domyślnie.</p>
+<p><strong>Simplify3D</strong> (wersja 5, płatna): <em>File</em> → <em>Import Printer Profiles…</em>, a
+potem wskaż plik <code>.fff</code>. Drukarka pojawia się z trzema jakościami (0,30, 0,20 i 0,10 mm) oraz materiałami
+PLA, PETG i ABS, na listach <em>Auto-Configure</em> nad ustawieniami.</p>
 
 <h2 id="first-print">Przed pierwszym wydrukiem: offset Z, a potem sondowanie</h2>
 <p>Czujnik wyzwala się trochę nad stołem i firmware musi wiedzieć, o ile. To właśnie <strong>offset Z</strong>. Za

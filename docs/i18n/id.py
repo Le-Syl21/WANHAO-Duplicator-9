@@ -455,14 +455,15 @@ sebagai ganti nilai 0 yang disimpan versi-versi tersebut.</p>
 """)
 
     if page == "slicer":
-        return ("Profil Cura dan OrcaSlicer untuk Wanhao Duplicator 9, dan cara mengatur Z offset",
-                "Profil UltiMaker Cura dan OrcaSlicer siap pakai untuk semua Wanhao D9, PLA, PETG dan ABS, cara "
+        return ("Profil Cura, OrcaSlicer dan Simplify3D untuk Wanhao Duplicator 9, dan cara mengatur Z offset",
+                "Profil UltiMaker Cura, OrcaSlicer dan Simplify3D siap pakai untuk semua Wanhao D9, PLA, PETG dan ABS, cara "
                 "mengatur Z offset probe, menjalankan probing bed dan mencetak 3DBenchy percobaan.",
                 f"""
 <h1>Slicing untuk Duplicator 9</h1>
-<p class="lead">Satu profil untuk masing-masing dari dua belas printer, untuk <strong>UltiMaker Cura</strong> dan
-<strong>OrcaSlicer</strong>, keduanya gratis dan tersedia di Windows, macOS dan Linux. Masing-masing sudah memuat
-volume cetak, akselerasi dan suhu bed tertinggi dari firmware-nya sendiri.</p>
+<p class="lead">Satu profil untuk masing-masing dari dua belas printer, untuk
+<strong>UltiMaker Cura</strong> dan <strong>OrcaSlicer</strong>, keduanya gratis dan tersedia di Windows, macOS dan
+Linux, serta untuk <strong>Simplify3D</strong> kalau Anda sudah punya. Masing-masing sudah memuat volume cetak,
+akselerasi dan suhu bed tertinggi dari firmware-nya sendiri.</p>
 
 <h2>Unduhan</h2>
 {h.slicer}
@@ -476,6 +477,9 @@ muncul di preset Anda.</p>
 folder tersebut, jalankan Cura lagi, lalu <em>Settings</em> → <em>Printer</em> → <em>Add Printer…</em> → <em>Add a
 non-networked printer</em> → <em>Wanhao</em> → model Anda. <em>Wanhao Duplicator 9</em> bawaan Cura adalah profil lama:
 hanya ukuran 300, dengan raft dan support aktif secara default.</p>
+<p><strong>Simplify3D</strong> (versi 5, berbayar): <em>File</em> → <em>Import Printer Profiles…</em>, lalu
+pilih file <code>.fff</code>. Printer datang dengan tiga kualitasnya (0,30 / 0,20 / 0,10 mm) dan bahan PLA, PETG dan
+ABS, di daftar <em>Auto-Configure</em> di atas pengaturan.</p>
 
 <h2 id="first-print">Sebelum cetakan pertama: Z offset, lalu probing</h2>
 <p>Probe memicu sedikit di atas bed, dan firmware harus tahu berapa selisihnya. Itulah <strong>Z offset</strong>.

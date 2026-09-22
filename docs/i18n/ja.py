@@ -390,13 +390,14 @@ M500</code></pre>
 """)
 
     if page == "slicer":
-        return ("Wanhao Duplicator 9 用の Cura と OrcaSlicer のプロファイル、そして Z オフセットの設定",
-                "すべての Wanhao D9 向けにそのまま使える UltiMaker Cura と OrcaSlicer のプロファイル（PLA・PETG・ABS）、"
+        return ("Wanhao Duplicator 9 用の Cura・OrcaSlicer・Simplify3D のプロファイル、そして Z オフセットの設定",
+                "すべての Wanhao D9 向けにそのまま使える UltiMaker Cura・OrcaSlicer・Simplify3D のプロファイル（PLA・PETG・ABS）、"
                 "プローブの Z オフセットの設定方法、ベッドのプロービング、テスト用 3DBenchy の印刷。",
                 f"""
 <h1>Duplicator 9 のスライス</h1>
 <p class="lead">12 機種それぞれに 1 つずつ、<strong>UltiMaker Cura</strong> と
-<strong>OrcaSlicer</strong> 用のプロファイルを用意しました。どちらも無料で、Windows・macOS・Linux で使えます。それぞれのプロファイルには、その機種のファームウェアどおりの造形サイズ、加速度、ベッド最高温度が入っています。</p>
+<strong>OrcaSlicer</strong> 用のプロファイルを用意しました。どちらも無料で、Windows・macOS・Linux で使えます。すでにお持ちの方向けに
+<strong>Simplify3D</strong> 用もあります。それぞれのプロファイルには、その機種のファームウェアどおりの造形サイズ、加速度、ベッド最高温度が入っています。</p>
 
 <h2>ダウンロード</h2>
 {h.slicer}
@@ -409,6 +410,9 @@ M500</code></pre>
 Cura を起動し直して、<em>設定</em> → <em>プリンター</em> → <em>プリンターを追加…</em> →
 <em>非ネットワークプリンターを追加</em> → <em>Wanhao</em> → お使いの機種を選びます。Cura に最初から入っている
 <em>Wanhao Duplicator 9</em> は古いプロファイルです：300 のみで、ラフトとサポートが既定で有効になっています。</p>
+<p><strong>Simplify3D</strong>（バージョン 5、有料）：<em>File</em> → <em>Import Printer Profiles…</em> と進み、
+<code>.fff</code> ファイルを選びます。プリンターは 3 つの品質（0.30・0.20・0.10 mm）と PLA・PETG・ABS の材料つきで追加され、設定画面の上にある
+<em>Auto-Configure</em> の一覧から選べます。</p>
 
 <h2 id="first-print">最初の印刷の前に：Z オフセット、そしてプロービング</h2>
 <p>プローブはベッドより少し上で反応するので、ファームウェアはその差を知っている必要があります。それが <strong>Z オフセット</strong>です。高すぎると 1 層目が定着せず、低すぎるとノズルがベッドを削ります。設定は一度だけで、印刷が定着するかどうかを決めるのはこの値です。</p>

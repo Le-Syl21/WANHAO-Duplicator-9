@@ -24,7 +24,7 @@ DISCORD = "https://discord.gg/T37DYHmt2j"
 # Google Search Console ownership check for the URL-prefix property SITE.
 GOOGLE_VERIFICATION = "TqbXre6qrm9jaoj6tFwRRiI2vuQilAZLm6kUJA-etmo"
 # Bump when style.css changes, so browsers do not keep the old one.
-STYLE_VERSION = 4
+STYLE_VERSION = 5
 
 PAGES = ["index", "mk1", "mk1u2", "mk2", "mk3", "flash", "screen", "sensor", "slicer", "quiet"]
 SIZES = [("300", "300 × 300 × 400 mm"), ("400", "400 × 400 × 400 mm"), ("500", "500 × 500 × 500 mm")]
@@ -66,18 +66,27 @@ MODELS = ["MK1", "MK1u2", "MK2", "MK3"]
 
 
 def slicer_table(lang):
-    """One row per printer: the Cura profile and the OrcaSlicer bundle of the latest release."""
+    """One row per printer: its Cura, OrcaSlicer and Simplify3D profiles from the latest release."""
     u = LANG[lang].UI
+    # Three buttons do not fit a phone at their full width, so each carries a short
+    # spelling the stylesheet swaps in below 560 px.
+    def btn(href, long, short):
+        return (f'<td><a class="btn" href="{href}"><span class="lg">{long}</span>'
+                f'<span class="sm">{short}</span></a></td>')
+
     rows = []
     for model in MODELS:
         for size, _volume in SIZES:
             rows.append(
                 f'<tr><td><strong>{u["nav"][model.lower()]}</strong> D9/{size}</td>'
-                f'<td><a class="btn" href="{DL}D9_{model}_{size}_Cura.zip">Cura</a></td>'
-                f'<td><a class="btn" href="{DL}D9_{model}_{size}.orca_printer">OrcaSlicer</a></td></tr>')
+                + btn(f"{DL}D9_{model}_{size}_Cura.zip", "Cura", "Cura")
+                + btn(f"{DL}D9_{model}_{size}.orca_printer", "OrcaSlicer", "Orca")
+                + btn(f"{DL}D9_{model}_{size}.fff", "Simplify3D", "S3D")
+                + "</tr>")
     # One column for the printer: the phone layout drops the second column of a download table.
     return (f'<div class="table"><table class="dl slicer"><thead><tr><th>{u["model"]}</th>'
-            f'<th>Cura</th><th>OrcaSlicer</th></tr></thead><tbody>' + "".join(rows) + "</tbody></table></div>")
+            f'<th>Cura</th><th>OrcaSlicer</th><th>Simplify3D</th></tr></thead><tbody>'
+            + "".join(rows) + "</tbody></table></div>")
 
 
 def factory_rows(model, files):

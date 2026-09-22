@@ -457,14 +457,15 @@ einde filament geladen in plaats van de 0 die die versies opsloegen.</p>
 """)
 
     if page == "slicer":
-        return ("Cura- en OrcaSlicer-profielen voor de Wanhao Duplicator 9, en de Z-offset instellen",
-                "Kant-en-klare profielen voor UltiMaker Cura en OrcaSlicer voor elke Wanhao D9, PLA, PETG en ABS, hoe "
+        return ("Cura-, OrcaSlicer- en Simplify3D-profielen voor de Wanhao Duplicator 9, en de Z-offset instellen",
+                "Kant-en-klare profielen voor UltiMaker Cura, OrcaSlicer en Simplify3D voor elke Wanhao D9, PLA, PETG en ABS, hoe "
                 "je de Z-offset van de sensor instelt, het bed laat meten en een 3DBenchy als test print.",
                 f"""
 <h1>Slicen voor de Duplicator 9</h1>
 <p class="lead">Eén profiel voor elk van de twaalf printers, voor <strong>UltiMaker Cura</strong> en
-<strong>OrcaSlicer</strong>, allebei gratis en beschikbaar voor Windows, macOS en Linux. Elk profiel neemt het
-bouwvolume, de versnellingen en de hoogste bedtemperatuur van zijn eigen firmware over.</p>
+<strong>OrcaSlicer</strong>, allebei gratis en beschikbaar voor Windows, macOS en Linux, en voor
+<strong>Simplify3D</strong> als je dat al hebt. Elk profiel neemt het bouwvolume, de versnellingen en de hoogste
+bedtemperatuur van zijn eigen firmware over.</p>
 
 <h2>Downloaden</h2>
 {h.slicer}
@@ -478,6 +479,9 @@ filamenten PLA, PETG en ABS verschijnen in je presets.</p>
 map, start Cura opnieuw en ga dan naar <em>Instellingen</em> → <em>Printer</em> → <em>Printer toevoegen…</em> →
 <em>Een niet-netwerkprinter toevoegen</em> → <em>Wanhao</em> → jouw model. De <em>Wanhao Duplicator 9</em> die met
 Cura meekomt is een ouder profiel: alleen de 300, met raft en supports standaard aan.</p>
+<p><strong>Simplify3D</strong> (versie 5, betaald): <em>File</em> → <em>Import Printer Profiles…</em>, kies
+daarna het bestand <code>.fff</code>. De printer komt binnen met zijn drie kwaliteiten (0,30, 0,20 en 0,10 mm) en de
+materialen PLA, PETG en ABS, in de <em>Auto-Configure</em>-lijsten boven de instellingen.</p>
 
 <h2 id="first-print">Voor de eerste print: de Z-offset, daarna een meting</h2>
 <p>De sensor schakelt een stukje boven het bed, en de firmware moet weten hoeveel dat is. Dat is de

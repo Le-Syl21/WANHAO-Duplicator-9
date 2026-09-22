@@ -455,14 +455,15 @@ al posto dello 0 salvato da quelle versioni.</p>
 """)
 
     if page == "slicer":
-        return ("Profili Cura e OrcaSlicer per la Wanhao Duplicator 9, e regolazione dell'offset Z",
-                "Profili UltiMaker Cura e OrcaSlicer pronti all'uso per tutte le Wanhao D9, PLA, PETG e ABS, come "
+        return ("Profili Cura, OrcaSlicer e Simplify3D per la Wanhao Duplicator 9, e regolazione dell'offset Z",
+                "Profili UltiMaker Cura, OrcaSlicer e Simplify3D pronti all'uso per tutte le Wanhao D9, PLA, PETG e ABS, come "
                 "regolare l'offset Z della sonda, lanciare una tastatura del piatto e stampare un 3DBenchy di prova.",
                 f"""
 <h1>Slicing per la Duplicator 9</h1>
 <p class="lead">Un profilo per ognuna delle dodici stampanti, per <strong>UltiMaker Cura</strong> e
-<strong>OrcaSlicer</strong>, entrambi gratuiti e disponibili su Windows, macOS e Linux. Ognuno riprende il volume di
-stampa, le accelerazioni e la temperatura massima del piatto del proprio firmware.</p>
+<strong>OrcaSlicer</strong>, entrambi gratuiti e disponibili su Windows, macOS e Linux, e per
+<strong>Simplify3D</strong> se lo hai già. Ognuno riprende il volume di stampa, le accelerazioni e la temperatura
+massima del piatto del proprio firmware.</p>
 
 <h2>Download</h2>
 {h.slicer}
@@ -476,6 +477,9 @@ compaiono tra i tuoi preset.</p>
 quella cartella, riavvia Cura, poi <em>Impostazioni</em> → <em>Stampante</em> → <em>Aggiungi stampante…</em> →
 <em>Aggiungi una stampante non in rete</em> → <em>Wanhao</em> → il tuo modello. La <em>Wanhao Duplicator 9</em> fornita
 con Cura è un profilo più vecchio: solo la 300, con raft e supporti attivi di default.</p>
+<p><strong>Simplify3D</strong> (versione 5, a pagamento): <em>File</em> →
+<em>Import Printer Profiles…</em>, poi scegli il file <code>.fff</code>. La stampante arriva con le sue tre qualità
+(0,30, 0,20 e 0,10 mm) e i materiali PLA, PETG e ABS, negli elenchi <em>Auto-Configure</em> sopra le impostazioni.</p>
 
 <h2 id="first-print">Prima della prima stampa: l'offset Z, poi una tastatura</h2>
 <p>La sonda scatta un po' sopra il piatto, e il firmware deve sapere di quanto. È l'<strong>offset Z</strong>. Troppo in

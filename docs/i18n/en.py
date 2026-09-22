@@ -459,14 +459,15 @@ instead of the 0 those versions saved.</p>
 """)
 
     if page == "slicer":
-        return ("Cura and OrcaSlicer profiles for the Wanhao Duplicator 9, and how to set the Z offset",
-                "Ready-made UltiMaker Cura and OrcaSlicer profiles for every Wanhao D9, PLA, PETG and ABS, how to set "
+        return ("Cura, OrcaSlicer and Simplify3D profiles for the Wanhao Duplicator 9, and how to set the Z offset",
+                "Ready-made UltiMaker Cura, OrcaSlicer and Simplify3D profiles for every Wanhao D9, PLA, PETG and ABS, how to set "
                 "the probe Z offset, run a bed probing and print a test 3DBenchy.",
                 f"""
 <h1>Slicing for the Duplicator 9</h1>
 <p class="lead">A profile for each of the twelve printers, for <strong>UltiMaker Cura</strong> and
-<strong>OrcaSlicer</strong>, both free and available on Windows, macOS and Linux. Each one carries the build volume,
-the accelerations and the highest bed temperature of its own firmware.</p>
+<strong>OrcaSlicer</strong>, both free and available on Windows, macOS and Linux, and for
+<strong>Simplify3D</strong> if you already own it. Each one carries the build volume, the accelerations and the
+highest bed temperature of its own firmware.</p>
 
 <h2>Download</h2>
 {h.slicer}
@@ -480,6 +481,9 @@ filaments appear in your presets.</p>
 folder, start Cura again, then <em>Settings</em> → <em>Printer</em> → <em>Add Printer…</em> → <em>Add a non-networked
 printer</em> → <em>Wanhao</em> → your model. The <em>Wanhao Duplicator 9</em> that comes with Cura is an older profile:
 300 only, raft and supports on by default.</p>
+<p><strong>Simplify3D</strong> (version 5, paid): <em>File</em> → <em>Import Printer Profiles…</em>, then
+choose the <code>.fff</code> file. The printer arrives with its three qualities (0.30, 0.20 and 0.10 mm) and the PLA,
+PETG and ABS materials, in the <em>Auto-Configure</em> lists above the settings.</p>
 
 <h2 id="first-print">Before the first print: the Z offset, then a probing</h2>
 <p>The probe triggers a little above the bed, and the firmware has to know by how much. That is the

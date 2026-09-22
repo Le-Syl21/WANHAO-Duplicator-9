@@ -106,7 +106,11 @@ ol li, ul li { margin-bottom: 0.35rem; }
 footer.site { border-top: 1px solid var(--line); color: var(--muted); font-size: 0.9rem; }
 footer.site .wrap { padding-block: 1.4rem; display: flex; flex-wrap: wrap; gap: 0.4rem 1.5rem; }
 
+.btn .sm { display: none; }
+
 @media (max-width: 560px) {
+  .btn .lg { display: none; }
+  .btn .sm { display: inline; }
   table.dl .volume { display: none; }
   table.dl .btn { white-space: normal; overflow-wrap: anywhere; }
   table.dl.slicer .btn { white-space: nowrap; overflow-wrap: normal; }

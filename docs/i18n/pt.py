@@ -454,14 +454,15 @@ no lugar do 0 que essas versões salvavam.</p>
 """)
 
     if page == "slicer":
-        return ("Perfis Cura e OrcaSlicer para a Wanhao Duplicator 9, e como ajustar o offset Z",
-                "Perfis UltiMaker Cura e OrcaSlicer prontos para usar para todas as Wanhao D9, PLA, PETG e ABS, como "
+        return ("Perfis Cura, OrcaSlicer e Simplify3D para a Wanhao Duplicator 9, e como ajustar o offset Z",
+                "Perfis UltiMaker Cura, OrcaSlicer e Simplify3D prontos para usar para todas as Wanhao D9, PLA, PETG e ABS, como "
                 "ajustar o offset Z da sonda, fazer uma sondagem da mesa e imprimir um 3DBenchy de teste.",
                 f"""
 <h1>Fatiar para a Duplicator 9</h1>
 <p class="lead">Um perfil para cada uma das doze impressoras, para o <strong>UltiMaker Cura</strong> e o
-<strong>OrcaSlicer</strong>, os dois gratuitos e disponíveis no Windows, no macOS e no Linux. Cada um já traz o volume
-de impressão, as acelerações e a temperatura máxima de mesa do seu próprio firmware.</p>
+<strong>OrcaSlicer</strong>, os dois gratuitos e disponíveis no Windows, no macOS e no Linux, e para o
+<strong>Simplify3D</strong> se você já tiver. Cada um já traz o volume de impressão, as acelerações e a temperatura
+máxima de mesa do seu próprio firmware.</p>
 
 <h2>Download</h2>
 {h.slicer}
@@ -476,6 +477,9 @@ nessa pasta, abra o Cura de novo e depois <em>Configurações</em> → <em>Impre
 <em>Adicionar impressora…</em> → <em>Adicionar uma impressora fora da rede</em> → <em>Wanhao</em> → o seu modelo. A
 <em>Wanhao Duplicator 9</em> que vem com o Cura é um perfil mais antigo: só a 300, com raft e suportes ligados por
 padrão.</p>
+<p><strong>Simplify3D</strong> (versão 5, pago): <em>File</em> → <em>Import Printer Profiles…</em>, e então
+escolha o arquivo <code>.fff</code>. A impressora chega com suas três qualidades (0,30, 0,20 e 0,10 mm) e os materiais
+PLA, PETG e ABS, nas listas <em>Auto-Configure</em> acima das configurações.</p>
 
 <h2 id="first-print">Antes da primeira impressão: o offset Z, e depois uma sondagem</h2>
 <p>A sonda dispara um pouco acima da mesa, e o firmware precisa saber de quanto. É o <strong>offset Z</strong>. Alto

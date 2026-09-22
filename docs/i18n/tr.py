@@ -453,14 +453,15 @@ veya daha eski bir sürümden gelindiğinde, bu sürümlerin kaydettiği 0 yerin
 """)
 
     if page == "slicer":
-        return ("Wanhao Duplicator 9 için Cura ve OrcaSlicer profilleri ve Z ofseti ayarı",
-                "Her Wanhao D9 için hazır UltiMaker Cura ve OrcaSlicer profilleri, PLA, PETG ve ABS, probun Z ofseti "
+        return ("Wanhao Duplicator 9 için Cura, OrcaSlicer ve Simplify3D profilleri ve Z ofseti ayarı",
+                "Her Wanhao D9 için hazır UltiMaker Cura, OrcaSlicer ve Simplify3D profilleri, PLA, PETG ve ABS, probun Z ofseti "
                 "nasıl ayarlanır, tabla nasıl ölçülür ve test için 3DBenchy nasıl basılır.",
                 f"""
 <h1>Duplicator 9 için dilimleme</h1>
 <p class="lead">On iki yazıcının her biri için bir profil, <strong>UltiMaker Cura</strong> ve
-<strong>OrcaSlicer</strong> için; ikisi de ücretsiz ve Windows, macOS ve Linux'ta çalışıyor. Her profil kendi
-firmware'inin baskı hacmini, ivmelerini ve en yüksek tabla sıcaklığını içerir.</p>
+<strong>OrcaSlicer</strong> için; ikisi de ücretsiz ve Windows, macOS ve Linux'ta çalışıyor. Zaten sahipseniz
+<strong>Simplify3D</strong> için de var. Her profil kendi firmware'inin baskı hacmini, ivmelerini ve en yüksek tabla
+sıcaklığını içerir.</p>
 
 <h2>İndirme</h2>
 {h.slicer}
@@ -474,6 +475,9 @@ filamentleri ön ayarlarınızın arasında görünür.</p>
 içine açın, Cura'yı yeniden başlatın, sonra <em>Ayarlar</em> → <em>Yazıcı</em> → <em>Yazıcı ekle…</em> → <em>Ağa bağlı
 olmayan bir yazıcı ekle</em> → <em>Wanhao</em> → modeliniz. Cura ile birlikte gelen <em>Wanhao Duplicator 9</em> daha
 eski bir profildir: yalnızca 300 boyutu, radye ve destekler varsayılan olarak açık.</p>
+<p><strong>Simplify3D</strong> (sürüm 5, ücretli): <em>File</em> → <em>Import Printer Profiles…</em>,
+ardından <code>.fff</code> dosyasını seçin. Yazıcı, üç kalitesi (0,30 / 0,20 / 0,10 mm) ve PLA, PETG ve ABS
+malzemeleriyle birlikte, ayarların üstündeki <em>Auto-Configure</em> listelerinde görünür.</p>
 
 <h2 id="first-print">İlk baskıdan önce: Z ofseti, sonra bir ölçüm</h2>
 <p>Prob tablanın biraz üstünde tetiklenir ve firmware'in bunun ne kadar olduğunu bilmesi gerekir. İşte bu

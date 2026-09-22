@@ -465,14 +465,15 @@ place du 0 enregistré par ces versions.</p>
 """)
 
     if page == "slicer":
-        return ("Profils Cura et OrcaSlicer pour la Wanhao Duplicator 9, et réglage du décalage Z",
-                "Profils UltiMaker Cura et OrcaSlicer prêts à l'emploi pour toutes les Wanhao D9, PLA, PETG et ABS, "
+        return ("Profils Cura, OrcaSlicer et Simplify3D pour la Wanhao Duplicator 9, et réglage du décalage Z",
+                "Profils UltiMaker Cura, OrcaSlicer et Simplify3D prêts à l'emploi pour toutes les Wanhao D9, PLA, PETG et ABS, "
                 "comment régler le décalage Z de la sonde, lancer un palpage et imprimer un 3DBenchy de test.",
                 f"""
 <h1>Trancher pour la Duplicator 9</h1>
 <p class="lead">Un profil pour chacune des douze imprimantes, pour <strong>UltiMaker Cura</strong> et
-<strong>OrcaSlicer</strong>, tous deux gratuits et disponibles sous Windows, macOS et Linux. Chacun reprend le volume
-d'impression, les accélérations et la température de plateau maximale de son propre firmware.</p>
+<strong>OrcaSlicer</strong>, tous deux gratuits et disponibles sous Windows, macOS et Linux, et pour
+<strong>Simplify3D</strong> si vous l'avez déjà. Chacun reprend le volume d'impression, les accélérations et la
+température de plateau maximale de son propre firmware.</p>
 
 <h2>Téléchargement</h2>
 {h.slicer}
@@ -486,6 +487,9 @@ filaments PLA, PETG et ABS apparaissent dans vos préréglages.</p>
 fichier dans ce dossier, relancez Cura, puis <em>Paramètres</em> → <em>Imprimante</em> → <em>Ajouter une imprimante…</em>
 → <em>Ajouter une imprimante hors réseau</em> → <em>Wanhao</em> → votre modèle. La <em>Wanhao Duplicator 9</em> fournie
 avec Cura est un profil plus ancien : 300 uniquement, radeau et supports activés par défaut.</p>
+<p><strong>Simplify3D</strong> (version 5, payant) : <em>File</em> → <em>Import Printer Profiles…</em>, puis
+choisissez le fichier <code>.fff</code>. L'imprimante arrive avec ses trois qualités (0,30, 0,20 et 0,10 mm) et les
+matières PLA, PETG et ABS, dans les listes <em>Auto-Configure</em> en haut des réglages.</p>
 
 <h2 id="first-print">Avant la première impression : le décalage Z, puis un palpage</h2>
 <p>La sonde se déclenche un peu au-dessus du plateau, et le firmware doit savoir de combien. C'est le

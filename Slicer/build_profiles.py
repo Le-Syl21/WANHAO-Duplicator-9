@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate UltiMaker Cura and OrcaSlicer profiles for the 12 Wanhao Duplicator 9 firmwares.
+"""Generate UltiMaker Cura, OrcaSlicer and Simplify3D profiles for the 12 Wanhao Duplicator 9 firmwares.
 
 Run from anywhere: python3 Slicer/build_profiles.py [dist_dir]
 Writes Slicer/Cura/<printer>/ and Slicer/OrcaSlicer/<printer>/, and, when dist_dir is given, the files attached to
@@ -10,6 +10,7 @@ The machine values come from the Duplicator 9 configurations these firmwares are
 accelerations, jerk and the highest bed temperature each model accepts. Every D9 has a direct-drive MK10 extruder,
 a 0.4 mm nozzle and 1.75 mm filament. The firmware limits the extruder to 25 mm/s, so retractions stay at that speed.
 """
+import copy
 import json
 import shutil
 import sys
@@ -333,6 +334,20 @@ def orca(model, size, out):
 S3D_REFERENCE = HERE / "Simplify3D" / "wanhao-d9-reference.fff"
 
 
+def _setpoints(node, values):
+    """Replace a Simplify3D setpoint list (temperature or fan) with "<layer>|<value>" entries."""
+    import xml.etree.ElementTree as ET
+
+    inner = node.text if node.text and not node.text.strip() else "\n          "
+    closing = "\n" + " " * max(0, len(inner.rsplit("\n", 1)[-1]) - 2)
+    for child in list(node):
+        node.remove(child)
+    node.text = inner
+    for index, value in enumerate(values):
+        option = ET.SubElement(node, "option", {"value": value})
+        option.tail = inner if index < len(values) - 1 else closing
+
+
 def simplify3d(model, size, out):
     import xml.etree.ElementTree as ET
 
@@ -380,7 +395,8 @@ def simplify3d(model, size, out):
     put("accelXY", f"{m['accel_print']:.5f}")
     put("jerkXY", f"{JERK['xy'] * 60:.5f}")
 
-    bed = min(FILAMENTS["PLA"]["bed"], m["bed_maxtemp"][size] - BED_OVERSHOOT)
+    bed_max = m["bed_maxtemp"][size] - BED_OVERSHOOT
+    bed = min(FILAMENTS["PLA"]["bed"], bed_max)
     for controller in root.findall("temperatureController"):
         # temperatureType is a selector, not text: read the option marked selected.
         kind = controller.find("temperatureType")
@@ -390,6 +406,29 @@ def simplify3d(model, size, out):
         if not is_bed:
             # The nozzle climbs while the bed finishes; our script waits for it with M109.
             put("stabilizeAtStartup", "0", controller)
+
+    materials = root.find('.//autoConfigureCategory[@name="Material"]')
+    if materials is None:
+        raise KeyError("Material category missing from the Simplify3D reference profile")
+    abs_option = materials.find('option[@value="ABS"]')
+    for filament, spec in FILAMENTS.items():
+        option = materials.find(f'option[@value="{filament}"]')
+        if option is None:  # Wanhao's own profile has no PETG preset.
+            option = copy.deepcopy(abs_option)
+            option.set("value", filament)
+            option.attrib.pop("selected", None)
+            materials.insert(list(materials).index(abs_option), option)
+        put("extruder/extrusionMultiplier", f"{spec['flow']:.5f}", option)
+        for controller in option.findall("temperatureController"):
+            is_bed = controller.get("name") == "Heated Bed"
+            first, steady = ((min(spec["bed_first"], bed_max), min(spec["bed"], bed_max)) if is_bed
+                             else (spec["nozzle_first"], spec["nozzle"]))
+            setpoints = [f"1|{first}"] + ([f"2|{steady}"] if steady != first else [])
+            _setpoints(controller.find("temperatureSetpoints"), setpoints)
+        fan = [f"1|{spec['fan_min'] if spec['fan_off_layers'] == 0 else 0}"]
+        if spec["fan_max"]:
+            fan.append(f"{spec['fan_off_layers'] + 1}|{spec['fan_max']}")
+        _setpoints(option.find("fan/fanSetpoints"), fan)
 
     base = out / "Simplify3D"
     base.mkdir(parents=True, exist_ok=True)

@@ -453,14 +453,14 @@ v2.0.6은 10 km였습니다. v2.0.7은 프린터가 시작될 때 이 두 값을
 """)
 
     if page == "slicer":
-        return ("Wanhao Duplicator 9용 Cura와 OrcaSlicer 프로파일, 그리고 Z 오프셋 맞추기",
-                "모든 Wanhao D9를 위한 UltiMaker Cura와 OrcaSlicer 프로파일(PLA, PETG, ABS), 프로브의 Z 오프셋을 "
+        return ("Wanhao Duplicator 9용 Cura와 OrcaSlicer, Simplify3D 프로파일, 그리고 Z 오프셋 맞추기",
+                "모든 Wanhao D9를 위한 UltiMaker Cura와 OrcaSlicer, Simplify3D 프로파일(PLA, PETG, ABS), 프로브의 Z 오프셋을 "
                 "맞추고 베드를 프로빙하고 테스트용 3DBenchy를 출력하는 방법.",
                 f"""
 <h1>Duplicator 9 슬라이싱하기</h1>
 <p class="lead">열두 대의 프린터마다 하나씩, <strong>UltiMaker Cura</strong>와 <strong>OrcaSlicer</strong>용
-프로파일입니다. 둘 다 무료이고 Windows, macOS, Linux에서 쓸 수 있습니다. 각 프로파일에는 그 프린터 펌웨어의
-출력 크기, 가속도, 최고 베드 온도가 들어 있습니다.</p>
+프로파일입니다. 둘 다 무료이고 Windows, macOS, Linux에서 쓸 수 있습니다. 이미 가지고 있다면 <strong>Simplify3D</strong>용도
+있습니다. 각 프로파일에는 그 프린터 펌웨어의 출력 크기, 가속도, 최고 베드 온도가 들어 있습니다.</p>
 
 <h2>다운로드</h2>
 {h.slicer}
@@ -474,6 +474,9 @@ v2.0.6은 10 km였습니다. v2.0.7은 프린터가 시작될 때 이 두 값을
 폴더에 풀고, Cura를 다시 켠 다음 <em>설정</em> → <em>프린터</em> → <em>프린터 추가…</em> →
 <em>네트워크에 연결되지 않은 프린터 추가</em> → <em>Wanhao</em> → 자기 모델 순으로 고르세요. Cura에 기본으로 들어
 있는 <em>Wanhao Duplicator 9</em>는 더 오래된 프로파일입니다: 300만 있고, 래프트와 서포트가 기본으로 켜져 있습니다.</p>
+<p><strong>Simplify3D</strong>(5 버전, 유료): <em>File</em> → <em>Import Printer Profiles…</em>를 고른 다음
+<code>.fff</code> 파일을 선택하세요. 프린터가 세 가지 품질(0.30, 0.20, 0.10 mm)과 PLA, PETG, ABS 재료와 함께 들어오고,
+설정 위쪽의 <em>Auto-Configure</em> 목록에서 고를 수 있습니다.</p>
 
 <h2 id="first-print">첫 출력 전에: Z 오프셋, 그다음 프로빙</h2>
 <p>프로브는 베드보다 조금 위에서 반응하고, 펌웨어는 그 차이가 얼마인지 알아야 합니다. 그것이
